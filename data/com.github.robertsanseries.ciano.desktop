@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Ciano
+Comment=A multimedia converter
+Icon=/usr/share/ciano/images/com.github.robertsanseries.ciano.svg
+Exec=com.github.robertsanseries.ciano
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Video;AudioAudio;Photography;AudioVideo;
+Keywords=converter;multimedia;audio;video;photo;photography;
