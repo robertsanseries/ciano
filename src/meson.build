@@ -7,6 +7,7 @@ sources = files(
 
 	'widgets/HeaderBar.vala',
 	'widgets/SourceList.vala',
+	'widgets/DialogPreferences.vala',
 
 	'Application.vala',
 	'Main.vala',
