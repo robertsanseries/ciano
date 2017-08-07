@@ -79,7 +79,6 @@ namespace Ciano.Widgets {
         public void mount_music_list () {
 			var music_list = new Granite.Widgets.SourceList.ExpandableItem ("Music");
 			music_list.icon = new GLib.ThemedIcon ("folder-music");
-			music_list.expand_all ();
 
 			var mp3_item = new Granite.Widgets.SourceList.Item ("MP3");
 			var wma_item = new Granite.Widgets.SourceList.Item ("WMA");
@@ -101,7 +100,6 @@ namespace Ciano.Widgets {
         public void mount_image_list () {
 			var image_list = new Granite.Widgets.SourceList.ExpandableItem ("Image");
 			image_list.icon = new GLib.ThemedIcon ("folder-pictures");
-			image_list.expand_all ();
 
 			var jpg_item = new Granite.Widgets.SourceList.Item ("JPG");
 			var bmp_item = new Granite.Widgets.SourceList.Item ("BMP");
