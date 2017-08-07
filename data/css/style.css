@@ -20,7 +20,9 @@
 @define-color colorPrimary #80E5FF;
 @define-color textColorPrimary #333333;
 @define-color white #FFFFFF;
-
+@define-color white #000000;
+@define-color whiteElementary #FAFAFA;
+@define-color blackElementary #333333;
 
 .background-color-source-list {
 	background-color: @white;
@@ -28,4 +30,8 @@
 
 .label-source-list {
 	background-color: @transparent;
+}
+
+.title-section-dialog {
+	color: #6D6D6D;
 }
