@@ -33,6 +33,7 @@ namespace Ciano.Views {
 		 * @variables
 		 */
 		private Gtk.ApplicationWindow app;
+		public HeaderBar headerbar;
 
 		/**
 		 * @construct
@@ -44,8 +45,8 @@ namespace Ciano.Views {
 			this.app.deletable = true;
 			this.app.resizable = true;
 
-			var headerbar = new HeaderBar ();
-			this.app.set_titlebar (headerbar);
+			this.headerbar = new HeaderBar ();
+			this.app.set_titlebar (this.headerbar);
 
 			var source_list = new SourceList ();
 			var frame1 = new Gtk.Frame (null);
