@@ -18,6 +18,7 @@
 */
 
 using Ciano.Views;
+using Ciano.Widgets;
 
 namespace Ciano.Controllers {
 
@@ -41,6 +42,9 @@ namespace Ciano.Controllers {
 		public ConverterController (Gtk.ApplicationWindow app, ConverterView converter_view) {
 			this.app = app;
 			this.converter_view = converter_view;
+			this.converter_view.headerbar.on_preferences_button_clicked.connect (() => {
+				new DialogPreferences (app);
+			});
 		}
 
 		
