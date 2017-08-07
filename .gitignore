@@ -1,0 +1,4 @@
+build/*
+debian/*
+language/*
+schemas/*
