@@ -49,12 +49,18 @@ namespace Ciano.Views {
 			this.app.set_titlebar (this.headerbar);
 
 			var source_list = new SourceList ();
+			
+			var welcome = new Granite.Widgets.Welcome (
+				"",
+				"Empty conversion list"
+			);
+
 			var frame1 = new Gtk.Frame (null);
 	        frame1.add (source_list);
 
 			var frame2 = new Gtk.Frame (null);
 			frame2.expand = true;
-	        frame2.add (new Gtk.Label (""));
+	        frame2.add (welcome);
 
 	        this.margin = 12;
 	        this.column_spacing = 12;

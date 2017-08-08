@@ -17,6 +17,8 @@
 * Boston, MA 02110-1301 USA
 */
 
+using Ciano.Config;
+
 namespace Ciano.Widgets {
 
 	/**
@@ -30,6 +32,8 @@ namespace Ciano.Widgets {
 		/**
 		 * @variables
 		 */
+		private Ciano.Config.Settings settings;
+		private Gtk.FileChooserButton library_filechooser;
         private Gtk.Switch output_source_file_folder;
         private Gtk.Switch shutdown_computer;
         private Gtk.Switch open_output_folder;
@@ -47,6 +51,8 @@ namespace Ciano.Widgets {
 			this.set_transient_for (parent);
             this.set_default_size (500, 450);
             this.set_size_request (500, 450);
+
+			this.settings = Ciano.Config.Settings.get_instance ();
 
 			var grid = new Gtk.Grid ();
 			grid.row_spacing = 5;
@@ -67,20 +73,20 @@ namespace Ciano.Widgets {
 		 * @return 		void
 		 */
 		private void init_options () {
-			output_source_file_folder = new Gtk.Switch ();
-			//preferences.schema.bind ("output-source-file-folder", output_source_file_folder, "active", SettingsBindFlags.DEFAULT);
+			this.output_source_file_folder = new Gtk.Switch ();
+			this.settings.schema.bind ("output-source-file-folder", this.output_source_file_folder, "active", SettingsBindFlags.DEFAULT);
 
-			shutdown_computer = new Gtk.Switch ();
-			//preferences.schema.bind ("shutdown-computer", shutdown_computer, "active", SettingsBindFlags.DEFAULT);
+			this.shutdown_computer = new Gtk.Switch ();
+			this.settings.schema.bind ("shutdown-computer", this.shutdown_computer, "active", SettingsBindFlags.DEFAULT);
 
-			open_output_folder = new Gtk.Switch ();
-			//preferences.schema.bind ("open-output-folder", open_output_folder, "active", SettingsBindFlags.DEFAULT);
+			this.open_output_folder = new Gtk.Switch ();
+			this.settings.schema.bind ("open-output-folder", this.open_output_folder, "active", SettingsBindFlags.DEFAULT);
 
-			complete_notify = new Gtk.Switch ();
-			//preferences.schema.bind ("complete-notify", complete_notify, "active", SettingsBindFlags.DEFAULT);
+			this.complete_notify = new Gtk.Switch ();
+			this.settings.schema.bind ("complete-notify", this.complete_notify, "active", SettingsBindFlags.DEFAULT);
 
-			erro_notify = new Gtk.Switch ();
-			//preferences.schema.bind ("erro-notify", erro_notify, "active", SettingsBindFlags.DEFAULT);
+			this.erro_notify = new Gtk.Switch ();
+			this.settings.schema.bind ("erro-notify", this.erro_notify, "active", SettingsBindFlags.DEFAULT);
 		}
 
 		/**
@@ -88,11 +94,16 @@ namespace Ciano.Widgets {
 		 * @return 		void
 		 */
 		private void mount_options (Gtk.Grid grid) {
-			var row = 0;
-
+        	var row = 0;
 			// * output folder
 			var label_output_folder = new Gtk.Label ("Output folder:");
 			add_section (grid, label_output_folder, ref row);
+
+				// select output
+				 var label_select_output_folder = new Gtk.Label ("Select the output folder:");
+				library_filechooser = new Gtk.FileChooserButton ("",Gtk.FileChooserAction.SELECT_FOLDER);
+	        	library_filechooser.hexpand = true;
+	        	add_option (grid, label_select_output_folder, this.library_filechooser, ref row);
 
 				//output to source file folder
 				var label_output_source_file_folder = new Gtk.Label ("Output to source file folder:");
@@ -158,21 +169,21 @@ namespace Ciano.Widgets {
          * @description 	 [add_option description]
          * @param Gtk.Grid   grid
          * @param Gtk.Label  label
-         * @param Gtk.Switch switcher
+         * @param Gtk.Switch widget
          * @param int        row
          */
-		private void add_option (Gtk.Grid grid, Gtk.Label label, Gtk.Switch switcher, ref int row) {
+		private void add_option (Gtk.Grid grid, Gtk.Label label, Gtk.Widget widget, ref int row) {
 			label.halign 		= Gtk.Align.END;
 			label.hexpand 		= true;
 			label.margin_left 	= 25;
 			label.margin_top 	= 0;
 
-			switcher.halign 	= Gtk.Align.START;
-			switcher.hexpand 	= true;
-			switcher.margin_top = 0;			
+			widget.halign 	= Gtk.Align.START;
+			widget.hexpand 	= true;
+			widget.margin_top = 0;			
 
 			grid.attach (label, 0, row, 1, 1);
-			grid.attach_next_to (switcher, label, Gtk.PositionType.RIGHT, 3, 1);
+			grid.attach_next_to (widget, label, Gtk.PositionType.RIGHT, 3, 1);
 
 			row++;
 		}

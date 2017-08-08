@@ -19,6 +19,12 @@
 
 namespace Ciano.Config {
 
+	/**
+	 * @descrition 
+	 * 
+	 * @author  Robert San <robertsanseries@gmail.com>
+	 * @type    ConverterController
+	 */
 	public class Constants {
 
 	    public abstract const string ID = "com.github.robertsanseries.ciano";
