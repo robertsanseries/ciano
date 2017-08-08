@@ -40,3 +40,6 @@ executable('com.github.robertsanseries.ciano',
     ],
     install : true
 )
+
+# Add in a post install script
+meson.add_install_script('post_install.py')
