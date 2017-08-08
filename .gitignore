@@ -1,4 +1,6 @@
 build/*
 debian/*
 language/*
-schemas/*
+src/models/*
+src/objects/*
+src/utils/*
