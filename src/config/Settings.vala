@@ -17,6 +17,8 @@
 * Boston, MA 02110-1301 USA
 */
 
+using Ciano.Utils;
+
 namespace Ciano.Config {
 
 	/**
@@ -33,6 +35,7 @@ namespace Ciano.Config {
 		private static Settings? instance;
 		public int window_x 					{ get; set; }
 		public int window_y 					{ get; set; }
+		public string output_folder				{ get; set; }
 		public bool output_source_file_folder 	{ get; set; }
 		public bool shutdown_computer 			{ get; set; }
 		public bool open_output_folder 			{ get; set; }
