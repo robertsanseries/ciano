@@ -3,6 +3,8 @@ sources = files(
 	'config/Settings.vala',
 	
 	'controllers/ConverterController.vala',
+
+	'utils/StringUtil.vala',
 	
 	'views/ConverterView.vala',
 
