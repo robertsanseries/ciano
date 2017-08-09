@@ -18,6 +18,7 @@
 */
 
 using Ciano.Widgets;
+using Ciano.Utils;
 
 namespace Ciano.Views {
 
@@ -40,8 +41,8 @@ namespace Ciano.Views {
 		 */
 		public ConverterView (Gtk.ApplicationWindow app) {
 			this.app = app;
-			this.app.set_default_size (900, 600);
-			this.app.set_size_request (900, 600);
+			this.app.set_default_size (1050, 700);
+			this.app.set_size_request (1050, 700);
 			this.app.deletable = true;
 			this.app.resizable = true;
 
@@ -51,7 +52,7 @@ namespace Ciano.Views {
 			var source_list = new SourceList ();
 			
 			var welcome = new Granite.Widgets.Welcome (
-				"",
+				StringUtil.EMPTY,
 				"Empty conversion list"
 			);
 
