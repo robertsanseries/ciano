@@ -63,8 +63,8 @@ namespace Ciano.Views {
 			frame2.expand = true;
 	        frame2.add (welcome);
 
-	        this.margin = 12;
-	        this.column_spacing = 12;
+			this.margin = 12;
+			this.column_spacing = 12;
 	        this.attach (frame1, 0, 0, 1, 1);
 	        this.attach (frame2, 1, 0, 8, 1);
 		}

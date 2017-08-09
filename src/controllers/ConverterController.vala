@@ -43,7 +43,8 @@ namespace Ciano.Controllers {
 			this.app = app;
 			this.converter_view = converter_view;
 			this.converter_view.headerbar.on_preferences_button_clicked.connect (() => {
-				new DialogPreferences (app);
+				//new DialogPreferences (app);
+				new DialogConvertFile (app);
 			});
 		}
 
