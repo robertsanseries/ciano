@@ -3,4 +3,5 @@ debian/*
 language/*
 src/models/*
 src/objects/*
-src/utils/*
+src/utils/FileUtil.vala
+src/utils/WidgetUtil.vala
