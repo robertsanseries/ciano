@@ -4,6 +4,7 @@ sources = files(
 	
 	'controllers/ConverterController.vala',
 
+	'enums/ColumnEnum.vala',
 	'utils/StringUtil.vala',
 	
 	'views/ConverterView.vala',
@@ -11,6 +12,7 @@ sources = files(
 	'widgets/HeaderBar.vala',
 	'widgets/SourceList.vala',
 	'widgets/DialogPreferences.vala',
+	'widgets/DialogConvertFile.vala',
 
 	'Application.vala',
 	'Main.vala',
