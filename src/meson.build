@@ -10,7 +10,7 @@ sources = files(
 	'views/ConverterView.vala',
 
 	'widgets/HeaderBar.vala',
-	'widgets/SourceList.vala',
+	'widgets/ListSidebar.vala',
 	'widgets/DialogPreferences.vala',
 	'widgets/DialogConvertFile.vala',
 
