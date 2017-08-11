@@ -17,7 +17,19 @@
  *  Boston, MA 02110-1301 USA.
  */
 
-namespace Granite.Widgets {
+/*==================================================================================================
+    Note: this file is the same as the "SourceList" of the granite. Only the following changes:
+
+    1 - Ability to perform an action on the same selected item.
+    2 - I deselected the clicked icon.
+    3 - Inclusion of the business rule in the class itself: Utils.is_left_to_right (this)
+/*==================================================================================================
+
+
+using Granite;
+using Granite.Widgets;
+
+namespace Ciano.Widgets {
 
 /**
  * An interface for sorting items.
@@ -1588,7 +1600,7 @@ public class SourceList : Gtk.ScrolledWindow {
         }
 
         public Tree (DataModel data_model) {
-            Utils.set_theming (this, DEFAULT_STYLESHEET, StyleClass.SOURCE_LIST,
+            Granite.Widgets.Utils.set_theming (this, DEFAULT_STYLESHEET, StyleClass.SOURCE_LIST,
                                Gtk.STYLE_PROVIDER_PRIORITY_FALLBACK);
 
             this.data_model = data_model;
@@ -1929,6 +1941,7 @@ public class SourceList : Gtk.ScrolledWindow {
                     selected_path = selected_rows.nth_data (0);
             }
 
+            selection.unselect_all ();
             return selected_path;
         }
 
@@ -1974,7 +1987,7 @@ public class SourceList : Gtk.ScrolledWindow {
             // THIS ALL HAPPENS SILENTLY BEHIND THE SCENES, so client code will never know
             // it ever happened; the value of selected_item remains unchanged and item_selected()
             // is not emitted.
-            if (new_item != null && new_item != this.selected) {
+            if (new_item != null){
                 this.selected = new_item;
                 item_selected (new_item);
             }
@@ -2254,7 +2267,19 @@ public class SourceList : Gtk.ScrolledWindow {
                     // Add a pixel so that the expander area is a bit wider
                     int expander_width = get_cell_width (primary_expander_cell) + 1;
 
-                    if (Utils.is_left_to_right (this)) {
+                    bool is_ltr = false;
+
+                    var dir = this.get_direction ();
+                    
+                    if (dir == Gtk.TextDirection.NONE) {
+                        dir = Gtk.Widget.get_default_direction ();
+                    }
+                    
+                    if (dir == Gtk.TextDirection.LTR) {
+                        is_ltr = true;
+                    }
+
+                    if (is_ltr) {
                         int indentation_offset = cell_x + cell_width;
                         return x >= indentation_offset && x <= indentation_offset + expander_width;
                     }
@@ -2333,7 +2358,18 @@ public class SourceList : Gtk.ScrolledWindow {
             int item_y = item_bin_coords.y + item_bin_coords.height / 2;
             int item_x = item_bin_coords.x;
 
-            bool is_ltr = Utils.is_left_to_right (this);
+            bool is_ltr = false;
+
+            var dir = this.get_direction ();
+            
+            if (dir == Gtk.TextDirection.NONE) {
+                dir = Gtk.Widget.get_default_direction ();
+            }
+            
+            if (dir == Gtk.TextDirection.LTR) {
+                is_ltr = true;
+            }
+
 
             if (is_ltr)
                 item_x += item_bin_coords.width - 6;
