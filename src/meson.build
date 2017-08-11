@@ -11,6 +11,7 @@ sources = files(
 
 	'widgets/HeaderBar.vala',
 	'widgets/ListSidebar.vala',
+	'widgets/SourceList.vala',
 	'widgets/DialogPreferences.vala',
 	'widgets/DialogConvertFile.vala',
 
