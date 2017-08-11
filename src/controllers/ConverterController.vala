@@ -46,6 +46,19 @@ namespace Ciano.Controllers {
 				//new DialogPreferences (app);
 				new DialogConvertFile (app);
 			});
+
+
+			this.converter_view.source_list.item_selected.connect ((item) => {
+            	message("oiiiiiiiiiiiii");
+            	//this.converter_view.source_list.show_all (); 
+
+            	//var path = data_model.get_item_path (item);
+                //if (path != null) {
+                    //this.converter_view.source_list.set_cursor_on_cell (path, get_column (Column.ITEM), text_cell, false);
+                //}
+            });
+
+
 		}
 
 		
