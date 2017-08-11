@@ -17,13 +17,13 @@
  *  Boston, MA 02110-1301 USA.
  */
 
-/*==================================================================================================
+/*================================================================================================
     Note: this file is the same as the "SourceList" of the granite. Only the following changes:
 
     1 - Ability to perform an action on the same selected item.
     2 - I deselected the clicked icon.
     3 - Inclusion of the business rule in the class itself: Utils.is_left_to_right (this)
-/*==================================================================================================
+==================================================================================================*/
 
 
 using Granite;
