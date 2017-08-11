@@ -29,7 +29,7 @@ namespace Ciano.Config {
 
 	    public abstract const string ID = "com.github.robertsanseries.ciano";
 		public abstract const string VERSION = "0.1.0";
-		public abstract const string PROGRAME_NAME = "ciano";
+		public abstract const string PROGRAME_NAME = "Ciano";
 		public abstract const string APP_YEARS = "2017";
 		public abstract const string APP_ICON = "com.github.robertsanseries.ciano";
 		public abstract const string ABOUT_COMMENTS = "Multimedia converter for all the format you need.";

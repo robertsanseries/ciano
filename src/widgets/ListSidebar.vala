@@ -16,6 +16,7 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 */
+using Ciano.Config;
 
 namespace Ciano.Widgets {
 
@@ -25,7 +26,7 @@ namespace Ciano.Widgets {
      * @author  Robert San <robertsanseries@gmail.com>
      * @type    Gtk.Grid
      */
-    public class ListSidebar : Widgets.SourceList {
+    public class ListSidebar : SourceList {
 
         /**
          * @signals
@@ -42,7 +43,7 @@ namespace Ciano.Widgets {
          * @construct
          */
         public ListSidebar () {
-        	this.type_list = new SourceList.ExpandableItem ("Convert file to");
+        	this.type_list = new SourceList.ExpandableItem (Properties.TEXT_CONVERT_FILE_TO);
         	this.type_list.selectable = false;
 			this.type_list.expand_all ();
 
@@ -54,18 +55,18 @@ namespace Ciano.Widgets {
         }
 
         public void mount_video_list () {
-			var video_list = new SourceList.ExpandableItem ("Video");
+			var video_list = new SourceList.ExpandableItem (Properties.TEXT_VIDEO);
 			video_list.icon = new GLib.ThemedIcon ("folder-videos");
 			video_list.selectable = false;
 			video_list.expand_all ();
 
-			var mp4_item = new SourceList.Item ("MP4");
-			var 3gp_item = new SourceList.Item ("3GP");
-			var mpg_item = new SourceList.Item ("MPG");
-			var avi_item = new SourceList.Item ("AVI");
-			var wmv_item = new SourceList.Item ("WMV");
-			var flv_item = new SourceList.Item ("FLV");
-			var swf_item = new SourceList.Item ("SWF");
+			var mp4_item = new SourceList.Item (Properties.TEXT_MP4);
+			var 3gp_item = new SourceList.Item (Properties.TEXT_3GP);
+			var mpg_item = new SourceList.Item (Properties.TEXT_MPG);
+			var avi_item = new SourceList.Item (Properties.TEXT_AVI);
+			var wmv_item = new SourceList.Item (Properties.TEXT_WMV);
+			var flv_item = new SourceList.Item (Properties.TEXT_FLV);
+			var swf_item = new SourceList.Item (Properties.TEXT_SWF);
 
 			video_list.add (mp4_item);
 			video_list.add (3gp_item);
@@ -79,16 +80,16 @@ namespace Ciano.Widgets {
         }
 
         public void mount_music_list () {
-			var music_list = new SourceList.ExpandableItem ("Music");
+			var music_list = new SourceList.ExpandableItem (Properties.TEXT_MUSIC);
 			music_list.icon = new GLib.ThemedIcon ("folder-music");
 			music_list.selectable = false;
 
-			var mp3_item = new SourceList.Item ("MP3");
-			var wma_item = new SourceList.Item ("WMA");
-			var amr_item = new SourceList.Item ("AMR");
-			var ogg_item = new SourceList.Item ("OGG");
-			var acc_item = new SourceList.Item ("AAC");
-			var wav_item = new SourceList.Item ("WAV");
+			var mp3_item = new SourceList.Item (Properties.TEXT_MP3);
+			var wma_item = new SourceList.Item (Properties.TEXT_WMA);
+			var amr_item = new SourceList.Item (Properties.TEXT_AMR);
+			var ogg_item = new SourceList.Item (Properties.TEXT_OGG);
+			var acc_item = new SourceList.Item (Properties.TEXT_AAC);
+			var wav_item = new SourceList.Item (Properties.TEXT_WAV);
 
 			music_list.add (mp3_item);
 			music_list.add (wma_item);
@@ -101,17 +102,17 @@ namespace Ciano.Widgets {
         }
 
         public void mount_image_list () {
-			var image_list = new SourceList.ExpandableItem ("Image");
+			var image_list = new SourceList.ExpandableItem (Properties.TEXT_IMAGE);
 			image_list.icon = new GLib.ThemedIcon ("folder-pictures");
 			image_list.selectable = false;
 
-			var jpg_item = new SourceList.Item ("JPG");
-			var bmp_item = new SourceList.Item ("BMP");
-			var png_item = new SourceList.Item ("PNG");
-			var tif_item = new SourceList.Item ("TIF");
-			var ico_item = new SourceList.Item ("ICO");
-			var gif_item = new SourceList.Item ("GIF");
-			var tga_item = new SourceList.Item ("TGA");
+			var jpg_item = new SourceList.Item (Properties.TEXT_JPG);
+			var bmp_item = new SourceList.Item (Properties.TEXT_BMP);
+			var png_item = new SourceList.Item (Properties.TEXT_PNG);
+			var tif_item = new SourceList.Item (Properties.TEXT_TIF);
+			var ico_item = new SourceList.Item (Properties.TEXT_ICO);
+			var gif_item = new SourceList.Item (Properties.TEXT_GIF);
+			var tga_item = new SourceList.Item (Properties.TEXT_TGA);
 
 			image_list.add (jpg_item);
 			image_list.add (bmp_item);

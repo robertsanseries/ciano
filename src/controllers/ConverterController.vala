@@ -17,6 +17,7 @@
 * Boston, MA 02110-1301 USA
 */
 
+using Ciano.Config;
 using Ciano.Views;
 using Ciano.Widgets;
 
@@ -42,25 +43,75 @@ namespace Ciano.Controllers {
 		public ConverterController (Gtk.ApplicationWindow app, ConverterView converter_view) {
 			this.app = app;
 			this.converter_view = converter_view;
-			this.converter_view.headerbar.on_preferences_button_clicked.connect (() => {
-				//new DialogPreferences (app);
-				new DialogConvertFile (app);
-			});
-
-
-			this.converter_view.source_list.item_selected.connect ((item) => {
-            	message("oiiiiiiiiiiiii");
-            	//this.converter_view.source_list.show_all (); 
-
-            	//var path = data_model.get_item_path (item);
-                //if (path != null) {
-                    //this.converter_view.source_list.set_cursor_on_cell (path, get_column (Column.ITEM), text_cell, false);
-                //}
-            });
-
-
+			
+			on_preferences_button_clicked (app);
+			on_item_button_clicked (app);
 		}
 
-		
+		/**
+		 * [on_preferences_button_clicked description]
+		 * @param  {[type]} Gtk.ApplicationWindow app           [description]
+		 * @return {[type]}                       [description]
+		 */
+		private void on_preferences_button_clicked (Gtk.ApplicationWindow app) {
+			this.converter_view.headerbar.on_preferences_button_clicked.connect (() => {
+				var dialog_preferences = new DialogPreferences (app);
+				dialog_preferences.show_all ();
+			});	
+		}
+
+		/**
+		 * [on_item_button_clicked description]
+		 * @param  {[type]} Gtk.ApplicationWindow app           [description]
+		 * @return {[type]}                       [description]
+		 */
+		private void on_item_button_clicked (Gtk.ApplicationWindow app) {
+			this.converter_view.source_list.item_selected.connect ((item) => {
+
+				var types = mount_array_with_supported_types (item.name);
+
+				var dialog_convert_file = new DialogConvertFile (app);
+				dialog_convert_file.show_all ();
+			});
+		}
+
+		/**
+		 * [mount_array_with_supported_types description]
+		 * @param  {[type]} string name_type     [description]
+		 * @return {[type]}        [description]
+		 */
+		private string [] mount_array_with_supported_types (string name_type) {
+			string [] types = {""};
+			
+			switch (name_type) {
+				case Properties.TEXT_MP4:
+				case Properties.TEXT_3GP:
+				case Properties.TEXT_MPG:
+				case Properties.TEXT_AVI:
+				case Properties.TEXT_WMV:
+				case Properties.TEXT_FLV:
+				case Properties.TEXT_SWF:
+					break;
+
+				case Properties.TEXT_MP3:
+				case Properties.TEXT_WMA:
+				case Properties.TEXT_AMR:
+				case Properties.TEXT_OGG:
+				case Properties.TEXT_AAC:
+				case Properties.TEXT_WAV:
+					break;
+
+				case Properties.TEXT_JPG:
+				case Properties.TEXT_BMP:
+				case Properties.TEXT_PNG:
+				case Properties.TEXT_TIF:
+				case Properties.TEXT_ICO:
+				case Properties.TEXT_GIF:
+				case Properties.TEXT_TGA:
+					break;
+			}
+
+			return types;
+		}		
 	}
 }

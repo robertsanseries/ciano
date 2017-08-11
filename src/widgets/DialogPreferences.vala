@@ -45,8 +45,8 @@ namespace Ciano.Widgets {
 		/**
 		 * @construct
 		 */
-		public DialogPreferences (Gtk.Window? parent) {
-			this.title = "Preferences";
+		public DialogPreferences (Gtk.Window parent) {
+			this.title = Properties.TEXT_PREFERENCES;
 			this.resizable = false;
             this.deletable = false;
 			this.set_transient_for (parent);
@@ -67,7 +67,6 @@ namespace Ciano.Widgets {
 			mount_options (grid);
 
 			this.get_content_area ().add (grid);
-			this.show_all ();
 		}
 
 		/**
@@ -128,15 +127,15 @@ namespace Ciano.Widgets {
 		 */
 		private void mount_section_output_folder (Gtk.Grid grid, ref int row) {
 			// * output folder
-			var label_output_folder = new Gtk.Label ("Output folder:");
+			var label_output_folder = new Gtk.Label (Properties.TEXT_OUTPUT_FOLDER);
 			add_section (grid, label_output_folder, ref row);
 
 				// select output
-				var label_select_output_folder = new Gtk.Label ("Select the output folder:");
+				var label_select_output_folder = new Gtk.Label (Properties.TEXT_SELECT_OUTPUT_FOLDER);
 	        	add_option (grid, label_select_output_folder, this.output_folder, ref row);
 
 				//output to source file folder
-				var label_output_source_file_folder = new Gtk.Label ("Output to source file folder:");
+				var label_output_source_file_folder = new Gtk.Label (Properties.TEXT_OUTPUT_SOURCE_FILE_FOLDER);
 				add_option (grid, label_output_source_file_folder, this.output_source_file_folder, ref row);
 
 		}
@@ -149,15 +148,15 @@ namespace Ciano.Widgets {
 		 */
 		private void mount_section_after_converting (Gtk.Grid grid, ref int row) {
 			// * After Converting
-			var label_after_converting = new Gtk.Label ("After converting:");
+			var label_after_converting = new Gtk.Label (Properties.TEXT_AFTER_CONVERTING);
 			add_section (grid, label_after_converting, ref row);
 
 				// Shutdown Computer
-				var label_shutdown_computer = new Gtk.Label ("Shutdown computer:");
+				var label_shutdown_computer = new Gtk.Label (Properties.TEXT_SHUTDOWN_COMPUTER);
 				add_option (grid, label_shutdown_computer, this.shutdown_computer, ref row);
 
 				//Open Output Folder
-				var label_open_output_folder = new Gtk.Label ("Open output folder:");
+				var label_open_output_folder = new Gtk.Label (Properties.TEXT_OPEN_OUTPUT_FOLDER);
 				add_option (grid, label_open_output_folder, this.open_output_folder, ref row);
 		}
 
@@ -169,15 +168,15 @@ namespace Ciano.Widgets {
 		 */
 		private void mount_section_notify (Gtk.Grid grid, ref int row) {
 			// * Notify
-			var label_notify = new Gtk.Label ("Notify:");
+			var label_notify = new Gtk.Label (Properties.TEXT_NOTIFY);
 			add_section (grid, label_notify, ref row);
 
 				// Complete Notify
-				var label_complete_notify = new Gtk.Label ("Complete notify:");
+				var label_complete_notify = new Gtk.Label (Properties.TEXT_COMPLETE_NOTIFY);
 				add_option (grid, label_complete_notify, this.complete_notify, ref row);
 				
 				// Erro Notify
-				var label_erro_notify = new Gtk.Label ("Erro Notify:");
+				var label_erro_notify = new Gtk.Label (Properties.TEXT_ERRO_NOTIFY);
 				add_option (grid, label_erro_notify, this.erro_notify, ref row);
 		}
 
@@ -189,10 +188,10 @@ namespace Ciano.Widgets {
 		 */
 		private void mount_buttons (Gtk.Grid grid, ref int row) {
 			//Buttons
-			this.default_settings = new Gtk.Button.with_label ("Default Settings");
+			this.default_settings = new Gtk.Button.with_label (Properties.TEXT_DEFAULT_SETTINGS);
 			this.default_settings.clicked.connect (reset_default_settings);
 			
-			var close_button = new Gtk.Button.with_label ("Close");
+			var close_button = new Gtk.Button.with_label (Properties.TEXT_CLOSE);
 			close_button.clicked.connect (() => { this.destroy (); });
 
 			this.default_settings.margin_top = 25;

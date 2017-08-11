@@ -34,8 +34,8 @@ namespace Ciano.Widgets {
 		/**
 		 * @construct
 		 */
-		public DialogConvertFile (Gtk.Window? parent) {
-			this.title = "Convert File";
+		public DialogConvertFile (Gtk.Window parent) {
+			this.title = Properties.TEXT_CONVERT_FILE;
 			this.resizable = false;
             this.deletable = false;
 			this.set_transient_for (parent);
@@ -43,7 +43,7 @@ namespace Ciano.Widgets {
             this.set_size_request (800, 600);
             this.set_modal (true);
 
-            var label = new Gtk.Label ("Add items to conversion:");
+            var label = new Gtk.Label (Properties.TEXT_ADD_ITEMS_TO_CONVERSION);
 			label.halign = Gtk.Align.START;
 			label.margin = 5;
 
@@ -61,7 +61,6 @@ namespace Ciano.Widgets {
 			grid.add (grid_buttons);
 
 			this.get_content_area ().add (grid);
-			this.show_all ();
 		}
 
 		private Gtk.Frame mount_frame () {
@@ -100,7 +99,7 @@ namespace Ciano.Widgets {
 			toolbar.set_icon_size (Gtk.IconSize.SMALL_TOOLBAR);
 
 			var add_file_button = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("application-add-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
-			add_file_button.tooltip_text = "Add File…";
+			add_file_button.tooltip_text = Properties.TEXT_ADD_FILE;
 			add_file_button.clicked.connect (() => {
 				//if (app_chooser.visible == false) {
 				//	app_chooser.show_all ();
@@ -108,10 +107,10 @@ namespace Ciano.Widgets {
 			});
 
 			var add_folder_button = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("folder-new-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
-			add_folder_button.tooltip_text = "Add Folder…";
+			add_folder_button.tooltip_text = Properties.TEXT_ADD_FOLDER;
 			add_folder_button.clicked.connect (() => {
-				var chooser = new Gtk.FileChooserDialog ("Select a folder", null, Gtk.FileChooserAction.SELECT_FOLDER);
-				chooser.add_buttons (_("Cancel"), Gtk.ResponseType.CANCEL, "Add", Gtk.ResponseType.OK);
+				var chooser = new Gtk.FileChooserDialog (Properties.TEXT_SELECT_A_FOLDER, null, Gtk.FileChooserAction.SELECT_FOLDER);
+				chooser.add_buttons ("Cancel", Gtk.ResponseType.CANCEL, "Add", Gtk.ResponseType.OK);
 				int res = chooser.run ();
 				chooser.hide ();
 				if (res == Gtk.ResponseType.OK) {
@@ -123,7 +122,7 @@ namespace Ciano.Widgets {
 			});
 
 			var remove_button = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
-			remove_button.tooltip_text = "Delete";
+			remove_button.tooltip_text = Properties.TEXT_DELETE;
 			remove_button.sensitive = false;
 			remove_button.clicked.connect (() => {
 				/*Gtk.TreePath path;
@@ -160,11 +159,11 @@ namespace Ciano.Widgets {
 
 		private Gtk.Grid mount_buttons () {
 
-			var calcel_button = new Gtk.Button.with_label ("Cancel");
+			var calcel_button = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
 			calcel_button.clicked.connect (() => { this.destroy (); });
 			calcel_button.margin_right = 10;
 			
-			var convert_button = new Gtk.Button.with_label ("Start conversion");
+			var convert_button = new Gtk.Button.with_label (Properties.TEXT_START_CONVERSION);
 			convert_button.get_style_context ().add_class ("suggested-action");
 			//convert_button.clicked.connect (() => { this.destroy (); });
 

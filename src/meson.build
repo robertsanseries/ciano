@@ -1,6 +1,7 @@
 sources = files(
 	'config/Constants.vala',
 	'config/Settings.vala',
+	'config/Properties.vala',
 	
 	'controllers/ConverterController.vala',
 

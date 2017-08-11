@@ -17,6 +17,7 @@
 * Boston, MA 02110-1301 USA
 */
 
+using Ciano.Config;
 using Ciano.Widgets;
 using Ciano.Utils;
 
@@ -54,7 +55,7 @@ namespace Ciano.Views {
 			
 			var welcome = new Granite.Widgets.Welcome (
 				StringUtil.EMPTY,
-				"Empty conversion list"
+				Properties.TEXT_EMPTY_CONVERTING_LIST
 			);
 
 			var frame1 = new Gtk.Frame (null);
