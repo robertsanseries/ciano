@@ -35,6 +35,7 @@ namespace Ciano.Views {
 		 */
 		private Gtk.ApplicationWindow app;
 		public HeaderBar headerbar;
+		public ListSidebar source_list;
 
 		/**
 		 * @construct
@@ -49,7 +50,7 @@ namespace Ciano.Views {
 			this.headerbar = new HeaderBar ();
 			this.app.set_titlebar (this.headerbar);
 
-			var source_list = new SourceList ();
+			this.source_list = new ListSidebar ();
 			
 			var welcome = new Granite.Widgets.Welcome (
 				StringUtil.EMPTY,
@@ -57,7 +58,7 @@ namespace Ciano.Views {
 			);
 
 			var frame1 = new Gtk.Frame (null);
-	        frame1.add (source_list);
+	        frame1.add (this.source_list);
 
 			var frame2 = new Gtk.Frame (null);
 			frame2.expand = true;
