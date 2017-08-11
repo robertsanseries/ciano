@@ -25,7 +25,7 @@ namespace Ciano.Widgets {
      * @author  Robert San <robertsanseries@gmail.com>
      * @type    Gtk.Grid
      */
-    public class SourceList : Granite.Widgets.SourceList {
+    public class ListSidebar : Widgets.SourceList {
 
         /**
          * @signals
@@ -36,13 +36,14 @@ namespace Ciano.Widgets {
          * @variables
          */
         public Gtk.Button preferences;
-        private Granite.Widgets.SourceList.ExpandableItem type_list;       
+        private SourceList.ExpandableItem type_list;       
 
         /**
          * @construct
          */
-        public SourceList () {
-        	this.type_list = new Granite.Widgets.SourceList.ExpandableItem ("Convert file to");
+        public ListSidebar () {
+        	this.type_list = new SourceList.ExpandableItem ("Convert file to");
+        	this.type_list.selectable = false;
 			this.type_list.expand_all ();
 
         	mount_video_list ();
@@ -53,17 +54,18 @@ namespace Ciano.Widgets {
         }
 
         public void mount_video_list () {
-			var video_list = new Granite.Widgets.SourceList.ExpandableItem ("Video");
+			var video_list = new SourceList.ExpandableItem ("Video");
 			video_list.icon = new GLib.ThemedIcon ("folder-videos");
+			video_list.selectable = false;
 			video_list.expand_all ();
 
-			var mp4_item = new Granite.Widgets.SourceList.Item ("MP4");
-			var 3gp_item = new Granite.Widgets.SourceList.Item ("3GP");
-			var mpg_item = new Granite.Widgets.SourceList.Item ("MPG");
-			var avi_item = new Granite.Widgets.SourceList.Item ("AVI");
-			var wmv_item = new Granite.Widgets.SourceList.Item ("WMV");
-			var flv_item = new Granite.Widgets.SourceList.Item ("FLV");
-			var swf_item = new Granite.Widgets.SourceList.Item ("SWF");
+			var mp4_item = new SourceList.Item ("MP4");
+			var 3gp_item = new SourceList.Item ("3GP");
+			var mpg_item = new SourceList.Item ("MPG");
+			var avi_item = new SourceList.Item ("AVI");
+			var wmv_item = new SourceList.Item ("WMV");
+			var flv_item = new SourceList.Item ("FLV");
+			var swf_item = new SourceList.Item ("SWF");
 
 			video_list.add (mp4_item);
 			video_list.add (3gp_item);
@@ -77,15 +79,16 @@ namespace Ciano.Widgets {
         }
 
         public void mount_music_list () {
-			var music_list = new Granite.Widgets.SourceList.ExpandableItem ("Music");
+			var music_list = new SourceList.ExpandableItem ("Music");
 			music_list.icon = new GLib.ThemedIcon ("folder-music");
+			music_list.selectable = false;
 
-			var mp3_item = new Granite.Widgets.SourceList.Item ("MP3");
-			var wma_item = new Granite.Widgets.SourceList.Item ("WMA");
-			var amr_item = new Granite.Widgets.SourceList.Item ("AMR");
-			var ogg_item = new Granite.Widgets.SourceList.Item ("OGG");
-			var acc_item = new Granite.Widgets.SourceList.Item ("AAC");
-			var wav_item = new Granite.Widgets.SourceList.Item ("WAV");
+			var mp3_item = new SourceList.Item ("MP3");
+			var wma_item = new SourceList.Item ("WMA");
+			var amr_item = new SourceList.Item ("AMR");
+			var ogg_item = new SourceList.Item ("OGG");
+			var acc_item = new SourceList.Item ("AAC");
+			var wav_item = new SourceList.Item ("WAV");
 
 			music_list.add (mp3_item);
 			music_list.add (wma_item);
@@ -98,16 +101,17 @@ namespace Ciano.Widgets {
         }
 
         public void mount_image_list () {
-			var image_list = new Granite.Widgets.SourceList.ExpandableItem ("Image");
+			var image_list = new SourceList.ExpandableItem ("Image");
 			image_list.icon = new GLib.ThemedIcon ("folder-pictures");
+			image_list.selectable = false;
 
-			var jpg_item = new Granite.Widgets.SourceList.Item ("JPG");
-			var bmp_item = new Granite.Widgets.SourceList.Item ("BMP");
-			var png_item = new Granite.Widgets.SourceList.Item ("PNG");
-			var tif_item = new Granite.Widgets.SourceList.Item ("TIF");
-			var ico_item = new Granite.Widgets.SourceList.Item ("ICO");
-			var gif_item = new Granite.Widgets.SourceList.Item ("GIF");
-			var tga_item = new Granite.Widgets.SourceList.Item ("TGA");
+			var jpg_item = new SourceList.Item ("JPG");
+			var bmp_item = new SourceList.Item ("BMP");
+			var png_item = new SourceList.Item ("PNG");
+			var tif_item = new SourceList.Item ("TIF");
+			var ico_item = new SourceList.Item ("ICO");
+			var gif_item = new SourceList.Item ("GIF");
+			var tga_item = new SourceList.Item ("TGA");
 
 			image_list.add (jpg_item);
 			image_list.add (bmp_item);
