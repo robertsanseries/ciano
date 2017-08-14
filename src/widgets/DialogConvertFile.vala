@@ -31,10 +31,12 @@ namespace Ciano.Widgets {
 	 */
 	public class DialogConvertFile : Gtk.Dialog {
 
+		private string [] formats;
+
 		/**
 		 * @construct
 		 */
-		public DialogConvertFile (Gtk.Window parent) {
+		public DialogConvertFile (Gtk.Window parent, owned string [] formats) {
 			this.title = Properties.TEXT_CONVERT_FILE;
 			this.resizable = false;
             this.deletable = false;
@@ -42,6 +44,7 @@ namespace Ciano.Widgets {
             this.set_default_size (800, 600);
             this.set_size_request (800, 600);
             this.set_modal (true);
+            this.formats = formats;
 
             var label = new Gtk.Label (Properties.TEXT_ADD_ITEMS_TO_CONVERSION);
 			label.halign = Gtk.Align.START;
@@ -63,6 +66,10 @@ namespace Ciano.Widgets {
 			this.get_content_area ().add (grid);
 		}
 
+		/**
+		 * [mount_frame description]
+		 * @return {[type]} [description]
+		 */
 		private Gtk.Frame mount_frame () {
 
 			var treeview = mount_treeview ();
@@ -79,8 +86,12 @@ namespace Ciano.Widgets {
 			return frame;
 		}
 
+		/**
+		 * [mount_treeview description]
+		 * @return {[type]} [description]
+		 */
 		private Gtk.ScrolledWindow mount_treeview () {
-			var list_store = new Gtk.ListStore (ColumnEnum.N_COLUMNS ,typeof (string), typeof (Icon), typeof (string), typeof (bool));
+			var list_store = new Gtk.ListStore (ColumnEnum.N_COLUMNS ,typeof (string), typeof (string));
 
 			var view = new Gtk.TreeView.with_model (list_store);
 			view.vexpand = true;
@@ -93,17 +104,51 @@ namespace Ciano.Widgets {
 			return scrolled;
 		}
 
+		/**
+		 * [mount_toolbar description]
+		 * @return {[type]} [description]
+		 */
 		private Gtk.Toolbar mount_toolbar () {
 			var toolbar = new Gtk.Toolbar ();
 			toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
 			toolbar.set_icon_size (Gtk.IconSize.SMALL_TOOLBAR);
 
-			var add_file_button = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("application-add-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
+			var add_file_button = new Gtk.ToolButton (
+				new Gtk.Image.from_icon_name ("application-add-symbolic",
+				Gtk.IconSize.SMALL_TOOLBAR), null
+			);
+
 			add_file_button.tooltip_text = Properties.TEXT_ADD_FILE;
+			
 			add_file_button.clicked.connect (() => {
-				//if (app_chooser.visible == false) {
-				//	app_chooser.show_all ();
+				// The FileChooserDialog:
+				var chooser = new Gtk.FileChooserDialog (
+					Properties.TEXT_SELECT_FILE, null, 
+					Gtk.FileChooserAction.OPEN
+				);
+
+				// Multiple files can be selected:
+				chooser.select_multiple = true;
+
+				// We are only interested in jpegs:
+				var filter = new Gtk.FileFilter ();
+				//foreach (string format in formats) {
+				//	filter.add_pattern ("*.".concat (format));	
+				//	message ("*.".concat (format));
 				//}
+
+				chooser.set_filter (filter);
+				chooser.add_buttons ("Cancel", Gtk.ResponseType.CANCEL, "Add", Gtk.ResponseType.OK);
+
+				int res = chooser.run ();
+				chooser.hide ();
+
+				if (res == Gtk.ResponseType.OK) {
+					string folder = chooser.get_filename ();
+					//if (this.path_blacklist.is_duplicate (folder) == false) {
+					//	path_blacklist.block (folder);
+					//}
+				}
 			});
 
 			var add_folder_button = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("folder-new-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
@@ -157,6 +202,10 @@ namespace Ciano.Widgets {
 			return toolbar;
 		}
 
+		/**
+		 * [mount_buttons description]
+		 * @return {[type]} [description]
+		 */
 		private Gtk.Grid mount_buttons () {
 
 			var calcel_button = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
@@ -175,6 +224,5 @@ namespace Ciano.Widgets {
 
 			return grid_buttons;
 		}
-
 	}
 }

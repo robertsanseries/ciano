@@ -68,22 +68,24 @@ namespace Ciano.Controllers {
 		private void on_item_button_clicked (Gtk.ApplicationWindow app) {
 			this.converter_view.source_list.item_selected.connect ((item) => {
 
-				var types = mount_array_with_supported_types (item.name);
+				var types = mount_array_with_supported_formats (item.name);
 
-				var dialog_convert_file = new DialogConvertFile (app);
-				dialog_convert_file.show_all ();
+				if(types != null) {
+					var dialog_convert_file = new DialogConvertFile (app, (owned) types);
+					dialog_convert_file.show_all ();
+				}
 			});
 		}
 
 		/**
-		 * [mount_array_with_supported_types description]
-		 * @param  {[type]} string name_type     [description]
+		 * [mount_array_with_supported_formats description]
+		 * @param  {[type]} string name_format     [description]
 		 * @return {[type]}        [description]
 		 */
-		private string [] mount_array_with_supported_types (string name_type) {
-			string [] types = {""};
+		private string [] mount_array_with_supported_formats (string name_format) {
+			string [] formats = null;
 			
-			switch (name_type) {
+			switch (name_format) {
 				case Properties.TEXT_MP4:
 				case Properties.TEXT_3GP:
 				case Properties.TEXT_MPG:
@@ -91,6 +93,11 @@ namespace Ciano.Controllers {
 				case Properties.TEXT_WMV:
 				case Properties.TEXT_FLV:
 				case Properties.TEXT_SWF:
+					formats = {
+						Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
+						Properties.TEXT_AVI, Properties.TEXT_WMV, Properties.TEXT_FLV,
+						Properties.TEXT_SWF
+					};
 					break;
 
 				case Properties.TEXT_MP3:
@@ -99,6 +106,10 @@ namespace Ciano.Controllers {
 				case Properties.TEXT_OGG:
 				case Properties.TEXT_AAC:
 				case Properties.TEXT_WAV:
+					formats = {
+						Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
+						Properties.TEXT_OGG, Properties.TEXT_AAC, Properties.TEXT_WAV
+					};
 					break;
 
 				case Properties.TEXT_JPG:
@@ -108,10 +119,15 @@ namespace Ciano.Controllers {
 				case Properties.TEXT_ICO:
 				case Properties.TEXT_GIF:
 				case Properties.TEXT_TGA:
+					formats = {
+						Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
+						Properties.TEXT_TIF, Properties.TEXT_ICO, Properties.TEXT_GIF,
+						Properties.TEXT_TGA
+					};
 					break;
 			}
 
-			return types;
+			return formats;
 		}		
 	}
 }

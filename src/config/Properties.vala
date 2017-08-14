@@ -53,6 +53,8 @@ namespace Ciano.Config {
 		public abstract const string TEXT_ADD_FILE = "Add File…";
 		public abstract const string TEXT_ADD_FOLDER = "Add Folder…";
 		public abstract const string TEXT_SELECT_A_FOLDER = "Select a folder";
+		public abstract const string TEXT_SELECT_FILE = "Select file";
+
 		public abstract const string TEXT_DELETE = "Delete";
 		public abstract const string TEXT_CANCEL = "Cancel";
 		public abstract const string TEXT_START_CONVERSION = "Start conversion";
