@@ -27,9 +27,7 @@ namespace Ciano.Enums {
      */
 	public enum ColumnEnum {
 		NAME,
-		ICON,
-		PATH,
-		IS_APP,
+		DIRECTORY,
 		N_COLUMNS
 	}
 }
