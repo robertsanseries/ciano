@@ -150,14 +150,6 @@ namespace Ciano.Widgets {
 				);				
 			});
 
-			var button_add_folder = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("folder-new-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
-			button_add_folder.tooltip_text = Properties.TEXT_ADD_FOLDER;
-			button_add_folder.clicked.connect (() => {
-				this.converter_controller.on_activate_button_add_folder (
-					this, this.tree_view, this.iter, this.list_store, this.formats 
-				);
-			});
-
 			var button_remove = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
 			button_remove.tooltip_text = Properties.TEXT_DELETE;
 			button_remove.sensitive = false;
@@ -172,7 +164,6 @@ namespace Ciano.Widgets {
 			});
 			
 			toolbar.insert (button_add_file, -1);
-			//toolbar.insert (button_add_folder, -1);
 			toolbar.insert (button_remove, -1);
 
 			return toolbar;

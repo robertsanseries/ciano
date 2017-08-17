@@ -197,59 +197,6 @@ namespace Ciano.Controllers {
 		}
 
 		/**
-		 * [on_activate_button_add_folder description]
-		 * @param  {[type]} Gtk.Dialog    parent_dialog [description]
-		 * @param  {[type]} Gtk.TreeView  tree_view     [description]
-		 * @param  {[type]} Gtk.TreeIter  iter          [description]
-		 * @param  {[type]} Gtk.ListStore list_store    [description]
-		 * @param  {[type]} string        []            formats       [description]
-		 * @return {[type]}               [description]
-		 */
-		public void on_activate_button_add_folder (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.TreeIter iter, Gtk.ListStore list_store, string [] formats) {
-			// The FileChooserDialog:
-			var chooser_folder = new Gtk.FileChooserDialog (Properties.TEXT_SELECT_FOLDER, parent_dialog, Gtk.FileChooserAction.SELECT_FOLDER);
-
-			chooser_folder.add_buttons ("Cancel", Gtk.ResponseType.CANCEL, "Add", Gtk.ResponseType.OK);
-
-			int resp = chooser_folder.run ();
-
-			if (resp == Gtk.ResponseType.OK) {
-
-				//string uris = chooser.get_filename ();
-
-				//foreach (unowned string uri in uris)  {
-					
-					//var file = File.new_for_uri (uri);
-					//message (file.get_basename ());
-					/*int indice = file.get_basename ().last_index_of("/");
-
-            		//nome do arquivo para ser exibido na grid
-            		string name = file.get_basename ().substring(indice + 1, -1);
-
-            		//caminho do directorio
-            		string directory = file.get_basename ().substring(0, indice + 1);
-
-            		// Cut video name too big
-					if (name.length > 50) {    
-						name = name.slice(0, 48) + "...";
-					}
-
-					// Cut video name too big
-					if (directory.length > 50) {    
-						directory = directory.slice(0, 48) + "...";
-					}
-
-					list_store.append (out iter);
-					list_store.set (iter, 0, name, 1, directory);
-					tree_view.expand_all ();
-					*/
-				//}
-			}
-
-			chooser_folder.hide ();
-		}
-
-		/**
 		 * [on_activate_button_remove description]
 		 * @param  {[type]} Gtk.Dialog    parent_dialog [description]
 		 * @param  {[type]} Gtk.TreeView  tree_view     [description]
