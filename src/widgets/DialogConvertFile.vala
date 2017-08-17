@@ -20,6 +20,8 @@
 using Ciano.Config;
 using Ciano.Utils;
 using Ciano.Enums;
+using Ciano.Controllers;
+
 
 namespace Ciano.Widgets {
 
@@ -32,19 +34,24 @@ namespace Ciano.Widgets {
 	public class DialogConvertFile : Gtk.Dialog {
 
 		private string [] formats;
+		private Gtk.ListStore list_store;
+		private Gtk.TreeView tree_view;
+		private Gtk.TreeIter iter;
+		private ConverterController converter_controller;
 
 		/**
 		 * @construct
 		 */
-		public DialogConvertFile (Gtk.Window parent, owned string [] formats) {
+		public DialogConvertFile (ConverterController converter_controller, string [] formats, Gtk.Window parent) {
 			this.title = Properties.TEXT_CONVERT_FILE;
 			this.resizable = false;
             this.deletable = false;
+            this.converter_controller = converter_controller;
+            this.formats = formats;
 			this.set_transient_for (parent);
             this.set_default_size (800, 600);
             this.set_size_request (800, 600);
             this.set_modal (true);
-            this.formats = formats;
 
             var label = new Gtk.Label (Properties.TEXT_ADD_ITEMS_TO_CONVERSION);
 			label.halign = Gtk.Align.START;
@@ -91,15 +98,37 @@ namespace Ciano.Widgets {
 		 * @return {[type]} [description]
 		 */
 		private Gtk.ScrolledWindow mount_treeview () {
-			var list_store = new Gtk.ListStore (ColumnEnum.N_COLUMNS ,typeof (string), typeof (string));
+			this.list_store = new Gtk.ListStore (ColumnEnum.N_COLUMNS ,typeof (string), typeof (string));
 
-			var view = new Gtk.TreeView.with_model (list_store);
-			view.vexpand = true;
-			view.headers_visible = false;
+			this.tree_view = new Gtk.TreeView.with_model (this.list_store);
+			this.tree_view.vexpand = true;
+
+			// setup name column
+			var name_column = new Gtk.TreeViewColumn ();
+			var cell1 = new Gtk.CellRendererText ();
+			name_column.title = "Name";
+			name_column.expand = true;
+			name_column.min_width = 200;
+			name_column.max_width = 200;
+			
+			name_column.pack_start (cell1, false);
+			name_column.add_attribute (cell1, "text", ColumnEnum.NAME);
+			this.tree_view.insert_column (name_column, -1);
+
+			// column 
+			var directory_column = new Gtk.TreeViewColumn ();
+			var cell2 = new Gtk.CellRendererText ();
+			directory_column.title = "Directory";
+			directory_column.expand = true;
+			directory_column.min_width = 200;
+			directory_column.max_width = 200;
+			directory_column.pack_start (cell2, false);
+			directory_column.add_attribute (cell2, "text", ColumnEnum.DIRECTORY);
+			this.tree_view.insert_column (directory_column, -1);
 
 			var scrolled = new Gtk.ScrolledWindow (null, null);
 			scrolled.expand = true;
-			scrolled.add (view);
+			scrolled.add (this.tree_view);
 
 			return scrolled;
 		}
@@ -113,91 +142,38 @@ namespace Ciano.Widgets {
 			toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
 			toolbar.set_icon_size (Gtk.IconSize.SMALL_TOOLBAR);
 
-			var add_file_button = new Gtk.ToolButton (
-				new Gtk.Image.from_icon_name ("application-add-symbolic",
-				Gtk.IconSize.SMALL_TOOLBAR), null
-			);
+			var button_add_file = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("application-add-symbolic",	Gtk.IconSize.SMALL_TOOLBAR), null);
+			button_add_file.tooltip_text = Properties.TEXT_ADD_FILE;
+			button_add_file.clicked.connect (() => {
+				this.converter_controller.on_activate_button_add_file (
+					this, this.tree_view, this.iter, this.list_store, this.formats 
+				);				
+			});
 
-			add_file_button.tooltip_text = Properties.TEXT_ADD_FILE;
-			
-			add_file_button.clicked.connect (() => {
-				// The FileChooserDialog:
-				var chooser = new Gtk.FileChooserDialog (
-					Properties.TEXT_SELECT_FILE, null, 
-					Gtk.FileChooserAction.OPEN
+			var button_add_folder = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("folder-new-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
+			button_add_folder.tooltip_text = Properties.TEXT_ADD_FOLDER;
+			button_add_folder.clicked.connect (() => {
+				this.converter_controller.on_activate_button_add_folder (
+					this, this.tree_view, this.iter, this.list_store, this.formats 
 				);
-
-				// Multiple files can be selected:
-				chooser.select_multiple = true;
-
-				// We are only interested in jpegs:
-				var filter = new Gtk.FileFilter ();
-				//foreach (string format in formats) {
-				//	filter.add_pattern ("*.".concat (format));	
-				//	message ("*.".concat (format));
-				//}
-
-				chooser.set_filter (filter);
-				chooser.add_buttons ("Cancel", Gtk.ResponseType.CANCEL, "Add", Gtk.ResponseType.OK);
-
-				int res = chooser.run ();
-				chooser.hide ();
-
-				if (res == Gtk.ResponseType.OK) {
-					string folder = chooser.get_filename ();
-					//if (this.path_blacklist.is_duplicate (folder) == false) {
-					//	path_blacklist.block (folder);
-					//}
-				}
 			});
 
-			var add_folder_button = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("folder-new-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
-			add_folder_button.tooltip_text = Properties.TEXT_ADD_FOLDER;
-			add_folder_button.clicked.connect (() => {
-				var chooser = new Gtk.FileChooserDialog (Properties.TEXT_SELECT_A_FOLDER, null, Gtk.FileChooserAction.SELECT_FOLDER);
-				chooser.add_buttons ("Cancel", Gtk.ResponseType.CANCEL, "Add", Gtk.ResponseType.OK);
-				int res = chooser.run ();
-				chooser.hide ();
-				if (res == Gtk.ResponseType.OK) {
-					string folder = chooser.get_filename ();
-					//if (this.path_blacklist.is_duplicate (folder) == false) {
-					//	path_blacklist.block (folder);
-					//}
-				}
+			var button_remove = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
+			button_remove.tooltip_text = Properties.TEXT_DELETE;
+			button_remove.sensitive = false;
+			button_remove.clicked.connect (() => {
+				this.converter_controller.on_activate_button_remove (
+					this, this.tree_view, this.list_store, button_remove
+				);
 			});
 
-			var remove_button = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
-			remove_button.tooltip_text = Properties.TEXT_DELETE;
-			remove_button.sensitive = false;
-			remove_button.clicked.connect (() => {
-				/*Gtk.TreePath path;
-				Gtk.TreeViewColumn column;
-				view.get_cursor (out path, out column);
-				Gtk.TreeIter iter;
-				list_store.get_iter (out iter, path);
-				Value is_app;
-				list_store.get_value (iter, NotColumns.IS_APP, out is_app);
-				if (is_app.get_boolean () == true) {
-					string name;
-					list_store.get (iter, NotColumns.PATH, out name);
-					app_blacklist.unblock (name);
-				} else {
-					string name;
-					list_store.get (iter, NotColumns.PATH, out name);
-					path_blacklist.unblock (name);
-				}
-
-				#if VALA_0_36
-				list_store.remove (ref iter);
-				#else
-				list_store.remove (iter);
-				#endif*/
+			this.tree_view.cursor_changed.connect (() => {
+				button_remove.sensitive = true;
 			});
 			
-
-			toolbar.insert (add_file_button, -1);
-			toolbar.insert (add_folder_button, -1);
-			toolbar.insert (remove_button, -1);
+			toolbar.insert (button_add_file, -1);
+			//toolbar.insert (button_add_folder, -1);
+			toolbar.insert (button_remove, -1);
 
 			return toolbar;
 		}
