@@ -26,7 +26,7 @@ namespace Ciano.Widgets {
      * @author  Robert San <robertsanseries@gmail.com>
      * @type    Gtk.Grid
      */
-    public class ListSidebar : SourceList {
+    public class SourceListSidebar : SourceList {
 
         /**
          * @signals
@@ -42,7 +42,7 @@ namespace Ciano.Widgets {
         /**
          * @construct
          */
-        public ListSidebar () {
+        public SourceListSidebar () {
         	this.type_list = new SourceList.ExpandableItem (Properties.TEXT_CONVERT_FILE_TO);
         	this.type_list.selectable = false;
 			this.type_list.expand_all ();

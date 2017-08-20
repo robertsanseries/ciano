@@ -36,7 +36,8 @@ namespace Ciano.Views {
 		 */
 		private Gtk.ApplicationWindow app;
 		public HeaderBar headerbar;
-		public ListSidebar source_list;
+		public SourceListSidebar source_list;
+		public ListConversion list_conversion;
 
 		/**
 		 * @construct
@@ -51,19 +52,49 @@ namespace Ciano.Views {
 			this.headerbar = new HeaderBar ();
 			this.app.set_titlebar (this.headerbar);
 
-			this.source_list = new ListSidebar ();
+			this.source_list = new SourceListSidebar ();
 			
-			var welcome = new Granite.Widgets.Welcome (
-				StringUtil.EMPTY,
-				Properties.TEXT_EMPTY_CONVERTING_LIST
-			);
+			//var welcome = new Granite.Widgets.Welcome (
+			//	StringUtil.EMPTY,
+			//	Properties.TEXT_EMPTY_CONVERTING_LIST
+			//);
+
+			var row1 = new RowConversion ("media-video");
+			var row2 = new RowConversion ("audio-x-generic");
+			var row3 = new RowConversion ("media-video");
+			var row4 = new RowConversion ("audio-x-generic");
+			var row5 = new RowConversion ("audio-x-generic");
+			var row6 = new RowConversion ("image");
+			var row7 = new RowConversion ("media-video");
+			var row8 = new RowConversion ("image");
+			var row9 = new RowConversion ("audio-x-generic");
+			var row10 = new RowConversion ("image");
+			var row11 = new RowConversion ("image");
+			var row12 = new RowConversion ("media-video");
+			var row13 = new RowConversion ("image");
+
+
+			this.list_conversion = new ListConversion();
+			this.list_conversion.list_box.add (row1);
+			this.list_conversion.list_box.add (row2);
+			this.list_conversion.list_box.add (row3);
+			this.list_conversion.list_box.add (row4);
+			this.list_conversion.list_box.add (row5);
+			this.list_conversion.list_box.add (row6);
+			this.list_conversion.list_box.add (row7);
+			this.list_conversion.list_box.add (row8);
+			this.list_conversion.list_box.add (row9);
+			this.list_conversion.list_box.add (row10);
+			this.list_conversion.list_box.add (row11);
+			this.list_conversion.list_box.add (row12);
+			this.list_conversion.list_box.add (row13);
 
 			var frame1 = new Gtk.Frame (null);
 	        frame1.add (this.source_list);
 
 			var frame2 = new Gtk.Frame (null);
 			frame2.expand = true;
-	        frame2.add (welcome);
+	        frame2.add (this.list_conversion);
 
 			this.margin = 12;
 			this.column_spacing = 12;

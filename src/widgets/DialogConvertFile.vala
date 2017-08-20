@@ -103,19 +103,15 @@ namespace Ciano.Widgets {
 			this.tree_view = new Gtk.TreeView.with_model (this.list_store);
 			this.tree_view.vexpand = true;
 
-			// setup name column
 			var name_column = new Gtk.TreeViewColumn ();
 			var cell1 = new Gtk.CellRendererText ();
 			name_column.title = "Name";
 			name_column.expand = true;
 			name_column.min_width = 200;
-			name_column.max_width = 200;
-			
+			name_column.max_width = 200;			
 			name_column.pack_start (cell1, false);
 			name_column.add_attribute (cell1, "text", ColumnEnum.NAME);
-			this.tree_view.insert_column (name_column, -1);
 
-			// column 
 			var directory_column = new Gtk.TreeViewColumn ();
 			var cell2 = new Gtk.CellRendererText ();
 			directory_column.title = "Directory";
@@ -124,6 +120,8 @@ namespace Ciano.Widgets {
 			directory_column.max_width = 200;
 			directory_column.pack_start (cell2, false);
 			directory_column.add_attribute (cell2, "text", ColumnEnum.DIRECTORY);
+
+			this.tree_view.insert_column (name_column, -1);
 			this.tree_view.insert_column (directory_column, -1);
 
 			var scrolled = new Gtk.ScrolledWindow (null, null);
@@ -181,7 +179,10 @@ namespace Ciano.Widgets {
 			
 			var convert_button = new Gtk.Button.with_label (Properties.TEXT_START_CONVERSION);
 			convert_button.get_style_context ().add_class ("suggested-action");
-			//convert_button.clicked.connect (() => { this.destroy (); });
+			convert_button.clicked.connect (() => { 
+				this.converter_controller.on_activate_button_start_conversion (this.list_store);
+				this.destroy (); 
+			});
 
 			var grid_buttons = new Gtk.Grid ();
 			grid_buttons.margin_top = 10;

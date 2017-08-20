@@ -38,6 +38,8 @@ namespace Ciano.Controllers {
 		private ConverterView converter_view;
 		private DialogPreferences dialog_preferences;
 		private DialogConvertFile dialog_convert_file;
+		public Gee.ArrayList<RowConversion> convertions;
+		private string urlDestino;
 
 		/**
 		 * @construct
@@ -223,5 +225,108 @@ namespace Ciano.Controllers {
 				}
 			}
 		}
+
+		/**
+		 * [on_activate_button_start_conversion description]
+		 * @param  {[type]} Gtk.ListStore list_store    [description]
+		 * @return {[type]}               [description]
+		 */
+		public void on_activate_button_start_conversion (Gtk.ListStore list_store){
+
+			foreach (string uri in uris) {
+				
+				uri = uri.replace(" ", "\\ ");
+				
+				execute_command_async.begin (get_command(uri), (obj, async_res) => {
+					try {
+	                    // wait_check: true on success, false if process exited abnormally,
+	                    //  or cancellable was cancelled
+	                    if(this.subprocess.wait_check ()) { 
+
+	                   	} else {
+
+	                   	}
+	                } catch (Error e) {
+	                    GLib.critical(e.message);
+	                }
+
+				});
+			}
+		}
+
+		/**
+         * Get an array with the parameters to download.
+         *
+         * @author Robert San
+         * @descrition Code based on the Algram - <aliasgram@gmail.com> App
+         *             @link https://github.com/Algram/SaveTube/blob/master/main.vala
+         * 
+         * @param  string new_url_video.
+         * @return string[]
+         */
+        public string[] get_command (string uri) {
+			var array = new GenericArray<string> ();
+			array.add ("ffmpeg -i ");
+			array.add (uri);
+			array.add (this.urlDestino);
+
+            return array.data;
+        }
+
+		/**
+         * 
+         *Method async to start the process 
+         *
+         * @param  string[] spawn_args
+         * @return void
+         */
+        public async void execute_command_async (string[] spawn_args) {
+            try {
+                // Make a subprocess that accepts piping (accepts additional arguments).
+                var launcher = new SubprocessLauncher (SubprocessFlags.STDOUT_PIPE);
+
+                // Set how the subprocess will be launche.
+                this.subprocess = launcher.spawnv (spawn_args);
+
+                // Create a variable with subprocess arguments.
+                var input_stream = this.subprocess.get_stdout_pipe ();
+
+                // Create a DIS to read such arguments.
+                var data_input_stream = new DataInputStream (input_stream);
+                
+                while (true) {
+                    // The str_return string is the subprocess arguments being read, such as asynchronous.
+                    string str_return = yield data_input_stream.read_line_async ();
+                    
+                    //If the string is null, break here.
+                    if (str_return == null) {
+                        break;
+                    } else {
+                        // Otherwise, trigger process_download with the arguments.
+                        process_download(str_return);
+                    }
+                }
+            } catch (Error e) {
+                GLib.message("Erro %s", e.message);
+            }
+        }
+
+        /**
+         * Extract data from youtube-dl stdout.
+         *
+         * @author Robert San
+         * @descrition Code based on the Algram - <aliasgram@gmail.com> App
+         *             @link https://github.com/Algram/SaveTube/blob/master/main.vala
+         * 
+         * @param  string str_command 
+         * @return void
+         */
+        public void process_download(string str_command) {
+            if(str_command.contains("[download] Destination")) {
+               
+            } else if (str_command.contains("%")) {
+               
+            }
+        }
 	}
 }
