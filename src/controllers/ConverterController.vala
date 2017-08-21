@@ -48,8 +48,8 @@ namespace Ciano.Controllers {
 			this.app = app;
 			this.converter_view = converter_view;
 			
-			on_preferences_button_clicked (app);
-			on_item_button_clicked (app);
+			on_activate_button_preferences (app);
+			on_activate_button_item (app);
 		}
 
 		/**
@@ -57,8 +57,8 @@ namespace Ciano.Controllers {
 		 * @param  {[type]} Gtk.ApplicationWindow app           [description]
 		 * @return {[type]}                       [description]
 		 */
-		private void on_preferences_button_clicked (Gtk.ApplicationWindow app) {
-			this.converter_view.headerbar.on_preferences_button_clicked.connect (() => {
+		private void on_activate_button_preferences (Gtk.ApplicationWindow app) {
+			this.converter_view.headerbar.item_selected.connect (() => {
 				this.dialog_preferences = new DialogPreferences (app);
 				this.dialog_preferences.show_all ();
 			});	
@@ -69,7 +69,7 @@ namespace Ciano.Controllers {
 		 * @param  {[type]} Gtk.ApplicationWindow app           [description]
 		 * @return {[type]}                       [description]
 		 */
-		private void on_item_button_clicked (Gtk.ApplicationWindow app) {
+		private void on_activate_button_item (Gtk.ApplicationWindow app) {
 			this.converter_view.source_list.item_selected.connect ((item) => {
 
 				var types = mount_array_with_supported_formats (item.name);
@@ -232,6 +232,8 @@ namespace Ciano.Controllers {
 		 * @return {[type]}               [description]
 		 */
 		public void on_activate_button_start_conversion (Gtk.ListStore list_store){
+
+            //this.stack.visible_child_name = WELCOME_VIEW;
 
 			foreach (string uri in uris) {
 				

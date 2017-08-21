@@ -31,7 +31,7 @@ namespace Ciano.Widgets {
         /**
          * @signals
          */
-        public signal void on_preferences_button_clicked ();
+        public signal void item_selected ();
 
         /**
          * @variables
@@ -49,7 +49,7 @@ namespace Ciano.Widgets {
 
         /**
          * @descrition Settings icon.
-         *             When the user clicks the icon will call the signal `on_preferences_button_clicked`. 
+         *             When the user clicks the icon will call the signal `item_selected`. 
          *
          * @return void
          */
@@ -60,7 +60,7 @@ namespace Ciano.Widgets {
             this.pack_end (this.preferences);
             
             this.preferences.clicked.connect(() => {
-                on_preferences_button_clicked ();
+                item_selected ();
             });            
         }
     }

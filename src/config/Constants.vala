@@ -45,5 +45,8 @@ namespace Ciano.Config {
 
 		public abstract const string URL_CSS = "com/github/robertsanseries/ciano/css/style.css";
 		public abstract const string DIRECTORY_CIANO = "/Ciano";
+
+		public abstract const string WELCOME_VIEW = "welcome-view";
+		public abstract const string LIST_BOX_VIEW = "list-box-view";
 	}
 }

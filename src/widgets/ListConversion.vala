@@ -27,20 +27,31 @@ namespace Ciano.Widgets {
 	 */
 	public class ListConversion : Gtk.Grid {
 		
-		public Gtk.ListBox list_box;
-		
+		public Gtk.Stack stack;
+        public Gtk.ListBox list_box;		
 
 		/**
 		 * @construct
 		 */
 		public ListConversion () {
 
-            this.list_box = new Gtk.ListBox ();
+            this.stack = new Gtk.Stack ();
+            this.stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
+
+            var welcome = new Granite.Widgets.Welcome (
+              StringUtil.EMPTY,
+              Properties.TEXT_EMPTY_CONVERTING_LIST
+            );
+
+            this.stack.add_named (welcome, Constants.WELCOME_VIEW);
+
+            this.list_box = new new Gtk.ListBox ();
             this.list_box.expand = true;
+            this.stack.add_named (this.list_box, Constants.LIST_BOX_VIEW);            
 
             var scrolled = new Gtk.ScrolledWindow (null, null);
             scrolled.hscrollbar_policy = Gtk.PolicyType.NEVER;
-            scrolled.add (this.list_box);
+            scrolled.add (this.stack);
 
            this.add (scrolled);
 		}
