@@ -20,6 +20,7 @@
 using Ciano.Config;
 using Ciano.Views;
 using Ciano.Widgets;
+using Ciano.Objects;
 
 namespace Ciano.Controllers {
 
@@ -38,8 +39,11 @@ namespace Ciano.Controllers {
 		private ConverterView converter_view;
 		private DialogPreferences dialog_preferences;
 		private DialogConvertFile dialog_convert_file;
-		public Gee.ArrayList<RowConversion> convertions;
 		private string urlDestino;
+        private Subprocess subprocess;
+        public Gee.ArrayList<RowConversion> convertions;
+        private Gee.ArrayList<ItemConversion> list_items;
+        private int id_item;
 
 		/**
 		 * @construct
@@ -47,6 +51,9 @@ namespace Ciano.Controllers {
 		public ConverterController (Gtk.ApplicationWindow app, ConverterView converter_view) {
 			this.app = app;
 			this.converter_view = converter_view;
+
+            this.id_item = 1;
+            this.list_items = new Gee.ArrayList<ItemConversion> ();
 			
 			on_activate_button_preferences (app);
 			on_activate_button_item (app);
@@ -233,14 +240,36 @@ namespace Ciano.Controllers {
 		 */
 		public void on_activate_button_start_conversion (Gtk.ListStore list_store){
 
+            Gtk.TreeModelForeachFunc load_list_for_conversion = (model, path, iter) => {
+                GLib.Value cell1;
+                GLib.Value cell2;
+
+                list_store.get_value (iter, 0, out cell1);
+                list_store.get_value (iter, 1, out cell2);
+
+                var item = new ItemConversion (id_item, cell1.get_string () , cell2.get_string (), null, null);
+                this.list_items.add (item);
+                
+                this.id_item++;
+               
+                return false;
+            };
+
+            list_store.foreach (load_list_for_conversion);
+
+            //message(this.list_items[0].name);
+
+
             //this.stack.visible_child_name = WELCOME_VIEW;
 
-			foreach (string uri in uris) {
+			foreach (ItemConversion item in this.list_items) {
 				
-				uri = uri.replace(" ", "\\ ");
+                string uri = item.directory + item.name;
+
+				//uri = uri.replace(" ", "\\ ");
 				
 				execute_command_async.begin (get_command(uri), (obj, async_res) => {
-					try {
+					/*try {
 	                    // wait_check: true on success, false if process exited abnormally,
 	                    //  or cancellable was cancelled
 	                    if(this.subprocess.wait_check ()) { 
@@ -250,27 +279,28 @@ namespace Ciano.Controllers {
 	                   	}
 	                } catch (Error e) {
 	                    GLib.critical(e.message);
-	                }
-
+	                }*/
 				});
 			}
 		}
 
 		/**
          * Get an array with the parameters to download.
-         *
-         * @author Robert San
-         * @descrition Code based on the Algram - <aliasgram@gmail.com> App
-         *             @link https://github.com/Algram/SaveTube/blob/master/main.vala
          * 
          * @param  string new_url_video.
          * @return string[]
          */
         public string[] get_command (string uri) {
-			var array = new GenericArray<string> ();
-			array.add ("ffmpeg -i ");
-			array.add (uri);
-			array.add (this.urlDestino);
+			int index = uri.last_index_of(".");
+            string new_file = uri.substring(0, index + 1) + "wma";
+
+            
+
+            var array = new GenericArray<string> ();
+            array.add ("ffmpeg");
+            array.add ("-i");
+            array.add (uri);
+            array.add (new_file);
 
             return array.data;
         }
@@ -302,8 +332,10 @@ namespace Ciano.Controllers {
                     
                     //If the string is null, break here.
                     if (str_return == null) {
+                        message ("acabou");
                         break;
                     } else {
+                        message ("executando...");
                         // Otherwise, trigger process_download with the arguments.
                         process_download(str_return);
                     }
@@ -324,11 +356,9 @@ namespace Ciano.Controllers {
          * @return void
          */
         public void process_download(string str_command) {
-            if(str_command.contains("[download] Destination")) {
-               
-            } else if (str_command.contains("%")) {
-               
-            }
+            
+               message (str_command[0].to_string ());
+            
         }
 	}
 }

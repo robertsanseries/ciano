@@ -10,6 +10,8 @@ sources = files(
 	
 	'views/ConverterView.vala',
 
+	'objects/ItemConversion.vala',
+
 	'widgets/HeaderBar.vala',
 	'widgets/SourceListSidebar.vala',
 	'widgets/SourceList.vala',

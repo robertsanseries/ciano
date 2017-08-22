@@ -17,6 +17,9 @@
 * Boston, MA 02110-1301 USA
 */
 
+using Ciano.Config;
+using Ciano.Utils;
+
 namespace Ciano.Widgets {
 
 	/**
@@ -45,7 +48,7 @@ namespace Ciano.Widgets {
 
             this.stack.add_named (welcome, Constants.WELCOME_VIEW);
 
-            this.list_box = new new Gtk.ListBox ();
+            this.list_box = new Gtk.ListBox ();
             this.list_box.expand = true;
             this.stack.add_named (this.list_box, Constants.LIST_BOX_VIEW);            
 
