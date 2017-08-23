@@ -22,6 +22,7 @@ using Ciano.Views;
 using Ciano.Widgets;
 using Ciano.Objects;
 using Ciano.Utils;
+using Ciano.Enums;
 
 namespace Ciano.Controllers {
 
@@ -39,9 +40,7 @@ namespace Ciano.Controllers {
 		private Gtk.ApplicationWindow app;
 		private ConverterView converter_view;
 		private DialogPreferences dialog_preferences;
-		private DialogConvertFile dialog_convert_file;
-		private string urlDestino;
-        private Subprocess subprocess;
+		private DialogConvertFile dialog_convert_file;       
         public Gee.ArrayList<RowConversion> convertions;
         private Gee.ArrayList<ItemConversion> list_items;
         private int id_item;
@@ -248,7 +247,7 @@ namespace Ciano.Controllers {
                 list_store.get_value (iter, 0, out cell1);
                 list_store.get_value (iter, 1, out cell2);
 
-                var item = new ItemConversion (id_item, cell1.get_string () , cell2.get_string (), null, null);
+                var item = new ItemConversion (id_item, cell1.get_string (), cell2.get_string (), TypeItemEnum.VIDEO, null, null);
                 this.list_items.add (item);
                 
                 this.id_item++;
@@ -258,30 +257,13 @@ namespace Ciano.Controllers {
 
             list_store.foreach (load_list_for_conversion);
 
-            //message(this.list_items[0].name);
-
-
-            //this.stack.visible_child_name = WELCOME_VIEW;
+            this.converter_view.list_conversion.stack.visible_child_name = Constants.WELCOME_VIEW;
 
 			foreach (ItemConversion item in this.list_items) {
 				
                 string uri = item.directory + item.name;
-
-				//uri = uri.replace(" ", "\\ ");
-				
-				execute_command_async.begin (get_command(uri), (obj, async_res) => {
-					/*try {
-	                    // wait_check: true on success, false if process exited abnormally,
-	                    //  or cancellable was cancelled
-	                    if(this.subprocess.wait_check ()) { 
-
-	                   	} else {
-
-	                   	}
-	                } catch (Error e) {
-	                    GLib.critical(e.message);
-	                }*/
-				});
+                
+				execute_command_async.begin (get_command (uri), item);
 			}
 		}
 
@@ -307,15 +289,14 @@ namespace Ciano.Controllers {
         }
 
 		/**
-         * 
-         *Method async to start the process 
-         *
-         * @param  string[] spawn_args
-         * @return void
+         * [execute_command_async description]
+         * @param  {[type]} string[]       spawn_args    [description]
+         * @param  {[type]} ItemConversion item          [description]
+         * @return {[type]}                [description]
          */
-        public async void execute_command_async (string[] spawn_args) {
+        public async void execute_command_async (string[] spawn_args, ItemConversion item) {
             try {
-                string[] spawn_env = Environ.get ();
+                string[] spawn_env  = Environ.get ();
                 Pid child_pid;
 
                 int standard_input;
@@ -336,14 +317,14 @@ namespace Ciano.Controllers {
 
                 // stdout:
                 IOChannel output = new IOChannel.unix_new (standard_output);
-                output.add_watch (IOCondition.IN | IOCondition.HUP, (channel, condition) => {
-                    return process_line (channel, condition, "stdout");
+                output.add_watch (IOCondition.IN | IOCondition.HUP, (channel) => {
+                    return process_line (item, channel, "stdout");
                 });
 
                 // stderr:
                 IOChannel error = new IOChannel.unix_new (standard_error);
-                error.add_watch (IOCondition.IN | IOCondition.HUP, (channel, condition) => {
-                    return process_line (channel, condition, "stderr");
+                error.add_watch (IOCondition.IN | IOCondition.HUP, (channel) => {
+                    return process_line (item, channel, "stderr");
                 });
 
                 ChildWatch.add (child_pid, (pid, status) => {
@@ -354,8 +335,36 @@ namespace Ciano.Controllers {
             }
         }
 
-        private static bool process_line (IOChannel channel, IOCondition condition, string stream_name) {
+        /**
+         * [process_line description]
+         * @param  {[type]} IOChannel   channel       [description]
+         * @param  {[type]} IOCondition condition     [description]
+         * @param  {[type]} string      stream_name   [description]
+         * @return {[type]}             [description]
+         */
+        private static bool process_line (ItemConversion item, IOChannel channel, string stream_name) {
              try {
+
+                string icon ="";
+
+                switch (item.type_item) {
+                    case TypeItemEnum.VIDEO:
+                        icon = "media-video";
+                        break;
+                    case TypeItemEnum.MUSIC:
+                        icon = "audio-x-generic";
+                        break;
+                    case TypeItemEnum.IMAGE:
+                        icon = "image";
+                        break;
+                    default:
+                        icon = "";
+                        break;
+                    
+                }
+                           
+                var row = new RowConversion(icon, item.name, 0);
+
                 string line;
                 int total = 0;
 
@@ -366,7 +375,6 @@ namespace Ciano.Controllers {
                         string duration = line.substring(i + 10, 11);
 
                         total = TimeUtil.duration_in_seconds (duration);
-                        message (total.to_string ());
                     }
 
                     if(line.contains("time=")) {
@@ -375,7 +383,7 @@ namespace Ciano.Controllers {
 
                         int loading = TimeUtil.duration_in_seconds (duration);
                         double progress = 100 * loading / total;
-                        message (progress.to_string () + "%");
+                        row.progress_bar.set_fraction (progress);
                     }
                 }               
                 
