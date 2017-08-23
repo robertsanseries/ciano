@@ -21,6 +21,7 @@ using Ciano.Config;
 using Ciano.Views;
 using Ciano.Widgets;
 using Ciano.Objects;
+using Ciano.Utils;
 
 namespace Ciano.Controllers {
 
@@ -346,7 +347,6 @@ namespace Ciano.Controllers {
                 });
 
                 ChildWatch.add (child_pid, (pid, status) => {
-                    // Triggered when the child indicated by child_pid exits
                     Process.close_pid (pid);
                 });
             } catch (SpawnError e) {
@@ -355,15 +355,28 @@ namespace Ciano.Controllers {
         }
 
         private static bool process_line (IOChannel channel, IOCondition condition, string stream_name) {
-            if (condition == IOCondition.HUP) {
-                stdout.printf ("%s: The fd has been closed.\n", stream_name);
-                return false;
-            }
-
-            try {
+             try {
                 string line;
-                while (channel.read_line (out line, null, null) == IOStatus.NORMAL &&  line != null) {
-                    stdout.printf (line+ "\n");
+                int total = 0;
+
+                while (channel.read_line (out line, null, null) == IOStatus.NORMAL &&  line != null) {                    
+
+                    if(line.contains("Duration:")) {
+                        int i = line.index_of ("Duration:");
+                        string duration = line.substring(i + 10, 11);
+
+                        total = TimeUtil.duration_in_seconds (duration);
+                        message (total.to_string ());
+                    }
+
+                    if(line.contains("time=")) {
+                        int i = line.index_of ("time=");
+                        string duration = line.substring(i+5, 11);
+
+                        int loading = TimeUtil.duration_in_seconds (duration);
+                        double progress = 100 * loading / total;
+                        message (progress.to_string () + "%");
+                    }
                 }               
                 
             } catch (IOChannelError e) {
@@ -378,3 +391,16 @@ namespace Ciano.Controllers {
         }
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
