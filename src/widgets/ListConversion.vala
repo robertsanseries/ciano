@@ -42,8 +42,8 @@ namespace Ciano.Widgets {
             this.stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
 
             var welcome = new Granite.Widgets.Welcome (
-              StringUtil.EMPTY,
-              Properties.TEXT_EMPTY_CONVERTING_LIST
+              Properties.TEXT_EMPTY_CONVERTING_LIST,
+              "Select in the list next to which type you want to \n convert your file"
             );
 
             this.stack.add_named (welcome, Constants.WELCOME_VIEW);

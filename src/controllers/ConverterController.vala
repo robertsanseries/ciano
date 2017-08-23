@@ -294,10 +294,10 @@ namespace Ciano.Controllers {
 			int index = uri.last_index_of(".");
             string new_file = uri.substring(0, index + 1) + "wma";
 
-            
-
             var array = new GenericArray<string> ();
             array.add ("ffmpeg");
+            array.add ("-y");
+            array.add ("-stats");
             array.add ("-i");
             array.add (uri);
             array.add (new_file);
@@ -314,51 +314,67 @@ namespace Ciano.Controllers {
          */
         public async void execute_command_async (string[] spawn_args) {
             try {
-                // Make a subprocess that accepts piping (accepts additional arguments).
-                var launcher = new SubprocessLauncher (SubprocessFlags.STDOUT_PIPE);
+                string[] spawn_env = Environ.get ();
+                Pid child_pid;
 
-                // Set how the subprocess will be launche.
-                this.subprocess = launcher.spawnv (spawn_args);
-
-                // Create a variable with subprocess arguments.
-                var input_stream = this.subprocess.get_stdout_pipe ();
-
-                // Create a DIS to read such arguments.
-                var data_input_stream = new DataInputStream (input_stream);
+                int standard_input;
+                int standard_output;
+                int standard_error;
                 
-                while (true) {
-                    // The str_return string is the subprocess arguments being read, such as asynchronous.
-                    string str_return = yield data_input_stream.read_line_async ();
-                    
-                    //If the string is null, break here.
-                    if (str_return == null) {
-                        message ("acabou");
-                        break;
-                    } else {
-                        message ("executando...");
-                        // Otherwise, trigger process_download with the arguments.
-                        process_download(str_return);
-                    }
-                }
-            } catch (Error e) {
-                GLib.message("Erro %s", e.message);
+                Process.spawn_async_with_pipes (
+                    null, 
+                    spawn_args,
+                    spawn_env,
+                    SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, 
+                    null,
+                    out child_pid,
+                    out standard_input,
+                    out standard_output,
+                    out standard_error
+                );
+
+                // stdout:
+                IOChannel output = new IOChannel.unix_new (standard_output);
+                output.add_watch (IOCondition.IN | IOCondition.HUP, (channel, condition) => {
+                    return process_line (channel, condition, "stdout");
+                });
+
+                // stderr:
+                IOChannel error = new IOChannel.unix_new (standard_error);
+                error.add_watch (IOCondition.IN | IOCondition.HUP, (channel, condition) => {
+                    return process_line (channel, condition, "stderr");
+                });
+
+                ChildWatch.add (child_pid, (pid, status) => {
+                    // Triggered when the child indicated by child_pid exits
+                    Process.close_pid (pid);
+                });
+            } catch (SpawnError e) {
+                stdout.printf ("Error: %s\n", e.message);
             }
         }
 
-        /**
-         * Extract data from youtube-dl stdout.
-         *
-         * @author Robert San
-         * @descrition Code based on the Algram - <aliasgram@gmail.com> App
-         *             @link https://github.com/Algram/SaveTube/blob/master/main.vala
-         * 
-         * @param  string str_command 
-         * @return void
-         */
-        public void process_download(string str_command) {
-            
-               message (str_command[0].to_string ());
-            
+        private static bool process_line (IOChannel channel, IOCondition condition, string stream_name) {
+            if (condition == IOCondition.HUP) {
+                stdout.printf ("%s: The fd has been closed.\n", stream_name);
+                return false;
+            }
+
+            try {
+                string line;
+                while (channel.read_line (out line, null, null) == IOStatus.NORMAL &&  line != null) {
+                    stdout.printf (line+ "\n");
+                }               
+                
+            } catch (IOChannelError e) {
+                stdout.printf ("%s: IOChannelError: %s\n", stream_name, e.message);
+                return false;
+            } catch (ConvertError e) {
+                stdout.printf ("%s: ConvertError: %s\n", stream_name, e.message);
+                return false;
+            }
+
+            return true;
         }
 	}
 }
