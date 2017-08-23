@@ -6,6 +6,8 @@ sources = files(
 	'controllers/ConverterController.vala',
 
 	'enums/ColumnEnum.vala',
+	'enums/TypeItemEnum.vala',
+
 	'utils/StringUtil.vala',
 	'utils/TimeUtil.vala',
 	
