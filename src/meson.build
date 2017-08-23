@@ -7,6 +7,7 @@ sources = files(
 
 	'enums/ColumnEnum.vala',
 	'utils/StringUtil.vala',
+	'utils/TimeUtil.vala',
 	
 	'views/ConverterView.vala',
 
