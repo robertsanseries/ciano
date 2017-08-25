@@ -29,15 +29,10 @@ namespace Ciano.Widgets {
     public class SourceListSidebar : SourceList {
 
         /**
-         * @signals
-         */
-        public signal void on_preferences_button_clicked ();
-
-        /**
          * @variables
          */
         public Gtk.Button preferences;
-        private SourceList.ExpandableItem type_list;       
+        private SourceList.ExpandableItem type_list;
 
         /**
          * @construct

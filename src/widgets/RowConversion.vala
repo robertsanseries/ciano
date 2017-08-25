@@ -35,11 +35,9 @@ namespace Ciano.Widgets {
         private Gtk.Box 		box_name_progress;
         private Gtk.Label 		open_in_folder;
         private Gtk.Button 		icon_cancel;
+        public  Gtk.Label       convert_to;
 
-		/**
-		 * @construct
-		 */
-		public RowConversion (string icon, string name, double progress) {
+		public RowConversion (string icon, string name, double progress, string name_format) {
 
 			this.container = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             this.container.margin = 3;
@@ -47,15 +45,17 @@ namespace Ciano.Widgets {
             var icone = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DND);
 			this.box_name_progress = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-			// To start screen fields with default values
             this.name_video = new Gtk.Label (name);
             this.name_video.halign = Gtk.Align.START;
 
             this.progress_bar = new Gtk.ProgressBar ();
             this.progress_bar.set_fraction (progress);
-            this.open_in_folder = new Gtk.Label ("size - 4982kB time - 00:04:56.00");
+            this.convert_to = new Gtk.Label (name_format);
+            this.convert_to.set_use_markup (true);
 
-            // Cancel download icon and action when clicking it
+            this.open_in_folder = new Gtk.Label ("size --- time ---");
+            this.open_in_folder.halign = Gtk.Align.START;
+
             this.icon_cancel = new Gtk.Button.with_label ("Cancel");
             this.icon_cancel.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             this.icon_cancel.tooltip_text = ("Cancel Conversion");
@@ -68,11 +68,13 @@ namespace Ciano.Widgets {
 
             this.container.pack_start (icone, false, false, 5);
             this.container.pack_start (box_name_progress, true, true, 5);
+            this.container.pack_start (this.convert_to, false, false, 2);
             this.container.pack_start (this.icon_cancel, false, false, 8);
 
             this.selectable = false;
             this.activatable = false;
             this.add(container);
+            this.show_all ();
 		}
 	}
 }

@@ -34,6 +34,7 @@ namespace Ciano.Widgets {
 	public class DialogConvertFile : Gtk.Dialog {
 
 		private string [] formats;
+		private string name_format;
 		private Gtk.ListStore list_store;
 		private Gtk.TreeView tree_view;
 		private Gtk.TreeIter iter;
@@ -42,16 +43,22 @@ namespace Ciano.Widgets {
 		/**
 		 * @construct
 		 */
-		public DialogConvertFile (ConverterController converter_controller, string [] formats, Gtk.Window parent) {
+		public DialogConvertFile (ConverterController converter_controller, string [] formats, string name_format, Gtk.Window parent) {
 			this.title = Properties.TEXT_CONVERT_FILE;
 			this.resizable = false;
             this.deletable = false;
             this.converter_controller = converter_controller;
             this.formats = formats;
+            this.name_format = name_format;
 			this.set_transient_for (parent);
             this.set_default_size (800, 600);
             this.set_size_request (800, 600);
             this.set_modal (true);
+
+            var title = new Gtk.Label ("<b>%s %s</b>".printf (Properties.TEXT_CONVERT_FILE_TO, name_format));
+			title.halign = Gtk.Align.CENTER;
+			title.set_use_markup (true);
+			title.margin = 5;
 
             var label = new Gtk.Label (Properties.TEXT_ADD_ITEMS_TO_CONVERSION);
 			label.halign = Gtk.Align.START;
@@ -66,6 +73,7 @@ namespace Ciano.Widgets {
 			grid.margin_right = 15;
 			grid.margin_top = 0;
 			grid.margin_bottom = 0;
+			grid.add (title);
 			grid.add (label);
 			grid.add (frame);
 			grid.add (grid_buttons);
@@ -144,7 +152,7 @@ namespace Ciano.Widgets {
 			button_add_file.tooltip_text = Properties.TEXT_ADD_FILE;
 			button_add_file.clicked.connect (() => {
 				this.converter_controller.on_activate_button_add_file (
-					this, this.tree_view, this.iter, this.list_store, this.formats 
+					this, this.tree_view, this.iter, this.list_store, this.formats
 				);				
 			});
 
@@ -180,8 +188,8 @@ namespace Ciano.Widgets {
 			var convert_button = new Gtk.Button.with_label (Properties.TEXT_START_CONVERSION);
 			convert_button.get_style_context ().add_class ("suggested-action");
 			convert_button.clicked.connect (() => { 
-				this.converter_controller.on_activate_button_start_conversion (this.list_store);
-				this.destroy (); 
+				this.destroy ();
+				this.converter_controller.on_activate_button_start_conversion (this.list_store, name_format);
 			});
 
 			var grid_buttons = new Gtk.Grid ();

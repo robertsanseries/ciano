@@ -43,10 +43,10 @@ namespace Ciano.Widgets {
 
             var welcome = new Granite.Widgets.Welcome (
               Properties.TEXT_EMPTY_CONVERTING_LIST,
-              "Select in the list next to which type you want to \n convert your file"
+              Properties.TEXT_SELECT_OPTION_TO_CONVERT
             );
 
-            this.stack.add_named (welcome, Constants.WELCOME_VIEW);
+            //this.stack.add_named (welcome, Constants.WELCOME_VIEW);
 
             this.list_box = new Gtk.ListBox ();
             this.list_box.expand = true;

@@ -44,10 +44,8 @@ namespace Ciano.Controllers {
         public Gee.ArrayList<RowConversion> convertions;
         private Gee.ArrayList<ItemConversion> list_items;
         private int id_item;
+        private string name_format_selected;
 
-		/**
-		 * @construct
-		 */
 		public ConverterController (Gtk.ApplicationWindow app, ConverterView converter_view) {
 			this.app = app;
 			this.converter_view = converter_view;
@@ -59,11 +57,6 @@ namespace Ciano.Controllers {
 			on_activate_button_item (app);
 		}
 
-		/**
-		 * [on_preferences_button_clicked description]
-		 * @param  {[type]} Gtk.ApplicationWindow app           [description]
-		 * @return {[type]}                       [description]
-		 */
 		private void on_activate_button_preferences (Gtk.ApplicationWindow app) {
 			this.converter_view.headerbar.item_selected.connect (() => {
 				this.dialog_preferences = new DialogPreferences (app);
@@ -71,95 +64,158 @@ namespace Ciano.Controllers {
 			});	
 		}
 
-		/**
-		 * [on_item_button_clicked description]
-		 * @param  {[type]} Gtk.ApplicationWindow app           [description]
-		 * @return {[type]}                       [description]
-		 */
 		private void on_activate_button_item (Gtk.ApplicationWindow app) {
 			this.converter_view.source_list.item_selected.connect ((item) => {
+
+                int index = item.name.last_index_of(".");
+                this.name_format_selected = item.name.substring (index + 1, -1);
 
 				var types = mount_array_with_supported_formats (item.name);
 
 				if(types != null) {
-					this.dialog_convert_file = new DialogConvertFile (this, types, app);
+					this.dialog_convert_file = new DialogConvertFile (this, types, item.name, app);
 					this.dialog_convert_file.show_all ();
 				}
 			});
 		}
 
-		/**
-		 * [mount_array_with_supported_formats description]
-		 * @param  {[type]} string name_format     [description]
-		 * @return {[type]}        [description]
-		 */
 		private string [] mount_array_with_supported_formats (string name_format) {
 			string [] formats = null;
 			
 			switch (name_format) {
 				case Properties.TEXT_MP4:
+                    formats = {
+                        Properties.TEXT_3GP, Properties.TEXT_MPG, Properties.TEXT_AVI,
+                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
+                    };
+                    break;
 				case Properties.TEXT_3GP:
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_MPG, Properties.TEXT_AVI,
+                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
+                    };
+                    break;
 				case Properties.TEXT_MPG:
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_AVI, 
+                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
+                    };
+                    break;
 				case Properties.TEXT_AVI:
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
+                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
+                    };
+                    break;
 				case Properties.TEXT_WMV:
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
+                        Properties.TEXT_AVI, Properties.TEXT_FLV, Properties.TEXT_SWF
+                    };
+                    break;
 				case Properties.TEXT_FLV:
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
+                        Properties.TEXT_AVI, Properties.TEXT_WMV, Properties.TEXT_SWF
+                    };
+                    break;
 				case Properties.TEXT_SWF:
 					formats = {
 						Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
-						Properties.TEXT_AVI, Properties.TEXT_WMV, Properties.TEXT_FLV,
-						Properties.TEXT_SWF
+						Properties.TEXT_AVI, Properties.TEXT_WMV, Properties.TEXT_FLV
 					};
 					break;
 
 				case Properties.TEXT_MP3:
+                    formats = {
+                        Properties.TEXT_WMA, Properties.TEXT_AMR, Properties.TEXT_OGG,
+                        Properties.TEXT_AAC, Properties.TEXT_WAV
+                    };
+                    break;
 				case Properties.TEXT_WMA:
+                    formats = {
+                        Properties.TEXT_MP3, Properties.TEXT_AMR, Properties.TEXT_OGG, 
+                        Properties.TEXT_AAC, Properties.TEXT_WAV
+                    };
+                    break;
 				case Properties.TEXT_AMR:
+                    formats = {
+                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_OGG, 
+                        Properties.TEXT_AAC, Properties.TEXT_WAV
+                    };
+                    break;
 				case Properties.TEXT_OGG:
+                    formats = {
+                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
+                        Properties.TEXT_AAC, Properties.TEXT_WAV
+                    };
+                    break;
 				case Properties.TEXT_AAC:
+                    formats = {
+                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
+                        Properties.TEXT_OGG, Properties.TEXT_WAV
+                    };
+                    break;
 				case Properties.TEXT_WAV:
 					formats = {
 						Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
-						Properties.TEXT_OGG, Properties.TEXT_AAC, Properties.TEXT_WAV
+						Properties.TEXT_OGG, Properties.TEXT_AAC
 					};
 					break;
 
 				case Properties.TEXT_JPG:
+                    formats = {
+                        Properties.TEXT_BMP, Properties.TEXT_PNG, Properties.TEXT_TIF, 
+                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
+                    };
+                    break;
 				case Properties.TEXT_BMP:
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_PNG, Properties.TEXT_TIF,
+                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
+                    };
+                    break;
 				case Properties.TEXT_PNG:
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_TIF, 
+                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
+                    };
+                    break;
 				case Properties.TEXT_TIF:
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
+                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
+                    };
+                    break;
 				case Properties.TEXT_ICO:
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
+                        Properties.TEXT_TIF, Properties.TEXT_GIF, Properties.TEXT_TGA
+                    };
+                    break;
 				case Properties.TEXT_GIF:
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
+                        Properties.TEXT_TIF, Properties.TEXT_ICO, Properties.TEXT_TGA
+                    };
+                    break;
 				case Properties.TEXT_TGA:
 					formats = {
 						Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
-						Properties.TEXT_TIF, Properties.TEXT_ICO, Properties.TEXT_GIF,
-						Properties.TEXT_TGA
+						Properties.TEXT_TIF, Properties.TEXT_ICO, Properties.TEXT_GIF
 					};
-					break;
+                    break;
 			}
 
 			return formats;
 		}
-
-		/**
-		 * [on_activate_button_add_file description]
-		 * @param  {[type]} Gtk.Dialog    parent_dialog [description]
-		 * @param  {[type]} Gtk.ListStore list_store    [description]
-		 * @param  {[type]} Gtk.TreeIter  iter          [description]
-		 * @param  {[type]} Gtk.TreeView  tree_view     [description]
-		 * @return {[type]}               [description]
-		 */
+		
 		public void on_activate_button_add_file (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.TreeIter iter, Gtk.ListStore list_store, string [] formats) {
-			// The FileChooserDialog:
 			var chooser_file = new Gtk.FileChooserDialog (Properties.TEXT_SELECT_FILE, parent_dialog, Gtk.FileChooserAction.OPEN);
-
-			// Multiple files can be selected:
 			chooser_file.select_multiple = true;
 
-			// We are only interested in jpegs:
 			var filter = new Gtk.FileFilter ();
 
-			// defined formats support
 			foreach (string format in formats) {
 				filter.add_pattern ("*.".concat (format.down ()));
 			}		
@@ -167,31 +223,21 @@ namespace Ciano.Controllers {
 			chooser_file.set_filter (filter);
 			chooser_file.add_buttons ("Cancel", Gtk.ResponseType.CANCEL, "Add", Gtk.ResponseType.OK);
 
-			int resp = chooser_file.run ();
-
-			if (resp == Gtk.ResponseType.OK) {
+			if (chooser_file.run () == Gtk.ResponseType.OK) {
 
 				SList<string> uris = chooser_file.get_filenames ();
 
 				foreach (unowned string uri in uris)  {
 					
-					var file = File.new_for_uri (uri);
-					
-					// obter a posição da ultima barra
-					int index = file.get_basename ().last_index_of("/");
-
-            		//nome do arquivo para ser exibido na grid
-            		string name = file.get_basename ().substring(index + 1, -1);
-
-            		//caminho do directorio
+					var file         = File.new_for_uri (uri);
+					int index        = file.get_basename ().last_index_of("/");
+            		string name      = file.get_basename ().substring(index + 1, -1);
             		string directory = file.get_basename ().substring(0, index + 1);
 
-            		// Cut name too big
 					if (name.length > 50) {    
 						name = name.slice(0, 48) + "...";
 					}
 
-					// Cut directory too big
 					if (directory.length > 50) {    
 						directory = directory.slice(0, 48) + "...";
 					}
@@ -204,16 +250,7 @@ namespace Ciano.Controllers {
 
 			chooser_file.hide ();
 		}
-
-		/**
-		 * [on_activate_button_remove description]
-		 * @param  {[type]} Gtk.Dialog    parent_dialog [description]
-		 * @param  {[type]} Gtk.TreeView  tree_view     [description]
-		 * @param  {[type]} Gtk.TreeIter  iter          [description]
-		 * @param  {[type]} Gtk.ListStore list_store    [description]
-		 * @param  {[type]} string        []            formats       [description]
-		 * @return {[type]}               [description]
-		 */
+		
 		public void on_activate_button_remove (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.ListStore list_store, Gtk.ToolButton button_remove) {
 
 			Gtk.TreePath path;
@@ -223,22 +260,17 @@ namespace Ciano.Controllers {
 
 			if(path != null) {
 				Gtk.TreeIter iter;
-				list_store.get_iter (out iter, path);
+				
+                list_store.get_iter (out iter, path);
 				list_store.remove (iter);
 
-				// Se não tiver mais item para excluir desabilita o botão remover.
 				if (path.to_string () == "0") {
 					button_remove.sensitive = false;
 				}
 			}
 		}
-
-		/**
-		 * [on_activate_button_start_conversion description]
-		 * @param  {[type]} Gtk.ListStore list_store    [description]
-		 * @return {[type]}               [description]
-		 */
-		public void on_activate_button_start_conversion (Gtk.ListStore list_store){
+		
+		public void on_activate_button_start_conversion (Gtk.ListStore list_store, string name_format){
 
             Gtk.TreeModelForeachFunc load_list_for_conversion = (model, path, iter) => {
                 GLib.Value cell1;
@@ -247,8 +279,11 @@ namespace Ciano.Controllers {
                 list_store.get_value (iter, 0, out cell1);
                 list_store.get_value (iter, 1, out cell2);
 
-                var item = new ItemConversion (id_item, cell1.get_string (), cell2.get_string (), TypeItemEnum.VIDEO, null, null);
+                var item = new ItemConversion (id_item, cell1.get_string (), cell2.get_string (), TypeItemEnum.VIDEO, this.name_format_selected, 0);
                 this.list_items.add (item);
+                
+                string uri = item.directory + item.name;
+                execute_command_async.begin (get_command (uri), item, name_format);
                 
                 this.id_item++;
                
@@ -256,26 +291,11 @@ namespace Ciano.Controllers {
             };
 
             list_store.foreach (load_list_for_conversion);
-
-            this.converter_view.list_conversion.stack.visible_child_name = Constants.WELCOME_VIEW;
-
-			foreach (ItemConversion item in this.list_items) {
-				
-                string uri = item.directory + item.name;
-                
-				execute_command_async.begin (get_command (uri), item);
-			}
 		}
-
-		/**
-         * Get an array with the parameters to download.
-         * 
-         * @param  string new_url_video.
-         * @return string[]
-         */
+		
         public string[] get_command (string uri) {
 			int index = uri.last_index_of(".");
-            string new_file = uri.substring(0, index + 1) + "wma";
+            string new_file = uri.substring(0, index + 1) + this.name_format_selected.down ();
 
             var array = new GenericArray<string> ();
             array.add ("ffmpeg");
@@ -287,14 +307,8 @@ namespace Ciano.Controllers {
 
             return array.data;
         }
-
-		/**
-         * [execute_command_async description]
-         * @param  {[type]} string[]       spawn_args    [description]
-         * @param  {[type]} ItemConversion item          [description]
-         * @return {[type]}                [description]
-         */
-        public async void execute_command_async (string[] spawn_args, ItemConversion item) {
+		
+        public async void execute_command_async (string[] spawn_args, ItemConversion item, string name_format) {
             try {
                 string[] spawn_env  = Environ.get ();
                 Pid child_pid;
@@ -315,56 +329,31 @@ namespace Ciano.Controllers {
                     out standard_error
                 );
 
-                // stdout:
-                IOChannel output = new IOChannel.unix_new (standard_output);
-                output.add_watch (IOCondition.IN | IOCondition.HUP, (channel) => {
-                    return process_line (item, channel, "stdout");
-                });
+                var row = new RowConversion("media-video", item.name, 0, name_format);
+                this.converter_view.list_conversion.list_box.add (row);
 
-                // stderr:
-                IOChannel error = new IOChannel.unix_new (standard_error);
-                error.add_watch (IOCondition.IN | IOCondition.HUP, (channel) => {
-                    return process_line (item, channel, "stderr");
-                });
+                try {
+
+                    IOChannel channel = new IOChannel.unix_new (standard_error);
+                    process_line (ref row.progress_bar, channel, "stderr");
+
+                } catch (IOChannelError e) {
+                    message ("IOChannelError: %s\n", e.message);
+                } catch (ConvertError e) {
+                    message ("ConvertError: %s\n", e.message);
+                }
 
                 ChildWatch.add (child_pid, (pid, status) => {
                     Process.close_pid (pid);
                 });
+
             } catch (SpawnError e) {
-                stdout.printf ("Error: %s\n", e.message);
+                GLib.critical ("Error: %s\n", e.message);
             }
         }
-
-        /**
-         * [process_line description]
-         * @param  {[type]} IOChannel   channel       [description]
-         * @param  {[type]} IOCondition condition     [description]
-         * @param  {[type]} string      stream_name   [description]
-         * @return {[type]}             [description]
-         */
-        private static bool process_line (ItemConversion item, IOChannel channel, string stream_name) {
+        
+        private bool process_line (ref Gtk.ProgressBar progress_bar,  IOChannel channel, string stream_name) {
              try {
-
-                string icon ="";
-
-                switch (item.type_item) {
-                    case TypeItemEnum.VIDEO:
-                        icon = "media-video";
-                        break;
-                    case TypeItemEnum.MUSIC:
-                        icon = "audio-x-generic";
-                        break;
-                    case TypeItemEnum.IMAGE:
-                        icon = "image";
-                        break;
-                    default:
-                        icon = "";
-                        break;
-                    
-                }
-                           
-                var row = new RowConversion(icon, item.name, 0);
-
                 string line;
                 int total = 0;
 
@@ -383,15 +372,17 @@ namespace Ciano.Controllers {
 
                         int loading = TimeUtil.duration_in_seconds (duration);
                         double progress = 100 * loading / total;
-                        row.progress_bar.set_fraction (progress);
+                        progress_bar.set_fraction (progress);
+                        message ("convertendo:" + progress.to_string ());
                     }
-                }               
+                }
+                message ("convertido!");
                 
             } catch (IOChannelError e) {
-                stdout.printf ("%s: IOChannelError: %s\n", stream_name, e.message);
+                GLib.critical ("%s: IOChannelError: %s\n", stream_name, e.message);
                 return false;
             } catch (ConvertError e) {
-                stdout.printf ("%s: ConvertError: %s\n", stream_name, e.message);
+                GLib.critical ("%s: ConvertError: %s\n", stream_name, e.message);
                 return false;
             }
 
@@ -399,16 +390,3 @@ namespace Ciano.Controllers {
         }
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

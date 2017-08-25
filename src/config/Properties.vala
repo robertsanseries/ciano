@@ -59,6 +59,9 @@ namespace Ciano.Config {
 		public abstract const string TEXT_CANCEL = "Cancel";
 		public abstract const string TEXT_START_CONVERSION = "Start conversion";
 
+		// ListConvertion
+		public abstract const string TEXT_SELECT_OPTION_TO_CONVERT = "Select an option for which you want to \n convert your file";
+
 		// ListSidebar
 		public abstract const string TEXT_CONVERT_FILE_TO = "Convert file to";
 		public abstract const string TEXT_VIDEO = "Video";
