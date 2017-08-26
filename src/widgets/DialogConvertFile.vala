@@ -56,8 +56,9 @@ namespace Ciano.Widgets {
             this.set_modal (true);
 
             var title = new Gtk.Label ("<b>%s %s</b>".printf (Properties.TEXT_CONVERT_FILE_TO, name_format));
-			title.halign = Gtk.Align.CENTER;
 			title.set_use_markup (true);
+			title.get_style_context ().add_class ("title-section-dialog");
+			title.halign = Gtk.Align.CENTER;
 			title.margin = 5;
 
             var label = new Gtk.Label (Properties.TEXT_ADD_ITEMS_TO_CONVERSION);

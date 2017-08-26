@@ -62,7 +62,7 @@ namespace Ciano.Widgets {
 			grid.margin = 12;
 			grid.margin_top = 5;
 			grid.margin_bottom = 5;
-
+			
 			init_options ();
 			mount_options (grid);
 
