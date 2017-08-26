@@ -46,11 +46,13 @@ namespace Ciano.Widgets {
               Properties.TEXT_SELECT_OPTION_TO_CONVERT
             );
 
-            //this.stack.add_named (welcome, Constants.WELCOME_VIEW);
-
             this.list_box = new Gtk.ListBox ();
             this.list_box.expand = true;
-            this.stack.add_named (this.list_box, Constants.LIST_BOX_VIEW);            
+
+            this.stack.add_named (welcome, Constants.WELCOME_VIEW);
+            this.stack.add_named (this.list_box, Constants.LIST_BOX_VIEW);
+            
+            this.stack.set_visible_child_name (Constants.WELCOME_VIEW);
 
             var scrolled = new Gtk.ScrolledWindow (null, null);
             scrolled.hscrollbar_policy = Gtk.PolicyType.NEVER;
