@@ -45,6 +45,7 @@ namespace Ciano.Controllers {
         private Gee.ArrayList<ItemConversion> list_items;
         private int id_item;
         private string name_format_selected;
+        private TypeItemEnum type_item;
 
 		public ConverterController (Gtk.ApplicationWindow app, ConverterView converter_view) {
 			this.app = app;
@@ -79,137 +80,6 @@ namespace Ciano.Controllers {
 			});
 		}
 
-		private string [] mount_array_with_supported_formats (string name_format) {
-			string [] formats = null;
-			
-			switch (name_format) {
-				case Properties.TEXT_MP4:
-                    formats = {
-                        Properties.TEXT_3GP, Properties.TEXT_MPG, Properties.TEXT_AVI,
-                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
-                    };
-                    break;
-				case Properties.TEXT_3GP:
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_MPG, Properties.TEXT_AVI,
-                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
-                    };
-                    break;
-				case Properties.TEXT_MPG:
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_AVI, 
-                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
-                    };
-                    break;
-				case Properties.TEXT_AVI:
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
-                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
-                    };
-                    break;
-				case Properties.TEXT_WMV:
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
-                        Properties.TEXT_AVI, Properties.TEXT_FLV, Properties.TEXT_SWF
-                    };
-                    break;
-				case Properties.TEXT_FLV:
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
-                        Properties.TEXT_AVI, Properties.TEXT_WMV, Properties.TEXT_SWF
-                    };
-                    break;
-				case Properties.TEXT_SWF:
-					formats = {
-						Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
-						Properties.TEXT_AVI, Properties.TEXT_WMV, Properties.TEXT_FLV
-					};
-					break;
-
-				case Properties.TEXT_MP3:
-                    formats = {
-                        Properties.TEXT_WMA, Properties.TEXT_AMR, Properties.TEXT_OGG,
-                        Properties.TEXT_AAC, Properties.TEXT_WAV
-                    };
-                    break;
-				case Properties.TEXT_WMA:
-                    formats = {
-                        Properties.TEXT_MP3, Properties.TEXT_AMR, Properties.TEXT_OGG, 
-                        Properties.TEXT_AAC, Properties.TEXT_WAV
-                    };
-                    break;
-				case Properties.TEXT_AMR:
-                    formats = {
-                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_OGG, 
-                        Properties.TEXT_AAC, Properties.TEXT_WAV
-                    };
-                    break;
-				case Properties.TEXT_OGG:
-                    formats = {
-                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
-                        Properties.TEXT_AAC, Properties.TEXT_WAV
-                    };
-                    break;
-				case Properties.TEXT_AAC:
-                    formats = {
-                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
-                        Properties.TEXT_OGG, Properties.TEXT_WAV
-                    };
-                    break;
-				case Properties.TEXT_WAV:
-					formats = {
-						Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
-						Properties.TEXT_OGG, Properties.TEXT_AAC
-					};
-					break;
-
-				case Properties.TEXT_JPG:
-                    formats = {
-                        Properties.TEXT_BMP, Properties.TEXT_PNG, Properties.TEXT_TIF, 
-                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
-                    };
-                    break;
-				case Properties.TEXT_BMP:
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_PNG, Properties.TEXT_TIF,
-                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
-                    };
-                    break;
-				case Properties.TEXT_PNG:
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_TIF, 
-                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
-                    };
-                    break;
-				case Properties.TEXT_TIF:
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
-                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
-                    };
-                    break;
-				case Properties.TEXT_ICO:
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
-                        Properties.TEXT_TIF, Properties.TEXT_GIF, Properties.TEXT_TGA
-                    };
-                    break;
-				case Properties.TEXT_GIF:
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
-                        Properties.TEXT_TIF, Properties.TEXT_ICO, Properties.TEXT_TGA
-                    };
-                    break;
-				case Properties.TEXT_TGA:
-					formats = {
-						Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
-						Properties.TEXT_TIF, Properties.TEXT_ICO, Properties.TEXT_GIF
-					};
-                    break;
-			}
-
-			return formats;
-		}
-		
 		public void on_activate_button_add_file (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.TreeIter iter, Gtk.ListStore list_store, string [] formats) {
 			var chooser_file = new Gtk.FileChooserDialog (Properties.TEXT_SELECT_FILE, parent_dialog, Gtk.FileChooserAction.OPEN);
 			chooser_file.select_multiple = true;
@@ -272,6 +142,9 @@ namespace Ciano.Controllers {
 		
 		public void on_activate_button_start_conversion (Gtk.ListStore list_store, string name_format){
 
+            this.converter_view.list_conversion.stack.set_visible_child_name (Constants.LIST_BOX_VIEW);
+            this.converter_view.list_conversion.stack.show_all ();
+
             Gtk.TreeModelForeachFunc load_list_for_conversion = (model, path, iter) => {
                 GLib.Value cell1;
                 GLib.Value cell2;
@@ -279,7 +152,7 @@ namespace Ciano.Controllers {
                 list_store.get_value (iter, 0, out cell1);
                 list_store.get_value (iter, 1, out cell2);
 
-                var item = new ItemConversion (id_item, cell1.get_string (), cell2.get_string (), TypeItemEnum.VIDEO, this.name_format_selected, 0);
+                var item = new ItemConversion (id_item, cell1.get_string (), cell2.get_string (), this.type_item, this.name_format_selected, 0);
                 this.list_items.add (item);
                 
                 string uri = item.directory + item.name;
@@ -293,100 +166,242 @@ namespace Ciano.Controllers {
             list_store.foreach (load_list_for_conversion);
 		}
 		
-        public string[] get_command (string uri) {
-			int index = uri.last_index_of(".");
-            string new_file = uri.substring(0, index + 1) + this.name_format_selected.down ();
-
-            var array = new GenericArray<string> ();
-            array.add ("ffmpeg");
-            array.add ("-y");
-            array.add ("-stats");
-            array.add ("-i");
-            array.add (uri);
-            array.add (new_file);
-
-            return array.data;
-        }
-		
         public async void execute_command_async (string[] spawn_args, ItemConversion item, string name_format) {
             try {
-                string[] spawn_env  = Environ.get ();
-                Pid child_pid;
+                // Make a subprocess that accepts piping (accepts additional arguments).
+                var launcher = new SubprocessLauncher (SubprocessFlags.STDERR_PIPE);
 
-                int standard_input;
-                int standard_output;
-                int standard_error;
-                
-                Process.spawn_async_with_pipes (
-                    null, 
-                    spawn_args,
-                    spawn_env,
-                    SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, 
-                    null,
-                    out child_pid,
-                    out standard_input,
-                    out standard_output,
-                    out standard_error
-                );
+                // Set how the subprocess will be launche.
+                var subprocess = launcher.spawnv (spawn_args);
 
-                var row = new RowConversion("media-video", item.name, 0, name_format);
-                this.converter_view.list_conversion.list_box.add (row);
+                // Create a variable with subprocess arguments.
+                var input_stream = subprocess.get_stderr_pipe ();
 
-                try {
+                // Create a DIS to read such arguments.
+                var data_input_stream = new DataInputStream (input_stream);
 
-                    IOChannel channel = new IOChannel.unix_new (standard_error);
-                    process_line (ref row.progress_bar, channel, "stderr");
+                string icon;
 
-                } catch (IOChannelError e) {
-                    message ("IOChannelError: %s\n", e.message);
-                } catch (ConvertError e) {
-                    message ("ConvertError: %s\n", e.message);
+                switch (item.type_item) {
+                    case TypeItemEnum.VIDEO:
+                        icon = "media-video";
+                        break;
+                    case TypeItemEnum.MUSIC:
+                        icon = "audio-x-generic";
+                        break;
+                    case TypeItemEnum.IMAGE:
+                        icon = "image";
+                        break;
+                    default:
+                        icon = "file";
+                        break;
                 }
 
-                ChildWatch.add (child_pid, (pid, status) => {
-                    Process.close_pid (pid);
-                });
+                var row = new RowConversion(icon, item.name, 0, name_format);
+                this.converter_view.list_conversion.list_box.add (row);
+                int total = 0;
+
+                while (true) {
+                    string str_return = yield data_input_stream.read_line_async ();
+                    
+                    if (str_return == null) {
+                        break; 
+                    } else {
+                        message (str_return);
+                        process_line(str_return, ref row.progress_bar, ref total);
+                    }
+                }
 
             } catch (SpawnError e) {
                 GLib.critical ("Error: %s\n", e.message);
+            } catch (Error e) {
+                GLib.message("Erro %s\n", e.message);
             }
         }
         
-        private bool process_line (ref Gtk.ProgressBar progress_bar,  IOChannel channel, string stream_name) {
-             try {
-                string line;
-                int total = 0;
+        private void process_line (string str_return,  ref Gtk.ProgressBar progress_bar, ref int total) {
 
-                while (channel.read_line (out line, null, null) == IOStatus.NORMAL &&  line != null) {                    
+            if(str_return.contains("Duration:")) {
+                int i = str_return.index_of ("Duration:");
+                string duration = str_return.substring(i + 10, 11);
 
-                    if(line.contains("Duration:")) {
-                        int i = line.index_of ("Duration:");
-                        string duration = line.substring(i + 10, 11);
-
-                        total = TimeUtil.duration_in_seconds (duration);
-                    }
-
-                    if(line.contains("time=")) {
-                        int i = line.index_of ("time=");
-                        string duration = line.substring(i+5, 11);
-
-                        int loading = TimeUtil.duration_in_seconds (duration);
-                        double progress = 100 * loading / total;
-                        progress_bar.set_fraction (progress);
-                        message ("convertendo:" + progress.to_string ());
-                    }
-                }
-                message ("convertido!");
-                
-            } catch (IOChannelError e) {
-                GLib.critical ("%s: IOChannelError: %s\n", stream_name, e.message);
-                return false;
-            } catch (ConvertError e) {
-                GLib.critical ("%s: ConvertError: %s\n", stream_name, e.message);
-                return false;
+                total = TimeUtil.duration_in_seconds (duration);
             }
 
-            return true;
+            if(str_return.contains("time=")) {
+                int i = str_return.index_of ("time=");
+                string duration = str_return.substring(i+5, 11);
+
+                int loading = TimeUtil.duration_in_seconds (duration);
+                double progress = 100 * loading / total;
+                progress_bar.set_fraction (progress);
+            }
+        }
+
+         public string[] get_command (string uri) {
+            int index = uri.last_index_of(".");
+            string new_file = uri.substring(0, index + 1) + this.name_format_selected.down ();
+
+            var array = new GenericArray<string> ();
+            
+            if(this.type_item == TypeItemEnum.VIDEO || this.type_item == TypeItemEnum.MUSIC) {
+                array.add ("ffmpeg");
+                array.add ("-y");
+                array.add ("-stats");
+                array.add ("-i");
+                array.add (uri);
+                array.add (new_file);
+            } else if (this.type_item == TypeItemEnum.IMAGE) {
+                array.add ("convert");
+                array.add (uri);
+                array.add (new_file);
+            }
+
+            return array.data;
+        }
+
+        private string [] mount_array_with_supported_formats (string name_format) {
+            string [] formats = null;
+            
+            switch (name_format) {
+                case Properties.TEXT_MP4:
+                    this.type_item = TypeItemEnum.VIDEO;
+                    formats = {
+                        Properties.TEXT_3GP, Properties.TEXT_MPG, Properties.TEXT_AVI,
+                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
+                    };
+                    break;
+                case Properties.TEXT_3GP:
+                    this.type_item = TypeItemEnum.VIDEO;
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_MPG, Properties.TEXT_AVI,
+                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
+                    };
+                    break;
+                case Properties.TEXT_MPG:
+                    this.type_item = TypeItemEnum.VIDEO;
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_AVI, 
+                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
+                    };
+                    break;
+                case Properties.TEXT_AVI:
+                    this.type_item = TypeItemEnum.VIDEO;
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
+                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
+                    };
+                    break;
+                case Properties.TEXT_WMV:
+                    this.type_item = TypeItemEnum.VIDEO;
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
+                        Properties.TEXT_AVI, Properties.TEXT_FLV, Properties.TEXT_SWF
+                    };
+                    break;
+                case Properties.TEXT_FLV:
+                    this.type_item = TypeItemEnum.VIDEO;
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
+                        Properties.TEXT_AVI, Properties.TEXT_WMV, Properties.TEXT_SWF
+                    };
+                    break;
+                case Properties.TEXT_SWF:
+                    this.type_item = TypeItemEnum.VIDEO;
+                    formats = {
+                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
+                        Properties.TEXT_AVI, Properties.TEXT_WMV, Properties.TEXT_FLV
+                    };
+                    break;
+
+                case Properties.TEXT_MP3:
+                    this.type_item = TypeItemEnum.MUSIC;
+                    formats = {
+                        Properties.TEXT_WMA, Properties.TEXT_AMR, Properties.TEXT_OGG,
+                        Properties.TEXT_AAC, Properties.TEXT_WAV
+                    };
+                    break;
+                case Properties.TEXT_WMA:
+                    this.type_item = TypeItemEnum.MUSIC;
+                    formats = {
+                        Properties.TEXT_MP3, Properties.TEXT_AMR, Properties.TEXT_OGG, 
+                        Properties.TEXT_AAC, Properties.TEXT_WAV
+                    };
+                    break;
+                case Properties.TEXT_OGG:
+                    this.type_item = TypeItemEnum.MUSIC;
+                    formats = {
+                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
+                        Properties.TEXT_AAC, Properties.TEXT_WAV
+                    };
+                    break;
+                case Properties.TEXT_AAC:
+                    this.type_item = TypeItemEnum.MUSIC;
+                    formats = {
+                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
+                        Properties.TEXT_OGG, Properties.TEXT_WAV
+                    };
+                    break;
+                case Properties.TEXT_WAV:
+                    this.type_item = TypeItemEnum.MUSIC;
+                    formats = {
+                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
+                        Properties.TEXT_OGG, Properties.TEXT_AAC
+                    };
+                    break;
+
+                case Properties.TEXT_JPG:
+                    this.type_item = TypeItemEnum.IMAGE;
+                    formats = {
+                        Properties.TEXT_BMP, Properties.TEXT_PNG, Properties.TEXT_TIF, 
+                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
+                    };
+                    break;
+                case Properties.TEXT_BMP:
+                    this.type_item = TypeItemEnum.IMAGE;
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_PNG, Properties.TEXT_TIF,
+                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
+                    };
+                    break;
+                case Properties.TEXT_PNG:
+                    this.type_item = TypeItemEnum.IMAGE;
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_TIF, 
+                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
+                    };
+                    break;
+                case Properties.TEXT_TIF:
+                    this.type_item = TypeItemEnum.IMAGE;
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
+                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
+                    };
+                    break;
+                case Properties.TEXT_ICO:
+                    this.type_item = TypeItemEnum.IMAGE;
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
+                        Properties.TEXT_TIF, Properties.TEXT_GIF, Properties.TEXT_TGA
+                    };
+                    break;
+                case Properties.TEXT_GIF:
+                    this.type_item = TypeItemEnum.IMAGE;
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
+                        Properties.TEXT_TIF, Properties.TEXT_ICO, Properties.TEXT_TGA
+                    };
+                    break;
+                case Properties.TEXT_TGA:
+                    this.type_item = TypeItemEnum.IMAGE;
+                    formats = {
+                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
+                        Properties.TEXT_TIF, Properties.TEXT_ICO, Properties.TEXT_GIF
+                    };
+                    break;
+            }
+
+            return formats;
         }
 	}
 }
