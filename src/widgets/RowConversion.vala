@@ -42,7 +42,7 @@ namespace Ciano.Widgets {
 			this.container = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             this.container.margin = 3;
 
-            var icone = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DND);
+            var icone = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
 			this.box_name_progress = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
             this.name_video = new Gtk.Label (name);
@@ -61,6 +61,7 @@ namespace Ciano.Widgets {
             this.icon_cancel.tooltip_text = ("Cancel Conversion");
             this.icon_cancel.valign = Gtk.Align.CENTER;
             this.icon_cancel.halign = Gtk.Align.CENTER;
+            this.icon_cancel.clicked.connect(() => { this.destroy; });
 
             box_name_progress.pack_start (this.name_video, true, true);
             box_name_progress.pack_start (this.progress_bar, true, true);
