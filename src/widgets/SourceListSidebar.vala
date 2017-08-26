@@ -56,20 +56,14 @@ namespace Ciano.Widgets {
 			video_list.expand_all ();
 
 			var mp4_item = new SourceList.Item (Properties.TEXT_MP4);
-			var 3gp_item = new SourceList.Item (Properties.TEXT_3GP);
 			var mpg_item = new SourceList.Item (Properties.TEXT_MPG);
 			var avi_item = new SourceList.Item (Properties.TEXT_AVI);
 			var wmv_item = new SourceList.Item (Properties.TEXT_WMV);
-			var flv_item = new SourceList.Item (Properties.TEXT_FLV);
-			var swf_item = new SourceList.Item (Properties.TEXT_SWF);
 
 			video_list.add (mp4_item);
-			video_list.add (3gp_item);
 			video_list.add (mpg_item);
 			video_list.add (avi_item);
 			video_list.add (wmv_item);
-			video_list.add (flv_item);
-			video_list.add (swf_item);
 
 			this.type_list.add (video_list);
         }
@@ -81,16 +75,12 @@ namespace Ciano.Widgets {
 
 			var mp3_item = new SourceList.Item (Properties.TEXT_MP3);
 			var wma_item = new SourceList.Item (Properties.TEXT_WMA);
-			var amr_item = new SourceList.Item (Properties.TEXT_AMR);
 			var ogg_item = new SourceList.Item (Properties.TEXT_OGG);
-			var acc_item = new SourceList.Item (Properties.TEXT_AAC);
 			var wav_item = new SourceList.Item (Properties.TEXT_WAV);
 
 			music_list.add (mp3_item);
 			music_list.add (wma_item);
-			music_list.add (amr_item);
 			music_list.add (ogg_item);
-			music_list.add (acc_item);
 			music_list.add (wav_item);
 
 	        this.type_list.add (music_list);
