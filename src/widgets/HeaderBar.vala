@@ -36,7 +36,9 @@ namespace Ciano.Widgets {
         /**
          * @variables
          */
-        public Gtk.Button preferences;        
+        public Gtk.Button preferences;  
+        public Gtk.MenuButton app_menu;
+        public Gtk.Menu menu;   
 
         /**
          * @construct
@@ -44,24 +46,29 @@ namespace Ciano.Widgets {
         public HeaderBar () {
             this.set_title (Properties.PROGRAME_NAME);
             this.show_close_button = true;
-            preferences_button ();
+            icon_settings ();
         }
 
-        /**
-         * @descrition Settings icon.
-         *             When the user clicks the icon will call the signal `item_selected`. 
-         *
-         * @return void
-         */
-        private void preferences_button () {
-            this.preferences = new Gtk.Button();
-            this.preferences.set_image (new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-            this.preferences.tooltip_text = Properties.TEXT_PREFERENCES;
-            this.pack_end (this.preferences);
-            
-            this.preferences.clicked.connect(() => {
+        private void icon_settings () {
+            this.app_menu = new Gtk.MenuButton();
+            this.app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+            this.app_menu.tooltip_text = ("Settings");
+
+            menu_settings();
+
+            this.app_menu.popup = this.menu;
+            this.pack_end (this.app_menu);
+        }
+
+        private void menu_settings () {
+            var about_item = new Gtk.MenuItem.with_label ("Preferences");
+            about_item.activate.connect(() => {
                 item_selected ();
-            });            
+            });
+
+            this.menu = new Gtk.Menu ();
+            this.menu.add (about_item);
+            this.menu.show_all ();
         }
     }
 }
