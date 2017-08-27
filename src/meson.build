@@ -10,6 +10,7 @@ sources = files(
 
 	'utils/StringUtil.vala',
 	'utils/TimeUtil.vala',
+	'utils/WidgetUtil.vala',
 	
 	'views/ConverterView.vala',
 
