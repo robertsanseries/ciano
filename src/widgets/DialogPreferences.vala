@@ -76,31 +76,46 @@ namespace Ciano.Widgets {
 		private void init_options () {
 			this.output_folder = new Gtk.FileChooserButton (StringUtil.EMPTY, Gtk.FileChooserAction.SELECT_FOLDER);
 			this.output_folder.hexpand = true;
-
-			if(this.settings.output_folder == null){
-				settings.output_folder = Environment.get_home_dir () + Constants.DIRECTORY_CIANO;
-			}else {
-				this.output_folder.set_current_folder (this.settings.output_folder);	
-			}
-
+			this.output_folder.set_current_folder (this.settings.output_folder);
 			this.output_folder.selection_changed.connect (() => {
 				this.settings.output_folder = this.output_folder.get_file ().get_path ();
 			});
 			
 			this.output_source_file_folder = new Gtk.Switch ();
 			this.settings.schema.bind ("output-source-file-folder", this.output_source_file_folder, "active", SettingsBindFlags.DEFAULT);
+			this.output_source_file_folder.notify["active"].connect (() => {
+	            if (this.output_source_file_folder.active) {
+	                this.output_folder.sensitive = false;
+	            } else {
+	                this.output_folder.sensitive = true;
+	            }
+	        });
 
 			this.shutdown_computer = new Gtk.Switch ();
 			this.settings.schema.bind ("shutdown-computer", this.shutdown_computer, "active", SettingsBindFlags.DEFAULT);
+			this.shutdown_computer.notify["active"].connect (() => {
+	            if (this.shutdown_computer.active) {
+	                this.open_output_folder.active = false;
+	            }
+	        });
 
 			this.open_output_folder = new Gtk.Switch ();
 			this.settings.schema.bind ("open-output-folder", this.open_output_folder, "active", SettingsBindFlags.DEFAULT);
+			this.open_output_folder.notify["active"].connect (() => {
+	            if (this.open_output_folder.active) {
+	                this.shutdown_computer.active = false;
+	            }
+	        });
 
 			this.complete_notify = new Gtk.Switch ();
 			this.settings.schema.bind ("complete-notify", this.complete_notify, "active", SettingsBindFlags.DEFAULT);
 
 			this.erro_notify = new Gtk.Switch ();
 			this.settings.schema.bind ("erro-notify", this.erro_notify, "active", SettingsBindFlags.DEFAULT);
+
+			if (this.output_source_file_folder.active) {
+	        	this.output_folder.sensitive = false;
+			}
 		}
 
 		/**
@@ -254,6 +269,8 @@ namespace Ciano.Widgets {
 		private void reset_default_settings () {
 			this.settings.output_folder = Environment.get_home_dir () + Constants.DIRECTORY_CIANO;
 			this.output_folder.set_current_folder (this.settings.output_folder);			
+			this.output_folder.hide ();
+			this.output_folder.show ();
 			output_source_file_folder.active = false;
 			shutdown_computer.active 		 = false;
 			open_output_folder.active 		 = false;
