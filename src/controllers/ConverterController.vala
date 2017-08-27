@@ -26,121 +26,124 @@ using Ciano.Enums;
 
 namespace Ciano.Controllers {
 
-	/**
-	 * @descrition 
-	 * 
-	 * @author  Robert San <robertsanseries@gmail.com>
-	 * @type    ConverterController
-	 */
-	public class ConverterController {
+    /**
+     * @descrition 
+     * 
+     * @author  Robert San <robertsanseries@gmail.com>
+     * @type    ConverterController
+     */
+    public class ConverterController {
 
-		/**
-		 * @variables
-		 */
-		private Gtk.ApplicationWindow app;
-		private ConverterView converter_view;
-		private DialogPreferences dialog_preferences;
-		private DialogConvertFile dialog_convert_file;       
+        /**
+         * @variables
+         */
+        private Gtk.ApplicationWindow app;
+        private ConverterView converter_view;
+        private DialogPreferences dialog_preferences;
+        private DialogConvertFile dialog_convert_file;       
         public Gee.ArrayList<RowConversion> convertions;
         private Gee.ArrayList<ItemConversion> list_items;
         private int id_item;
         private string name_format_selected;
         private TypeItemEnum type_item;
+        private Ciano.Config.Settings settings;
 
-		public ConverterController (Gtk.ApplicationWindow app, ConverterView converter_view) {
-			this.app = app;
-			this.converter_view = converter_view;
+        public ConverterController (Gtk.ApplicationWindow app, ConverterView converter_view) {
+            this.app = app;
+            this.converter_view = converter_view;
+
+            this.settings = Ciano.Config.Settings.get_instance ();
 
             this.id_item = 1;
             this.list_items = new Gee.ArrayList<ItemConversion> ();
-			
-			on_activate_button_preferences (app);
-			on_activate_button_item (app);
-		}
+            
+            on_activate_button_preferences (app);
+            on_activate_button_item (app);
+        }
 
-		private void on_activate_button_preferences (Gtk.ApplicationWindow app) {
-			this.converter_view.headerbar.item_selected.connect (() => {
-				this.dialog_preferences = new DialogPreferences (app);
-				this.dialog_preferences.show_all ();
-			});	
-		}
+        private void on_activate_button_preferences (Gtk.ApplicationWindow app) {
+            this.converter_view.headerbar.item_selected.connect (() => {
+                this.dialog_preferences = new DialogPreferences (app);
+                this.dialog_preferences.show_all ();
+            }); 
+        }
 
-		private void on_activate_button_item (Gtk.ApplicationWindow app) {
-			this.converter_view.source_list.item_selected.connect ((item) => {
+        private void on_activate_button_item (Gtk.ApplicationWindow app) {
+            this.converter_view.source_list.item_selected.connect ((item) => {
 
                 int index = item.name.last_index_of(".");
                 this.name_format_selected = item.name.substring (index + 1, -1);
 
-				var types = mount_array_with_supported_formats (item.name);
+                var types = mount_array_with_supported_formats (item.name);
 
-				if(types != null) {
-					this.dialog_convert_file = new DialogConvertFile (this, types, item.name, app);
-					this.dialog_convert_file.show_all ();
-				}
-			});
-		}
+                if(types != null) {
+                    this.dialog_convert_file = new DialogConvertFile (this, types, item.name, app);
+                    this.dialog_convert_file.show_all ();
+                }
+            });
+        }
 
-		public void on_activate_button_add_file (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.TreeIter iter, Gtk.ListStore list_store, string [] formats) {
-			var chooser_file = new Gtk.FileChooserDialog (Properties.TEXT_SELECT_FILE, parent_dialog, Gtk.FileChooserAction.OPEN);
-			chooser_file.select_multiple = true;
+        public void on_activate_button_add_file (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.TreeIter iter, Gtk.ListStore list_store, string [] formats) {
+            var chooser_file = new Gtk.FileChooserDialog (Properties.TEXT_SELECT_FILE, parent_dialog, Gtk.FileChooserAction.OPEN);
+            chooser_file.select_multiple = true;
 
-			var filter = new Gtk.FileFilter ();
+            var filter = new Gtk.FileFilter ();
 
-			foreach (string format in formats) {
-				filter.add_pattern ("*.".concat (format.down ()));
-			}		
+            foreach (string format in formats) {
+                filter.add_pattern ("*.".concat (format.down ()));
+            }       
 
-			chooser_file.set_filter (filter);
-			chooser_file.add_buttons ("Cancel", Gtk.ResponseType.CANCEL, "Add", Gtk.ResponseType.OK);
+            chooser_file.set_filter (filter);
+            chooser_file.add_buttons ("Cancel", Gtk.ResponseType.CANCEL, "Add", Gtk.ResponseType.OK);
 
-			if (chooser_file.run () == Gtk.ResponseType.OK) {
+            if (chooser_file.run () == Gtk.ResponseType.OK) {
 
-				SList<string> uris = chooser_file.get_filenames ();
+                SList<string> uris = chooser_file.get_filenames ();
 
-				foreach (unowned string uri in uris)  {
-					
-					var file         = File.new_for_uri (uri);
-					int index        = file.get_basename ().last_index_of("/");
-            		string name      = file.get_basename ().substring(index + 1, -1);
-            		string directory = file.get_basename ().substring(0, index + 1);
+                foreach (unowned string uri in uris)  {
+                    
+                    var file         = File.new_for_uri (uri);
+                    int index        = file.get_basename ().last_index_of("/");
+                    string name      = file.get_basename ().substring(index + 1, -1);
+                    string directory = file.get_basename ().substring(0, index + 1);
 
-					if (name.length > 50) {    
-						name = name.slice(0, 48) + "...";
-					}
+                    if (name.length > 50) {    
+                        name = name.slice(0, 48) + "...";
+                    }
 
-					if (directory.length > 50) {    
-						directory = directory.slice(0, 48) + "...";
-					}
+                    if (directory.length > 50) {    
+                        directory = directory.slice(0, 48) + "...";
+                    }
 
-					list_store.append (out iter);
-					list_store.set (iter, 0, name, 1, directory);
-					tree_view.expand_all ();
-				}
-			}
+                    list_store.append (out iter);
+                    list_store.set (iter, 0, name, 1, directory);
+                    tree_view.expand_all ();
+                }
+            }
 
-			chooser_file.hide ();
-		}
-		
-		public void on_activate_button_remove (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.ListStore list_store, Gtk.ToolButton button_remove) {
+            chooser_file.hide ();
+        }
+        
+        public void on_activate_button_remove (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.ListStore list_store, Gtk.ToolButton button_remove) {
 
-			Gtk.TreePath path;
-			Gtk.TreeViewColumn column;
+            Gtk.TreePath path;
+            Gtk.TreeViewColumn column;
 
-			tree_view.get_cursor (out path, out column);
+            tree_view.get_cursor (out path, out column);
 
-			if(path != null) {
-				Gtk.TreeIter iter;
-				
+            if(path != null) {
+                Gtk.TreeIter iter;
+                
                 list_store.get_iter (out iter, path);
-				list_store.remove (iter);
+                list_store.remove (iter);
 
-				if (path.to_string () == "0") {
-					button_remove.sensitive = false;
-				}
-			}
-		}
-		
-		public void on_activate_button_start_conversion (Gtk.ListStore list_store, string name_format){
+                if (path.to_string () == "0") {
+                    button_remove.sensitive = false;
+                }
+            }
+        }
+        
+        public void on_activate_button_start_conversion (Gtk.ListStore list_store, string name_format){
 
             this.converter_view.list_conversion.stack.set_visible_child_name (Constants.LIST_BOX_VIEW);
             this.converter_view.list_conversion.stack.show_all ();
@@ -152,7 +155,18 @@ namespace Ciano.Controllers {
                 list_store.get_value (iter, 0, out cell1);
                 list_store.get_value (iter, 1, out cell2);
 
-                var item = new ItemConversion (id_item, cell1.get_string (), cell2.get_string (), this.type_item, this.name_format_selected, 0);
+                var item = new ItemConversion (
+                    id_item, 
+                    cell1.get_string (), 
+                    cell2.get_string (),
+                    this.name_format_selected,
+                    null,
+                    null,
+                    null,
+                    0,
+                    this.type_item
+                );
+
                 this.list_items.add (item);
                 
                 string uri = item.directory + item.name;
@@ -164,8 +178,8 @@ namespace Ciano.Controllers {
             };
 
             list_store.foreach (load_list_for_conversion);
-		}
-		
+        }
+        
         public async void execute_command_async (string[] spawn_args, ItemConversion item, string name_format) {
             try {
                 // Make a subprocess that accepts piping (accepts additional arguments).
@@ -198,20 +212,36 @@ namespace Ciano.Controllers {
                 }
 
                 var row = new RowConversion(icon, item.name, 0, name_format);
+                WidgetUtil.set_visible (row.button_remove, false);
+                
+                row.button_cancel.clicked.connect(() => {
+                    subprocess.force_exit ();
+                    WidgetUtil.set_visible (row.button_cancel, false);
+                    WidgetUtil.set_visible (row.button_remove, true);
+
+                });
+
                 this.converter_view.list_conversion.list_box.add (row);
+                
                 int total = 0;
 
-                while (true) {
-                    string str_return = yield data_input_stream.read_line_async ();
-                    
-                    if (str_return == null) {
-                        break; 
-                    } else {
-                        message (str_return);
-                        process_line(str_return, ref row.progress_bar, ref total);
+                    while (true) {
+                        size_t length;
+                        string str_return = yield data_input_stream.read_line_utf8_async (Priority.HIGH, null, out length);
+                        
+                        if (str_return == null) {
+                            WidgetUtil.set_visible (row.button_cancel, false);
+                            WidgetUtil.set_visible (row.button_remove, true);
+                            
+                            if(item.type_item == TypeItemEnum.IMAGE) {
+                               row.progress_bar.set_fraction(1);
+                            }
+                            break; 
+                        } else {
+                            message(str_return.replace("\\u000d", "\n"));
+                            process_line(str_return, ref row.progress_bar,ref row.size_time_bitrate, ref total);
+                        }
                     }
-                }
-
             } catch (SpawnError e) {
                 GLib.critical ("Error: %s\n", e.message);
             } catch (Error e) {
@@ -219,7 +249,11 @@ namespace Ciano.Controllers {
             }
         }
         
-        private void process_line (string str_return,  ref Gtk.ProgressBar progress_bar, ref int total) {
+        private void process_line (string str_return,  ref Gtk.ProgressBar progress_bar, ref Gtk.Label size_time_bitrate, ref int total) {
+
+            string time = StringUtil.EMPTY;
+            string size = StringUtil.EMPTY;
+            string bitrate = StringUtil.EMPTY;
 
             if(str_return.contains("Duration:")) {
                 int i = str_return.index_of ("Duration:");
@@ -228,26 +262,41 @@ namespace Ciano.Controllers {
                 total = TimeUtil.duration_in_seconds (duration);
             }
 
-            if(str_return.contains("time=")) {
-                int i = str_return.index_of ("time=");
-                string duration = str_return.substring(i+5, 11);
+            if(str_return.contains("time=") && str_return.contains("size=") && str_return.contains("bitrate=") ) {
+                int x = str_return.index_of ("time=");
+                time = str_return.substring(x+5, 11);
 
-                int loading = TimeUtil.duration_in_seconds (duration);
+                int loading = TimeUtil.duration_in_seconds (time);
                 double progress = 100 * loading / total;
                 progress_bar.set_fraction (progress);
+        
+                int y = str_return.index_of ("size=");
+                size = str_return.substring(y+5, 11);
+            
+                int i = str_return.index_of ("bitrate=");
+                bitrate = str_return.substring(i+5, 11);
+
+                
+                size_time_bitrate.label = "size: " + size.strip () + " - time: " + time.strip () + " - bitrate: " + bitrate.strip ();
             }
         }
 
          public string[] get_command (string uri) {
             int index = uri.last_index_of(".");
-            string new_file = uri.substring(0, index + 1) + this.name_format_selected.down ();
+
+            string new_file;
+
+            if(this.settings.output_source_file_folder){
+                new_file = uri.substring(0, index + 1) + this.name_format_selected.down ();
+            } else {
+                new_file = this.settings.output_folder + this.name_format_selected.down ();
+            }
 
             var array = new GenericArray<string> ();
             
             if(this.type_item == TypeItemEnum.VIDEO || this.type_item == TypeItemEnum.MUSIC) {
                 array.add ("ffmpeg");
                 array.add ("-y");
-                array.add ("-stats");
                 array.add ("-i");
                 array.add (uri);
                 array.add (new_file);
@@ -403,5 +452,5 @@ namespace Ciano.Controllers {
 
             return formats;
         }
-	}
+    }
 }
