@@ -2,6 +2,4 @@ build/*
 debian/*
 language/*
 src/models/*
-src/objects/*
-src/utils/FileUtil.vala
-src/utils/WidgetUtil.vala
+
