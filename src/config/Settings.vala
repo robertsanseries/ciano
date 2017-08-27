@@ -47,6 +47,10 @@ namespace Ciano.Config {
 		*/
 		private Settings () {
 			base ("com.github.robertsanseries.ciano");
+
+			if(StringUtil.is_empty(this.output_folder)){
+				this.output_folder = Environment.get_home_dir () + Constants.DIRECTORY_CIANO;
+			}
 		}
 
 		/**
