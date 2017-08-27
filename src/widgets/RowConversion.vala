@@ -16,6 +16,7 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 */
+using Ciano.Utils;
 
 namespace Ciano.Widgets {
 
@@ -33,8 +34,9 @@ namespace Ciano.Widgets {
         public  Gtk.Label 		value_progress;
         private Gtk.Box 		container;
         private Gtk.Box 		box_name_progress;
-        private Gtk.Label 		open_in_folder;
-        private Gtk.Button 		icon_cancel;
+        public Gtk.Label 		size_time_bitrate;
+        public Gtk.Button 		button_cancel;
+        public Gtk.Button       button_remove;
         public  Gtk.Label       convert_to;
 
 		public RowConversion (string icon, string name, double progress, string name_format) {
@@ -53,24 +55,33 @@ namespace Ciano.Widgets {
             this.convert_to = new Gtk.Label (name_format);
             this.convert_to.set_use_markup (true);
 
-            this.open_in_folder = new Gtk.Label ("size --- time ---");
-            this.open_in_folder.halign = Gtk.Align.START;
+            this.size_time_bitrate = new Gtk.Label (StringUtil.EMPTY);
+            this.size_time_bitrate.halign = Gtk.Align.START;
 
-            this.icon_cancel = new Gtk.Button.with_label ("Cancel");
-            this.icon_cancel.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-            this.icon_cancel.tooltip_text = ("Cancel Conversion");
-            this.icon_cancel.valign = Gtk.Align.CENTER;
-            this.icon_cancel.halign = Gtk.Align.CENTER;
-            this.icon_cancel.clicked.connect(() => { this.destroy; });
+            this.button_cancel = new Gtk.Button.with_label ("Cancel");
+            this.button_cancel.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+            this.button_cancel.tooltip_text = ("Cancel Conversion");
+            this.button_cancel.valign = Gtk.Align.CENTER;
+            this.button_cancel.halign = Gtk.Align.CENTER;
 
+            this.button_remove = new Gtk.Button.with_label ("Remove");
+            this.button_remove.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            this.button_remove.tooltip_text = ("Remove item from list");
+            this.button_remove.valign = Gtk.Align.CENTER;
+            this.button_remove.halign = Gtk.Align.CENTER;
+            this.button_remove.clicked.connect(() => {
+                this.destroy ();
+            });
+            
             box_name_progress.pack_start (this.name_video, true, true);
             box_name_progress.pack_start (this.progress_bar, true, true);
-            box_name_progress.pack_start (this.open_in_folder,true,true);
+            box_name_progress.pack_start (this.size_time_bitrate,true,true);
 
             this.container.pack_start (icone, false, false, 5);
             this.container.pack_start (box_name_progress, true, true, 5);
             this.container.pack_start (this.convert_to, false, false, 2);
-            this.container.pack_start (this.icon_cancel, false, false, 8);
+            this.container.pack_start (this.button_cancel, false, false, 8);
+            this.container.pack_start (this.button_remove, false, false, 8);
 
             this.selectable = false;
             this.activatable = false;
