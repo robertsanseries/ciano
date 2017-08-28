@@ -31,6 +31,8 @@ namespace Ciano {
 	 */
 	public class Window : Gtk.ApplicationWindow {
  		
+ 		private Gtk.Application app;
+
   		/**
 		 * @construct
 		 */
@@ -42,6 +44,7 @@ namespace Ciano {
 				resizable: true
 			);
 
+			this.app = app;
 			style_provider ();
 			build ();
 		}
@@ -67,7 +70,7 @@ namespace Ciano {
 		 */
 		private void build () {
 			var converter_view = new ConverterView (this);
-			new ConverterController (this, converter_view);
+			new ConverterController (this, this.app, converter_view);
 
         	this.add (converter_view);
         	this.show_all ();
