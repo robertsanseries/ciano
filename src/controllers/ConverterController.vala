@@ -47,10 +47,12 @@ namespace Ciano.Controllers {
         private string name_format_selected;
         private TypeItemEnum type_item;
         private Ciano.Config.Settings settings;
+        private Gtk.Application application;
 
-        public ConverterController (Gtk.ApplicationWindow app, ConverterView converter_view) {
+        public ConverterController (Gtk.ApplicationWindow app, Gtk.Application application,  ConverterView converter_view) {
             this.app = app;
             this.converter_view = converter_view;
+            this.application = application;
 
             this.settings = Ciano.Config.Settings.get_instance ();
 
@@ -236,6 +238,13 @@ namespace Ciano.Controllers {
                             if(item.type_item == TypeItemEnum.IMAGE) {
                                row.progress_bar.set_fraction(1);
                             }
+
+                            var notification = new Notification (item.name);
+                            var image = new Gtk.Image.from_icon_name ("com.github.robertsanseries.ciano", Gtk.IconSize.DIALOG);
+                            notification.set_body ("Conversion completed");
+                            notification.set_icon (image.gicon);
+                            this.application.send_notification ("finished", notification);
+
                             break; 
                         } else {
                             message(str_return.replace("\\u000d", "\n"));
