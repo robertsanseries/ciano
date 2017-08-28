@@ -58,7 +58,7 @@ namespace Ciano.Widgets {
             this.size_time_bitrate = new Gtk.Label (StringUtil.EMPTY);
             this.size_time_bitrate.halign = Gtk.Align.START;
 
-            this.button_cancel = new Gtk.Button.with_label ("Cancel");
+            this.button_cancel = new Gtk.Button.with_label (" Cancel ");
             this.button_cancel.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             this.button_cancel.tooltip_text = ("Cancel Conversion");
             this.button_cancel.valign = Gtk.Align.CENTER;
