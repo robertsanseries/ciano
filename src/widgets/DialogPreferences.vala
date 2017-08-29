@@ -36,8 +36,6 @@ namespace Ciano.Widgets {
 		private Ciano.Config.Settings settings;
 		private Gtk.FileChooserButton output_folder;
         private Gtk.Switch output_source_file_folder;
-        private Gtk.Switch shutdown_computer;
-        private Gtk.Switch open_output_folder;
         private Gtk.Switch complete_notify;
         private Gtk.Switch erro_notify;
         private Gtk.Button default_settings;
@@ -50,8 +48,8 @@ namespace Ciano.Widgets {
 			this.resizable = false;
             this.deletable = false;
 			this.set_transient_for (parent);
-            this.set_default_size (500, 450);
-            this.set_size_request (500, 450);
+            this.set_default_size (500, 350);
+            this.set_size_request (500, 350);
             this.set_modal (true);
 
 			this.settings = Ciano.Config.Settings.get_instance ();
@@ -91,22 +89,6 @@ namespace Ciano.Widgets {
 	            }
 	        });
 
-			this.shutdown_computer = new Gtk.Switch ();
-			this.settings.schema.bind ("shutdown-computer", this.shutdown_computer, "active", SettingsBindFlags.DEFAULT);
-			this.shutdown_computer.notify["active"].connect (() => {
-	            if (this.shutdown_computer.active) {
-	                this.open_output_folder.active = false;
-	            }
-	        });
-
-			this.open_output_folder = new Gtk.Switch ();
-			this.settings.schema.bind ("open-output-folder", this.open_output_folder, "active", SettingsBindFlags.DEFAULT);
-			this.open_output_folder.notify["active"].connect (() => {
-	            if (this.open_output_folder.active) {
-	                this.shutdown_computer.active = false;
-	            }
-	        });
-
 			this.complete_notify = new Gtk.Switch ();
 			this.settings.schema.bind ("complete-notify", this.complete_notify, "active", SettingsBindFlags.DEFAULT);
 
@@ -126,8 +108,6 @@ namespace Ciano.Widgets {
         	var row = 0;
 			
         	mount_section_output_folder (grid, ref row);
-
-        	mount_section_after_converting (grid, ref row);
 
         	mount_section_notify (grid, ref row);
 
@@ -153,26 +133,6 @@ namespace Ciano.Widgets {
 				var label_output_source_file_folder = new Gtk.Label (Properties.TEXT_OUTPUT_SOURCE_FILE_FOLDER);
 				add_option (grid, label_output_source_file_folder, this.output_source_file_folder, ref row);
 
-		}
-
-		/**
-		 * [mount_after_converting description]
-		 * @param  {[type]} Gtk.Grid grid          [description]
-		 * @param  {[type]} ref      int           row           [description]
-		 * @return {[type]}          [description]
-		 */
-		private void mount_section_after_converting (Gtk.Grid grid, ref int row) {
-			// * After Converting
-			var label_after_converting = new Gtk.Label (Properties.TEXT_AFTER_CONVERTING);
-			add_section (grid, label_after_converting, ref row);
-
-				// Shutdown Computer
-				var label_shutdown_computer = new Gtk.Label (Properties.TEXT_SHUTDOWN_COMPUTER);
-				add_option (grid, label_shutdown_computer, this.shutdown_computer, ref row);
-
-				//Open Output Folder
-				var label_open_output_folder = new Gtk.Label (Properties.TEXT_OPEN_OUTPUT_FOLDER);
-				add_option (grid, label_open_output_folder, this.open_output_folder, ref row);
 		}
 
 		/**
@@ -272,8 +232,6 @@ namespace Ciano.Widgets {
 			this.output_folder.hide ();
 			this.output_folder.show ();
 			output_source_file_folder.active = false;
-			shutdown_computer.active 		 = false;
-			open_output_folder.active 		 = false;
 			complete_notify.active 			 = true;
 			erro_notify.active 				 = true;
 		}
