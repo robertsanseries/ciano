@@ -184,52 +184,20 @@ namespace Ciano.Controllers {
         
         public async void execute_command_async (string[] spawn_args, ItemConversion item, string name_format) {
             try {
-                // Make a subprocess that accepts piping (accepts additional arguments).
-                var launcher = new SubprocessLauncher (SubprocessFlags.STDERR_PIPE);
+                var launcher            = new SubprocessLauncher (SubprocessFlags.STDERR_PIPE);
+                var subprocess          = launcher.spawnv (spawn_args);
+                var input_stream        = subprocess.get_stderr_pipe ();
+                var data_input_stream   = new DataInputStream (input_stream);
 
-                // Set how the subprocess will be launche.
-                var subprocess = launcher.spawnv (spawn_args);
-
-                // Create a variable with subprocess arguments.
-                var input_stream = subprocess.get_stderr_pipe ();
-
-                // Create a DIS to read such arguments.
-                var data_input_stream = new DataInputStream (input_stream);
-
-                string icon;
-
-                switch (item.type_item) {
-                    case TypeItemEnum.VIDEO:
-                        icon = "media-video";
-                        break;
-                    case TypeItemEnum.MUSIC:
-                        icon = "audio-x-generic";
-                        break;
-                    case TypeItemEnum.IMAGE:
-                        icon = "image";
-                        break;
-                    default:
-                        icon = "file";
-                        break;
-                }
-
-                var row = new RowConversion(icon, item.name, 0, name_format);
-                WidgetUtil.set_visible (row.button_remove, false);
+                var icon = get_type_icon (item);
+                var row  = create_row_conversion (icon, item.name, name_format, subprocess);
                 
-                row.button_cancel.clicked.connect(() => {
-                    subprocess.force_exit ();
-                    WidgetUtil.set_visible (row.button_cancel, false);
-                    WidgetUtil.set_visible (row.button_remove, true);
-
-                });
-
                 this.converter_view.list_conversion.list_box.add (row);
                 
                 int total = 0;
 
                     while (true) {
-                        size_t length;
-                        string str_return = yield data_input_stream.read_line_utf8_async (Priority.HIGH, null, out length);
+                        string str_return = yield data_input_stream.read_line_utf8_async ();
                         
                         if (str_return == null) {
                             WidgetUtil.set_visible (row.button_cancel, false);
@@ -257,33 +225,66 @@ namespace Ciano.Controllers {
                 GLib.message("Erro %s\n", e.message);
             }
         }
+
+        private RowConversion create_row_conversion (string icon, string item_name, string name_format, Subprocess subprocess) {
+            var row = new RowConversion(icon, item_name, 0, name_format);
+            row.button_cancel.clicked.connect(() => {
+                subprocess.force_exit ();
+                WidgetUtil.set_visible (row.button_cancel, false);
+                WidgetUtil.set_visible (row.button_remove, true);
+            });
+                
+            WidgetUtil.set_visible (row.button_remove, false);                
+
+            return row;
+        }
+
+        private string get_type_icon (ItemConversion item) {
+            string icon = StringUtil.EMPTY;
+
+            switch (item.type_item) {
+                case TypeItemEnum.VIDEO:
+                    icon = "media-video";
+                    break;
+                case TypeItemEnum.MUSIC:
+                    icon = "audio-x-generic";
+                    break;
+                case TypeItemEnum.IMAGE:
+                    icon = "image";
+                    break;
+                default:
+                    icon = "file";
+                    break;
+            }
+
+            return icon;
+        }
         
         private void process_line (string str_return,  ref Gtk.ProgressBar progress_bar, ref Gtk.Label size_time_bitrate, ref int total) {
+            string time     = StringUtil.EMPTY;
+            string size     = StringUtil.EMPTY;
+            string bitrate  = StringUtil.EMPTY;
 
-            string time = StringUtil.EMPTY;
-            string size = StringUtil.EMPTY;
-            string bitrate = StringUtil.EMPTY;
-
-            if(str_return.contains("Duration:")) {
-                int i = str_return.index_of ("Duration:");
-                string duration = str_return.substring(i + 10, 11);
+            if (str_return.contains ("Duration:")) {
+                int index       = str_return.index_of ("Duration:");
+                string duration = str_return.substring (index + 10, 11);
 
                 total = TimeUtil.duration_in_seconds (duration);
             }
 
-            if(str_return.contains("time=") && str_return.contains("size=") && str_return.contains("bitrate=") ) {
-                int x = str_return.index_of ("time=");
-                time = str_return.substring(x+5, 11);
+            if (str_return.contains ("time=") && str_return.contains ("size=") && str_return.contains ("bitrate=") ) {
+                int index_time  = str_return.index_of ("time=");
+                time            = str_return.substring ( index_time + 5, 11);
 
-                int loading = TimeUtil.duration_in_seconds (time);
+                int loading     = TimeUtil.duration_in_seconds (time);
                 double progress = 100 * loading / total;
                 progress_bar.set_fraction (progress);
         
-                int y = str_return.index_of ("size=");
-                size = str_return.substring(y+5, 11);
+                int index_size  = str_return.index_of ("size=");
+                size            = str_return.substring ( index_size + 5, 11);
             
-                int i = str_return.index_of ("bitrate=");
-                bitrate = str_return.substring(i+5, 11);
+                int index_bitrate   = str_return.index_of ("bitrate=");
+                bitrate             = str_return.substring ( index_bitrate + 5, 11);
 
                 
                 size_time_bitrate.label = "size: " + size.strip () + " - time: " + time.strip () + " - bitrate: " + bitrate.strip ();
@@ -291,17 +292,8 @@ namespace Ciano.Controllers {
         }
 
          public string[] get_command (string uri) {
-            int index = uri.last_index_of(".");
-
-            string new_file;
-
-            if(this.settings.output_source_file_folder){
-                new_file = uri.substring(0, index + 1) + this.name_format_selected.down ();
-            } else {
-                new_file = this.settings.output_folder + this.name_format_selected.down ();
-            }
-
             var array = new GenericArray<string> ();
+            var new_file = get_uri_new_file (uri);
             
             if(this.type_item == TypeItemEnum.VIDEO || this.type_item == TypeItemEnum.MUSIC) {
                 array.add ("ffmpeg");
@@ -318,148 +310,194 @@ namespace Ciano.Controllers {
             return array.data;
         }
 
+        private string get_uri_new_file (string uri) {
+            string new_file;
+
+            if (this.settings.output_source_file_folder) {
+                int index = uri.last_index_of(".");
+                new_file = uri.substring(0, index + 1) + this.name_format_selected.down ();
+            } else {
+                int index_start = uri.last_index_of("/");
+                int index_end = uri.last_index_of(".");
+                var file = uri.substring(index_start, index_start - index_end);
+
+                int index = file.last_index_of(".");
+                new_file = this.settings.output_folder + file.substring(0, index + 1) + this.name_format_selected.down ();
+            }
+
+            return new_file;
+        }
+
         private string [] mount_array_with_supported_formats (string name_format) {
             string [] formats = null;
             
             switch (name_format) {
                 case Properties.TEXT_MP4:
-                    this.type_item = TypeItemEnum.VIDEO;
-                    formats = {
-                        Properties.TEXT_3GP, Properties.TEXT_MPG, Properties.TEXT_AVI,
-                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
-                    };
+                    formats = get_array_formats_videos (Properties.TEXT_MP4);
                     break;
                 case Properties.TEXT_3GP:
-                    this.type_item = TypeItemEnum.VIDEO;
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_MPG, Properties.TEXT_AVI,
-                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
-                    };
+                    formats = get_array_formats_videos (Properties.TEXT_3GP);
                     break;
                 case Properties.TEXT_MPG:
-                    this.type_item = TypeItemEnum.VIDEO;
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_AVI, 
-                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
-                    };
+                    formats = get_array_formats_videos (Properties.TEXT_MPG);
                     break;
                 case Properties.TEXT_AVI:
-                    this.type_item = TypeItemEnum.VIDEO;
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
-                        Properties.TEXT_WMV, Properties.TEXT_FLV, Properties.TEXT_SWF
-                    };
+                    formats = get_array_formats_videos (Properties.TEXT_AVI);
                     break;
                 case Properties.TEXT_WMV:
-                    this.type_item = TypeItemEnum.VIDEO;
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
-                        Properties.TEXT_AVI, Properties.TEXT_FLV, Properties.TEXT_SWF
-                    };
+                    formats = get_array_formats_videos (Properties.TEXT_WMV);
                     break;
                 case Properties.TEXT_FLV:
-                    this.type_item = TypeItemEnum.VIDEO;
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
-                        Properties.TEXT_AVI, Properties.TEXT_WMV, Properties.TEXT_SWF
-                    };
+                    formats = get_array_formats_videos (Properties.TEXT_FLV);
                     break;
                 case Properties.TEXT_SWF:
-                    this.type_item = TypeItemEnum.VIDEO;
-                    formats = {
-                        Properties.TEXT_MP4, Properties.TEXT_3GP, Properties.TEXT_MPG,
-                        Properties.TEXT_AVI, Properties.TEXT_WMV, Properties.TEXT_FLV
-                    };
+                    formats = get_array_formats_videos (Properties.TEXT_SWF);
                     break;
 
                 case Properties.TEXT_MP3:
-                    this.type_item = TypeItemEnum.MUSIC;
-                    formats = {
-                        Properties.TEXT_WMA, Properties.TEXT_AMR, Properties.TEXT_OGG,
-                        Properties.TEXT_AAC, Properties.TEXT_WAV
-                    };
+                    formats = get_array_formats_music (Properties.TEXT_MP3);
                     break;
                 case Properties.TEXT_WMA:
-                    this.type_item = TypeItemEnum.MUSIC;
-                    formats = {
-                        Properties.TEXT_MP3, Properties.TEXT_AMR, Properties.TEXT_OGG, 
-                        Properties.TEXT_AAC, Properties.TEXT_WAV
-                    };
+                    formats = get_array_formats_music (Properties.TEXT_WMA);
                     break;
                 case Properties.TEXT_OGG:
-                    this.type_item = TypeItemEnum.MUSIC;
-                    formats = {
-                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
-                        Properties.TEXT_AAC, Properties.TEXT_WAV
-                    };
+                    formats = get_array_formats_music (Properties.TEXT_OGG);
                     break;
                 case Properties.TEXT_AAC:
-                    this.type_item = TypeItemEnum.MUSIC;
-                    formats = {
-                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
-                        Properties.TEXT_OGG, Properties.TEXT_WAV
-                    };
+                    formats = get_array_formats_music (Properties.TEXT_AAC);
                     break;
                 case Properties.TEXT_WAV:
-                    this.type_item = TypeItemEnum.MUSIC;
-                    formats = {
-                        Properties.TEXT_MP3, Properties.TEXT_WMA, Properties.TEXT_AMR,
-                        Properties.TEXT_OGG, Properties.TEXT_AAC
-                    };
+                    formats = get_array_formats_music (Properties.TEXT_WAV);
                     break;
 
                 case Properties.TEXT_JPG:
-                    this.type_item = TypeItemEnum.IMAGE;
-                    formats = {
-                        Properties.TEXT_BMP, Properties.TEXT_PNG, Properties.TEXT_TIF, 
-                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
-                    };
+                    formats = get_array_formats_image (Properties.TEXT_JPG);
                     break;
                 case Properties.TEXT_BMP:
-                    this.type_item = TypeItemEnum.IMAGE;
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_PNG, Properties.TEXT_TIF,
-                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
-                    };
+                    formats = get_array_formats_image (Properties.TEXT_BMP);
                     break;
                 case Properties.TEXT_PNG:
-                    this.type_item = TypeItemEnum.IMAGE;
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_TIF, 
-                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
-                    };
+                    formats = get_array_formats_image (Properties.TEXT_PNG);
                     break;
                 case Properties.TEXT_TIF:
-                    this.type_item = TypeItemEnum.IMAGE;
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
-                        Properties.TEXT_ICO, Properties.TEXT_GIF, Properties.TEXT_TGA
-                    };
+                    formats = get_array_formats_image (Properties.TEXT_TIF);
                     break;
                 case Properties.TEXT_ICO:
-                    this.type_item = TypeItemEnum.IMAGE;
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
-                        Properties.TEXT_TIF, Properties.TEXT_GIF, Properties.TEXT_TGA
-                    };
+                    formats = get_array_formats_image (Properties.TEXT_ICO);
                     break;
                 case Properties.TEXT_GIF:
-                    this.type_item = TypeItemEnum.IMAGE;
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
-                        Properties.TEXT_TIF, Properties.TEXT_ICO, Properties.TEXT_TGA
-                    };
+                    formats = get_array_formats_image (Properties.TEXT_GIF);
                     break;
                 case Properties.TEXT_TGA:
-                    this.type_item = TypeItemEnum.IMAGE;
-                    formats = {
-                        Properties.TEXT_JPG, Properties.TEXT_BMP, Properties.TEXT_PNG,
-                        Properties.TEXT_TIF, Properties.TEXT_ICO, Properties.TEXT_GIF
-                    };
+                    formats = get_array_formats_image (Properties.TEXT_TGA);
                     break;
             }
 
             return formats;
+        }
+
+        private string [] get_array_formats_videos (string format_video) {
+            var array = new GenericArray<string> ();
+
+            this.type_item = TypeItemEnum.VIDEO;
+
+            if(format_video != Properties.TEXT_MP4) {
+                array.add (Properties.TEXT_MP4);    
+            }
+            
+            if(format_video != Properties.TEXT_3GP) {
+                array.add (Properties.TEXT_3GP);    
+            }
+
+            if(format_video != Properties.TEXT_MPG) {
+                array.add (Properties.TEXT_MPG);    
+            }
+
+            if(format_video != Properties.TEXT_AVI) {
+                array.add (Properties.TEXT_AVI);    
+            }
+
+            if(format_video != Properties.TEXT_WMV) {
+                array.add (Properties.TEXT_WMV);    
+            }
+
+            if(format_video != Properties.TEXT_FLV) {
+                array.add (Properties.TEXT_FLV);    
+            }
+
+            if(format_video != Properties.TEXT_SWF) {
+                array.add (Properties.TEXT_SWF);    
+            }
+
+            return array.data;
+        }
+
+        private string [] get_array_formats_music (string format_music) {
+            var array = new GenericArray<string> ();
+
+            this.type_item = TypeItemEnum.MUSIC;
+
+            if(format_music != Properties.TEXT_MP3) {
+                array.add (Properties.TEXT_MP3);    
+            }
+            
+            if(format_music != Properties.TEXT_WMA) {
+                array.add (Properties.TEXT_WMA);    
+            }
+
+            if(format_music != Properties.TEXT_AMR) {
+                array.add (Properties.TEXT_AMR);    
+            }
+
+            if(format_music != Properties.TEXT_OGG) {
+                array.add (Properties.TEXT_OGG);    
+            }
+
+            if(format_music != Properties.TEXT_AAC) {
+                array.add (Properties.TEXT_AAC);    
+            }
+
+            if(format_music != Properties.TEXT_WAV) {
+                array.add (Properties.TEXT_WAV);    
+            }
+
+            return array.data;
+        }
+
+        private string [] get_array_formats_image (string format_image) {
+            var array = new GenericArray<string> ();
+
+            this.type_item = TypeItemEnum.IMAGE;
+
+            if(format_image != Properties.TEXT_JPG) {
+                array.add (Properties.TEXT_JPG);    
+            }
+            
+            if(format_image != Properties.TEXT_BMP) {
+                array.add (Properties.TEXT_BMP);    
+            }
+
+            if(format_image != Properties.TEXT_PNG) {
+                array.add (Properties.TEXT_PNG);    
+            }
+
+            if(format_image != Properties.TEXT_TIF) {
+                array.add (Properties.TEXT_TIF);    
+            }
+
+            if(format_image != Properties.TEXT_ICO) {
+                array.add (Properties.TEXT_ICO);    
+            }
+
+            if(format_image != Properties.TEXT_GIF) {
+                array.add (Properties.TEXT_GIF);    
+            }
+
+            if(format_image != Properties.TEXT_TGA) {
+                array.add (Properties.TEXT_TGA);    
+            }
+
+            return array.data;
         }
     }
 }
