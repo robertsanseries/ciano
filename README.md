@@ -14,17 +14,9 @@
 </p>
 
 <p align="center">
-    <img width="700" height="500" src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot">
-</p>
-
-<h2> </h2>
-
-<p align="center">
+    <img width="700" height="500" src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot"> <br>
   <a href="https://github.com/robertsanseries/ciano/issues/new"> Report a problem! </a>
 </p>
-
-## Getting Started
-
 
 ### Installation
 
