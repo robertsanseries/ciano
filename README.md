@@ -23,11 +23,14 @@
   <a href="https://github.com/robertsanseries/ciano/issues/new"> Report a problem! </a>
 </p>
 
-## Installation
+## Getting Started
+
+
+### Installation
 
 App under development!
 
-## Dependencies
+### Dependencies
 These dependencies must be present before building
  - `meson (>=0.40)`
  - `valac (>=0.16)`
@@ -38,7 +41,7 @@ These dependencies must be present before building
  - `ffmpeg`
  - `imagemMagick`
  
- ## Building
+ ### Building
 
 ```
 git clone https://github.com/robertsanseries/ciano.git && cd ciano
@@ -49,15 +52,24 @@ sudo ninja install
 com.github.robertsanseries.ciano
 ```
 
-## Deconstruct
+### Deconstruct
 
 ```
 sudo ninja uninstall
 ```
 
-## Test and Development
+### Test and Development
 
 ```
 gdb
 com.github.robertsanseries.ciano
 ```
+
+### Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how you can contribute and submitting pull requests.
+
+
+### License
+
+This project is licensed under the GPL3 License - see the [LICENSE.md](LICENSE.md) file for details.
