@@ -59,7 +59,11 @@ com.github.robertsanseries.ciano
 
 ### Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how you can contribute and submitting pull requests.
+To help, access the links below to guide you through your process to send pull request:
+
+[Reporting Bugs](https://github.com/robertsanseries/ciano/wiki/Reporting-Bugs)
+[Guide on Code Style](https://github.com/robertsanseries/ciano/wiki/Guide-on-code-style)
+
 
 
 ### License
