@@ -61,8 +61,9 @@ com.github.robertsanseries.ciano
 
 To help, access the links below to guide you through your process to send pull request:
 
-[Reporting Bugs](https://github.com/robertsanseries/ciano/wiki/Reporting-Bugs)
-[Guide on Code Style](https://github.com/robertsanseries/ciano/wiki/Guide-on-code-style)
+- [Reporting Bugs](https://github.com/robertsanseries/ciano/wiki/Reporting-Bugs)
+
+- [Guide on Code Style](https://github.com/robertsanseries/ciano/wiki/Guide-on-code-style)
 
 
 
