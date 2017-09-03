@@ -59,7 +59,7 @@ com.github.robertsanseries.ciano
 
 ### Contributing
 
-To help, access the links below to guide you through your process to send pull request:
+To help, access the links below:
 
 - [Guide on Code Style](https://github.com/robertsanseries/ciano/wiki/Guide-on-code-style)
 
