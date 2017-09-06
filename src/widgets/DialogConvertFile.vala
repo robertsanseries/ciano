@@ -43,7 +43,7 @@ namespace Ciano.Widgets {
 
         /**
          * Constructs a new {@code DialogConvertFile} object responsible for assemble the structure of the dialog.
-         * defines the title and description to be performed. then mount the grid using the "mount_frame" method 
+         * Defines the title and description to be performed. Then mount the grid using the "mount_frame" method 
          * and add the buttons with the method "mount_buttons".
          *
          * @see Ciano.Configs.Properties
