@@ -23,48 +23,46 @@ using Ciano.Utils;
 
 namespace Ciano.Views {
 
-	/**
-	 * @descrition 
-	 * 
-	 * @author  Robert San <robertsanseries@gmail.com>
-	 * @type    Gtk.Grid
-	 */
-	public class ConverterView : Gtk.Grid {
+    /**
+     * The {@code Settings} class is responsible for defining all 
+     * the texts that are displayed in the application and must be translated.
+     *
+     * @see Gtk.Grid
+     * @since 0.1.0
+     */
+    public class ConverterView : Gtk.Grid {
 
-		/**
-		 * @variables
-		 */
-		private Gtk.ApplicationWindow app;
-		public HeaderBar headerbar;
-		public SourceListSidebar source_list;
-		public ListConversion list_conversion;
+        private Gtk.ApplicationWindow    app;
+        public HeaderBar                 headerbar;
+        public SourceListSidebar         source_list;
+        public ListConversion            list_conversion;
 
-		/**
-		 * @construct
-		 */
-		public ConverterView (Gtk.ApplicationWindow app) {
-			this.app = app;
-			this.app.set_default_size (1050, 700);
-			this.app.set_size_request (1050, 700);
-			this.app.deletable = true;
-			this.app.resizable = true;
+        /**
+         * @construct
+         */
+        public ConverterView (Gtk.ApplicationWindow app) {
+            this.app = app;
+            this.app.set_default_size (1050, 700);
+            this.app.set_size_request (1050, 700);
+            this.app.deletable = true;
+            this.app.resizable = true;
 
-			this.headerbar = new HeaderBar ();
-			this.app.set_titlebar (this.headerbar);
+            this.headerbar = new HeaderBar ();
+            this.app.set_titlebar (this.headerbar);
 
-			this.source_list = new SourceListSidebar ();
-			var frame1 = new Gtk.Frame (null);
-			frame1.add (this.source_list);
+            this.source_list = new SourceListSidebar ();
+            var frame1 = new Gtk.Frame (null);
+            frame1.add (this.source_list);
 
-			this.list_conversion = new ListConversion();
-			var frame2 = new Gtk.Frame (null);
-			frame2.expand = true;
-			frame2.add (this.list_conversion);
+            this.list_conversion = new ListConversion ();
+            var frame2 = new Gtk.Frame (null);
+            frame2.expand = true;
+            frame2.add (this.list_conversion);
 
-			this.margin = 12;
-			this.column_spacing = 10;
-			this.attach (frame1, 0, 0, 1, 1);
-			this.attach_next_to (frame2, frame1, Gtk.PositionType.RIGHT , 5, 1);
-		}
-	}
+            this.margin = 12;
+            this.column_spacing = 10;
+            this.attach (frame1, 0, 0, 1, 1);
+            this.attach_next_to (frame2, frame1, Gtk.PositionType.RIGHT, 5, 1);
+        }
+    }
 }
