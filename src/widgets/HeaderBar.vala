@@ -16,32 +16,30 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 */
+
 using Ciano.Config;
 
 namespace Ciano.Widgets {
 
     /**
-     * @descrition 
-     * 
-     * @author  Robert San <robertsanseries@gmail.com>
-     * @type    Gtk.Grid
+     * The {@code HeaderBar} class is responsible for displaying top bar. Similar to a horizontal box.
+     *
+     * @see Gtk.HeaderBar
+     * @since 0.1.0
      */
     public class HeaderBar : Gtk.HeaderBar {
 
-        /**
-         * @signals
-         */
         public signal void item_selected ();
-
-        /**
-         * @variables
-         */
-        public Gtk.Button preferences;  
+        
         public Gtk.MenuButton app_menu;
-        public Gtk.Menu menu;   
+        public Gtk.Menu       menu;   
 
         /**
-         * @construct
+         * Constructs a new {@code HeaderBar} object. Sets the title of the top bar and
+         * adds widgets that are displayed.
+         *
+         * @see Ciano.Configs.Properties
+         * @see icon_settings
          */
         public HeaderBar () {
             this.set_title (Properties.PROGRAME_NAME);
@@ -49,6 +47,12 @@ namespace Ciano.Widgets {
             icon_settings ();
         }
 
+        /**
+         * Add gear icon to open settings menu.
+         * 
+         * @see menu_settings
+         * @return {@code void}
+         */
         private void icon_settings () {
             this.app_menu = new Gtk.MenuButton();
             this.app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
@@ -60,6 +64,14 @@ namespace Ciano.Widgets {
             this.pack_end (this.app_menu);
         }
 
+        /**
+         * Creates the settings menu. When the user clicks the preferences option, {@code Gtk.MenuItem} will call
+         * the signal "item_selected". The actions of this signal are in the "on_activate_button_preferences" method
+         * of the ConverterController;
+         *
+         * @see Ciano.Controllers.ConverterController;
+         * @return {@code void}
+         */
         private void menu_settings () {
             var about_item = new Gtk.MenuItem.with_label ("Preferences");
             about_item.activate.connect(() => {
