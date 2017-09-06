@@ -25,7 +25,7 @@ namespace Ciano.Utils {
      *
      * @since 0.1.0
      */
-    public class TimeUtil. {
+    public class TimeUtil {
      
         /**
          * Responsible for getting the value of in string duration in 
