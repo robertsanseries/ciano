@@ -30,12 +30,12 @@ namespace Ciano.Objects {
      */
     public class ItemConversion {
 
-        public int    id                { public get; public set; }
-        public string name              { public get; public set; }
-        public string directory         { public get; public set; }
-        public string convert_to        { public get; public set; }        
-        public double progress          { public get; public set; }
-        public TypeItemEnum type_item   { public get; public set; }
+        public int              id          { public get; public set; }
+        public string           name        { public get; public set; }
+        public string           directory   { public get; public set; }
+        public string           convert_to  { public get; public set; }        
+        public double           progress    { public get; public set; }
+        public TypeItemEnum     type_item   { public get; public set; }
 
         /**
          * Constructs a new {@code ItemConversion} object.
