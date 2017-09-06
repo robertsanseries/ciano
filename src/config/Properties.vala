@@ -19,52 +19,52 @@
 
 namespace Ciano.Config {
 
-	/**
-	 * The {@code Properties} class is responsible for defining all 
-	 * the texts that are displayed in the application and must be translated.
-	 *
-	 * @since 0.1.0
-	 */
-	public class Properties {
-		
-		// ConverterView
-		public abstract const string TEXT_EMPTY_CONVERTING_LIST = "Empty conversion list";
+    /**
+     * The {@code Properties} class is responsible for defining all 
+     * the texts that are displayed in the application and must be translated.
+     *
+     * @since 0.1.0
+     */
+    public class Properties {
+        
+        // ConverterView
+        public abstract const string TEXT_EMPTY_CONVERTING_LIST = "Empty conversion list";
 
-		// HeaderBar
-		public abstract const string PROGRAME_NAME = "Ciano"; 
-		public abstract const string TEXT_PREFERENCES = "Preferences";
+        // HeaderBar
+        public abstract const string PROGRAME_NAME = "Ciano"; 
+        public abstract const string TEXT_PREFERENCES = "Preferences";
 
-		// DialogPreferences
-		public abstract const string TEXT_OUTPUT_FOLDER = "Output folder:";
-		public abstract const string TEXT_SELECT_OUTPUT_FOLDER = "Select the output folder:";
-		public abstract const string TEXT_OUTPUT_SOURCE_FILE_FOLDER = "Output to source file folder:";
-		public abstract const string TEXT_AFTER_CONVERTING = "After converting:";
-		public abstract const string TEXT_SHUTDOWN_COMPUTER = "Shutdown computer:";
-		public abstract const string TEXT_OPEN_OUTPUT_FOLDER = "Open output folder:";
-		public abstract const string TEXT_NOTIFY = "Notify:";
-		public abstract const string TEXT_COMPLETE_NOTIFY = "Complete notify:";
-		public abstract const string TEXT_ERRO_NOTIFY = "Erro Notify:";
-		public abstract const string TEXT_DEFAULT_SETTINGS = "Default Settings";
-		public abstract const string TEXT_CLOSE = "Close";
+        // DialogPreferences
+        public abstract const string TEXT_OUTPUT_FOLDER = "Output folder:";
+        public abstract const string TEXT_SELECT_OUTPUT_FOLDER = "Select the output folder:";
+        public abstract const string TEXT_OUTPUT_SOURCE_FILE_FOLDER = "Output to source file folder:";
+        public abstract const string TEXT_AFTER_CONVERTING = "After converting:";
+        public abstract const string TEXT_SHUTDOWN_COMPUTER = "Shutdown computer:";
+        public abstract const string TEXT_OPEN_OUTPUT_FOLDER = "Open output folder:";
+        public abstract const string TEXT_NOTIFY = "Notify:";
+        public abstract const string TEXT_COMPLETE_NOTIFY = "Complete notify:";
+        public abstract const string TEXT_ERRO_NOTIFY = "Erro Notify:";
+        public abstract const string TEXT_DEFAULT_SETTINGS = "Default Settings";
+        public abstract const string TEXT_CLOSE = "Close";
 
-		// DialogConvertFile
-		public abstract const string TEXT_CONVERT_FILE = "Convert File";
-		public abstract const string TEXT_ADD_ITEMS_TO_CONVERSION = "Add items to conversion:";
-		public abstract const string TEXT_ADD_FILE = "Add File…";
-		public abstract const string TEXT_ADD_FOLDER = "Add Folder…";
-		public abstract const string TEXT_SELECT_FOLDER = "Select a folder";
-		public abstract const string TEXT_SELECT_FILE = "Select file";
-		public abstract const string TEXT_DELETE = "Delete";
-		public abstract const string TEXT_CANCEL = "Cancel";
-		public abstract const string TEXT_START_CONVERSION = "Start conversion";
+        // DialogConvertFile
+        public abstract const string TEXT_CONVERT_FILE = "Convert File";
+        public abstract const string TEXT_ADD_ITEMS_TO_CONVERSION = "Add items to conversion:";
+        public abstract const string TEXT_ADD_FILE = "Add File…";
+        public abstract const string TEXT_ADD_FOLDER = "Add Folder…";
+        public abstract const string TEXT_SELECT_FOLDER = "Select a folder";
+        public abstract const string TEXT_SELECT_FILE = "Select file";
+        public abstract const string TEXT_DELETE = "Delete";
+        public abstract const string TEXT_CANCEL = "Cancel";
+        public abstract const string TEXT_START_CONVERSION = "Start conversion";
 
-		// ListConvertion
-		public abstract const string TEXT_SELECT_OPTION_TO_CONVERT = "Select an option for which you want to \n convert your file";
+        // ListConvertion
+        public abstract const string TEXT_SELECT_OPTION_TO_CONVERT = "Select an option for which you want to \n convert your file";
 
-		// ListSidebar
-		public abstract const string TEXT_CONVERT_FILE_TO = "Convert file to";
-		public abstract const string TEXT_VIDEO = "Video";
-		public abstract const string TEXT_MUSIC = "Music";
-		public abstract const string TEXT_IMAGE = "Image";		
-	}
+        // ListSidebar
+        public abstract const string TEXT_CONVERT_FILE_TO = "Convert file to";
+        public abstract const string TEXT_VIDEO = "Video";
+        public abstract const string TEXT_MUSIC = "Music";
+        public abstract const string TEXT_IMAGE = "Image";        
+    }
 }
