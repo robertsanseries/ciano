@@ -14,42 +14,50 @@
 * You should have received a copy of the GNU General Public
 * License along with this program; if not, write to the
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-* Boston, MA 02110-1301 USA
+* Boston, MA 02110-1301 USACiano
 */
 
 namespace Ciano.Utils {
 
+	/**
+     * The {@code StringUtil} class defines certain words related to
+     * string handling.
+     *
+     * {@code StringUtil} handles {@code null} input strings quietly.
+	 * That is to say that a {@code null} input will return {@code null}.
+	 * Where a {@code boolean} or {@code int} is being returned
+	 * details vary by method.
+     *
+     * @since 0.1.0
+     */
     public class StringUtil {
 
 		/**
-	     * @description A space character.
+	     * A space character.
 	     *
-	     * @since 1.0
-	     * @author Robert San - @robertsanseries
+	     * Exemple:
+	     * > StringUtil.SPACE
 	     */
 	    public const string SPACE = " ";
 
 	    /**
-	     * @description A empty string.
+	     * A empty string.
 	     * 
-	     * @since 1.0
-	     * @author Robert San - @robertsanseries
+		 * Exemple:
+	     * > StringUtil.EMPTY
 	     */
 	    public const string EMPTY = "";
 
 	    /**
-	     * @description Break line.
+	     * Break line.
 	     * 
-	     * @since 1.0
-	     * @author Robert San - @robertsanseries
+	     * Exemple:
+	     * > StringUtil.BREAK_LINE
 	     */
 	    public const string BREAK_LINE = "\n";
 
 	    /**
-	     * @description Checks if a string is empty ("") or null.
-	     *
-	     * @since 1.0
-	     * @author Robert San - @robertsanseries
+	     * Checks if a string is empty ("") or null.
 	     *
 	     * Exemple:
 	     * > StringUtil.is_empty(null)       = true
@@ -58,19 +66,16 @@ namespace Ciano.Utils {
 	     * > StringUtil.is_empty("test")     = false
 	     * > StringUtil.is_empty("  test  ") = false
 	     * 
-	     * @param value - the string to check, not may be null
-	     * @return {@code bool} true - if the string is empty or null
+	     * @param 	{@code string} value - the string to check, not may be null
+	     * @return 	{@code bool} true - if the string is empty or null
 	     */
-	    public static bool is_empty(string? value) {
+	    public static bool is_empty (string? value) {
 	        return value == null || value.length == 0;
 	    }
 
 	    /**
-	     * @description Checks if a string is not empty ("") and not null.
+	     * Checks if a string is not empty ("") and not null.
 	     *
-	     * @since 1.0
-	     * @author Robert San - @robertsanseries
-	     * 
 	     * Exemple:
 	     * > StringUtil.is_not_empty(null)       = false
 	     * > StringUtil.is_not_empty("")         = false
@@ -78,18 +83,15 @@ namespace Ciano.Utils {
 	     * > StringUtil.is_not_empty("test")     = true
 	     * > StringUtil.is_not_empty("  test  ") = true
 	     *
-	     * @param value  the string to check, may be null
-	     * @return {@code bool} true -if the string is not empty and not null
+	     * @param 	{@code string} value - the string to check, may be null
+	     * @return 	{@code bool} true -if the string is not empty and not null
 	     */
-	    public static bool is_not_empty(string? value) {
-	        return !is_empty(value);
+	    public static bool is_not_empty (string? value) {
+	        return !is_empty (value);
 	    }
 
 	    /**
-	     * @description Checks if a string is empty (""), null or with whitespace.
-	     *
-	     * @since 1.0
-	     * @author Robert San - @robertsanseries
+	     * Checks if a string is empty (""), null or with whitespace.
 	     * 
 	     * Exemple:
 	     * > StringUtil.is_blank(null)      = true
@@ -98,26 +100,25 @@ namespace Ciano.Utils {
 	     * > StringUtil.is_blank("test")     = false
 	     * > StringUtil.is_blank("  test  ") = false
 	     *
-	     * @param value  the string to check, may be null
-	     * @return {@code bool} - true if the string is null, empty or whitespace only
+	     * @param 	{@code string} value - the string to check, may be null
+	     * @return 	{@code bool} - true if the string is null, empty or whitespace only
 	     */
-	    public static bool is_blank(string? value) {
+	    public static bool is_blank (string? value) {
 	        if (value == null || value.length == 0) {
 	            return true;
 	        }
+
 	        for (int i = 0; i < value.length; i++) {
 	            if (value[i] != ' ') {
 	                return false;
 	            }
 	        }
+
 	        return true;
 	    }
 
 	    /**
-	     * @description Checks if a string is not empty (""), not null or has no whitespace.
-	     *
-	     * @since 1.0
-	     * @author Robert San - @robertsanseries
+	     * Checks if a string is not empty (""), not null or has no whitespace.
 	     * 
 	     * Exemple:
 	     * > StringUtil.is_not_blank(null)      = false
@@ -126,11 +127,11 @@ namespace Ciano.Utils {
 	     * > StringUtil.is_not_blank("test")     = true
 	     * > StringUtil.is_not_blank("  test  ") = true
 	     *
-	     * @param value  the string to check, may be null
-	     * @return {@code bool} - true if the string is not empty and not null and not whitespace only
+	     * @param 	{@code string} value - the string to check, may be null
+	     * @return 	{@code bool} - true if the string is not empty and not null and not whitespace only
 	     */
-	    public static bool is_not_blank(string? value) {
-	        return !is_blank(value);
+	    public static bool is_not_blank (string? value) {
+	        return !is_blank (value);
 	    }
 	}
 }

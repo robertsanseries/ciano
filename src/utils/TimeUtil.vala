@@ -21,11 +21,22 @@
 namespace Ciano.Utils {
 
     /**
-    * @author  Robert San
-    * @since 0.1.0
-    */
-    public class TimeUtil {
-        
+     * The class {@code TimeUtil} handles time-related data.
+     *
+     * @since 0.1.0
+     */
+    public class TimeUtil. {
+     
+        /**
+         * Responsible for getting the value of in string duration in 
+         * the format "00:00:00:00.00" and returning the duration in seconds.
+         *
+         * Exemple:
+         * > TimeUtil.duration_in_seconds("00:01:14:36.00")  = 74
+         * 
+         * @param  {@code string} duration
+         * @return {@code int}
+         */
         public static int duration_in_seconds (string duration) {
             string[] str = duration.split (".");
             string[] time = str[0].split (":");
