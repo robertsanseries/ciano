@@ -21,26 +21,32 @@ using Ciano.Enums;
 
 namespace Ciano.Objects {
 
+    /**
+     * The {@code Conversion} class is responsible for representing 
+     * each item selected for conversion.
+     *
+     * @see Ciano.Enums.TypeItemEnum
+     * @since 0.1.0
+     */
     public class ItemConversion {
 
         public int    id                { public get; public set; }
         public string name              { public get; public set; }
         public string directory         { public get; public set; }
-        public string convert_to        { public get; public set; }
-        public string time              { public get; public set; }
-        public string size              { public get; public set; }
-        public string bitrate           { public get; public set; }
+        public string convert_to        { public get; public set; }        
         public double progress          { public get; public set; }
         public TypeItemEnum type_item   { public get; public set; }
 
+        /**
+         * Constructs a new {@code ItemConversion} object.
+         *
+         * @see Ciano.Enums.TypeItemEnum
+         */
         public ItemConversion (
             int id, 
             string name, 
             string directory, 
-            string? convert_to, 
-            string? time, 
-            string? size, 
-            string? bitrate, 
+            string? convert_to,
             double? progress, 
             TypeItemEnum type_item
         ) {            
@@ -52,18 +58,6 @@ namespace Ciano.Objects {
             if (convert_to != null) {
                 this.convert_to = convert_to;
             }
-
-            if (time != null) {
-                this.time = time;    
-            }
-
-            if (size != null) {
-                this.size = size;    
-            }
-
-            if (bitrate != null) {
-                this.bitrate = bitrate;    
-            }            
 
             if (progress != null) {
                 this.progress = progress;    
