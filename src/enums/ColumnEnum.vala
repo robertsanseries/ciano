@@ -25,9 +25,9 @@ namespace Ciano.Enums {
      *
      * @since 0.1.0
      */
-	public enum ColumnEnum {
-		NAME,
-		DIRECTORY,
-		N_COLUMNS
-	}
+    public enum ColumnEnum {
+        NAME,
+        DIRECTORY,
+        N_COLUMNS
+    }
 }
