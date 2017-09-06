@@ -38,7 +38,14 @@ namespace Ciano.Views {
         public ListConversion            list_conversion;
 
         /**
-         * @construct
+         * Constructs a new {@code ConverterView} object responsible for putting
+         * together the main structure of the application: header bar, list of options
+         * on the left and list of conversions on the right.
+         *
+         * @see Ciano.Widgets.HeaderBar
+         * @see Ciano.Widgets.SourceListSidebar
+         * @see Ciano.Widgets.ListConversion
+         * @param {@code Gtk.ApplicationWindow} app
          */
         public ConverterView (Gtk.ApplicationWindow app) {
             this.app = app;
