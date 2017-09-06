@@ -20,10 +20,10 @@
 namespace Ciano.Config {
 
 	/**
-	 * @descrition 
-	 * 
-	 * @author  Robert San <robertsanseries@gmail.com>
-	 * @type    ConverterController
+	 * The {@code Constants} class is responsible for defining all 
+	 * the constants used in the application.
+	 *
+	 * @since 0.1.0
 	 */
 	public class Constants {
 
@@ -40,13 +40,32 @@ namespace Ciano.Config {
 		public abstract const string TRANSLATE_URL = "https://robertsanseries.github.io/ciano";
 		public abstract const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = "Website";
 		public abstract const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://robertsanseries.github.io/ciano";
+		public abstract const string URL_CSS = "com/github/robertsanseries/ciano/css/style.css";
+		public abstract const string DIRECTORY_CIANO = "/Ciano";
+		public abstract const string WELCOME_VIEW = "welcome-view";
+		public abstract const string LIST_BOX_VIEW = "list-box-view";
+		public abstract const string TEXT_MP4 = "MP4";
+		public abstract const string TEXT_3GP = "3GP";
+		public abstract const string TEXT_MPG = "MPG";
+		public abstract const string TEXT_AVI = "AVI";
+		public abstract const string TEXT_WMV = "WMV";
+		public abstract const string TEXT_FLV = "FLV";
+		public abstract const string TEXT_SWF = "SWF";
+		public abstract const string TEXT_MP3 = "MP3";
+		public abstract const string TEXT_WMA = "WMA";
+		public abstract const string TEXT_AMR = "AMR";
+		public abstract const string TEXT_OGG = "OGG";
+		public abstract const string TEXT_AAC = "AAC";
+		public abstract const string TEXT_WAV = "WAV";
+		public abstract const string TEXT_JPG = "JPG";
+		public abstract const string TEXT_BMP = "BMP";
+		public abstract const string TEXT_PNG = "PNG";
+		public abstract const string TEXT_TIF = "TIF";
+		public abstract const string TEXT_ICO = "ICO";
+		public abstract const string TEXT_GIF = "GIF";
+		public abstract const string TEXT_TGA = "TGA";
 		public abstract const string [] ABOUT_AUTHORS = { "Robert San <robertsanseries@gmail.com>" };
 		public abstract const Gtk.License ABOUT_LICENSE_TYPE = Gtk.License.GPL_3_0;
 
-		public abstract const string URL_CSS = "com/github/robertsanseries/ciano/css/style.css";
-		public abstract const string DIRECTORY_CIANO = "/Ciano";
-
-		public abstract const string WELCOME_VIEW = "welcome-view";
-		public abstract const string LIST_BOX_VIEW = "list-box-view";
 	}
 }

@@ -20,10 +20,10 @@
 namespace Ciano.Config {
 
 	/**
-	 * @descrition 
-	 * 
-	 * @author  Robert San <robertsanseries@gmail.com>
-	 * @type    ConverterController
+	 * The {@code Properties} class is responsible for defining all 
+	 * the texts that are displayed in the application and must be translated.
+	 *
+	 * @since 0.1.0
 	 */
 	public class Properties {
 		
@@ -54,7 +54,6 @@ namespace Ciano.Config {
 		public abstract const string TEXT_ADD_FOLDER = "Add Folder…";
 		public abstract const string TEXT_SELECT_FOLDER = "Select a folder";
 		public abstract const string TEXT_SELECT_FILE = "Select file";
-
 		public abstract const string TEXT_DELETE = "Delete";
 		public abstract const string TEXT_CANCEL = "Cancel";
 		public abstract const string TEXT_START_CONVERSION = "Start conversion";
@@ -66,26 +65,6 @@ namespace Ciano.Config {
 		public abstract const string TEXT_CONVERT_FILE_TO = "Convert file to";
 		public abstract const string TEXT_VIDEO = "Video";
 		public abstract const string TEXT_MUSIC = "Music";
-		public abstract const string TEXT_IMAGE = "Image";
-		public abstract const string TEXT_MP4 = "MP4";
-		public abstract const string TEXT_3GP = "3GP";
-		public abstract const string TEXT_MPG = "MPG";
-		public abstract const string TEXT_AVI = "AVI";
-		public abstract const string TEXT_WMV = "WMV";
-		public abstract const string TEXT_FLV = "FLV";
-		public abstract const string TEXT_SWF = "SWF";
-		public abstract const string TEXT_MP3 = "MP3";
-		public abstract const string TEXT_WMA = "WMA";
-		public abstract const string TEXT_AMR = "AMR";
-		public abstract const string TEXT_OGG = "OGG";
-		public abstract const string TEXT_AAC = "AAC";
-		public abstract const string TEXT_WAV = "WAV";
-		public abstract const string TEXT_JPG = "JPG";
-		public abstract const string TEXT_BMP = "BMP";
-		public abstract const string TEXT_PNG = "PNG";
-		public abstract const string TEXT_TIF = "TIF";
-		public abstract const string TEXT_ICO = "ICO";
-		public abstract const string TEXT_GIF = "GIF";
-		public abstract const string TEXT_TGA = "TGA";
+		public abstract const string TEXT_IMAGE = "Image";		
 	}
 }
