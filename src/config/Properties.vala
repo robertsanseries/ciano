@@ -67,6 +67,12 @@ namespace Ciano.Config {
         public abstract const string TEXT_CONVERT_FILE_TO = "Convert file to";
         public abstract const string TEXT_VIDEO = "Video";
         public abstract const string TEXT_MUSIC = "Music";
-        public abstract const string TEXT_IMAGE = "Image";        
+        public abstract const string TEXT_IMAGE = "Image";
+
+        // RowConversion
+        public abstract const string TEXT_CANCEL = "Cancel"; 
+        public abstract const string TEXT_REMOVE = "Remove";
+        public abstract const string TEXT_CANCEL_CONVERSION = "Cancel Conversion";
+        public abstract const string TEXT_REMOVE_ITEM_FROM_LIST = "Remove item from list";
     }
 }
