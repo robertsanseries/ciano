@@ -19,11 +19,11 @@
 
 namespace Ciano.Enums {
 
-	/**
-     * @descrition 	Representation of fixed (integer) values.
+    /**
+     * The {@code ColumnEnum} enum is responsible for representing
+     * the fixed (integer) values of the treeview in DialogConvertFile.
      *
-     * @author	Robert San <robertsanseries@gmail.com>
-     * @type 		Enum
+     * @since 0.1.0
      */
 	public enum ColumnEnum {
 		NAME,

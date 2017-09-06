@@ -20,10 +20,11 @@
 namespace Ciano.Enums {
 
     /**
-     * @descrition  Representation of fixed (integer) values.
+     * The enum {@code ColumnEnum} is responsible for representing
+     * the fixed (int) values in the {@code ConverterController} of each
+     * type in the {@code SourceListSidebar}.
      *
-     * @author  Robert San <robertsanseries@gmail.com>
-     * @type        Enum
+     * @since 0.1.0
      */
     public enum TypeItemEnum {
         VIDEO,
