@@ -57,6 +57,8 @@ namespace Ciano.Config {
         public abstract const string TEXT_DELETE = "Delete";
         public abstract const string TEXT_CANCEL = "Cancel";
         public abstract const string TEXT_START_CONVERSION = "Start conversion";
+        public abstract const string NAME = "Name";
+        public abstract const string DIRECTORY = "Directory";
 
         // ListConvertion
         public abstract const string TEXT_SELECT_OPTION_TO_CONVERT = "Select an option for which you want to \n convert your file";
