@@ -16,36 +16,48 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 */
+
 using Ciano.Utils;
 
 namespace Ciano.Widgets {
 
-	/**
-	 * @descrition 
-	 * 
-	 * @author  Robert San <robertsanseries@gmail.com>
-	 * @type    Gtk.Grid
-	 */
-	public class RowConversion : Gtk.ListBoxRow {
-		
-		public  int 			row_id;
+    /**
+     * The {@code RowConversion} class is responsible for displaying list of items that
+     * are being converted or have been converted   
+     *
+     * @see Gtk.ListBoxRow
+     * @since 0.1.0
+     */
+    public class RowConversion : Gtk.ListBoxRow {
+        
+        private Gtk.Box         container;
+        private Gtk.Box         box_name_progress;
+        public  int             row_id;
         public  Gtk.ProgressBar progress_bar;
-        public  Gtk.Label 		name_video;
-        public  Gtk.Label 		value_progress;
-        private Gtk.Box 		container;
-        private Gtk.Box 		box_name_progress;
-        public Gtk.Label 		size_time_bitrate;
-        public Gtk.Button 		button_cancel;
-        public Gtk.Button       button_remove;
+        public  Gtk.Label       name_video;
+        public  Gtk.Label       value_progress;
+        public  Gtk.Label       size_time_bitrate;
+        public  Gtk.Button      button_cancel;
+        public  Gtk.Button      button_remove;
         public  Gtk.Label       convert_to;
 
-		public RowConversion (string icon, string name, double progress, string name_format) {
-
-			this.container = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        /**
+         * Constructs a new {@code RowConversion} object that will display the status of each 
+         * item during conversion.
+         *
+         * @see Ciano.Utils.StringUtil
+         * @see Ciano.Configs.Properties
+         * @param {@code string} icon
+         * @param {@code string} name
+         * @param {@code double} progress
+         * @param {@code string} name_format
+         */
+        public RowConversion (string icon, string name, double progress, string name_format) {
+            this.container = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             this.container.margin = 3;
 
             var icone = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
-			this.box_name_progress = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+            this.box_name_progress = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
             this.name_video = new Gtk.Label (name);
             this.name_video.halign = Gtk.Align.START;
@@ -58,15 +70,15 @@ namespace Ciano.Widgets {
             this.size_time_bitrate = new Gtk.Label (StringUtil.EMPTY);
             this.size_time_bitrate.halign = Gtk.Align.START;
 
-            this.button_cancel = new Gtk.Button.with_label (" Cancel ");
+            this.button_cancel = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
             this.button_cancel.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-            this.button_cancel.tooltip_text = ("Cancel Conversion");
+            this.button_cancel.tooltip_text = (Properties.TEXT_CANCEL_CONVERSION);
             this.button_cancel.valign = Gtk.Align.CENTER;
             this.button_cancel.halign = Gtk.Align.CENTER;
 
-            this.button_remove = new Gtk.Button.with_label ("Remove");
+            this.button_remove = new Gtk.Button.with_label (Properties.TEXT_REMOVE);
             this.button_remove.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            this.button_remove.tooltip_text = ("Remove item from list");
+            this.button_remove.tooltip_text = (Properties.TEXT_REMOVE_ITEM_FROM_LIST);
             this.button_remove.valign = Gtk.Align.CENTER;
             this.button_remove.halign = Gtk.Align.CENTER;
             this.button_remove.clicked.connect(() => {
@@ -87,6 +99,6 @@ namespace Ciano.Widgets {
             this.activatable = false;
             this.add(container);
             this.show_all ();
-		}
-	}
+        }
+    }
 }

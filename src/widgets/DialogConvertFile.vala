@@ -104,7 +104,6 @@ namespace Ciano.Widgets {
          * @return {@code Gtk.Frame}
          */
         private Gtk.Frame mount_frame () {
-
             var treeview = mount_treeview ();
             var toolbar = mount_toolbar ();
 
@@ -213,7 +212,6 @@ namespace Ciano.Widgets {
          * @return Gtk.Grid
          */
         private Gtk.Grid mount_buttons () {
-
             var calcel_button = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
             calcel_button.clicked.connect (() => { this.destroy (); });
             calcel_button.margin_right = 10;

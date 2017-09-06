@@ -17,14 +17,18 @@
  *  Boston, MA 02110-1301 USA.
  */
 
-/*================================================================================================
-    Note: this file is the same as the "SourceList" of the granite. Only the following changes:
-
-    1 - Ability to perform an action on the same selected item.
-    2 - I deselected the clicked icon.
-    3 - Inclusion of the business rule in the class itself: Utils.is_left_to_right (this)
-==================================================================================================*/
-
+/**
+ * Note: This file is the same as the "{@code SourceList}" of granite. 
+ * 
+ * Only the following changes were made:
+ *
+ * 1 - Ability to execute more than one action on the same selected item.
+ * 2 - I removed the option to keep the item marked when clicked.
+ * 3 - Inclusion of the "Utils.is_left_to_right (this)" business rule in the class itself.
+ *
+ * Implemented changes can be seen in the log:
+ *  > https://github.com/robertsanseries/ciano/commit/3f8273e0f198627300e704ca65425a13a179251e
+ */
 
 using Granite;
 using Granite.Widgets;

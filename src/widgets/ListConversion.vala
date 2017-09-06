@@ -22,22 +22,27 @@ using Ciano.Utils;
 
 namespace Ciano.Widgets {
 
-	/**
-	 * @descrition 
-	 * 
-	 * @author  Robert San <robertsanseries@gmail.com>
-	 * @type    Gtk.Grid
-	 */
-	public class ListConversion : Gtk.Grid {
-		
-		public Gtk.Stack stack;
-        public Gtk.ListBox list_box;		
+    /**
+     * The {@code ListConversion} class is responsible for displaying list of items that
+     * are being converted or have been converted   
+     *
+     * @see Gtk.Grid
+     * @since 0.1.0
+     */
+    public class ListConversion : Gtk.Grid {
+        
+        public Gtk.Stack   stack;
+        public Gtk.ListBox list_box;        
 
-		/**
-		 * @construct
-		 */
-		public ListConversion () {
-
+        /**
+         * Constructs a new {@code ListConversion} object displaying the list of items being converted/converted
+         * or welcome view in {@code Gtk.Stack}.
+         *
+         * @see Ciano.Configs.Constants
+         * @see Ciano.Configs.Properties
+         * @see Granite.Widgets.Welcome
+         */
+        public ListConversion () {
             this.stack = new Gtk.Stack ();
             this.stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
 
@@ -59,6 +64,6 @@ namespace Ciano.Widgets {
             scrolled.add (this.stack);
 
            this.add (scrolled);
-		}
-	}
+        }
+    }
 }

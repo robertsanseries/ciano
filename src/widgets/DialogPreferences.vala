@@ -75,7 +75,7 @@ namespace Ciano.Widgets {
         /**
          * Set the last values defined in the widgets.
          *
-          * @see Ciano.Config.Settings
+         * @see Ciano.Config.Settings
          * @see Ciano.Utils.StringUtil
          * @return {@code void}
          */
@@ -129,6 +129,7 @@ namespace Ciano.Widgets {
          *
          * @see Ciano.Configs.Properties
          * @see add_section
+         * @see add_option
          * @param  {@code Gtk.Grid} grid
          * @param  {@code int} row
          * @return {@code void}
@@ -153,6 +154,7 @@ namespace Ciano.Widgets {
          *
          * @see Ciano.Configs.Properties
          * @see add_section
+         * @see add_option
          * @param  {@code Gtk.Grid} grid
          * @param  {@code int} row
          * @return {@code void}

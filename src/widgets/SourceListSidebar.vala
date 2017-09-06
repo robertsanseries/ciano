@@ -16,98 +16,127 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 */
+
 using Ciano.Config;
 
 namespace Ciano.Widgets {
 
-    /**
-     * @descrition 
-     * 
-     * @author  Robert San <robertsanseries@gmail.com>
-     * @type    Gtk.Grid
+   /**
+     * The {@code SourceListSidebar} class is responsible for assembling the list with
+     * the types of items that are supported for conversion.
+     *
+     * @see Ciano.Widgets.SourceList
+     * @since 0.1.0
      */
     public class SourceListSidebar : SourceList {
 
-        /**
-         * @variables
-         */
-        public Gtk.Button preferences;
         private SourceList.ExpandableItem type_list;
-
+        public Gtk.Button                 preferences;
+        
         /**
-         * @construct
+         * Constructs a new {@code DialogConvertFile} object responsible for mount sidebar structure.
+         *
+         * @see Ciano.Configs.Properties
+         * @see Ciano.Widgets.SourceList.ExpandableItem
+         * @see mount_video_list
+         * @see mount_music_list
+         * @see mount_image_list
          */
         public SourceListSidebar () {
-        	this.type_list = new SourceList.ExpandableItem (Properties.TEXT_CONVERT_FILE_TO);
-        	this.type_list.selectable = false;
-			this.type_list.expand_all ();
+            this.type_list = new SourceList.ExpandableItem (Properties.TEXT_CONVERT_FILE_TO);
+            this.type_list.selectable = false;
+            this.type_list.expand_all ();
 
-        	mount_video_list ();
-        	mount_music_list ();
-        	mount_image_list ();
+            mount_video_list ();
+            mount_music_list ();
+            mount_image_list ();
 
-        	this.root.add (this.type_list);
+            this.root.add (this.type_list);
         }
 
+        /**
+         * Creates the Videos section with the types supported in the application.
+         *
+         * @see Ciano.Configs.Properties
+         * @see Ciano.Configs.Constants
+         * @see Ciano.Widgets.SourceList.ExpandableItem
+         * @see Ciano.Widgets.SourceList.Item
+         */
         public void mount_video_list () {
-			var video_list = new SourceList.ExpandableItem (Properties.TEXT_VIDEO);
-			video_list.icon = new GLib.ThemedIcon ("folder-videos");
-			video_list.selectable = false;
-			video_list.expand_all ();
+            var video_list = new SourceList.ExpandableItem (Properties.TEXT_VIDEO);
+            video_list.icon = new GLib.ThemedIcon ("folder-videos");
+            video_list.selectable = false;
+            video_list.expand_all ();
 
-			var mp4_item = new SourceList.Item (Properties.TEXT_MP4);
-			var mpg_item = new SourceList.Item (Properties.TEXT_MPG);
-			var avi_item = new SourceList.Item (Properties.TEXT_AVI);
-			var wmv_item = new SourceList.Item (Properties.TEXT_WMV);
+            var mp4_item = new SourceList.Item (Constants.TEXT_MP4);
+            var mpg_item = new SourceList.Item (Constants.TEXT_MPG);
+            var avi_item = new SourceList.Item (Constants.TEXT_AVI);
+            var wmv_item = new SourceList.Item (Constants.TEXT_WMV);
 
-			video_list.add (mp4_item);
-			video_list.add (mpg_item);
-			video_list.add (avi_item);
-			video_list.add (wmv_item);
+            video_list.add (mp4_item);
+            video_list.add (mpg_item);
+            video_list.add (avi_item);
+            video_list.add (wmv_item);
 
-			this.type_list.add (video_list);
+            this.type_list.add (video_list);
         }
 
+        /**
+         * Creates the Music's section with the types supported in the application.
+         *
+         * @see Ciano.Configs.Properties
+         * @see Ciano.Configs.Constants
+         * @see Ciano.Widgets.SourceList.ExpandableItem
+         * @see Ciano.Widgets.SourceList.Item
+         */
         public void mount_music_list () {
-			var music_list = new SourceList.ExpandableItem (Properties.TEXT_MUSIC);
-			music_list.icon = new GLib.ThemedIcon ("folder-music");
-			music_list.selectable = false;
+            var music_list = new SourceList.ExpandableItem (Properties.TEXT_MUSIC);
+            music_list.icon = new GLib.ThemedIcon ("folder-music");
+            music_list.selectable = false;
 
-			var mp3_item = new SourceList.Item (Properties.TEXT_MP3);
-			var wma_item = new SourceList.Item (Properties.TEXT_WMA);
-			var ogg_item = new SourceList.Item (Properties.TEXT_OGG);
-			var wav_item = new SourceList.Item (Properties.TEXT_WAV);
+            var mp3_item = new SourceList.Item (Constants.TEXT_MP3);
+            var wma_item = new SourceList.Item (Constants.TEXT_WMA);
+            var ogg_item = new SourceList.Item (Constants.TEXT_OGG);
+            var wav_item = new SourceList.Item (Constants.TEXT_WAV);
 
-			music_list.add (mp3_item);
-			music_list.add (wma_item);
-			music_list.add (ogg_item);
-			music_list.add (wav_item);
+            music_list.add (mp3_item);
+            music_list.add (wma_item);
+            music_list.add (ogg_item);
+            music_list.add (wav_item);
 
-	        this.type_list.add (music_list);
+            this.type_list.add (music_list);
         }
 
+        /**
+         * Creates the Pictures section with the types supported in the application.
+         *
+         * @see Ciano.Configs.Properties
+         * @see Ciano.Configs.Constants
+         * @see Ciano.Widgets.SourceList.ExpandableItem
+         * @see Ciano.Widgets.SourceList.Item
+         */
         public void mount_image_list () {
-			var image_list = new SourceList.ExpandableItem (Properties.TEXT_IMAGE);
-			image_list.icon = new GLib.ThemedIcon ("folder-pictures");
-			image_list.selectable = false;
+            var image_list = new SourceList.ExpandableItem (Properties.TEXT_IMAGE);
+            image_list.icon = new GLib.ThemedIcon ("folder-pictures");
+            image_list.selectable = false;
 
-			var jpg_item = new SourceList.Item (Properties.TEXT_JPG);
-			var bmp_item = new SourceList.Item (Properties.TEXT_BMP);
-			var png_item = new SourceList.Item (Properties.TEXT_PNG);
-			var tif_item = new SourceList.Item (Properties.TEXT_TIF);
-			var ico_item = new SourceList.Item (Properties.TEXT_ICO);
-			var gif_item = new SourceList.Item (Properties.TEXT_GIF);
-			var tga_item = new SourceList.Item (Properties.TEXT_TGA);
+            var jpg_item = new SourceList.Item (Constants.TEXT_JPG);
+            var bmp_item = new SourceList.Item (Constants.TEXT_BMP);
+            var png_item = new SourceList.Item (Constants.TEXT_PNG);
+            var tif_item = new SourceList.Item (Constants.TEXT_TIF);
+            var ico_item = new SourceList.Item (Constants.TEXT_ICO);
+            var gif_item = new SourceList.Item (Constants.TEXT_GIF);
+            var tga_item = new SourceList.Item (Constants.TEXT_TGA);
 
-			image_list.add (jpg_item);
-			image_list.add (bmp_item);
-			image_list.add (png_item);
-			image_list.add (tif_item);
-			image_list.add (ico_item);
-			image_list.add (gif_item);
-			image_list.add (tga_item);
+            image_list.add (jpg_item);
+            image_list.add (bmp_item);
+            image_list.add (png_item);
+            image_list.add (tif_item);
+            image_list.add (ico_item);
+            image_list.add (gif_item);
+            image_list.add (tga_item);
 
-			this.type_list.add (image_list);
+            this.type_list.add (image_list);
         }
     }
 }
