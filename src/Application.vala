@@ -22,46 +22,50 @@ using Ciano.Config;
 
 namespace Ciano {
 
-	public class Application : Granite.Application {
+    /**
+     * The {@code Application} class is a foundation for all granite-based applications.
+     *
+     * @see Granite.Application
+     * @since 0.1.0
+     */
+    public class Application : Granite.Application {
 
-		/**
-		 * @variables
-		 */
-		private Window window { get; private set; default = null; }
+        private Window window { get; private set; default = null; }
 
-		/**
-		 * @construct
-		 */
-		public Application () {
-			Object (
-				application_id: Constants.ID,
-				flags: ApplicationFlags.FLAGS_NONE
-			);
-		}
+        /**
+         * Constructs a new {@code Application} object.
+         *
+         * @see Ciano.Configs.Constants
+         */
+        public Application () {
+            Object (
+                application_id: Constants.ID,
+                flags: ApplicationFlags.FLAGS_NONE
+            );
+        }
 
-		/**
-		 * @descrition Create the window of this application through the class Window
-		 *             and show it.If user clicks <quit> or press <control + q> the
-		 *             window will be destroyed.
-		 * 
-		 * @return void
-		 */
-		public override void activate () {
-			if (window == null) {
-				window = new Window (this);
-				add_window (window);
-				window.show_all ();
-			}
+        /**
+         * Create the window of this application through the class {@code Window} and show it. If user clicks
+         * <quit> or press <control + q> the window will be destroyed.
+         * 
+         * @return {@code void}
+         */
+        public override void activate () {
+            if (window == null) {
+                window = new Window (this);
+                add_window (window);
+                window.show_all ();
+            }
 
-			var quit_action = new SimpleAction ("quit", null);
-			quit_action.activate.connect (() => {
-				if (window != null) {
-					window.destroy ();
-				}
-			});
+            var quit_action = new SimpleAction ("quit", null);
+            quit_action.activate.connect (() => {
+                if (window != null) {
+                    window.destroy ();
+                }
+            });
 
-			add_action (quit_action);
-			add_accelerator ("<Control>q", "app.quit", null);
-		}
-	}
+            add_action (quit_action);
+            add_accelerator ("<Control>q", "app.quit", null);
+        }
+    }
 }

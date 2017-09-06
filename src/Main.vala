@@ -18,12 +18,11 @@
 */
 
 /**
- * @descrition Main method. Responsible for starting the Application class.
- * 
- * @author  Robert San <robertsanseries@gmail.com>
- * @type    Main
- * @param  	default arguments main
- * @return 	void
+ * Main method. Responsible for starting the {@code Application} class.
+ *
+ * @see Ciano.Application
+ * @return {@code void}
+ * @since 0.1.0
  */
 public static void main (string [] args) {
 	var app = new Ciano.Application ();

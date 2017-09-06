@@ -23,57 +23,67 @@ using Ciano.Views;
 
 namespace Ciano {
 
-	/**
-	 * @descrition 
-	 * 
-	 * @author  Robert San <robertsanseries@gmail.com>
-	 * @type    Gtk.ApplicationWindow
-	 */
-	public class Window : Gtk.ApplicationWindow {
- 		
- 		private Gtk.Application app;
+    /**
+     * Class responsible for creating the u window and will contain contain other widgets. 
+     * allowing the user to manipulate the window (resize it, move it, close it, ...).
+     *
+     * @see Gtk.ApplicationWindow
+     * @since 0.1.0
+     */
+    public class Window : Gtk.ApplicationWindow {
+         
+         private Gtk.Application app;
 
-  		/**
-		 * @construct
-		 */
-		public Window (Gtk.Application app) {
-			Object (
-				application: app,
-				icon_name: Constants.APP_ICON,
-				deletable: true,
-				resizable: true
-			);
+          /**
+         * Constructs a new {@code Window} object.
+         *
+         * @see Ciano.Configs.Constants
+         * @see style_provider
+         * @see build
+         */
+        public Window (Gtk.Application app) {
+            Object (
+                application: app,
+                icon_name: Constants.APP_ICON,
+                deletable: true,
+                resizable: true
+            );
 
-			this.app = app;
-			style_provider ();
-			build ();
-		}
+            this.app = app;
+            style_provider ();
+            build ();
+        }
 
-		/**
-		 * @descrition 	Load the application's CSS.
-		 * @return 		void
-		 */
-		private void style_provider () {
-			var css_provider = new Gtk.CssProvider ();
-	        css_provider.load_from_resource (Constants.URL_CSS);
-    	    
-    	    Gtk.StyleContext.add_provider_for_screen (
-    	    	Gdk.Screen.get_default (),
-    	    	css_provider,
-    	    	Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-    	    );
-		}
+        /**
+         * Load the application's CSS.
+         *
+         * @see Ciano.Configs.Constants
+         * @return {@code void}
+         */
+        private void style_provider () {
+            var css_provider = new Gtk.CssProvider ();
+            css_provider.load_from_resource (Constants.URL_CSS);
+            
+            Gtk.StyleContext.add_provider_for_screen (
+                Gdk.Screen.get_default (),
+                css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            );
+        }
 
-		/**
-		 * @descrition 	Load classes for application building.
-		 * @return 		void
-		 */
-		private void build () {
-			var converter_view = new ConverterView (this);
-			new ConverterController (this, this.app, converter_view);
+        /**
+         * Load classes for application building.
+         *
+         * @see Ciano.Controllers.ConverterController
+         * @see Ciano.Views.ConverterView
+         * @return {@code void}
+         */
+        private void build () {
+            var converter_view = new ConverterView (this);
+            new ConverterController (this, this.app, converter_view);
 
-        	this.add (converter_view);
-        	this.show_all ();
-		}
-	}
+            this.add (converter_view);
+            this.show_all ();
+        }
+    }
 }
