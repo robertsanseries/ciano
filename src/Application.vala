@@ -33,7 +33,7 @@ namespace Ciano {
         private Window window { get; private set; default = null; }
 
         /**
-         * Constructs a new {@code Application} object.
+         * Constructs a new {@code Application} object and create default output folder if it does not exist.
          *
          * @see Ciano.Configs.Constants
          */
@@ -42,7 +42,20 @@ namespace Ciano {
                 application_id: Constants.ID,
                 flags: ApplicationFlags.FLAGS_NONE
             );
+
+            try {
+                var directory = File.new_for_path (
+                    Environment.get_home_dir () + Constants.DIRECTORY_CIANO
+                );
+            
+                if (!directory.query_exists ()) {
+                    directory.make_directory_with_parents();
+                }
+            } catch (Error e) {
+                GLib.critical("Error: %s\n", e.message);
+            } 
         }
+
 
         /**
          * Create the window of this application through the class {@code Window} and show it. If user clicks

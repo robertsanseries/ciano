@@ -183,7 +183,7 @@ namespace Ciano.Controllers {
                 Gtk.TreeIter iter;
                 
                 list_store.get_iter (out iter, path);
-                list_store.remove (iter);
+                list_store.remove (ref iter);
 
                 if (path.to_string () == "0") {
                     button_remove.sensitive = false;
@@ -272,40 +272,40 @@ namespace Ciano.Controllers {
                 int total = 0;
                 int error = 0;
 
-                    while (true) {
-                        string str_return = yield data_input_stream.read_line_utf8_async ();
-                        
-                        if (str_return == null) {
+                while (true) {
+                    string str_return = yield data_input_stream.read_line_utf8_async ();
+                    
+                    if (str_return == null) {
+                        row.status.label = Properties.TEXT_SUCESS_IN_CONVERSION;
 
-                            // Temporary situation: only to load the progress bar 
-                            // when converting an image
-                            if (item.type_item == TypeItemEnum.IMAGE) {
-                               row.progress_bar.set_fraction (1);
+                        // Temporary situation: only to load the progress bar 
+                        // when converting an image
+                        if (item.type_item == TypeItemEnum.IMAGE) {
+                           row.progress_bar.set_fraction (1);
+                        }
+
+                        if (this.settings.complete_notify) {
+                            send_notification (item.name, Properties.TEXT_SUCESS_IN_CONVERSION);
+                        }
+                        break; 
+                    } else {
+                        // display return on console
+                        GLib.message (str_return);
+
+                        process_line (str_return, ref row, ref total, ref error);
+
+                        if (error > 0) {
+                            if (this.settings.erro_notify) {
+                                send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION);    
                             }
-
-                            if (this.settings.complete_notify) {
-                                send_notification (item.name, Properties.TEXT_SUCESS_IN_CONVERSION);
-                            }
-                            break; 
-                        } else {
-                            
-                            // display return on console
-                            GLib.message (str_return);
-
-                            process_line (str_return, ref row, ref total, ref error);
-
-                            if (error > 0) {
-                                if (this.settings.erro_notify) {
-                                    send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION);    
-                                }
-                                break;
-                            }
+                            break;
                         }
                     }
+                }
             } catch (SpawnError e) {
                 GLib.critical ("Error: %s\n", e.message);
             } catch (Error e) {
-                GLib.message("Erro %s\n", e.message);
+                GLib.critical("Error: %s\n", e.message);
             }
         }
 

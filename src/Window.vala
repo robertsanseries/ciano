@@ -32,9 +32,7 @@ namespace Ciano {
      */
     public class Window : Gtk.ApplicationWindow {
          
-         private Gtk.Application app;
-
-          /**
+        /**
          * Constructs a new {@code Window} object.
          *
          * @see Ciano.Configs.Constants
@@ -49,9 +47,16 @@ namespace Ciano {
                 resizable: true
             );
 
-            this.app = app;
+            var settings = Ciano.Config.Settings.get_instance ();
+            int x = settings.window_x;
+            int y = settings.window_y;
+
+            if (x != -1 && y != -1) {
+                move (x, y);
+            }
+
             style_provider ();
-            build ();
+            build (app);
         }
 
         /**
@@ -78,9 +83,9 @@ namespace Ciano {
          * @see Ciano.Views.ConverterView
          * @return {@code void}
          */
-        private void build () {
+        private void build (Gtk.Application app) {
             var converter_view = new ConverterView (this);
-            new ConverterController (this, this.app, converter_view);
+            new ConverterController (this, app, converter_view);
 
             this.add (converter_view);
             this.show_all ();
