@@ -279,12 +279,7 @@ namespace Ciano.Controllers {
                                row.progress_bar.set_fraction (1);
                             }
 
-                            var notification = new Notification (item.name);
-                            var image = new Gtk.Image.from_icon_name ("com.github.robertsanseries.ciano", Gtk.IconSize.DIALOG);
-                            notification.set_body ("Conversion completed");
-                            notification.set_icon (image.gicon);
-                            this.application.send_notification ("finished", notification);
-
+                            send_notification (item.name, Properties.TEXT_SUCESS_IN_CONVERSION);
                             break; 
                         } else {
                             message(str_return.replace("\\u000d", "\n"));
@@ -390,7 +385,7 @@ namespace Ciano.Controllers {
                 size            = str_return.substring ( index_size + 5, 11);
             
                 int index_bitrate = str_return.index_of ("bitrate=");
-                bitrate           = str_return.substring ( index_bitrate + 5, 11);
+                bitrate           = str_return.substring ( index_bitrate + 8, 11);
 
                 size_time_bitrate.label = Properties.TEXT_SIZE_CUSTOM + size.strip () + Properties.TEXT_TIME_CUSTOM + time.strip () + Properties.TEXT_BITRATE_CUSTOM + bitrate.strip ();
             }
@@ -446,6 +441,21 @@ namespace Ciano.Controllers {
             }
 
             return new_file;
+        }
+
+        /**
+         * Send notification.
+         * 
+         * @param  {@code string}    file_name
+         * @param  {@code string}    body_text
+         * @return {@code void}
+         */
+        private void send_notification (string file_name, string body_text) {
+            var notification = new Notification (file_name);
+            var image = new Gtk.Image.from_icon_name ("com.github.robertsanseries.ciano", Gtk.IconSize.DIALOG);
+            notification.set_body (body_text);
+            notification.set_icon (image.gicon);
+            this.application.send_notification ("finished", notification);
         }
 
         /**

@@ -63,5 +63,7 @@ namespace Ciano.Config {
         public abstract const string TEXT_SIZE_CUSTOM = "size: ";
         public abstract const string TEXT_TIME_CUSTOM = " - time: ";
         public abstract const string TEXT_BITRATE_CUSTOM = " - bitrate: ";
+        public abstract const string TEXT_SUCESS_IN_CONVERSION = "Conversion completed";
+        public abstract const string TEXT_ERROR_IN_CONVERSION = "Error in conversion";
     }
 }
