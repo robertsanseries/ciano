@@ -37,7 +37,7 @@ namespace Ciano.Widgets {
         public  Gtk.ProgressBar progress_bar;
         public  Gtk.Label       name_video;
         public  Gtk.Label       value_progress;
-        public  Gtk.Label       size_time_bitrate;
+        public  Gtk.Label       status;
         public  Gtk.Button      button_cancel;
         public  Gtk.Button      button_remove;
         public  Gtk.Label       convert_to;
@@ -68,8 +68,8 @@ namespace Ciano.Widgets {
             this.convert_to = new Gtk.Label (name_format);
             this.convert_to.set_use_markup (true);
 
-            this.size_time_bitrate = new Gtk.Label (StringUtil.EMPTY);
-            this.size_time_bitrate.halign = Gtk.Align.START;
+            this.status = new Gtk.Label (StringUtil.EMPTY);
+            this.status.halign = Gtk.Align.START;
 
             this.button_cancel = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
             this.button_cancel.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
@@ -88,7 +88,7 @@ namespace Ciano.Widgets {
             
             box_name_progress.pack_start (this.name_video, true, true);
             box_name_progress.pack_start (this.progress_bar, true, true);
-            box_name_progress.pack_start (this.size_time_bitrate,true,true);
+            box_name_progress.pack_start (this.status,true,true);
 
             this.container.pack_start (icone, false, false, 5);
             this.container.pack_start (box_name_progress, true, true, 5);

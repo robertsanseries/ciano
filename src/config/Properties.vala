@@ -65,5 +65,7 @@ namespace Ciano.Config {
         public abstract const string TEXT_BITRATE_CUSTOM = " - bitrate: ";
         public abstract const string TEXT_SUCESS_IN_CONVERSION = "Conversion completed";
         public abstract const string TEXT_ERROR_IN_CONVERSION = "Error in conversion";
+        public abstract const string MSG_ERROR_CODECS = "Error: experimental codecs are not enabled";
+        public abstract const string MSG_ERROR_INVALID_INPUT_DATA = "Error: invalid data found when processing input";
     }
 }

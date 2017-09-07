@@ -265,25 +265,41 @@ namespace Ciano.Controllers {
                 var row  = create_row_conversion (icon, item.name, name_format, subprocess);
                 
                 this.converter_view.list_conversion.list_box.add (row);
+
+                WidgetUtil.set_visible (row.button_cancel, false);
+                WidgetUtil.set_visible (row.button_remove, true);
                 
                 int total = 0;
+                int error = 0;
 
                     while (true) {
                         string str_return = yield data_input_stream.read_line_utf8_async ();
                         
                         if (str_return == null) {
-                            WidgetUtil.set_visible (row.button_cancel, false);
-                            WidgetUtil.set_visible (row.button_remove, true);
-                            
-                            if(item.type_item == TypeItemEnum.IMAGE) {
+
+                            // Temporary situation: only to load the progress bar 
+                            // when converting an image
+                            if (item.type_item == TypeItemEnum.IMAGE) {
                                row.progress_bar.set_fraction (1);
                             }
 
-                            send_notification (item.name, Properties.TEXT_SUCESS_IN_CONVERSION);
+                            if (this.settings.complete_notify) {
+                                send_notification (item.name, Properties.TEXT_SUCESS_IN_CONVERSION);
+                            }
                             break; 
                         } else {
-                            message(str_return.replace("\\u000d", "\n"));
-                            process_line (str_return, ref row.progress_bar,ref row.size_time_bitrate, ref total);
+                            
+                            // display return on console
+                            GLib.message (str_return);
+
+                            process_line (str_return, ref row, ref total, ref error);
+
+                            if (error > 0) {
+                                if (this.settings.erro_notify) {
+                                    send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION);    
+                                }
+                                break;
+                            }
                         }
                     }
             } catch (SpawnError e) {
@@ -357,11 +373,11 @@ namespace Ciano.Controllers {
          * @see Ciano.Utils.TimeUtil
          * @param      {@code string}           str_return
          * @param  ref {@code Gtk.ProgressBar}  progress_bar
-         * @param  ref {@code Gtk.Label}        size_time_bitrate
+         * @param  ref {@code Gtk.Label}        status
          * @param  ref {@code int}              total
          * @return {@code void}
          */
-        private void process_line (string str_return,  ref Gtk.ProgressBar progress_bar, ref Gtk.Label size_time_bitrate, ref int total) {
+        private void process_line (string str_return,  ref RowConversion row, ref int total, ref int error) {
             string time     = StringUtil.EMPTY;
             string size     = StringUtil.EMPTY;
             string bitrate  = StringUtil.EMPTY;
@@ -379,7 +395,7 @@ namespace Ciano.Controllers {
 
                 int loading     = TimeUtil.duration_in_seconds (time);
                 double progress = 100 * loading / total;
-                progress_bar.set_fraction (progress);
+                row.progress_bar.set_fraction (progress);
         
                 int index_size  = str_return.index_of ("size=");
                 size            = str_return.substring ( index_size + 5, 11);
@@ -387,7 +403,17 @@ namespace Ciano.Controllers {
                 int index_bitrate = str_return.index_of ("bitrate=");
                 bitrate           = str_return.substring ( index_bitrate + 8, 11);
 
-                size_time_bitrate.label = Properties.TEXT_SIZE_CUSTOM + size.strip () + Properties.TEXT_TIME_CUSTOM + time.strip () + Properties.TEXT_BITRATE_CUSTOM + bitrate.strip ();
+                row.status.label = Properties.TEXT_SIZE_CUSTOM + size.strip () + Properties.TEXT_TIME_CUSTOM + time.strip () + Properties.TEXT_BITRATE_CUSTOM + bitrate.strip ();
+            }
+
+            if (str_return.contains ("experimental codecs are not enabled")) {
+                row.status.label = Properties.MSG_ERROR_CODECS;
+                row.status.get_style_context ().add_class ("color-label-error");
+                error++;
+            } else if (str_return.contains ("Invalid data found when processing input")) {
+                row.status.label = Properties.MSG_ERROR_INVALID_INPUT_DATA;
+                row.status.get_style_context ().add_class ("color-label-error");
+                error++;
             }
         }
 
@@ -408,6 +434,8 @@ namespace Ciano.Controllers {
                 array.add ("-y");
                 array.add ("-i");
                 array.add (uri);
+                array.add ("-strict");
+                array.add ("-2");
                 array.add (new_file);
             } else if (this.type_item == TypeItemEnum.IMAGE) {
                 array.add ("convert");
