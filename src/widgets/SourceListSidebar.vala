@@ -72,11 +72,21 @@ namespace Ciano.Widgets {
             var mpg_item = new SourceList.Item (Constants.TEXT_MPG);
             var avi_item = new SourceList.Item (Constants.TEXT_AVI);
             var wmv_item = new SourceList.Item (Constants.TEXT_WMV);
+            var flv_item = new SourceList.Item (Constants.TEXT_FLV);
+            var mkv_item = new SourceList.Item (Constants.TEXT_MKV);
+            var 3gp_item = new SourceList.Item (Constants.TEXT_3GP);
+            var mov_item = new SourceList.Item (Constants.TEXT_MOV);
+            var vob_item = new SourceList.Item (Constants.TEXT_VOB);
 
             video_list.add (mp4_item);
             video_list.add (mpg_item);
             video_list.add (avi_item);
             video_list.add (wmv_item);
+            video_list.add (flv_item);
+            video_list.add (mkv_item);
+            video_list.add (3gp_item);
+            video_list.add (mov_item);
+            video_list.add (vob_item);
 
             this.type_list.add (video_list);
         }

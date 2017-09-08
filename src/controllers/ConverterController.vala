@@ -406,7 +406,15 @@ namespace Ciano.Controllers {
                 row.status.label = Properties.TEXT_SIZE_CUSTOM + size.strip () + Properties.TEXT_TIME_CUSTOM + time.strip () + Properties.TEXT_BITRATE_CUSTOM + bitrate.strip ();
             }
 
-            if (str_return.contains ("experimental codecs are not enabled")) {
+            if (str_return.contains ("No such file or directory")) {
+                row.status.label = Properties.MSG_ERROR_NO_SUCH_FILE_DIRECTORY;
+                row.status.get_style_context ().add_class ("color-label-error");
+                error++;
+            } else if (str_return.contains ("Invalid argument")) {
+                row.status.label = Properties.MSG_ERROR_INVALID_ARGUMENT;
+                row.status.get_style_context ().add_class ("color-label-error");
+                error++;
+            } else if (str_return.contains ("experimental codecs are not enabled")) {
                 row.status.label = Properties.MSG_ERROR_CODECS;
                 row.status.get_style_context ().add_class ("color-label-error");
                 error++;
@@ -434,6 +442,14 @@ namespace Ciano.Controllers {
                 array.add ("-y");
                 array.add ("-i");
                 array.add (uri);
+                
+                if(this.name_format_selected.down () == "3gp" || this.name_format_selected.down () == "flv") {
+                    array.add ("-vcodec");
+                    array.add ("libx264");
+                    array.add ("-acodec");
+                    array.add ("aac");
+                }
+
                 array.add ("-strict");
                 array.add ("-2");
                 array.add (new_file);
@@ -519,6 +535,16 @@ namespace Ciano.Controllers {
                 case Constants.TEXT_SWF:
                     formats = get_array_formats_videos (Constants.TEXT_SWF);
                     break;
+                case Constants.TEXT_MOV:
+                    formats = get_array_formats_videos (Constants.TEXT_MOV);
+                    break;
+                case Constants.TEXT_MKV:
+                    formats = get_array_formats_videos (Constants.TEXT_MKV);
+                    break;
+                case Constants.TEXT_VOB:
+                    formats = get_array_formats_videos (Constants.TEXT_VOB);
+                    break;
+                
 
                 case Constants.TEXT_MP3:
                     formats = get_array_formats_music (Constants.TEXT_MP3);
@@ -601,6 +627,18 @@ namespace Ciano.Controllers {
 
             if(format_video != Constants.TEXT_SWF) {
                 array.add (Constants.TEXT_SWF);    
+            }
+
+            if(format_video != Constants.TEXT_MOV) {
+                array.add (Constants.TEXT_MOV);    
+            }
+
+            if(format_video != Constants.TEXT_MKV) {
+                array.add (Constants.TEXT_MKV);    
+            }
+
+            if(format_video != Constants.TEXT_VOB) {
+                array.add (Constants.TEXT_VOB);    
             }
 
             return array.data;

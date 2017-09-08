@@ -51,6 +51,9 @@ namespace Ciano.Config {
         public abstract const string TEXT_WMV = "WMV";
         public abstract const string TEXT_FLV = "FLV";
         public abstract const string TEXT_SWF = "SWF";
+        public abstract const string TEXT_MOV = "MOV";
+        public abstract const string TEXT_MKV = "MKV";
+        public abstract const string TEXT_VOB = "VOB";
         public abstract const string TEXT_MP3 = "MP3";
         public abstract const string TEXT_WMA = "WMA";
         public abstract const string TEXT_AMR = "AMR";
