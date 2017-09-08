@@ -146,14 +146,6 @@ namespace Ciano.Controllers {
                     string name      = file.get_basename ().substring(index + 1, -1);
                     string directory = file.get_basename ().substring(0, index + 1);
 
-                    if (name.length > 50) {    
-                        name = name.slice(0, 48) + "...";
-                    }
-
-                    if (directory.length > 50) {    
-                        directory = directory.slice(0, 48) + "...";
-                    }
-
                     list_store.append (out iter);
                     list_store.set (iter, 0, name, 1, directory);
                     tree_view.expand_all ();
@@ -688,7 +680,7 @@ namespace Ciano.Controllers {
             if(format_music != Constants.TEXT_WAV) {
                 array.add (Constants.TEXT_WAV);    
             }
-            
+
             if(format_music != Constants.TEXT_AAC) {
                 array.add (Constants.TEXT_AAC);    
             }

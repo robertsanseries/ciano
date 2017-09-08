@@ -68,7 +68,7 @@ namespace Ciano.Widgets {
             this.convert_to = new Gtk.Label (name_format);
             this.convert_to.set_use_markup (true);
 
-            this.status = new Gtk.Label (StringUtil.EMPTY);
+            this.status = new Gtk.Label (Properties.TEXT_STARTING);
             this.status.halign = Gtk.Align.START;
 
             this.button_cancel = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
