@@ -12,8 +12,6 @@ gresource = gnome.compile_resources(
     c_name: 'as'
 )
 
-add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], language: 'vala')
-
 conf = configuration_data()
 conf.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 configure_file(output: 'config.h', configuration: conf)
@@ -35,8 +33,7 @@ e = executable('com.github.robertsanseries.ciano',
         dependency('granite'),
         dependency('gobject-2.0'),
         dependency('gtk+-3.0'),
-        dependency('glib-2.0'),
-        dependency('libgda-5.0')
+        dependency('glib-2.0')
     ],
     install : true
 )
