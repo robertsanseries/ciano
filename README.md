@@ -1,5 +1,4 @@
 <div>
-  <p align="center"> :construction: App under development!</p>
   <h1 align="center">Ciano</h1>
   <h3 align="center">A simple multimedia file converter. Built from the ground up for the elementary OS.</h3>
   <p align="center">Helping in those things you do everyday on your computer!</p>
