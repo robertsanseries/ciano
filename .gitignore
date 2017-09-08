@@ -1,5 +1,10 @@
 build/*
-debian/*
+debian/build/*
+debian/com.github.robertsanseries.ciano.debhelper.log
+debian/com.github.robertsanseries.ciano.substvars
+debian/com.github.robertsanseries.ciano/
+debian/debhelper-build-stamp
+debian/files
 language/*
 src/models/*
 
