@@ -108,11 +108,21 @@ namespace Ciano.Widgets {
             var wma_item = new SourceList.Item (Constants.TEXT_WMA);
             var ogg_item = new SourceList.Item (Constants.TEXT_OGG);
             var wav_item = new SourceList.Item (Constants.TEXT_WAV);
+            var aac_item = new SourceList.Item (Constants.TEXT_AAC);
+            var flac_item = new SourceList.Item (Constants.TEXT_FLAC);
+            var aiff_item = new SourceList.Item (Constants.TEXT_AIFF);            
+            var mmf_item = new SourceList.Item (Constants.TEXT_MMF);
+            var m4a_item = new SourceList.Item (Constants.TEXT_M4A);
 
             music_list.add (mp3_item);
             music_list.add (wma_item);
             music_list.add (ogg_item);
             music_list.add (wav_item);
+            music_list.add (aac_item);
+            music_list.add (flac_item);
+            music_list.add (aiff_item);
+            music_list.add (mmf_item);
+            music_list.add (m4a_item);
 
             this.type_list.add (music_list);
         }

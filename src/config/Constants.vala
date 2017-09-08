@@ -59,7 +59,11 @@ namespace Ciano.Config {
         public abstract const string TEXT_AMR = "AMR";
         public abstract const string TEXT_OGG = "OGG";
         public abstract const string TEXT_AAC = "AAC";
+        public abstract const string TEXT_MMF = "MMF";
+        public abstract const string TEXT_M4A = "M4A";
         public abstract const string TEXT_WAV = "WAV";
+        public abstract const string TEXT_FLAC = "FLAC";
+        public abstract const string TEXT_AIFF = "AIFF";
         public abstract const string TEXT_JPG = "JPG";
         public abstract const string TEXT_BMP = "BMP";
         public abstract const string TEXT_PNG = "PNG";

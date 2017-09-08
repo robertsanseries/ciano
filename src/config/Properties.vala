@@ -68,6 +68,6 @@ namespace Ciano.Config {
         public abstract const string MSG_ERROR_CODECS = "Error: experimental codecs are not enabled";
         public abstract const string MSG_ERROR_INVALID_INPUT_DATA = "Error: invalid data found when processing input";
         public abstract const string MSG_ERROR_NO_SUCH_FILE_DIRECTORY = "Error: No such file or directory";
-        public abstract const string MSG_ERROR_INVALID_ARGUMENT = "Invalid argument";
+        public abstract const string MSG_ERROR_INVALID_ARGUMENT = "Error: Invalid argument";
     }
 }

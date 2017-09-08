@@ -555,11 +555,23 @@ namespace Ciano.Controllers {
                 case Constants.TEXT_OGG:
                     formats = get_array_formats_music (Constants.TEXT_OGG);
                     break;
+                case Constants.TEXT_WAV:
+                    formats = get_array_formats_music (Constants.TEXT_WAV);
+                    break;
                 case Constants.TEXT_AAC:
                     formats = get_array_formats_music (Constants.TEXT_AAC);
                     break;
-                case Constants.TEXT_WAV:
-                    formats = get_array_formats_music (Constants.TEXT_WAV);
+                case Constants.TEXT_FLAC:
+                    formats = get_array_formats_music (Constants.TEXT_FLAC);
+                    break;
+                case Constants.TEXT_AIFF:
+                    formats = get_array_formats_music (Constants.TEXT_AIFF);
+                    break;
+                case Constants.TEXT_MMF:
+                    formats = get_array_formats_music (Constants.TEXT_MMF);
+                    break;
+                case Constants.TEXT_M4A:
+                    formats = get_array_formats_music (Constants.TEXT_M4A);
                     break;
 
                 case Constants.TEXT_JPG:
@@ -673,12 +685,28 @@ namespace Ciano.Controllers {
                 array.add (Constants.TEXT_OGG);    
             }
 
+            if(format_music != Constants.TEXT_WAV) {
+                array.add (Constants.TEXT_WAV);    
+            }
+            
             if(format_music != Constants.TEXT_AAC) {
                 array.add (Constants.TEXT_AAC);    
             }
 
-            if(format_music != Constants.TEXT_WAV) {
-                array.add (Constants.TEXT_WAV);    
+            if(format_music != Constants.TEXT_FLAC) {
+                array.add (Constants.TEXT_FLAC);    
+            }
+
+            if(format_music != Constants.TEXT_AIFF) {
+                array.add (Constants.TEXT_AIFF);    
+            }
+
+            if(format_music != Constants.TEXT_MMF) {
+                array.add (Constants.TEXT_MMF);    
+            }
+
+            if(format_music != Constants.TEXT_M4A) {
+                array.add (Constants.TEXT_M4A);    
             }
 
             return array.data;
