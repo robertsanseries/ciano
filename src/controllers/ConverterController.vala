@@ -115,6 +115,7 @@ namespace Ciano.Controllers {
          * Method responsible for adding one or more files to {@code Gtk.TreeView} from {@code DialogConvertFile}.
          *
          * @see Ciano.Widgets.DialogConvertFile
+         * @see Ciano.Configs.Properties
          * @param  {@code Gtk.Dialog}    parent_dialog
          * @param  {@code Gtk.TreeView}  tree_view
          * @param  {@code Gtk.TreeIter}  iter
@@ -184,15 +185,18 @@ namespace Ciano.Controllers {
         }
         
         /**
-         * Method responsible for initiating conversion of items added to {@code Gtk.TreeView} from {@code DialogConvertFile}.
+         * Method responsible for initiating action when user clicks "start conversion" 
+         * button on {@code Gtk.TreeView} from {@code DialogConvertFile}.
+         * 
          * In each foreach item {@code load_list_for_conversion} will perform the following action:
          * 1 - Get the name and directory of the file.
          * 2 - Creates an {@code ItemConversion} to store the status of each item.
          * 3 - Adds {@code ItemConversion} to {@code list list_items}.
-         * 4 - Executes the {@code execute_command_async} method responsible for executing the conversion of the item to a subprocess.
+         * 4 - {@code start_conversion_process} method responsible for starting the item conversion..
          * 
          * @see Ciano.Configs.Constants
          * @see Ciano.Objects.ItemConvertion
+         * @see start_conversion_process
          * @param  {@code Gtk.ListStore} list_store
          * @param  {@code string}        name_format
          * @return {@code void}
@@ -220,15 +224,123 @@ namespace Ciano.Controllers {
 
                 this.list_items.add (item);
                 
-                string uri = item.directory + item.name;
-                execute_command_async.begin (get_command (uri), item, name_format);
-                
+                start_conversion_process (item, name_format);
                 this.id_item++;
                
                 return false;
             };
 
             list_store.foreach (load_list_for_conversion);
+        }
+
+        /**
+         * Method responsible for creating the conversion suprocess.
+         *
+         * @see Ciano.Widgets.Properties
+         * @see Ciano.Widgets.RowConversion
+         * @see get_command
+         * @see get_type_icon
+         * @see create_row_conversion
+         * @see convert_async
+         * @see validate_process_completed
+         * @see validate_error_in_process
+         * @param  {@code ItemConversion} item
+         * @param  {@code string}         name_format
+         * @return {@code void}
+         */
+        private void start_conversion_process (ItemConversion item, string name_format) {
+            try {
+                string uri = item.directory + item.name;
+                SubprocessLauncher launcher = new SubprocessLauncher (SubprocessFlags.STDERR_PIPE);
+                Subprocess subprocess       = launcher.spawnv (get_command (uri));
+                InputStream input_stream    = subprocess.get_stderr_pipe ();
+
+                int error       = 0;
+                bool btn_cancel = false;
+                string icon     = get_type_icon (item);
+                
+                RowConversion row  = create_row_conversion (icon, item.name, name_format, subprocess, btn_cancel);
+                this.converter_view.list_conversion.list_box.add (row);
+
+                convert_async.begin (input_stream, row, item, error, (obj, async_res) => {
+                    WidgetUtil.set_visible (row.button_cancel, false);
+                    WidgetUtil.set_visible (row.button_remove, true);
+
+                    try {
+                        validate_process_completed (subprocess, row, item);
+                    } catch (Error e) {
+                        validate_error_in_process (subprocess, row, item, error);
+                        GLib.critical ("Error - validate_error_in_process: %s\n", e.message);
+                    }
+                });
+
+            } catch (Error e) {
+                GLib.critical ("Error: %s\n", e.message);
+            }
+        }
+
+        /**
+         * Validates whether the process has been finalized normally or not.
+         *
+         * @see Ciano.Configs.Properties
+         * @see Ciano.Utils.WidgetUtil
+         * @see Ciano.Widgets.RowConversion
+         * @param  {@code Subprocess}    subprocess
+         * @param  {@code RowConversion} row
+         * @param  {@code ItemConversion} item
+         * @return {@code void}
+         */
+        private void validate_process_completed (Subprocess subprocess, RowConversion row, ItemConversion item) {
+            try {
+                if(subprocess.wait_check ()) {
+                    row.progress_bar.set_fraction (1);
+                    row.status.label = Properties.TEXT_SUCESS_IN_CONVERSION;
+                    
+                    if (this.settings.complete_notify) {
+                        send_notification (item.name, Properties.TEXT_SUCESS_IN_CONVERSION);
+                    }
+                } else { 
+                    row.progress_bar.set_fraction (0);
+                    row.status.label = Properties.TEXT_ERROR_IN_CONVERSION_PROCESS;
+
+                    if (this.settings.complete_notify) {
+                        send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION_PROCESS);
+                    }
+                }
+            } catch (Error e) {
+                GLib.critical ("Error: %s\n", e.message);
+            }
+        }
+
+        /**
+         * Validates whether the process has been canceled (subprocess.get_exit_status () == 9) 
+         * or if there has been an error (subprocess.get_exit_status () == 1).
+         *
+         * @see Ciano.Configs.Properties 
+         * @see Ciano.Utils.WidgetUtil
+         * @see Ciano.Widgets.RowConversion
+         * @param  {@code Subprocess}    subprocess
+         * @param  {@code RowConversion} row
+         * @param  {@code ItemConversion} item
+         * @return {@code void}
+         */
+        private void validate_error_in_process (Subprocess subprocess, RowConversion row, ItemConversion item, int error) {
+            if (subprocess.get_exit_status () == 1) {
+                row.progress_bar.set_fraction (0);
+                
+                if (error == 0) {
+                    row.status.label = Properties.TEXT_ERROR_IN_CONVERSION;
+                }
+
+                if (this.settings.complete_notify) {
+                    send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION);
+                }
+            }
+
+            if (subprocess.get_exit_status () == 9) {
+                row.progress_bar.set_fraction (0);
+                row.status.label = Properties.TEXT_CANCEL_IN_CONVERSION;
+            }
         }
         
         /**
@@ -240,51 +352,30 @@ namespace Ciano.Controllers {
          * 4 - Checks if you hear any errors during the conversion.
          * 5 - Validates the notation rule defined in DialogPreferences.
          *
-         * @see Ciano.Enums.TypeItemEnum
+         * @see Ciano.Configs.Properties
+         * @see Ciano.Widgets.RowConversion
+         * @see Ciano.Widgets.ItemConversion
          * @param  {@code string[]}       spawn_args
          * @param  {@code ItemConversion} item
          * @param  {@code string}         name_format
          * @return {@code void}
          */
-        public async void execute_command_async (string[] spawn_args, ItemConversion item, string name_format) {
+        public async void convert_async (InputStream input_stream, RowConversion row, ItemConversion item, int error) {
             try {
-                var launcher            = new SubprocessLauncher (SubprocessFlags.STDERR_PIPE);
-                var subprocess          = launcher.spawnv (spawn_args);
-                var input_stream        = subprocess.get_stderr_pipe ();
-                var data_input_stream   = new DataInputStream (input_stream);
-
-                var icon = get_type_icon (item);
-                var row  = create_row_conversion (icon, item.name, name_format, subprocess);
-                
-                this.converter_view.list_conversion.list_box.add (row);
-
-                WidgetUtil.set_visible (row.button_cancel, false);
-                WidgetUtil.set_visible (row.button_remove, true);
-                
+                var charset_converter   = new CharsetConverter ("utf-8", "iso-8859-1");
+                var costream            = new ConverterInputStream (input_stream, charset_converter);
+                var data_input_stream   = new DataInputStream (costream);
+                data_input_stream.set_newline_type (DataStreamNewlineType.ANY);
+              
                 int total = 0;
-                int error = 0;
 
                 while (true) {
                     string str_return = yield data_input_stream.read_line_utf8_async ();
-                    
+
                     if (str_return == null) {
-                        row.status.label = Properties.TEXT_SUCESS_IN_CONVERSION;
-
-                        // Temporary situation: only to load the progress bar 
-                        // when converting an image
-                        if (item.type_item == TypeItemEnum.IMAGE) {
-                           row.progress_bar.set_fraction (1);
-                        }
-
-                        if (this.settings.complete_notify) {
-                            send_notification (item.name, Properties.TEXT_SUCESS_IN_CONVERSION);
-                        }
                         break; 
                     } else {
-                        // display return on console
-                        GLib.message (str_return);
-
-                        process_line (str_return, ref row, ref total, ref error);
+                        process_line (str_return, row, ref total, error);
 
                         if (error > 0) {
                             if (this.settings.erro_notify) {
@@ -294,10 +385,8 @@ namespace Ciano.Controllers {
                         }
                     }
                 }
-            } catch (SpawnError e) {
-                GLib.critical ("Error: %s\n", e.message);
             } catch (Error e) {
-                GLib.critical("Error: %s\n", e.message);
+                GLib.critical ("Error: %s\n", e.message);
             }
         }
 
@@ -312,10 +401,11 @@ namespace Ciano.Controllers {
          * @param  {@code Subprocess} subprocess
          * @return {@code void}
          */
-        private RowConversion create_row_conversion (string icon, string item_name, string name_format, Subprocess subprocess) {
+        private RowConversion create_row_conversion (string icon, string item_name, string name_format, Subprocess subprocess, bool btn_cancel) {
             var row = new RowConversion (icon, item_name, 0, name_format);
             row.button_cancel.clicked.connect(() => {
                 subprocess.force_exit ();
+                btn_cancel = true;
                 WidgetUtil.set_visible (row.button_cancel, false);
                 WidgetUtil.set_visible (row.button_remove, true);
             });
@@ -360,6 +450,7 @@ namespace Ciano.Controllers {
          * 1 - Monitors the time, size, duration, and bitrate of each item.
          * 2 - Also check the error if it happens.
          *
+         * @see Ciano.Widgets.RowConversion
          * @see Ciano.Configs.Properties
          * @see Ciano.Utils.StringUtil
          * @see Ciano.Utils.TimeUtil
@@ -369,7 +460,7 @@ namespace Ciano.Controllers {
          * @param  ref {@code int}              total
          * @return {@code void}
          */
-        private void process_line (string str_return,  ref RowConversion row, ref int total, ref int error) {
+        private void process_line (string str_return, RowConversion row, ref int total, int error) {
             string time     = StringUtil.EMPTY;
             string size     = StringUtil.EMPTY;
             string bitrate  = StringUtil.EMPTY;
@@ -386,8 +477,8 @@ namespace Ciano.Controllers {
                 time            = str_return.substring ( index_time + 5, 11);
 
                 int loading     = TimeUtil.duration_in_seconds (time);
-                double progress = 100 * loading / total;
-                row.progress_bar.set_fraction (progress);
+                double progress = (100 * loading) / total;
+                row.progress_bar.set_fraction (progress / 100);
         
                 int index_size  = str_return.index_of ("size=");
                 size            = str_return.substring ( index_size + 5, 11);
