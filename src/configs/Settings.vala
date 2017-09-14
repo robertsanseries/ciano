@@ -17,10 +17,10 @@
 * Boston, MA 02110-1301 USA
 */
 
-using Ciano.Config;
+using Ciano.Configs;
 using Ciano.Utils;
 
-namespace Ciano.Config {
+namespace Ciano.Configs {
 
     /**
      * The {@code Settings} class is responsible for defining all 

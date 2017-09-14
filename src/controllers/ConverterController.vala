@@ -17,7 +17,7 @@
 * Boston, MA 02110-1301 USA
 */
 
-using Ciano.Config;
+using Ciano.Configs;
 using Ciano.Views;
 using Ciano.Widgets;
 using Ciano.Objects;
@@ -37,7 +37,7 @@ namespace Ciano.Controllers {
         public  Gee.ArrayList<RowConversion>    convertions;
         private Gee.ArrayList<ItemConversion>   list_items;
         private Gtk.Application                 application;
-        private Ciano.Config.Settings           settings;
+        private Ciano.Configs.Settings          settings;
         private ConverterView                   converter_view;
         private DialogPreferences               dialog_preferences;
         private DialogConvertFile               dialog_convert_file;       
@@ -65,7 +65,7 @@ namespace Ciano.Controllers {
             this.converter_view = converter_view;
             this.application    = application;
             
-            this.settings   = Ciano.Config.Settings.get_instance ();
+            this.settings   = Ciano.Configs.Settings.get_instance ();
             this.list_items = new Gee.ArrayList<ItemConversion> ();
             this.id_item    = 1;
             

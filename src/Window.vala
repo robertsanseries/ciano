@@ -17,7 +17,7 @@
 * Boston, MA 02110-1301 USA
 */
 
-using Ciano.Config;
+using Ciano.Configs;
 using Ciano.Controllers;
 using Ciano.Views;
 
@@ -47,7 +47,7 @@ namespace Ciano {
                 resizable: true
             );
 
-            var settings = Ciano.Config.Settings.get_instance ();
+            var settings = Ciano.Configs.Settings.get_instance ();
             int x = settings.window_x;
             int y = settings.window_y;
 

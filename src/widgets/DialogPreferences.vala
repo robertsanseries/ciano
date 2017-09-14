@@ -17,7 +17,7 @@
 * Boston, MA 02110-1301 USA
 */
 
-using Ciano.Config;
+using Ciano.Configs;
 using Ciano.Utils;
 
 namespace Ciano.Widgets {
@@ -31,12 +31,12 @@ namespace Ciano.Widgets {
      */
     public class DialogPreferences : Gtk.Dialog {
 
-        private Ciano.Config.Settings settings;
-        private Gtk.FileChooserButton output_folder;
-        private Gtk.Switch            output_source_file_folder;
-        private Gtk.Switch            complete_notify;
-        private Gtk.Switch            erro_notify;
-        private Gtk.Button            default_settings;
+        private Ciano.Configs.Settings settings;
+        private Gtk.FileChooserButton  output_folder;
+        private Gtk.Switch             output_source_file_folder;
+        private Gtk.Switch             complete_notify;
+        private Gtk.Switch             erro_notify;
+        private Gtk.Button             default_settings;
 
         /**
          * Constructs a new {@code DialogPreferences} object responsible for assembling the dialog box structure and
@@ -57,7 +57,7 @@ namespace Ciano.Widgets {
             this.set_size_request (500, 350);
             this.set_modal (true);
 
-            this.settings = Ciano.Config.Settings.get_instance ();
+            this.settings = Ciano.Configs.Settings.get_instance ();
 
             var grid = new Gtk.Grid ();
             grid.row_spacing = 5;

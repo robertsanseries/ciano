@@ -18,7 +18,7 @@
 */
 
 using Ciano.Utils;
-using Ciano.Config;
+using Ciano.Configs;
 
 namespace Ciano.Widgets {
 
