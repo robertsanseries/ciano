@@ -26,9 +26,9 @@ App under development!
 These dependencies must be present before building
  - `meson (>=0.40)`
  - `valac (>=0.16)`
- - `libgranite`
- - `libgtk-3`
- - `sqlite3`
+ - `debhelper (>= 9)`
+ - `libgranite-dev`
+ - `libgtk-3-dev`
  - `ffmpeg`
  - `imagemMagick`
  
