@@ -1,4 +1,5 @@
 <div>
+  <span align="center"> <img width="80" height="95" class="center" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon"></span>
   <h1 align="center">Ciano</h1>
   <h3 align="center">A simple multimedia file converter. Built from the ground up for the elementary OS.</h3>
   <p align="center">Helping in those things you do everyday on your computer!</p>
@@ -37,7 +38,7 @@ These dependencies must be present before building
 ```
 git clone https://github.com/robertsanseries/ciano.git && cd ciano
 meson build && cd build
-mesonconf -Dprefix=/usr
+meson configure -Dprefix=/usr
 ninja
 sudo ninja install
 com.github.robertsanseries.ciano
