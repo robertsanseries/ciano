@@ -1,4 +1,4 @@
-<div>
+<div align="center">
   <span align="center"> <img width="80" height="95" class="center" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon"></span>
   <h1 align="center">Ciano</h1>
   <h3 align="center">A simple multimedia file converter. Built from the ground up for the elementary OS.</h3>
@@ -26,7 +26,6 @@ App under development!
 These dependencies must be present before building
  - `meson (>=0.40)`
  - `valac (>=0.16)`
- - `libgda-5.0`
  - `libgranite`
  - `libgtk-3`
  - `sqlite3`
