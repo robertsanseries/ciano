@@ -144,7 +144,7 @@ namespace Ciano.Widgets {
             var bmp_item = new SourceList.Item (Constants.TEXT_BMP);
             var png_item = new SourceList.Item (Constants.TEXT_PNG);
             var tif_item = new SourceList.Item (Constants.TEXT_TIF);
-            var ico_item = new SourceList.Item (Constants.TEXT_ICO);
+            //var ico_item = new SourceList.Item (Constants.TEXT_ICO);
             var gif_item = new SourceList.Item (Constants.TEXT_GIF);
             var tga_item = new SourceList.Item (Constants.TEXT_TGA);
 
