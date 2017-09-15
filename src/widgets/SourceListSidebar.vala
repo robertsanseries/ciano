@@ -152,7 +152,7 @@ namespace Ciano.Widgets {
             image_list.add (bmp_item);
             image_list.add (png_item);
             image_list.add (tif_item);
-            image_list.add (ico_item);
+            //image_list.add (ico_item);
             image_list.add (gif_item);
             image_list.add (tga_item);
 
