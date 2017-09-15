@@ -23,6 +23,7 @@ c_args = [
 ]
 
 subdir('data')
+subdir('po')
 subdir('src')
 
 e = executable('com.github.robertsanseries.ciano',
