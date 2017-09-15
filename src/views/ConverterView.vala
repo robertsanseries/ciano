@@ -69,7 +69,7 @@ namespace Ciano.Views {
             this.margin = 12;
             this.column_spacing = 10;
             this.attach (frame1, 0, 0, 1, 1);
-            this.attach_next_to (frame2, frame1, Gtk.PositionType.RIGHT, 5, 1);
+            this.attach_next_to (frame2, frame1, Gtk.PositionType.RIGHT, 10, 1);
         }
     }
 }

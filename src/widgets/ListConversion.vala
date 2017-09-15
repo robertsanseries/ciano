@@ -60,7 +60,7 @@ namespace Ciano.Widgets {
             this.stack.set_visible_child_name (Constants.WELCOME_VIEW);
 
             var scrolled = new Gtk.ScrolledWindow (null, null);
-            scrolled.hscrollbar_policy = Gtk.PolicyType.NEVER;
+            scrolled.hscrollbar_policy = Gtk.PolicyType.EXTERNAL;
             scrolled.add (this.stack);
 
            this.add (scrolled);

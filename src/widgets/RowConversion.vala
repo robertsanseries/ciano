@@ -88,7 +88,7 @@ namespace Ciano.Widgets {
             
             box_name_progress.pack_start (this.name_video, true, true);
             box_name_progress.pack_start (this.progress_bar, true, true);
-            box_name_progress.pack_start (this.status,true,true);
+            box_name_progress.pack_start (this.status, true,true);
 
             this.container.pack_start (icone, false, false, 5);
             this.container.pack_start (box_name_progress, true, true, 5);
