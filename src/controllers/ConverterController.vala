@@ -234,7 +234,7 @@ namespace Ciano.Controllers {
         }
 
         /**
-         * Method responsible for creating the conversion suprocess.
+         * Method responsible for conversion suprocess.
          *
          * @see Ciano.Widgets.Properties
          * @see Ciano.Widgets.RowConversion
@@ -244,7 +244,10 @@ namespace Ciano.Controllers {
          * @see convert_async
          * @see validate_process_completed
          * @see validate_error_in_process
+         * @param  {@code Subprocess}     subprocess
+         * @param  {@code InputStream}    input_stream
          * @param  {@code ItemConversion} item
+         * @param  {@code RowConversion}  row
          * @param  {@code string}         name_format
          * @return {@code void}
          */
@@ -255,25 +258,18 @@ namespace Ciano.Controllers {
                 Subprocess subprocess       = launcher.spawnv (get_command (uri));
                 InputStream input_stream    = subprocess.get_stderr_pipe ();
 
-                int error       = 0;
-                bool btn_cancel = false;
-                string icon     = get_type_icon (item);
+                int error                   = 0;
+                bool btn_cancel             = false;
+                string icon                 = get_type_icon (item);
+                RowConversion row           = create_row_conversion (icon, item.name, name_format, subprocess, btn_cancel);
                 
-                RowConversion row  = create_row_conversion (icon, item.name, name_format, subprocess, btn_cancel);
                 this.converter_view.list_conversion.list_box.add (row);
 
                 convert_async.begin (input_stream, row, item, error, (obj, async_res) => {
                     WidgetUtil.set_visible (row.button_cancel, false);
                     WidgetUtil.set_visible (row.button_remove, true);
-
-                    try {
-                        validate_process_completed (subprocess, row, item);
-                    } catch (Error e) {
-                        validate_error_in_process (subprocess, row, item, error);
-                        GLib.critical ("Error - validate_error_in_process: %s\n", e.message);
-                    }
+                    validate_process_completed (subprocess, row, item, error);
                 });
-
             } catch (Error e) {
                 GLib.critical ("Error: %s\n", e.message);
             }
@@ -290,7 +286,7 @@ namespace Ciano.Controllers {
          * @param  {@code ItemConversion} item
          * @return {@code void}
          */
-        private void validate_process_completed (Subprocess subprocess, RowConversion row, ItemConversion item) {
+        private void validate_process_completed (Subprocess subprocess, RowConversion row, ItemConversion item, int error) {
             try {
                 if(subprocess.wait_check ()) {
                     row.progress_bar.set_fraction (1);
@@ -308,6 +304,7 @@ namespace Ciano.Controllers {
                     }
                 }
             } catch (Error e) {
+                validate_error_in_process (subprocess, row, item, error); 
                 GLib.critical ("Error: %s\n", e.message);
             }
         }
