@@ -244,10 +244,7 @@ namespace Ciano.Controllers {
          * @see convert_async
          * @see validate_process_completed
          * @see validate_error_in_process
-         * @param  {@code Subprocess}     subprocess
-         * @param  {@code InputStream}    input_stream
          * @param  {@code ItemConversion} item
-         * @param  {@code RowConversion}  row
          * @param  {@code string}         name_format
          * @return {@code void}
          */
@@ -281,6 +278,7 @@ namespace Ciano.Controllers {
          * @see Ciano.Configs.Properties
          * @see Ciano.Utils.WidgetUtil
          * @see Ciano.Widgets.RowConversion
+         * @see validate_error_in_process
          * @param  {@code Subprocess}    subprocess
          * @param  {@code RowConversion} row
          * @param  {@code ItemConversion} item
