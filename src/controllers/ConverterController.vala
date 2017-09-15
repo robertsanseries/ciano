@@ -263,48 +263,42 @@ namespace Ciano.Controllers {
                 this.converter_view.list_conversion.list_box.add (row);
 
                 convert_async.begin (input_stream, row, item, error, (obj, async_res) => {
-                    WidgetUtil.set_visible (row.button_cancel, false);
-                    WidgetUtil.set_visible (row.button_remove, true);
-                    validate_process_completed (subprocess, row, item, error);
+                    try {
+                        WidgetUtil.set_visible (row.button_cancel, false);
+                        WidgetUtil.set_visible (row.button_remove, true);
+
+                        if (subprocess.get_successful ()) {
+                            validate_process_completed (subprocess, row, item, error);      
+                        } else {                           
+                            validate_error_in_process (subprocess, row, item, error); 
+                        }
+                    } catch (Error e) {
+                        GLib.warning ("Error: %s\n", e.message);
+                    }
                 });
-            } catch (Error e) {
-                GLib.critical ("Error: %s\n", e.message);
+            } catch (Error e) {                
+                GLib.warning ("Error: %s\n", e.message);
             }
         }
 
         /**
-         * Validates whether the process has been finalized normally or not.
+         * If the conversion worked correctly: update row data.
          *
          * @see Ciano.Configs.Properties
          * @see Ciano.Utils.WidgetUtil
          * @see Ciano.Widgets.RowConversion
-         * @see validate_error_in_process
          * @param  {@code Subprocess}    subprocess
          * @param  {@code RowConversion} row
          * @param  {@code ItemConversion} item
          * @return {@code void}
          */
-        private void validate_process_completed (Subprocess subprocess, RowConversion row, ItemConversion item, int error) {
-            try {
-                if(subprocess.wait_check ()) {
-                    row.progress_bar.set_fraction (1);
-                    row.status.label = Properties.TEXT_SUCESS_IN_CONVERSION;
-                    
-                    if (this.settings.complete_notify) {
-                        send_notification (item.name, Properties.TEXT_SUCESS_IN_CONVERSION);
-                    }
-                } else { 
-                    row.progress_bar.set_fraction (0);
-                    row.status.label = Properties.TEXT_ERROR_IN_CONVERSION_PROCESS;
-
-                    if (this.settings.complete_notify) {
-                        send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION_PROCESS);
-                    }
-                }
-            } catch (Error e) {
-                validate_error_in_process (subprocess, row, item, error); 
-                GLib.critical ("Error: %s\n", e.message);
-            }
+        private void validate_process_completed (Subprocess subprocess, RowConversion row, ItemConversion item, int error) throws Error {
+            row.progress_bar.set_fraction (1);
+            row.status.label = Properties.TEXT_SUCESS_IN_CONVERSION;
+            
+            if (this.settings.complete_notify) {
+                send_notification (item.name, Properties.TEXT_SUCESS_IN_CONVERSION);
+            } 
         }
 
         /**
@@ -314,13 +308,13 @@ namespace Ciano.Controllers {
          * @see Ciano.Configs.Properties 
          * @see Ciano.Utils.WidgetUtil
          * @see Ciano.Widgets.RowConversion
-         * @param  {@code Subprocess}    subprocess
-         * @param  {@code RowConversion} row
+         * @param  {@code Subprocess}     subprocess
+         * @param  {@code RowConversion}  row
          * @param  {@code ItemConversion} item
          * @return {@code void}
          */
         private void validate_error_in_process (Subprocess subprocess, RowConversion row, ItemConversion item, int error) {
-            if (subprocess.get_exit_status () == 1) {
+            if (subprocess.get_status () == 1) {
                 row.progress_bar.set_fraction (0);
                 
                 if (error == 0) {
@@ -332,7 +326,7 @@ namespace Ciano.Controllers {
                 }
             }
 
-            if (subprocess.get_exit_status () == 9) {
+            if (subprocess.get_status () == 9) {
                 row.progress_bar.set_fraction (0);
                 row.status.label = Properties.TEXT_CANCEL_IN_CONVERSION;
             }
