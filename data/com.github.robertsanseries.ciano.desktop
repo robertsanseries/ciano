@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Ciano
-Comment=A multimedia converter
+Comment=A simple multimedia file converter
 Icon=/usr/share/ciano/images/com.github.robertsanseries.ciano.svg
 Exec=com.github.robertsanseries.ciano
 Terminal=false

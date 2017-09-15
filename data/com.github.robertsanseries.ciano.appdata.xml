@@ -5,26 +5,23 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0+</project_license>
     <name>Ciano</name>
-    <summary>A multimedia converter</summary>
+    <summary>A simple multimedia file converter</summary>
     <developer_name>Robert San</developer_name>
     <provides>
         <binary>com.github.robertsanseries.ciano</binary>
     </provides>
-    <!--<screenshots>
+    <screenshots>
         <screenshot type="default">
             <image>https://raw.githubusercontent.com/robertsanseries/ciano/master/data/images/screenshot.png</image>
         </screenshot>
-        <screenshot type="default">
-            <image>https://raw.githubusercontent.com/robertsanseries/ciano/master/data/images/screenshot-2.png</image>
-        </screenshot>
-    </screenshots>-->
+    </screenshots>
     <description>
         <p>Ciano is a multimedia converter for all the format you need.</p>
         <p>Support the conversion of:</p>
         <ul>
-          <li>Video - MP4, 3GP, MPG, AVI, WMV, FLV, SWF</li>
-          <li>Audio - MP3, WMA, AMR, OGG, AAC, WAV</li>
-          <li>Images - JPG, BMP, PNG, TIF, ICO, GIF, TGA</li>
+          <li>Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB</li>
+          <li>Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A</li>
+          <li>Images - JPG, BMP, PNG, TIF, GIF, TGA</li>
         </ul>
     </description>   
     <url type="homepage">https://robertsanseries.github.io/ciano/</url>
@@ -33,6 +30,6 @@
     <update_contact>robertsanseries@gmail.com</update_contact>
     <custom>
         <value key="x-appcenter-color-primary">#8cd5ff</value>
-        <value key="x-appcenter-color-primary-text">#000000</value>
+        <value key="x-appcenter-color-primary-text">#34CACA</value>
     </custom>
 </component>
