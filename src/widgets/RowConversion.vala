@@ -60,7 +60,11 @@ namespace Ciano.Widgets {
             var icone = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
             this.box_name_progress = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-            this.name_video = new Gtk.Label (name);
+            if (name.length > 85) {
+               this.name_video = new Gtk.Label (name.slice (0, 85) + "...");
+            } else {
+                this.name_video = new Gtk.Label (name);
+            }
             this.name_video.halign = Gtk.Align.START;
 
             this.progress_bar = new Gtk.ProgressBar ();
