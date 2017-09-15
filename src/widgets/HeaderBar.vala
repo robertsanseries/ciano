@@ -18,6 +18,7 @@
 */
 
 using Ciano.Configs;
+using Ciano.Utils;
 
 namespace Ciano.Widgets {
 
@@ -44,7 +45,24 @@ namespace Ciano.Widgets {
         public HeaderBar () {
             this.set_title (Properties.PROGRAME_NAME);
             this.show_close_button = true;
+            icon_open_output_folder ();
             icon_settings ();
+        }
+
+        private void icon_open_output_folder () {
+            var output_folder = new Gtk.Button();
+            output_folder.set_image (new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR));
+            output_folder.tooltip_text = ("Output folder");
+            
+            output_folder.clicked.connect(() => {
+                var settings = Ciano.Configs.Settings.get_instance ();
+                var uris = new GenericArray<string> ();
+                uris.add (settings.output_folder);
+
+                FileUtil.open_folder_file_app(uris.data);
+            });
+
+            this.pack_start (output_folder);
         }
 
         /**
