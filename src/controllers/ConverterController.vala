@@ -392,13 +392,23 @@ namespace Ciano.Controllers {
          */
         private RowConversion create_row_conversion (string icon, string item_name, string name_format, Subprocess subprocess, bool btn_cancel) {
             var row = new RowConversion (icon, item_name, 0, name_format);
+            
             row.button_cancel.clicked.connect(() => {
                 subprocess.force_exit ();
                 btn_cancel = true;
                 WidgetUtil.set_visible (row.button_cancel, false);
                 WidgetUtil.set_visible (row.button_remove, true);
             });
-                
+
+            row.button_remove.clicked.connect(() => {
+                row.destroy ();
+                this.converter_view.list_conversion.item_quantity += -1;
+                if(this.converter_view.list_conversion.item_quantity == 0) {
+                    this.converter_view.list_conversion.stack.set_visible_child_full (Constants.WELCOME_VIEW, Gtk.StackTransitionType.SLIDE_RIGHT);
+                }
+            });            
+
+            this.converter_view.list_conversion.item_quantity += 1;                
             WidgetUtil.set_visible (row.button_remove, false);                
 
             return row;

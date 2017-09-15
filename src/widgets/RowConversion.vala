@@ -86,9 +86,6 @@ namespace Ciano.Widgets {
             this.button_remove.tooltip_text = (Properties.TEXT_REMOVE_ITEM_FROM_LIST);
             this.button_remove.valign = Gtk.Align.CENTER;
             this.button_remove.halign = Gtk.Align.CENTER;
-            this.button_remove.clicked.connect(() => {
-                this.destroy ();
-            });
             
             box_name_progress.pack_start (this.name_video, true, true);
             box_name_progress.pack_start (this.progress_bar, true, true);

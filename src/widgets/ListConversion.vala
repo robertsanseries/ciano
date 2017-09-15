@@ -31,8 +31,12 @@ namespace Ciano.Widgets {
      */
     public class ListConversion : Gtk.Grid {
         
-        public Gtk.Stack   stack;
-        public Gtk.ListBox list_box;        
+        public Gtk.Stack               stack;
+        public Gtk.ListBox             list_box;
+        public Granite.Widgets.Welcome welcome;
+
+        // Responsible for the amount of item in the ListBox
+        public int item_quantity = 0;
 
         /**
          * Constructs a new {@code ListConversion} object displaying the list of items being converted/converted
@@ -46,7 +50,7 @@ namespace Ciano.Widgets {
             this.stack = new Gtk.Stack ();
             this.stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
 
-            var welcome = new Granite.Widgets.Welcome (
+            this.welcome = new Granite.Widgets.Welcome (
               Properties.TEXT_EMPTY_CONVERTING_LIST,
               Properties.TEXT_SELECT_OPTION_TO_CONVERT
             );
@@ -54,10 +58,8 @@ namespace Ciano.Widgets {
             this.list_box = new Gtk.ListBox ();
             this.list_box.expand = true;
 
-            this.stack.add_named (welcome, Constants.WELCOME_VIEW);
+            this.stack.add_named (this.welcome, Constants.WELCOME_VIEW);
             this.stack.add_named (this.list_box, Constants.LIST_BOX_VIEW);
-            
-            this.stack.set_visible_child_name (Constants.WELCOME_VIEW);
 
             var scrolled = new Gtk.ScrolledWindow (null, null);
             scrolled.hscrollbar_policy = Gtk.PolicyType.EXTERNAL;
