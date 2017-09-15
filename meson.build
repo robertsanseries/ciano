@@ -26,7 +26,7 @@ subdir('data')
 subdir('po')
 subdir('src')
 
-e = executable('com.github.robertsanseries.ciano',
+executable('com.github.robertsanseries.ciano',
     sources,
     gresource,
     c_args: c_args,
@@ -38,8 +38,6 @@ e = executable('com.github.robertsanseries.ciano',
     ],
     install : true
 )
-
-test('cianotest', e)
 
 meson.add_install_script('post_install.py')
 
