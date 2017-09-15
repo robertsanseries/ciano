@@ -2102,8 +2102,8 @@ public class SourceList : Gtk.ScrolledWindow {
                     // item and the newly selected, and only emits the item_selected() signal
                     // if they are different. See cursor_changed() for a better explanation
                     // of this behavior.
-                    if (selected != null && selected.parent == expandable_item)
-                        set_selected (selected, true);
+                    //if (selected != null && selected.parent == expandable_item)
+                      //  set_selected (selected, true);
 
                     // Collapsing expandable_item's row also collapsed all its children,
                     // and thus we need to update the "expanded" property of each of them
