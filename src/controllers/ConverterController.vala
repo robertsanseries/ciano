@@ -364,7 +364,7 @@ namespace Ciano.Controllers {
                         break; 
                     } else {
                         // there is no return on image conversion, if display is pq was generated some error.
-                        if (item.type_item != IMAGE) {
+                        if (item.type_item != TypeItemEnum.IMAGE) {
                             process_line (str_return, row, ref total, error);
 
                             if (error > 0) {
