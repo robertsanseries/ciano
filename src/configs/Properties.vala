@@ -60,9 +60,9 @@ namespace Ciano.Configs {
         public abstract const string TEXT_REMOVE = "Remove";
         public abstract const string TEXT_CANCEL_CONVERSION = "Cancel Conversion";
         public abstract const string TEXT_REMOVE_ITEM_FROM_LIST = "Remove item from list";
-        public abstract const string TEXT_SIZE_CUSTOM = "Size: ";
-        public abstract const string TEXT_TIME_CUSTOM = " - Time: ";
-        public abstract const string TEXT_BITRATE_CUSTOM = " - Bitrate: ";
+        public abstract const string TEXT_SIZE_CUSTOM = " - size: ";
+        public abstract const string TEXT_TIME_CUSTOM = " - time: ";
+        public abstract const string TEXT_BITRATE_CUSTOM = " - bitrate: ";
         public abstract const string TEXT_SUCESS_IN_CONVERSION = "Conversion completed";
         public abstract const string TEXT_ERROR_IN_CONVERSION = "Error in conversion";
         public abstract const string TEXT_CANCEL_IN_CONVERSION = "Conversion canceled";
@@ -72,5 +72,6 @@ namespace Ciano.Configs {
         public abstract const string MSG_ERROR_NO_SUCH_FILE_DIRECTORY = "Error: No such file or directory";
         public abstract const string MSG_ERROR_INVALID_ARGUMENT = "Error: Invalid argument";
         public abstract const string TEXT_STARTING = "Starting...";
+        public abstract const string TEXT_PERCENTAGE = "percentage: ";
     }
 }

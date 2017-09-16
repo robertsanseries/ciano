@@ -150,15 +150,15 @@ msgid "Remove item from list"
 msgstr ""
 
 #: src/configs/Properties.vala:63
-msgid "Size: "
+msgid " - size: "
 msgstr ""
 
 #: src/configs/Properties.vala:64
-msgid " - Time: "
+msgid " - time: "
 msgstr ""
 
 #: src/configs/Properties.vala:65
-msgid " - Bitrate: "
+msgid " - bitrate: "
 msgstr ""
 
 #: src/configs/Properties.vala:66
@@ -197,3 +197,6 @@ msgstr ""
 msgid "Starting..."
 msgstr ""
 
+#: src/configs/Properties.vala:75
+msgid "percentage: "
+msgstr ""

@@ -267,12 +267,11 @@ namespace Ciano.Controllers {
                         WidgetUtil.set_visible (row.button_cancel, false);
                         WidgetUtil.set_visible (row.button_remove, true);
 
-                        if (subprocess.get_successful ()) {
+                        if (subprocess.wait_check ()) {
                             validate_process_completed (subprocess, row, item, error);      
-                        } else {                           
-                            validate_error_in_process (subprocess, row, item, error); 
-                        }
+                        } 
                     } catch (Error e) {
+                        validate_error_in_process (subprocess, row, item, error); 
                         GLib.warning ("Error: %s\n", e.message);
                     }
                 });
@@ -364,12 +363,18 @@ namespace Ciano.Controllers {
                     if (str_return == null) {
                         break; 
                     } else {
-                        process_line (str_return, row, ref total, error);
+                        // there is no return on image conversion, if display is pq was generated some error.
+                        if (item.type_item != IMAGE) {
+                            process_line (str_return, row, ref total, error);
 
-                        if (error > 0) {
-                            if (this.settings.erro_notify) {
-                                send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION);    
+                            if (error > 0) {
+                                if (this.settings.erro_notify) {
+                                    send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION);    
+                                }
+                                break;
                             }
+                        } else {
+                            error++;
                             break;
                         }
                     }
@@ -485,7 +490,7 @@ namespace Ciano.Controllers {
                 int index_bitrate = str_return.index_of ("bitrate=");
                 bitrate           = str_return.substring ( index_bitrate + 8, 11);
 
-                row.status.label = Properties.TEXT_SIZE_CUSTOM + size.strip () + Properties.TEXT_TIME_CUSTOM + time.strip () + Properties.TEXT_BITRATE_CUSTOM + bitrate.strip ();
+                row.status.label = Properties.TEXT_PERCENTAGE + progress.to_string() + "%" + Properties.TEXT_SIZE_CUSTOM + size.strip () + Properties.TEXT_TIME_CUSTOM + time.strip () + Properties.TEXT_BITRATE_CUSTOM + bitrate.strip ();
             }
 
             if (str_return.contains ("No such file or directory")) {
