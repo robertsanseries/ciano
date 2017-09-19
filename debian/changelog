@@ -1,11 +1,17 @@
-com.github.robertsanseries.ciano (0.1.0) xenial; urgency=low
+com.github.robertsanseries.ciano (0.1.2) xenial; urgency=low
 
-  * Initial Release
+  * Correction of the incorrect filename bug (formart -> format)
 
- -- Robert San <robertsanseries@gmail.com>  Fri, 15 Sep 2017 22:10:00 -0300
+ -- Robert San <robertsanseries@gmail.com>  Mon, 18 Sep 2017 23:42:00 -0300
 
 com.github.robertsanseries.ciano (0.1.1) xenial; urgency=low
 
   * Invalid Desktop File Fix
 
  -- Robert San <robertsanseries@gmail.com>  Fri, 15 Sep 2017 22:39:00 -0300
+ 
+com.github.robertsanseries.ciano (0.1.0) xenial; urgency=low
+
+  * Initial Release
+
+ -- Robert San <robertsanseries@gmail.com>  Fri, 15 Sep 2017 22:10:00 -0300
