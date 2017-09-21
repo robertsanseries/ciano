@@ -61,9 +61,8 @@ namespace Ciano.Widgets {
             var grid = new Gtk.Grid ();
             grid.row_spacing = 5;
             grid.column_spacing = 5;
-            grid.margin = 12;
+            grid.margin = 7;
             grid.margin_top = 5;
-            grid.margin_bottom = 5;
             
             init_options ();
             mount_options (grid);
