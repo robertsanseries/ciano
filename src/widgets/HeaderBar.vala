@@ -70,7 +70,7 @@ namespace Ciano.Widgets {
          */
         private void icon_settings () {
             this.app_menu = new Gtk.MenuButton();
-            this.app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+            this.app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
             this.app_menu.tooltip_text = ("Settings");
 
             menu_settings();
