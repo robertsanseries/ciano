@@ -36,7 +36,6 @@ namespace Ciano.Widgets {
         private Gtk.Switch             output_source_file_folder;
         private Gtk.Switch             complete_notify;
         private Gtk.Switch             erro_notify;
-        private Gtk.Button             default_settings;
 
         /**
          * Constructs a new {@code DialogPreferences} object responsible for assembling the dialog box structure and
@@ -177,25 +176,17 @@ namespace Ciano.Widgets {
          * Mount buttons section.
          *
          * @see Ciano.Configs.Properties
-         * @see reset_default_settings
          * @param  {@code Gtk.Grid} grid
          * @param  {@code int} row
          * @return {@code void}
          */
-        private void mount_buttons (Gtk.Grid grid, ref int row) {
-            this.default_settings = new Gtk.Button.with_label (Properties.TEXT_DEFAULT_SETTINGS);
-            this.default_settings.clicked.connect (reset_default_settings);
-            
+        private void mount_buttons (Gtk.Grid grid, ref int row) {            
             var close_button = new Gtk.Button.with_label (Properties.TEXT_CLOSE);
             close_button.clicked.connect (() => { this.destroy (); });
-
-            this.default_settings.margin_top = 25;
-            this.default_settings.hexpand     = true;
-            close_button.margin_top = 25;
-            close_button.hexpand     = true;
-
-            grid.attach (default_settings, 0, row, 1, 1);
-            grid.attach_next_to (close_button, this.default_settings, Gtk.PositionType.RIGHT, 3, 1);
+            close_button.margin_top = 15;
+            close_button.halign     = Gtk.Align.END;
+            
+            grid.attach (close_button, 3, row, 1, 1);
         }
 
         /**
@@ -232,34 +223,18 @@ namespace Ciano.Widgets {
          */
         private void add_option (Gtk.Grid grid, Gtk.Label label, Gtk.Widget widget, ref int row) {
             label.halign         = Gtk.Align.END;
-            label.hexpand         = true;
-            label.margin_left     = 35;
+            label.hexpand        = true;
+            label.margin_left    = 35;
             label.margin_top     = 0;
 
             widget.halign     = Gtk.Align.START;
-            widget.hexpand     = true;
+            widget.hexpand    = true;
             widget.margin_top = 0;            
 
             grid.attach (label, 0, row, 1, 1);
             grid.attach_next_to (widget, label, Gtk.PositionType.RIGHT, 3, 1);
 
             row++;
-        }
-
-        /**
-         * Method responsible for resetting the application settings to the default installation.
-         * 
-         * @see Ciano.Configs.Constants
-         * @return {@code void}
-         */
-        private void reset_default_settings () {
-            this.settings.output_folder = Environment.get_home_dir () + Constants.DIRECTORY_CIANO;
-            this.output_folder.set_current_folder (this.settings.output_folder);            
-            this.output_folder.hide ();
-            this.output_folder.show ();
-            this.output_source_file_folder.active = false;
-            this.complete_notify.active           = true;
-            this.erro_notify.active               = true;
         }
     }
 }
