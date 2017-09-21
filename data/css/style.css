@@ -20,7 +20,7 @@
 @define-color colorPrimary #80E5FF;
 @define-color textColorPrimary #333333;
 @define-color white #FFFFFF;
-@define-color white #000000;
+@define-color black #000000;
 @define-color whiteElementary #FAFAFA;
 @define-color blackElementary #333333;
 
@@ -38,4 +38,8 @@
 
 .color-label-error {
     color: #a10705;
+}
+
+.window-background-color {
+    background-color: @white;   
 }

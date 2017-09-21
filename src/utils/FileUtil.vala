@@ -63,7 +63,6 @@ namespace Ciano.Utils {
                 var directory = File.new_for_path (dir);
                 
                 if (!directory.query_exists ()) {
-                    // Create directory and parent directories if none exist
                     directory.make_directory_with_parents();
                 } 
 

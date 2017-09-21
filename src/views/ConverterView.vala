@@ -53,6 +53,7 @@ namespace Ciano.Views {
             this.app.set_size_request (1050, 700);
             this.app.deletable = true;
             this.app.resizable = true;
+            this.app.get_style_context ().add_class ("window-background-color");
 
             this.headerbar = new HeaderBar ();
             this.app.set_titlebar (this.headerbar);
@@ -62,14 +63,10 @@ namespace Ciano.Views {
             frame1.add (this.source_list);
 
             this.list_conversion = new ListConversion ();
-            var frame2 = new Gtk.Frame (null);
-            frame2.expand = true;
-            frame2.add (this.list_conversion);
-
-            this.margin = 12;
+            
             this.column_spacing = 10;
             this.attach (frame1, 0, 0, 1, 1);
-            this.attach_next_to (frame2, frame1, Gtk.PositionType.RIGHT, 10, 1);
+            this.attach_next_to (this.list_conversion, frame1, Gtk.PositionType.RIGHT, 10, 1);
         }
     }
 }
