@@ -32,8 +32,8 @@
     <url type="help">https://github.com/robertsanseries/ciano/issues</url>
     <update_contact>robertsanseries@gmail.com</update_contact>
     <custom>
-        <value key="x-appcenter-color-primary">#8cd5ff</value>
-        <value key="x-appcenter-color-primary-text">#34CACA</value>
+        <value key="x-appcenter-color-primary">#52D3D2</value>
+        <value key="x-appcenter-color-primary-text">#000000</value>
         <value key="x-appcenter-suggested-price">3</value>
     </custom>
 </component>
