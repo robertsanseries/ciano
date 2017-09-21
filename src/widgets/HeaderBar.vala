@@ -56,10 +56,7 @@ namespace Ciano.Widgets {
             
             output_folder.clicked.connect(() => {
                 var settings = Ciano.Configs.Settings.get_instance ();
-                var uris = new GenericArray<string> ();
-                uris.add (settings.output_folder);
-
-                FileUtil.open_folder_file_app(uris.data);
+                FileUtil.open_folder_file_app(settings.output_folder);                
             });
 
             this.pack_start (output_folder);

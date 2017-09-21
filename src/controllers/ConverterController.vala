@@ -250,6 +250,11 @@ namespace Ciano.Controllers {
          */
         private void start_conversion_process (ItemConversion item, string name_format) {
             try {
+                var directory = File.new_for_path (item.directory);
+                if (!directory.query_exists ()) {
+                    directory.make_directory_with_parents();
+                }
+
                 string uri = item.directory + item.name;
                 SubprocessLauncher launcher = new SubprocessLauncher (SubprocessFlags.STDERR_PIPE);
                 Subprocess subprocess       = launcher.spawnv (get_command (uri));

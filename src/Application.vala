@@ -42,18 +42,6 @@ namespace Ciano {
                 application_id: Constants.ID,
                 flags: ApplicationFlags.FLAGS_NONE
             );
-
-            try {
-                var directory = File.new_for_path (
-                    Environment.get_home_dir () + Constants.DIRECTORY_CIANO
-                );
-            
-                if (!directory.query_exists ()) {
-                    directory.make_directory_with_parents();
-                }
-            } catch (Error e) {
-                GLib.critical("Error: %s\n", e.message);
-            } 
         }
 
 
