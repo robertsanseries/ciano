@@ -35,7 +35,7 @@ namespace Ciano.Widgets {
         private Gtk.FileChooserButton  output_folder;
         private Gtk.Switch             output_source_file_folder;
         private Gtk.Switch             complete_notify;
-        private Gtk.Switch             erro_notify;
+        private Gtk.Switch             error_notify;
 
         /**
          * Constructs a new {@code DialogPreferences} object responsible for assembling the dialog box structure and
@@ -99,8 +99,8 @@ namespace Ciano.Widgets {
             this.complete_notify = new Gtk.Switch ();
             this.settings.schema.bind ("complete-notify", this.complete_notify, "active", SettingsBindFlags.DEFAULT);
 
-            this.erro_notify = new Gtk.Switch ();
-            this.settings.schema.bind ("erro-notify", this.erro_notify, "active", SettingsBindFlags.DEFAULT);
+            this.error_notify = new Gtk.Switch ();
+            this.settings.schema.bind ("error-notify", this.error_notify, "active", SettingsBindFlags.DEFAULT);
 
             if (this.output_source_file_folder.active) {
                 this.output_folder.sensitive = false;
@@ -138,14 +138,13 @@ namespace Ciano.Widgets {
             var label_output_folder = new Gtk.Label (Properties.TEXT_OUTPUT_FOLDER);
             add_section (grid, label_output_folder, ref row);
 
-                // Option: Select output
-                var label_select_output_folder = new Gtk.Label (Properties.TEXT_SELECT_OUTPUT_FOLDER);
-                add_option (grid, label_select_output_folder, this.output_folder, ref row);
-
                 // Option: Output to source file folder
                 var label_output_source_file_folder = new Gtk.Label (Properties.TEXT_OUTPUT_SOURCE_FILE_FOLDER);
                 add_option (grid, label_output_source_file_folder, this.output_source_file_folder, ref row);
 
+                // Option: Select output
+                var label_select_output_folder = new Gtk.Label (Properties.TEXT_SELECT_OUTPUT_FOLDER);
+                add_option (grid, label_select_output_folder, this.output_folder, ref row);
         }
 
         /**
@@ -168,8 +167,8 @@ namespace Ciano.Widgets {
                 add_option (grid, label_complete_notify, this.complete_notify, ref row);
                 
                 // Option: Erro Notify
-                var label_erro_notify = new Gtk.Label (Properties.TEXT_ERRO_NOTIFY);
-                add_option (grid, label_erro_notify, this.erro_notify, ref row);
+                var label_error_notify = new Gtk.Label (Properties.TEXT_ERRO_NOTIFY);
+                add_option (grid, label_error_notify, this.error_notify, ref row);
         }
 
         /**

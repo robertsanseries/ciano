@@ -54,15 +54,15 @@ msgid "Open output folder:"
 msgstr ""
 
 #: src/configs/Properties.vala:39
-msgid "Notify:"
+msgid "Notifications:"
 msgstr ""
 
 #: src/configs/Properties.vala:40
-msgid "Complete notify:"
+msgid "Notify about completed action:"
 msgstr ""
 
 #: src/configs/Properties.vala:41
-msgid "Erro Notify:"
+msgid "Notify about an error:"
 msgstr ""
 
 #: src/configs/Properties.vala:42

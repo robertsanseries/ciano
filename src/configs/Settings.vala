@@ -94,7 +94,7 @@ namespace Ciano.Configs {
          * by displaying a notification when there is a conversion error. 
          * Otherwise, the value will be {@code false}.
          */
-        public bool erro_notify { get; set; }
+        public bool error_notify { get; set; }
 
         /**
          * Constructs a new {@code Settings} object 

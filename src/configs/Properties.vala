@@ -36,9 +36,9 @@ namespace Ciano.Configs {
         public abstract const string TEXT_AFTER_CONVERTING = "After converting:";
         public abstract const string TEXT_SHUTDOWN_COMPUTER = "Shutdown computer:";
         public abstract const string TEXT_OPEN_OUTPUT_FOLDER = "Open output folder:";
-        public abstract const string TEXT_NOTIFY = "Notify:";
-        public abstract const string TEXT_COMPLETE_NOTIFY = "Complete notify:";
-        public abstract const string TEXT_ERRO_NOTIFY = "Erro Notify:";
+        public abstract const string TEXT_NOTIFY = "Notifications:";
+        public abstract const string TEXT_COMPLETE_NOTIFY = "Notify about completed action:";
+        public abstract const string TEXT_ERRO_NOTIFY = "Notify about an error:";
         public abstract const string TEXT_DEFAULT_SETTINGS = "Default Settings";
         public abstract const string TEXT_CLOSE = "Close";
         public abstract const string TEXT_CONVERT_FILE = "Convert File";

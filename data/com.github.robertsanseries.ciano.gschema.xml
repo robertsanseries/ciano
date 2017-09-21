@@ -44,7 +44,7 @@
 			<description>Complete notify</description>
 		</key> 
 	
-		<key name="erro-notify" type="b">
+		<key name="error-notify" type="b">
 			<default>true</default>
 			<summary>Erro Notify</summary>
 			<description>Erro Notify</description>

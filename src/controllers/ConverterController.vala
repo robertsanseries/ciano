@@ -373,7 +373,7 @@ namespace Ciano.Controllers {
                             process_line (str_return, row, ref total, error);
 
                             if (error > 0) {
-                                if (this.settings.erro_notify) {
+                                if (this.settings.error_notify) {
                                     send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION);    
                                 }
                                 break;
