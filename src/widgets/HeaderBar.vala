@@ -51,7 +51,7 @@ namespace Ciano.Widgets {
 
         private void icon_open_output_folder () {
             var output_folder = new Gtk.Button();
-            output_folder.set_image (new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR));
+            output_folder.set_image (new Gtk.Image.from_icon_name ("folder-saved-search", Gtk.IconSize.LARGE_TOOLBAR));
             output_folder.tooltip_text = ("Output folder");
             
             output_folder.clicked.connect(() => {
