@@ -12,7 +12,7 @@
 <a href="https://github.com/robertsanseries/ciano/releases/download/0.1.4/com.github.robertsanseries.ciano_0.1.4_amd64.deb">
 <img class="center"  src="https://robertsanseries.github.io/ciano/img/badge.svg" alt="Get it on .deb"></a> &nbsp
 <a  href="https://appcenter.elementary.io/com.github.robertsanseries.ciano" target="_blank"><img class="center" src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter"></a>
-
+<a href="https://robertsanseries.github.io/ciano">Website</a>
 </p>
 
 <p align="center">
