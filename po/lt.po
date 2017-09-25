@@ -1,0 +1,207 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.robertsanseries.ciano package.
+# Robert San <robertsanseries@gmail.com>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-25 15:34+0300\n"
+"PO-Revision-Date: 2017-09-25 15:45+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Last-Translator: Moo\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: lt\n"
+
+#: src/configs/Properties.vala:30
+msgid "Empty conversion list"
+msgstr "Konvertavimo sąrašas tuščias"
+
+#: src/configs/Properties.vala:31
+msgid "Ciano"
+msgstr "Ciano"
+
+#: src/configs/Properties.vala:32
+msgid "Preferences"
+msgstr "Nuostatos"
+
+#: src/configs/Properties.vala:33
+msgid "Output folder:"
+msgstr "Išvesties aplankas:"
+
+#: src/configs/Properties.vala:34
+msgid "Select the output folder:"
+msgstr "Pasirinkite išvesties aplanką:"
+
+#: src/configs/Properties.vala:35
+msgid "Output to source file folder:"
+msgstr "Išvesti į šaltinio failo aplanką:"
+
+#: src/configs/Properties.vala:36
+msgid "After converting:"
+msgstr "Po konvertavimo:"
+
+#: src/configs/Properties.vala:37
+msgid "Shutdown computer:"
+msgstr "Išjungti kompiuterį:"
+
+#: src/configs/Properties.vala:38
+msgid "Open output folder:"
+msgstr "Atverti išvesties aplanką:"
+
+#: src/configs/Properties.vala:39
+msgid "Notifications:"
+msgstr "Pranešimai:"
+
+#: src/configs/Properties.vala:40
+msgid "Notify about completed action:"
+msgstr "Pranešti apie užbaigtą veiksmą:"
+
+#: src/configs/Properties.vala:41
+msgid "Notify about an error:"
+msgstr "Pranešti apie klaidą:"
+
+#: src/configs/Properties.vala:42
+msgid "Default Settings"
+msgstr "Numatytieji nustatymai"
+
+#: src/configs/Properties.vala:43
+msgid "Close"
+msgstr "Užverti"
+
+#: src/configs/Properties.vala:44
+msgid "Convert File"
+msgstr "Konvertuoti failą"
+
+#: src/configs/Properties.vala:45
+msgid "Add items to conversion:"
+msgstr "Pridėti konvertuojamus elementus:"
+
+#: src/configs/Properties.vala:46
+msgid "Add File…"
+msgstr "Pridėti failą…"
+
+#: src/configs/Properties.vala:47
+msgid "Add Folder…"
+msgstr "Pridėti aplanką…"
+
+#: src/configs/Properties.vala:48
+msgid "Select a folder"
+msgstr "Pasirinkite aplanką"
+
+#: src/configs/Properties.vala:49
+msgid "Select file"
+msgstr "Pasirinkite failą"
+
+#: src/configs/Properties.vala:50
+msgid "Delete"
+msgstr "Ištrinti"
+
+#: src/configs/Properties.vala:51
+msgid "Cancel"
+msgstr "Atsisakyti"
+
+#: src/configs/Properties.vala:52
+msgid "Start conversion"
+msgstr "Pradėti konvertavimą"
+
+#: src/configs/Properties.vala:53
+msgid "Name"
+msgstr "Pavadinimas"
+
+#: src/configs/Properties.vala:54
+msgid "Directory"
+msgstr "Katalogas"
+
+#: src/configs/Properties.vala:55
+msgid ""
+"Select an option for which you want to \n"
+" convert your file"
+msgstr ""
+"Pasirinkite parametrą į kurį norite \n"
+" konvertuoti savo failą"
+
+#: src/configs/Properties.vala:56
+msgid "Convert file to"
+msgstr "Konvertuoti failą į"
+
+#: src/configs/Properties.vala:57
+msgid "Video"
+msgstr "Vaizdo įrašas"
+
+#: src/configs/Properties.vala:58
+msgid "Music"
+msgstr "Muzika"
+
+#: src/configs/Properties.vala:59
+msgid "Image"
+msgstr "Paveikslas"
+
+#: src/configs/Properties.vala:60
+msgid "Remove"
+msgstr "Šalinti"
+
+#: src/configs/Properties.vala:61
+msgid "Cancel Conversion"
+msgstr "Atsisakyti konvertavimo"
+
+#: src/configs/Properties.vala:62
+msgid "Remove item from list"
+msgstr "Šalinti elementą iš sąrašo"
+
+#: src/configs/Properties.vala:63
+msgid " - size: "
+msgstr " - dydis: "
+
+#: src/configs/Properties.vala:64
+msgid " - time: "
+msgstr " - laikas: "
+
+#: src/configs/Properties.vala:65
+msgid " - bitrate: "
+msgstr " - pralaidumas: "
+
+#: src/configs/Properties.vala:66
+msgid "Conversion completed"
+msgstr "Konvertavimas užbaigtas"
+
+#: src/configs/Properties.vala:67
+msgid "Error in conversion"
+msgstr "Klaida konvertavime"
+
+#: src/configs/Properties.vala:68
+msgid "Conversion canceled"
+msgstr "Konvertavimo atsisakyta"
+
+#: src/configs/Properties.vala:69
+msgid "Error in conversion process"
+msgstr "Klaida konvertavimo procese"
+
+#: src/configs/Properties.vala:70
+msgid "Error: experimental codecs are not enabled"
+msgstr "Klaida: eksperimentiniai kodekai nėra įjungti"
+
+#: src/configs/Properties.vala:71
+msgid "Error: invalid data found when processing input"
+msgstr "Klaida: apdorojant įvestį, rasti neteisingi duomenys"
+
+#: src/configs/Properties.vala:72
+msgid "Error: No such file or directory"
+msgstr "Klaida: Nėra tokio failo ar katalogo"
+
+#: src/configs/Properties.vala:73
+msgid "Error: Invalid argument"
+msgstr "Klaida: Neteisingas argumentas"
+
+#: src/configs/Properties.vala:74
+msgid "Starting..."
+msgstr "Pradedama..."
+
+#: src/configs/Properties.vala:75
+msgid "percentage: "
+msgstr "procentinė dalis: "
