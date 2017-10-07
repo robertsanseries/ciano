@@ -71,6 +71,7 @@ namespace Ciano.Configs {
         public abstract const string TEXT_ICO = "ICO";
         public abstract const string TEXT_GIF = "GIF";
         public abstract const string TEXT_TGA = "TGA";
+        public abstract const string TEXT_WEBM = "WEBM";
         public abstract const string [] ABOUT_AUTHORS = { "Robert San <robertsanseries@gmail.com>" };
         public abstract const Gtk.License ABOUT_LICENSE_TYPE = Gtk.License.GPL_3_0;
     }

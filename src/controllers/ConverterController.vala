@@ -636,7 +636,9 @@ namespace Ciano.Controllers {
                 case Constants.TEXT_VOB:
                     formats = get_array_formats_videos (Constants.TEXT_VOB);
                     break;
-                
+                case Constants.TEXT_WEBM:
+                    formats = get_array_formats_videos (Constants.TEXT_WEBM);
+                    break;
 
                 case Constants.TEXT_MP3:
                     formats = get_array_formats_music (Constants.TEXT_MP3);
@@ -743,6 +745,10 @@ namespace Ciano.Controllers {
 
             if(format_video != Constants.TEXT_VOB) {
                 array.add (Constants.TEXT_VOB);    
+            }
+
+            if(format_video != Constants.TEXT_WEBM) {
+                array.add (Constants.TEXT_WEBM);    
             }
 
             return array.data;

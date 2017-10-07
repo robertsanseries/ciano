@@ -77,6 +77,7 @@ namespace Ciano.Widgets {
             var 3gp_item = new SourceList.Item (Constants.TEXT_3GP);
             var mov_item = new SourceList.Item (Constants.TEXT_MOV);
             var vob_item = new SourceList.Item (Constants.TEXT_VOB);
+            var webm_item = new SourceList.Item (Constants.TEXT_WEBM);
 
             video_list.add (mp4_item);
             video_list.add (mpg_item);
@@ -87,6 +88,7 @@ namespace Ciano.Widgets {
             video_list.add (3gp_item);
             video_list.add (mov_item);
             video_list.add (vob_item);
+            video_list.add (webm_item);
 
             this.type_list.add (video_list);
         }
