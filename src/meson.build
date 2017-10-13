@@ -8,6 +8,7 @@ sources = files(
 	'enums/ColumnEnum.vala',
 	'enums/TypeItemEnum.vala',
 
+	'utils/ArrayUtil.vala',
 	'utils/FileUtil.vala',
 	'utils/StringUtil.vala',
 	'utils/TimeUtil.vala',

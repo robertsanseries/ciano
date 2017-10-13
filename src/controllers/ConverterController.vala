@@ -506,7 +506,7 @@ namespace Ciano.Controllers {
                 row.status.label = Properties.MSG_ERROR_INVALID_ARGUMENT;
                 row.status.get_style_context ().add_class ("color-label-error");
                 error++;
-            } else if (str_return.contains ("experimental codecs are not enabled")) {
+            } else if (str_return.contains ("Experimental codecs are not enabled")) {
                 row.status.label = Properties.MSG_ERROR_CODECS;
                 row.status.get_style_context ().add_class ("color-label-error");
                 error++;
@@ -540,6 +540,11 @@ namespace Ciano.Controllers {
                     array.add ("libx264");
                     array.add ("-acodec");
                     array.add ("aac");
+                }
+
+                if(this.name_format_selected.down () == "mmf") {
+                    array.add ("-ar");
+                    array.add ("44100");
                 }
 
                 array.add ("-strict");
@@ -662,31 +667,58 @@ namespace Ciano.Controllers {
                     break;
 
                 case Constants.TEXT_MP3:
-                    formats = get_array_formats_music (Constants.TEXT_MP3);
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_MP3), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
                     break;
                 case Constants.TEXT_WMA:
-                    formats = get_array_formats_music (Constants.TEXT_WMA);
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_WMA), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
                     break;
                 case Constants.TEXT_OGG:
-                    formats = get_array_formats_music (Constants.TEXT_OGG);
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_OGG), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
                     break;
                 case Constants.TEXT_WAV:
-                    formats = get_array_formats_music (Constants.TEXT_WAV);
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_WAV), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
                     break;
                 case Constants.TEXT_AAC:
-                    formats = get_array_formats_music (Constants.TEXT_AAC);
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_AAC), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
                     break;
                 case Constants.TEXT_FLAC:
-                    formats = get_array_formats_music (Constants.TEXT_FLAC);
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_FLAC), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
                     break;
                 case Constants.TEXT_AIFF:
-                    formats = get_array_formats_music (Constants.TEXT_AIFF);
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_AIFF), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
                     break;
                 case Constants.TEXT_MMF:
-                    formats = get_array_formats_music (Constants.TEXT_MMF);
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_MMF), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
                     break;
                 case Constants.TEXT_M4A:
-                    formats = get_array_formats_music (Constants.TEXT_M4A);
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_M4A), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
                     break;
 
                 case Constants.TEXT_JPG:
@@ -705,17 +737,10 @@ namespace Ciano.Controllers {
                     formats = get_array_formats_image (Constants.TEXT_ICO);
                     break;
                 case Constants.TEXT_GIF:
-                    var formats_gif1 = get_array_formats_image (Constants.TEXT_GIF);
-                    var formats_gif2 = get_array_formats_videos (Constants.TEXT_GIF);
-
-                    formats_gif1.foreach ((str) => {
-                        formats.add (str);
-                    });
-
-                    formats_gif2.foreach ((str) => {
-                        formats.add (str);
-                    });
-
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_image (Constants.TEXT_GIF), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
                     break;
                 case Constants.TEXT_TGA:
                     formats = get_array_formats_image (Constants.TEXT_TGA);
@@ -736,7 +761,7 @@ namespace Ciano.Controllers {
         private GenericArray<string> get_array_formats_videos (string format_video) {
             var array = new GenericArray<string> ();
 
-            if (format_video != Constants.TEXT_GIF) {
+            if (format_video != StringUtil.EMPTY) {
                 this.type_item = TypeItemEnum.VIDEO;
             }
 
@@ -784,7 +809,7 @@ namespace Ciano.Controllers {
                 array.add (Constants.TEXT_OGV);    
             }
 
-            if(format_video != Constants.TEXT_WEBM && format_video != Constants.TEXT_GIF) {
+            if(format_video != Constants.TEXT_WEBM && format_video != Constants.TEXT_GIF && this.type_item == TypeItemEnum.VIDEO) {
                 array.add (Constants.TEXT_WEBM);    
             }
 
@@ -802,7 +827,9 @@ namespace Ciano.Controllers {
         private GenericArray<string> get_array_formats_music (string format_music) {
             var array = new GenericArray<string> ();
 
-            this.type_item = TypeItemEnum.MUSIC;
+            if (format_music != StringUtil.EMPTY) {
+                this.type_item = TypeItemEnum.MUSIC;
+            }
 
             if(format_music != Constants.TEXT_MP3) {
                 array.add (Constants.TEXT_MP3);    
@@ -854,11 +881,14 @@ namespace Ciano.Controllers {
          * @see Ciano.Enums.TypeItemEnum
          * @param  {@code string} format_image
          * @return {@code string []}
+         * @since 0.1.5
          */
         private GenericArray<string> get_array_formats_image (string format_image) {
             var array = new GenericArray<string> ();
 
-            this.type_item = TypeItemEnum.IMAGE;
+            if (format_image != StringUtil.EMPTY) {
+                this.type_item = TypeItemEnum.IMAGE;
+            }
 
             if(format_image != Constants.TEXT_JPG) {
                 array.add (Constants.TEXT_JPG);    
