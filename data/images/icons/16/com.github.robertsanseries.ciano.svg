@@ -13,7 +13,7 @@
    height="16"
    id="svg3508"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="io.elementary.code.svg">
+   sodipodi:docname="com.github.robertsanseries.ciano.svg">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -216,7 +216,7 @@
      height="11.711167"
      width="10.234453"
      id="rect3412"
-     style="fill:#37c8ab;fill-opacity:1;stroke:#000000;stroke-width:0.13346021;stroke-opacity:0.15686275" />
+     style="fill:#37c8ab;fill-opacity:1;stroke:#000000;stroke-width:0.13346021;stroke-opacity:0.3137255" />
   <rect
      ry="0.38817036"
      y="0.23531491"
@@ -224,7 +224,7 @@
      height="13.083461"
      width="10.803016"
      id="rect3414"
-     style="opacity:1;fill:#80e5ff;fill-opacity:1;stroke:#000000;stroke-width:0.12717615;stroke-opacity:0.15686275" />
+     style="opacity:1;fill:#80e5ff;fill-opacity:1;stroke:#000000;stroke-width:0.12717615;stroke-opacity:0.3137255" />
   <path
      inkscape:connector-curvature="0"
      style="opacity:0.87699998;fill:url(#radialGradient3025-3);fill-opacity:1;stroke:none"
