@@ -5,7 +5,7 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0+</project_license>
     <name>Ciano</name>
-    <summary>A simple multimedia file converter</summary>
+    <summary>A multimedia file converter</summary>
     <developer_name>Robert San</developer_name>
     <provides>
         <binary>com.github.robertsanseries.ciano</binary>
@@ -16,10 +16,17 @@
         </screenshot>
     </screenshots>
     <description>
-        <p>Ciano is a multimedia converter for all the format you need.</p>
+        <p>The easiest way to convert your multimedia files to the most popular formats.</p>
+        <p>Characteristics:</p>
+        <ul>
+          <li>Conversion of multiple files at the same time</li>
+          <li>Possibility of changing output folder</li>
+          <li>Notification support</li>
+          <li>Close the application at any time with Ctrl + Q</li>
+        </ul>
         <p>Support the conversion of:</p>
         <ul>
-          <li>Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB</li>
+          <li>Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM</li>
           <li>Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A</li>
           <li>Images - JPG, BMP, PNG, TIF, GIF, TGA</li>
         </ul>
