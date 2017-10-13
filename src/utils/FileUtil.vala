@@ -105,5 +105,21 @@ namespace Ciano.Utils {
                 critical (e.message);
             }
         }
+
+        /**
+         * Get file extension name
+         *
+         * Exemple:
+         * > FileUtil.get_file_extension_name("hello-tech.avi");
+         * 
+         * @param {@code string} - name_file
+         * @return {@code string} - extension
+         */
+        public static string get_file_extension_name (string uri) {
+            int index = uri.last_index_of(".");
+            var extension = uri.substring(index, -1);
+
+            return extension;
+        }
     }
 }

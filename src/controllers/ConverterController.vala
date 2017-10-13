@@ -369,7 +369,7 @@ namespace Ciano.Controllers {
                         break; 
                     } else {
                         // there is no return on image conversion, if display is pq was generated some error.
-                        if (item.type_item != TypeItemEnum.IMAGE) {
+                        if (item.type_item != TypeItemEnum.IMAGE || this.name_format_selected.down () == "gif") {
                             process_line (str_return, row, ref total, error);
 
                             if (error > 0) {
@@ -535,7 +535,7 @@ namespace Ciano.Controllers {
                 array.add ("-i");
                 array.add (uri);
                 
-                if(this.name_format_selected.down () == "3gp" || this.name_format_selected.down () == "flv") {
+                if (this.name_format_selected.down () == "3gp" || this.name_format_selected.down () == "flv") {
                     array.add ("-vcodec");
                     array.add ("libx264");
                     array.add ("-acodec");
@@ -546,8 +546,26 @@ namespace Ciano.Controllers {
                 array.add ("-2");
                 array.add (new_file);
             } else if (this.type_item == TypeItemEnum.IMAGE) {
-                array.add ("convert");
-                array.add (uri);
+                if (this.name_format_selected.down () == "gif") {
+                    array.add ("ffmpeg");
+                    array.add ("-y");
+                    array.add ("-i");
+                    array.add (uri);
+
+                    if(".webm" == FileUtil.get_file_extension_name(uri)) {
+                        array.add ("-pix_fmt");
+                        array.add ("rgb8");
+                    } else {
+                        array.add ("-ss");
+                        array.add ("00:00:00.000");
+                        array.add ("-vf");
+                        array.add ("format=rgb8,format=rgb24");                       
+                    }
+                } else {
+                    array.add ("convert");
+                    array.add (uri);
+                }
+
                 array.add (new_file);
             }
 
@@ -603,7 +621,7 @@ namespace Ciano.Controllers {
          * @return {@code void}
          */
         private string [] mount_array_with_supported_formats (string name_format) {
-            string [] formats = null;
+            var formats = new GenericArray<string> ();
             
             switch (name_format) {
                 case Constants.TEXT_MP4:
@@ -687,14 +705,24 @@ namespace Ciano.Controllers {
                     formats = get_array_formats_image (Constants.TEXT_ICO);
                     break;
                 case Constants.TEXT_GIF:
-                    formats = get_array_formats_image (Constants.TEXT_GIF);
+                    var formats_gif1 = get_array_formats_image (Constants.TEXT_GIF);
+                    var formats_gif2 = get_array_formats_videos (Constants.TEXT_GIF);
+
+                    formats_gif1.foreach ((str) => {
+                        formats.add (str);
+                    });
+
+                    formats_gif2.foreach ((str) => {
+                        formats.add (str);
+                    });
+
                     break;
                 case Constants.TEXT_TGA:
                     formats = get_array_formats_image (Constants.TEXT_TGA);
                     break;
             }
 
-            return formats;
+            return formats.data;
         }
 
         /**
@@ -705,10 +733,12 @@ namespace Ciano.Controllers {
          * @param  {@code string} format_video
          * @return {@code string []}
          */
-        private string [] get_array_formats_videos (string format_video) {
+        private GenericArray<string> get_array_formats_videos (string format_video) {
             var array = new GenericArray<string> ();
 
-            this.type_item = TypeItemEnum.VIDEO;
+            if (format_video != Constants.TEXT_GIF) {
+                this.type_item = TypeItemEnum.VIDEO;
+            }
 
             if(format_video != Constants.TEXT_MP4) {
                 array.add (Constants.TEXT_MP4);    
@@ -754,11 +784,11 @@ namespace Ciano.Controllers {
                 array.add (Constants.TEXT_OGV);    
             }
 
-            if(format_video != Constants.TEXT_WEBM) {
+            if(format_video != Constants.TEXT_WEBM && format_video != Constants.TEXT_GIF) {
                 array.add (Constants.TEXT_WEBM);    
             }
 
-            return array.data;
+            return array;
         }
 
         /**
@@ -769,7 +799,7 @@ namespace Ciano.Controllers {
          * @param  {@code string} format_music
          * @return {@code void}
          */
-        private string [] get_array_formats_music (string format_music) {
+        private GenericArray<string> get_array_formats_music (string format_music) {
             var array = new GenericArray<string> ();
 
             this.type_item = TypeItemEnum.MUSIC;
@@ -814,7 +844,7 @@ namespace Ciano.Controllers {
                 array.add (Constants.TEXT_M4A);    
             }
 
-            return array.data;
+            return array;
         }
 
         /**
@@ -825,7 +855,7 @@ namespace Ciano.Controllers {
          * @param  {@code string} format_image
          * @return {@code string []}
          */
-        private string [] get_array_formats_image (string format_image) {
+        private GenericArray<string> get_array_formats_image (string format_image) {
             var array = new GenericArray<string> ();
 
             this.type_item = TypeItemEnum.IMAGE;
@@ -858,7 +888,7 @@ namespace Ciano.Controllers {
                 array.add (Constants.TEXT_TGA);    
             }
 
-            return array.data;
+            return array;
         }
     }
 }
