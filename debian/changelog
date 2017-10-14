@@ -1,3 +1,17 @@
+com.github.robertsanseries.ciano (0.1.5) xenial; urgency=low
+
+  * Support for video to audio conversion.
+  * Support for video to gif conversion.
+  * OGV video format support.
+  * WebM video format support.
+  * Added Brazilian Portuguese translations.
+  * Added Spanish translations.
+  * Added Lituano translations.
+  * Improving application description.
+  * Icon according to the Iconography section of the Human Interface Guidelines.
+
+ -- Robert San <robertsanseries@gmail.com>  Sat, 14 Oct 2017 00:50:00 -0300
+
 com.github.robertsanseries.ciano (0.1.4) xenial; urgency=low
 
   * Improvements made to the first stable release

@@ -12,4 +12,4 @@ Standards-Version: 3.9.3
 Package: com.github.robertsanseries.ciano
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, ffmpeg, imagemagick
-Description: A simple multimedia file converter
+Description: A multimedia file converter
