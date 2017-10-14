@@ -52,7 +52,7 @@ namespace Ciano.Widgets {
         private void icon_open_output_folder () {
             var output_folder = new Gtk.Button();
             output_folder.set_image (new Gtk.Image.from_icon_name ("folder-saved-search", Gtk.IconSize.LARGE_TOOLBAR));
-            output_folder.tooltip_text = ("Output folder");
+            output_folder.tooltip_text = (Properties.TEXT_OUTPUT_FOLDER);
             
             output_folder.clicked.connect(() => {
                 var settings = Ciano.Configs.Settings.get_instance ();
@@ -71,7 +71,7 @@ namespace Ciano.Widgets {
         private void icon_settings () {
             this.app_menu = new Gtk.MenuButton();
             this.app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
-            this.app_menu.tooltip_text = ("Settings");
+            this.app_menu.tooltip_text = (Properties.TEXT_SETTINGS);
 
             menu_settings();
 
@@ -88,7 +88,7 @@ namespace Ciano.Widgets {
          * @return {@code void}
          */
         private void menu_settings () {
-            var about_item = new Gtk.MenuItem.with_label ("Preferences");
+            var about_item = new Gtk.MenuItem.with_label (Properties.TEXT_PREFERENCES);
             about_item.activate.connect(() => {
                 item_selected ();
             });

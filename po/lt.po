@@ -205,3 +205,7 @@ msgstr "Pradedama..."
 #: src/configs/Properties.vala:75
 msgid "percentage: "
 msgstr "procentinė dalis: "
+
+#: src/configs/Properties.vala:76
+msgid "Settings"
+msgstr "Nustatymai"

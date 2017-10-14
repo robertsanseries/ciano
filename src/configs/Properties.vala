@@ -73,5 +73,6 @@ namespace Ciano.Configs {
         public abstract const string MSG_ERROR_INVALID_ARGUMENT = "Error: Invalid argument";
         public abstract const string TEXT_STARTING = "Starting...";
         public abstract const string TEXT_PERCENTAGE = "percentage: ";
+        public abstract const string TEXT_SETTINGS = "Settings";
     }
 }

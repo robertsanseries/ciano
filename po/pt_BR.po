@@ -200,3 +200,7 @@ msgstr "Iniciando..."
 #: src/configs/Properties.vala:75
 msgid "percentage: "
 msgstr "percentagem: "
+
+#: src/configs/Properties.vala:76
+msgid "Settings"
+msgstr "Configurações"
