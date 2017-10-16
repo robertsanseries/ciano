@@ -20,11 +20,11 @@
         <p>Characteristics:</p>
         <ul>
           <li>Conversion of multiple files at the same time</li>
-          <li>Possibility of changing output folder</li>
+          <li>Possibility of changing the output folder</li>
           <li>Notification support</li>
           <li>Close the application at any time with Ctrl + Q</li>
         </ul>
-        <p>Support the conversion of:</p>
+        <p>Supports the conversion of:</p>
         <ul>
           <li>Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM</li>
           <li>Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A</li>
