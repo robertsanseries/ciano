@@ -39,7 +39,7 @@ msgstr "Seleccione la carpeta de salida:"
 
 #: src/configs/Properties.vala:35
 msgid "Output to source file folder:"
-msgstr "Salida a la carpeta de origen de los archivos:"
+msgstr "Salida a la carpeta de origen:"
 
 #: src/configs/Properties.vala:36
 msgid "After converting:"
@@ -139,7 +139,7 @@ msgstr "Imagen"
 
 #: src/configs/Properties.vala:60
 msgid "Remove"
-msgstr "Retirar"
+msgstr "Eliminar"
 
 #: src/configs/Properties.vala:61
 msgid "Cancel conversion"
