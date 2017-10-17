@@ -15,10 +15,23 @@
 
 <div class="center">
   
-<h1 align="center"> Installation </h1>
+<h1 align="center"> Additional Information </h1>
 </div>
 
-### Dependencies
+### Contributing
+
+To help, access the links below:
+
+- [Guide on Code Style](https://github.com/robertsanseries/ciano/wiki/Guide-on-code-style)
+
+- [Proposing Design Changes](https://github.com/robertsanseries/ciano/wiki/Proposing-Design-Changes)
+
+- [Reporting Bugs](https://github.com/robertsanseries/ciano/wiki/Reporting-Bugs)
+
+- [Translate](https://github.com/robertsanseries/ciano/wiki/Translate)
+
+
+### Application Dependencies 
 These dependencies must be present before building
  - `meson (>=0.40)`
  - `valac (>=0.16)`
@@ -28,7 +41,7 @@ These dependencies must be present before building
  - `ffmpeg`
  - `imagemMagick`
  
- ### Building
+ ### Building and Installation
 
 ```
 git clone https://github.com/robertsanseries/ciano.git && cd ciano
@@ -44,27 +57,3 @@ com.github.robertsanseries.ciano
 ```
 sudo ninja uninstall
 ```
-
-### Test and Development
-
-```
-gdb
-com.github.robertsanseries.ciano
-```
-
-### Contributing
-
-To help, access the links below:
-
-- [Guide on Code Style](https://github.com/robertsanseries/ciano/wiki/Guide-on-code-style)
-
-- [Proposing Design Changes](https://github.com/robertsanseries/ciano/wiki/Proposing-Design-Changes)
-
-- [Reporting Bugs](https://github.com/robertsanseries/ciano/wiki/Reporting-Bugs)
-
-- [Translate](https://github.com/robertsanseries/ciano/wiki/Translate)
-
-
-### License
-
-This project is licensed under the GPL3 License - see the [LICENSE](LICENSE.md) file for details.
