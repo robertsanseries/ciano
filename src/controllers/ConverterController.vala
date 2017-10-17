@@ -557,7 +557,7 @@ namespace Ciano.Controllers {
                     array.add ("-i");
                     array.add (uri);
 
-                    if(".webm" == FileUtil.get_file_extension_name(uri)) {
+                    if("webm" == FileUtil.get_file_extension_name(uri)) {
                         array.add ("-pix_fmt");
                         array.add ("rgb8");
                     } else {
