@@ -43,7 +43,7 @@ namespace Ciano.Widgets {
          * @see icon_settings
          */
         public HeaderBar () {
-            this.set_title (Properties.PROGRAME_NAME);
+            this.set_title (Constants.PROGRAME_NAME);
             this.show_close_button = true;
             icon_open_output_folder ();
             icon_settings ();
@@ -52,7 +52,7 @@ namespace Ciano.Widgets {
         private void icon_open_output_folder () {
             var output_folder = new Gtk.Button();
             output_folder.set_image (new Gtk.Image.from_icon_name ("folder-saved-search", Gtk.IconSize.LARGE_TOOLBAR));
-            output_folder.tooltip_text = (Properties.TEXT_OUTPUT_FOLDER);
+            output_folder.tooltip_text = (Properties.TEXT_OPEN_OUTPUT_FOLDER);
             
             output_folder.clicked.connect(() => {
                 var settings = Ciano.Configs.Settings.get_instance ();

@@ -134,7 +134,7 @@ namespace Ciano.Controllers {
             }       
 
             chooser_file.set_filter (filter);
-            chooser_file.add_buttons ("Cancel", Gtk.ResponseType.CANCEL, "Add", Gtk.ResponseType.OK);
+            chooser_file.add_buttons (Properties.TEXT_CANCEL, Gtk.ResponseType.CANCEL, Properties.TEXT_ADD, Gtk.ResponseType.OK);
 
             if (chooser_file.run () == Gtk.ResponseType.OK) {
 
