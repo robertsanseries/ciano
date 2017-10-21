@@ -174,3 +174,48 @@ msgstr ""
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
 msgstr ""
+
+#: data/com.github.robertsanseries.ciano.desktop.in:3
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:8
+msgid "A multimedia file converter"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:19
+msgid "The easiest way to convert your multimedia files to the most popular formats."
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:20
+msgid "Characteristics:"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:22
+msgid "Conversion of multiple files at the same time"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:23
+msgid "Possibility of changing the output folder"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:24
+msgid "Notification support"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:25
+msgid "Close the application at any time with Ctrl + Q"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:27
+msgid "Supports the conversion of:"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:29
+msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:30
+msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:31
+msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
+msgstr ""

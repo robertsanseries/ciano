@@ -1,9 +1,6 @@
 [Desktop Entry]
 Name=Ciano
 Comment=A multimedia file converter
-Comment[es]=Un convertidor de archivos multimedia
-Comment[lt]=Paprastas multimedijos failų keitiklis
-Comment[pt_BR]=Um conversor de arquivos multimídia
 Icon=com.github.robertsanseries.ciano
 Exec=com.github.robertsanseries.ciano
 Terminal=false
