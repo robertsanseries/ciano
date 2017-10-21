@@ -12,165 +12,165 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/configs/Properties.vala:31
-msgid "Convert File"
-msgstr ""
-
-#: src/configs/Properties.vala:32
-msgid "Convert file to"
+msgid "Convert file"
 msgstr ""
 
 #: src/configs/Properties.vala:33
-msgid "Name"
-msgstr ""
-
-#: src/configs/Properties.vala:34
-msgid "Add items to conversion:"
+msgid "Convert file to"
 msgstr ""
 
 #: src/configs/Properties.vala:35
-msgid "Directory"
-msgstr ""
-
-#: src/configs/Properties.vala:36
-msgid "Add file"
+msgid "Name"
 msgstr ""
 
 #: src/configs/Properties.vala:37
-msgid "Delete"
-msgstr ""
-
-#: src/configs/Properties.vala:38
-msgid "Cancel"
+msgid "Add items to conversion:"
 msgstr ""
 
 #: src/configs/Properties.vala:39
-msgid "Start conversion"
+msgid "Directory"
 msgstr ""
 
-#: src/configs/Properties.vala:42
-msgid "Output folder:"
+#: src/configs/Properties.vala:41
+msgid "Add file"
 msgstr ""
 
 #: src/configs/Properties.vala:43
-msgid "Files origin:"
-msgstr ""
-
-#: src/configs/Properties.vala:44
-msgid "Select the output folder:"
+msgid "Delete"
 msgstr ""
 
 #: src/configs/Properties.vala:45
-msgid "Notifications:"
-msgstr ""
-
-#: src/configs/Properties.vala:46
-msgid "Notify about completed action:"
+msgid "Cancel"
 msgstr ""
 
 #: src/configs/Properties.vala:47
-msgid "Notify about an error:"
+msgid "Start conversion"
 msgstr ""
 
-#: src/configs/Properties.vala:48
-msgid "Close"
+#: src/configs/Properties.vala:49
+msgid "Output folder:"
 msgstr ""
 
 #: src/configs/Properties.vala:51
-msgid "Open output folder"
-msgstr ""
-
-#: src/configs/Properties.vala:52
-msgid "Settings"
+msgid "Files origin:"
 msgstr ""
 
 #: src/configs/Properties.vala:53
-msgid "Preferences"
+msgid "Select the output folder:"
 msgstr ""
 
-#: src/configs/Properties.vala:56
-msgid "Empty conversion list"
+#: src/configs/Properties.vala:55
+msgid "Notifications:"
 msgstr ""
 
 #: src/configs/Properties.vala:57
-msgid "Select an option from the side menu to which you want to \n convert your file"
+msgid "Notify about completed action:"
 msgstr ""
 
-#: src/configs/Properties.vala:60
-msgid "Starting..."
+#: src/configs/Properties.vala:59
+msgid "Notify about an error:"
 msgstr ""
 
 #: src/configs/Properties.vala:61
-msgid "Cancel Conversion"
-msgstr ""
-
-#: src/configs/Properties.vala:62
-msgid "Remove"
+msgid "Close"
 msgstr ""
 
 #: src/configs/Properties.vala:63
-msgid "Remove item from list"
+msgid "Open output folder"
 msgstr ""
 
-#: src/configs/Properties.vala:66
-msgid "Video"
+#: src/configs/Properties.vala:65
+msgid "Settings"
 msgstr ""
 
 #: src/configs/Properties.vala:67
-msgid "Music"
+msgid "Preferences"
 msgstr ""
 
-#: src/configs/Properties.vala:68
-msgid "Image"
+#: src/configs/Properties.vala:69
+msgid "Empty conversion list"
 msgstr ""
 
 #: src/configs/Properties.vala:71
-msgid "Select file"
-msgstr ""
-
-#: src/configs/Properties.vala:72
-msgid "Add"
+msgid "Select an option from the side menu to which you want to \n convert your file"
 msgstr ""
 
 #: src/configs/Properties.vala:73
-msgid "Conversion completed"
-msgstr ""
-
-#: src/configs/Properties.vala:74
-msgid "Conversion canceled"
+msgid "Starting..."
 msgstr ""
 
 #: src/configs/Properties.vala:75
-msgid "Error in conversion"
-msgstr ""
-
-#: src/configs/Properties.vala:76
-msgid "percentage: "
+msgid "Cancel conversion"
 msgstr ""
 
 #: src/configs/Properties.vala:77
-msgid " - size: "
-msgstr ""
-
-#: src/configs/Properties.vala:78
-msgid " - time: "
+msgid "Remove"
 msgstr ""
 
 #: src/configs/Properties.vala:79
-msgid " - bitrate: "
-msgstr ""
-
-#: src/configs/Properties.vala:80
-msgid "Error: experimental codecs are not enabled"
+msgid "Remove item from list"
 msgstr ""
 
 #: src/configs/Properties.vala:81
+msgid "Video"
+msgstr ""
+
+#: src/configs/Properties.vala:83
+msgid "Music"
+msgstr ""
+
+#: src/configs/Properties.vala:85
+msgid "Image"
+msgstr ""
+
+#: src/configs/Properties.vala:87
+msgid "Select file"
+msgstr ""
+
+#: src/configs/Properties.vala:89
+msgid "Add"
+msgstr ""
+
+#: src/configs/Properties.vala:91
+msgid "Conversion completed"
+msgstr ""
+
+#: src/configs/Properties.vala:93
+msgid "Conversion canceled"
+msgstr ""
+
+#: src/configs/Properties.vala:95
+msgid "Error in conversion"
+msgstr ""
+
+#: src/configs/Properties.vala:97
+msgid "percentage: "
+msgstr ""
+
+#: src/configs/Properties.vala:99
+msgid " - size: "
+msgstr ""
+
+#: src/configs/Properties.vala:101
+msgid " - time: "
+msgstr ""
+
+#: src/configs/Properties.vala:103
+msgid " - bitrate: "
+msgstr ""
+
+#: src/configs/Properties.vala:105
+msgid "Error: experimental codecs are not enabled"
+msgstr ""
+
+#: src/configs/Properties.vala:107
 msgid "Error: invalid data found when processing input"
 msgstr ""
 
-#: src/configs/Properties.vala:82
+#: src/configs/Properties.vala:109
 msgid "Error: No such file or directory"
 msgstr ""
 
-#: src/configs/Properties.vala:83s
+#: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
 msgstr ""
