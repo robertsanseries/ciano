@@ -82,7 +82,6 @@ namespace Ciano.Widgets {
             this.button_cancel.halign = Gtk.Align.CENTER;
 
             this.button_remove = new Gtk.Button.with_label (Properties.TEXT_REMOVE);
-            this.button_remove.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             this.button_remove.tooltip_text = (Properties.TEXT_REMOVE_ITEM_FROM_LIST);
             this.button_remove.valign = Gtk.Align.CENTER;
             this.button_remove.halign = Gtk.Align.CENTER;
