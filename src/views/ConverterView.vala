@@ -65,7 +65,7 @@ namespace Ciano.Views {
             this.list_conversion = new ListConversion ();
             
             this.column_spacing = 10;
-            this.attach (frame1, 0, 0, 1, 1);
+            this.attach (frame1, 0, 0, 2, 1);
             this.attach_next_to (this.list_conversion, frame1, Gtk.PositionType.RIGHT, 10, 1);
         }
     }
