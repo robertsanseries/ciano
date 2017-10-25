@@ -59,14 +59,16 @@ namespace Ciano.Views {
             this.app.set_titlebar (this.headerbar);
 
             this.source_list = new SourceListSidebar ();
-            var frame1 = new Gtk.Frame (null);
-            frame1.add (this.source_list);
+            var frame = new Gtk.Frame (null);
+            frame.add (this.source_list);
+            frame.width_request = 185;
 
             this.list_conversion = new ListConversion ();
             
-            this.column_spacing = 10;
-            this.attach (frame1, 0, 0, 2, 1);
-            this.attach_next_to (this.list_conversion, frame1, Gtk.PositionType.RIGHT, 10, 1);
+            var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+            paned.pack1 (frame, false, false);
+            paned.pack2 (list_conversion, true, false);
+            this.add (paned);
         }
     }
 }

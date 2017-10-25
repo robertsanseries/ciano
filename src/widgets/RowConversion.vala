@@ -68,7 +68,9 @@ namespace Ciano.Widgets {
             this.name_video.halign = Gtk.Align.START;
 
             this.progress_bar = new Gtk.ProgressBar ();
+            this.progress_bar.get_style_context ().add_class ("progress_bar");
             this.progress_bar.set_fraction (progress);
+            
             this.convert_to = new Gtk.Label (name_format);
             this.convert_to.set_use_markup (true);
 

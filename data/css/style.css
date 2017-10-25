@@ -43,3 +43,7 @@
 .window-background-color {
     background-color: @white;   
 }
+
+.progress_bar.progressbar {
+    background: @colorPrimary;
+}
