@@ -1,3 +1,10 @@
+com.github.robertsanseries.ciano (0.1.6) xenial; urgency=low
+
+  * Sidebar Size Correction.
+  * Correction of support for translations.
+
+ -- Robert San <robertsanseries@gmail.com>  Sat, 28 Oct 2017 14:26:00 -0300
+
 com.github.robertsanseries.ciano (0.1.5) xenial; urgency=low
 
   * Support for video to audio conversion.
