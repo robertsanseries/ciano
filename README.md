@@ -9,7 +9,7 @@
 
 
 <p align="center">
-    <img width="700" height="500" src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot"> <br>
+    <img src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot"> <br>
   <a href="https://github.com/robertsanseries/ciano/issues/new"> Report a problem! </a>
 </p>
 
@@ -41,18 +41,22 @@ These dependencies must be present before building
  - `ffmpeg`
  - `imagemMagick`
  
- ### Building and Installation
+ ### Building
 
 ```
 git clone https://github.com/robertsanseries/ciano.git && cd ciano
 meson build && cd build
 meson configure -Dprefix=/usr
 ninja
+```
+
+### Installation & executing
+```
 sudo ninja install
 com.github.robertsanseries.ciano
 ```
 
-### Deconstruct
+### Uninstalling
 
 ```
 sudo ninja uninstall
