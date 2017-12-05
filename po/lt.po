@@ -188,7 +188,7 @@ msgstr "Charakteristikos:"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:22
 msgid "Conversion of multiple files at the same time"
-msgstr "Keletą failų konvertavimas vienu metu"
+msgstr "Keleto failų konvertavimas vienu metu"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:23
 msgid "Possibility of changing the output folder"
@@ -200,20 +200,20 @@ msgstr "Pranešimų palaikymas"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:25
 msgid "Close the application at any time with Ctrl + Q"
-msgstr "Uždarykite programą bet kuriuo metu naudodami Ctrl + Q"
+msgstr "Programos užvėrimas bet kuriuo metu, naudojant Ctrl(Vald) + Q"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:27
 msgid "Supports the conversion of:"
-msgstr "Palaiko konvertuoti:"
+msgstr "Palaiko šiuos konvertavimus:"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:29
 msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-msgstr "Vaizdo įrašas - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+msgstr "Vaizdo įrašai - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:30
 msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-msgstr "Garso - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+msgstr "Garsai - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:31
 msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
-msgstr "Vaizdai - JPG, BMP, PNG, TIF, GIF, TGA"
+msgstr "Paveikslai - JPG, BMP, PNG, TIF, GIF, TGA"
