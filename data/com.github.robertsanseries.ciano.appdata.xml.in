@@ -32,7 +32,7 @@
         </ul>
     </description>
     <releases>
-        <release version="0.1.7" date="2018-01-02">
+        <release version="0.1.8" date="2018-01-02">
            <description>
                <p>Icons in the HIG standard and Inclusion/Update of languages</p>
                <ul>
