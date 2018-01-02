@@ -37,13 +37,13 @@
                <p>Icons in the HIG standard and Inclusion/Update of languages</p>
                <ul>
                    <li>The icons follow the HIG (@lainsce)</li>
-                   <li>language: Inclusion of the French (@nvivant)</li>
-                   <li>language: Inclusion of Chinese simplified (@trampover)</li>
-                   <li>language: pdate in Lithuanian (@welaq)</li>
+                   <li>Language: Inclusion of the French (@nvivant)</li>
+                   <li>Language: Inclusion of Chinese simplified (@trampover)</li>
+                   <li>Language: pdate in Lithuanian (@welaq)</li>
                </ul>
            </description>
         </release>
-    <releases> 
+    </releases> 
     <url type="homepage">https://robertsanseries.github.io/ciano/</url>
     <url type="bugtracker">https://github.com/robertsanseries/ciano/issues</url>
     <url type="help">https://github.com/robertsanseries/ciano/issues</url>
