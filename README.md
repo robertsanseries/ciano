@@ -1,8 +1,10 @@
 <div align="center">
-  <span align="center"> <img width="80" height="95" class="center" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon"></span>
+  <img class="center" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">
   <h1 align="center">Ciano</h1>
   <h3 align="center">A simple multimedia file converter. Built from the ground up for the elementary OS.</h3>
-  <a href="https://robertsanseries.github.io/ciano"> <p align="center">Visit our website for more information and download</p></a>
+  <a href="https://appcenter.elementary.io/com.github.robertsanseries.ciano" target="_blank">
+    <img align="center" src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
+    </a>
 </div>
 
 <br/>
@@ -14,9 +16,13 @@
 </p>
 
 <div class="center">
-  
-<h1 align="center"> Additional Information </h1>
+  <h1 align="center"> Additional Information </h1>
 </div>
+
+### Website
+<a href="https://robertsanseries.github.io/ciano">
+  Visit website
+</a>
 
 ### Contributing
 
