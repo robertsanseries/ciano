@@ -1,5 +1,5 @@
 <div align="center">
-  <img class="center" width="80" height="78" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">
+  <img class="center" width="80" height="78" src="data/images/com.github.robertsanseries.ciano.png" alt="Icon">
   <h1 align="center">Ciano</h1>
   <h3 align="center">A simple multimedia file converter.</h3>
   <a href="https://appcenter.elementary.io/com.github.robertsanseries.ciano" target="_blank">
@@ -11,7 +11,7 @@
 
 
 <p align="center">
-    <img src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot"> <br>
+    <img src="data/images/screenshot.png" alt="Screenshot"> <br>
   <a href="https://github.com/robertsanseries/ciano/issues/new"> Report a problem! </a>
 </p>
 
