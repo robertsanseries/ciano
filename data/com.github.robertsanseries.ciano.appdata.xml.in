@@ -30,13 +30,26 @@
           <li>Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A</li>
           <li>Images - JPG, BMP, PNG, TIF, GIF, TGA</li>
         </ul>
-    </description>   
+    </description>
+    <releases>
+        <release version="0.1.7" date="2018-01-02">
+           <description>
+               <p>Icons in the HIG standard and Inclusion/Update of languages</p>
+               <ul>
+                   <li>The icons follow the HIG (@lainsce)</li>
+                   <li>language: Inclusion of the French (@nvivant)</li>
+                   <li>language: Inclusion of Chinese simplified (@trampover)</li>
+                   <li>language: pdate in Lithuanian (@welaq)</li>
+               </ul>
+           </description>
+        </release>
+    <releases> 
     <url type="homepage">https://robertsanseries.github.io/ciano/</url>
     <url type="bugtracker">https://github.com/robertsanseries/ciano/issues</url>
     <url type="help">https://github.com/robertsanseries/ciano/issues</url>
     <update_contact>robertsanseries@gmail.com</update_contact>
     <custom>
-        <value key="x-appcenter-color-primary">#52D3D2</value>
+        <value key="x-appcenter-color-primary">#8AE4FF</value>
         <value key="x-appcenter-color-primary-text">#000000</value>
         <value key="x-appcenter-suggested-price">3</value>
     </custom>
