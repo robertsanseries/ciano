@@ -37,7 +37,7 @@ To help, access the links below:
 
 - [Reporting Bugs](https://github.com/robertsanseries/ciano/wiki/Reporting-Bugs)
 
-- [Translate](https://github.com/robertsanseries/ciano/wiki/Translate)
+- [How to Translate Ciano](https://github.com/robertsanseries/ciano/wiki/Translate)
 
 
 ### Application Dependencies 
