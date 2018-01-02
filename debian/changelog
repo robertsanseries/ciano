@@ -1,3 +1,9 @@
+com.github.robertsanseries.ciano (0.1.7) xenial; urgency=low
+
+  * Icons in the HIG standard and Inclusion/Update of languages
+
+ -- Robert San <robertsanseries@gmail.com>  Tue, 01 Jan 2018 00:54:00 -0300
+ 
 com.github.robertsanseries.ciano (0.1.6) xenial; urgency=low
 
   * Sidebar Size Correction.
