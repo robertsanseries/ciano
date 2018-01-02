@@ -12,7 +12,7 @@
 
 <p align="center">
     <img src="data/images/screenshot.png" alt="Screenshot"> <br>
-  <a href="https://github.com/robertsanseries/ciano/issues/new"> Report a problem! </a>
+  <a href="https://github.com/robertsanseries/ciano/issues"> Report a problem! </a>
 </p>
 
 <div class="center">
