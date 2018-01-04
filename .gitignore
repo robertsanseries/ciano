@@ -1,3 +1,5 @@
+.flatpak-builder/*
+app-dir/*
 build/*
 debian/build/*
 debian/com.github.robertsanseries.ciano.debhelper.log

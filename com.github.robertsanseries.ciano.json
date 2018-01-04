@@ -5,7 +5,6 @@
     "sdk": "org.gnome.Sdk",
     "command": "com.github.robertsanseries.ciano",
     "rename-icon": "com.github.robertsanseries.ciano",
-    "rename-desktop-file": "com.github.robertsanseries.ciano.desktop",
     "rename-appdata-file": "com.github.robertsanseries.ciano.appdata.xml",
     "build-options": {
         "env": {
@@ -14,17 +13,33 @@
         }
     },
     "finish-args": [
-        "--share=multimedia",
-        "--device=all",
         "--share=ipc",
         "--socket=x11",
+        "--device=all",
         "--socket=wayland",
+        "--filesystem=home",
+        "--talk-name=ca.desrt.dconf",
         "--filesystem=xdg-run/dconf",
         "--filesystem=~/.config/dconf:ro",
-        "--talk-name=ca.desrt.dconf",
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
     "modules": [
+        {
+            "name": "libgee",
+            "build-options": {
+                "env": {
+                    "PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR": "/app/share/gir-1.0",
+                    "PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR": "/app/lib/girepository-1.0"
+                }
+            },
+            "sources": [
+                {
+                    "type":"archive",
+                    "url": "https://github.com/GNOME/libgee/archive/0.20.0.tar.gz",
+                    "sha256": "42fe6d651910cb8b720167f71c5255a1b7b1afc82fecd3f31e61f9602b3b1335"
+                }
+            ]
+        },
         {
             "name": "granite",
             "buildsystem": "cmake-ninja",
@@ -51,29 +66,12 @@
             ]
         },
         {
-            "name": "libgee",
-            "build-options": {
-                "env": {
-                    "PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR": "/app/share/gir-1.0",
-                    "PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR": "/app/lib/girepository-1.0"
-                }
-            },
-            "sources": [
-                {
-                    "type":"archive",
-                    "url": "https://github.com/GNOME/libgee/archive/0.20.0.tar.gz",
-                    "sha256": "42fe6d651910cb8b720167f71c5255a1b7b1afc82fecd3f31e61f9602b3b1335"
-                }
-            ]
-        },
-        {
             "name": "ffmpeg",
             "config-opts": [
                 "--disable-debug",
                 "--disable-static",
                 "--enable-gpl",
                 "--enable-libvpx",
-                "--enable-libx264",
                 "--enable-shared",
                 "--enable-libxcb",
                 "--enable-libxcb-xfixes",
@@ -91,7 +89,6 @@
                 "--enable-encoder=ffvhuff",
                 "--enable-encoder=gif",
                 "--enable-encoder=libvpx_vp8",
-                "--enable-encoder=libx264",
                 "--enable-encoder=libx264rgb",
                 "--enable-encoder=png",
                 "--enable-demuxer=image2",
@@ -113,8 +110,8 @@
             "sources": [
                 {
                   "type": "archive",
-                  "url": "https://ffmpeg.org/releases/ffmpeg-3.4.tar.xz",
-                  "sha256": "aeee06e4d8b18d852c61ebbfe5e1bb7014b1e118e8728c1c2115f91e51bffbef"
+                  "url": "https://ffmpeg.org/releases/ffmpeg-2.8.11.tar.xz",
+                  "sha256": "38aa3aec93c480b34d33f3648aff9278581d151488b521995c084258613e1fe6"
                 }
             ]
         },
@@ -153,7 +150,7 @@
             {
               "type": "archive",
               "url": "https://www.imagemagick.org/download/ImageMagick-6.9.9-31.tar.xz",
-              "sha256": "732332a76cb62f067d680a90d85dd05a2f2592e0017af83becb639d05681106d"
+              "sha256": "b487091382271106ed8172a320604761d8234b8f954b2b37ed61025d436b551e"
             }
           ]
         },
@@ -165,12 +162,8 @@
                 {
                   "type":"archive",
                   "url":"https://github.com/robertsanseries/ciano/archive/0.1.9.zip",
-                  "sha256":"22c576656c8b7c81d45a749a88eeceb059d3e3f3e9814f7c44ae0770df68a638"
+                  "sha256":"b4c1e58d80fe1894f2341b693b0d84a686ced2853040312bbfef3ab31872b714"
                 }
-            ],
-            "post-install": [
-                "cp data/com.github.robertsanseries.ciano.gschema.xml /app/share/glib-2.0/schemas",
-                "glib-compile-schemas /app/share/glib-2.0/schemas"
             ]
         }
     ]
