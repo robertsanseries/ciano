@@ -164,7 +164,7 @@
             "sources": [
                 {
                   "type":"archive",
-                  "url":"https://github.com/robertsanseries/ciano/archive/v0.1.8.zip",
+                  "url":"https://github.com/robertsanseries/ciano/archive/0.1.8.zip",
                   "sha256":"22c576656c8b7c81d45a749a88eeceb059d3e3f3e9814f7c44ae0770df68a638"
                 }
             ],
