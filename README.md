@@ -29,6 +29,12 @@ Ciano is a simple multimedia file converter. Built from the ground up for elemen
 
 ### Contributing
 
+#### Donations
+ - If you like Ciano and you want to support its development, consider donating via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S698J2TUEMT3C).
+
+ - Brasil: Se você gosta de Ciano e quer apoiar seu desenvolvimento, considere doar via [PayPal Brasil](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FJ2EVELMCFPU6)
+
+#### Development
 To help, access the links below:
 
 - [Guide on Code Style](https://github.com/robertsanseries/ciano/wiki/Guide-on-code-style)
