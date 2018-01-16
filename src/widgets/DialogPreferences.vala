@@ -18,6 +18,7 @@
 */
 
 using Ciano.Configs;
+using Ciano.Services;
 using Ciano.Utils;
 
 namespace Ciano.Widgets {
@@ -31,7 +32,7 @@ namespace Ciano.Widgets {
      */
     public class DialogPreferences : Gtk.Dialog {
 
-        private Ciano.Configs.Settings settings;
+        private Ciano.Services.Settings settings;
         private Gtk.FileChooserButton  output_folder;
         private Gtk.Switch             output_source_file_folder;
         private Gtk.Switch             complete_notify;
@@ -42,7 +43,7 @@ namespace Ciano.Widgets {
          * get the instance of the {@code Settings} class with the last values set to be set in its components.
          *
          * @see Ciano.Configs.Properties
-         * @see Ciano.Config.Settings
+         * @see Ciano.Services.Settings
          * @see init_options
          * @see mount_options
          * @param {@code Gtk.Window} parent
@@ -56,7 +57,7 @@ namespace Ciano.Widgets {
             this.set_size_request (500, 350);
             this.set_modal (true);
 
-            this.settings = Ciano.Configs.Settings.get_instance ();
+            this.settings = Ciano.Services.Settings.get_instance ();
 
             var grid = new Gtk.Grid ();
             grid.row_spacing = 5;

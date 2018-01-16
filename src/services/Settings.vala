@@ -20,7 +20,7 @@
 using Ciano.Configs;
 using Ciano.Utils;
 
-namespace Ciano.Configs {
+namespace Ciano.Services {
 
     /**
      * The {@code Settings} class is responsible for defining all 

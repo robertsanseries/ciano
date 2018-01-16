@@ -1,6 +1,7 @@
 .flatpak-builder/*
 app-dir/*
 build/*
+core/*
 debian/build/*
 debian/com.github.robertsanseries.ciano.debhelper.log
 debian/com.github.robertsanseries.ciano.substvars

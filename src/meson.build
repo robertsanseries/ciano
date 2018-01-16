@@ -1,12 +1,14 @@
 sources = files(
 	'configs/Constants.vala',
-	'configs/Settings.vala',
 	'configs/Properties.vala',
 	
 	'controllers/ConverterController.vala',
 
 	'enums/ColumnEnum.vala',
 	'enums/TypeItemEnum.vala',
+
+
+	'services/Settings.vala',
 
 	'utils/ArrayUtil.vala',
 	'utils/FileUtil.vala',

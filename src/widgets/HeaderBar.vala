@@ -18,6 +18,7 @@
 */
 
 using Ciano.Configs;
+using Ciano.Services;
 using Ciano.Utils;
 
 namespace Ciano.Widgets {
@@ -55,7 +56,7 @@ namespace Ciano.Widgets {
             output_folder.tooltip_text = (Properties.TEXT_OPEN_OUTPUT_FOLDER);
             
             output_folder.clicked.connect(() => {
-                var settings = Ciano.Configs.Settings.get_instance ();
+                var settings = Ciano.Services.Settings.get_instance ();
                 FileUtil.open_folder_file_app(settings.output_folder);                
             });
 

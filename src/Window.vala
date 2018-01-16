@@ -47,7 +47,7 @@ namespace Ciano {
                 resizable: true
             );
 
-            var settings = Ciano.Configs.Settings.get_instance ();
+            var settings = Ciano.Services.Settings.get_instance ();
             int x = settings.window_x;
             int y = settings.window_y;
 
