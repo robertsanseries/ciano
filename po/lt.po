@@ -51,7 +51,7 @@ msgstr "Išvesties aplankas:"
 
 #: src/configs/Properties.vala:51
 msgid "Files origin:"
-msgstr "Failų kilmė:"
+msgstr "Failų pradinė vieta:"
 
 #: src/configs/Properties.vala:53
 msgid "Select the output folder:"
@@ -91,7 +91,7 @@ msgstr "Konvertavimo sąrašas tuščias"
 
 #: src/configs/Properties.vala:71
 msgid "Select an option from the side menu to which you want to \n convert your file"
-msgstr "Iš šono esančio meniu pasirinkite parinktį, į kurią norite \n konvertuoti failą"
+msgstr "Iš šone esančio meniu pasirinkite parinktį į kurią norite \n konvertuoti failą"
 
 #: src/configs/Properties.vala:73
 msgid "Starting..."
