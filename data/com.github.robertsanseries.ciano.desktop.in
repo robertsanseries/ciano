@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Ciano
-Comment=A multimedia file converter
+GenericName=Multimedia Converter
+Comment=Convert multimedia files to other formats
 Icon=com.github.robertsanseries.ciano
 Exec=com.github.robertsanseries.ciano
 Terminal=false
