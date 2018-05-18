@@ -1,6 +1,6 @@
 <div align="center">
-  <img class="center" width="80" height="78" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">
-  <h1 align="center">Ciano</h1>
+  <img class="center" width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">
+  <h1 class="rich-diff-level-zero">Ciano</h1>
   <h3 align="center">A multimedia file converter.</h3>
   <a href="https://appcenter.elementary.io/com.github.robertsanseries.ciano" target="_blank">
     <img align="center" src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
@@ -11,14 +11,13 @@
 
 <p align="center">
     <img src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot">
-    <br>
 </p>
 
 <div class="center">
   <h1 align="center"> Informations </h1>
 </div>
 
-## Description
+### Description
 
 A multimedia file converter focused on simplicity.
 
@@ -57,7 +56,6 @@ com.github.robertsanseries.ciano
 ```
 sudo ninja uninstall
 ```
-
 
 ### Contributing
 
