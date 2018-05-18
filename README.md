@@ -9,6 +9,11 @@
 
 <br/>
 
+<p align="center">
+    <img src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot">
+    <br>
+</p>
+
 <div class="center">
   <h1 align="center"> Informations </h1>
 </div>
