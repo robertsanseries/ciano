@@ -1,6 +1,8 @@
 <div align="center">
-  <img class="center" width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">
-  <h1 class="rich-diff-level-zero">Ciano</h1>
+  <div style="text-align: center;">
+    <img align="left" width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">
+    <h1 class="rich-diff-level-zero">Ciano</h1>
+  <div>
   <h3 align="center">A multimedia file converter.</h3>
   <a href="https://appcenter.elementary.io/com.github.robertsanseries.ciano" target="_blank">
     <img align="center" src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
