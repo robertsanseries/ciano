@@ -1,7 +1,7 @@
 <div align="center">
-    <img width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">
-    <h1>Ciano</h1>
-  <h3 align="center">A multimedia file converter.</h3>
+    <h1>
+        <img width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">Ciano</h1>
+  <h3 align="center">A multimedia file converter focused on simplicity.</h3>
 </div>
 
 <p align="center">
@@ -15,7 +15,7 @@
 
 ### Description
 
-A multimedia file converter focused on simplicity.
+Convert videos, music and pictures with the best possible experience.
 
 ### Links
 
