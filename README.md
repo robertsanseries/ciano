@@ -1,7 +1,7 @@
 <div align="center">
   <img class="center" width="80" height="78" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">
   <h1 align="center">Ciano</h1>
-  <h3 align="center">A simple multimedia file converter.</h3>
+  <h3 align="center">A multimedia file converter.</h3>
   <a href="https://appcenter.elementary.io/com.github.robertsanseries.ciano" target="_blank">
     <img align="center" src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
     </a>
@@ -9,23 +9,18 @@
 
 <br/>
 
-
-<p align="center">
-    <img src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot"> <br>
-  <a href="https://github.com/robertsanseries/ciano/issues"> Report a problem! </a>
-</p>
-
 <div class="center">
   <h1 align="center"> Informations </h1>
 </div>
 
-### Website
+## Description
 
-- [Visit website](https://robertsanseries.github.io/ciano)
+A multimedia file converter focused on simplicity.
 
-### Description
+### Links
 
-Ciano is a simple multimedia file converter. Built from the ground up for elementary OS. The easiest way to convert your multimedia files to the most popular formats.
+- [Website](https://robertsanseries.github.io/ciano)
+- [Report a problem](https://github.com/robertsanseries/ciano/issues)
 
 ### Application Dependencies 
 These dependencies must be present before building
