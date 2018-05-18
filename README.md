@@ -20,7 +20,8 @@ Convert videos, music and pictures with the best possible experience.
 ### Links
 
 - [Website](https://robertsanseries.github.io/ciano)
-- [Report a problem](https://github.com/robertsanseries/ciano/issues)
+- [Report a problem](https://github.com/robertsanseries/ciano/issues/new?template=bug_report.md)
+- [Feature request](https://github.com/robertsanseries/ciano/issues/new?template=feature_request.md)
 
 ### Installation
 
