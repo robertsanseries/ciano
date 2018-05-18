@@ -2,9 +2,6 @@
     <img width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">
     <h1>Ciano</h1>
   <h3 align="center">A multimedia file converter.</h3>
-  <a href="https://appcenter.elementary.io/com.github.robertsanseries.ciano" target="_blank">
-    <img align="center" src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
-    </a>
 </div>
 
 <br/>
@@ -17,6 +14,7 @@
   <h1 align="center"> Informations </h1>
 </div>
 
+
 ### Description
 
 A multimedia file converter focused on simplicity.
@@ -26,7 +24,31 @@ A multimedia file converter focused on simplicity.
 - [Website](https://robertsanseries.github.io/ciano)
 - [Report a problem](https://github.com/robertsanseries/ciano/issues)
 
-### Application Dependencies 
+### Installation
+
+#### Hit the button to get Ciano!
+
+On elementary OS?
+
+[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.robertsanseries.ciano)
+
+On debian, ubuntu and derivatives
+
+[![Get the .Deb](https://robertsanseries.github.io/ciano/img/badge.svg)](https://github.com/robertsanseries/ciano/releases/download/0.1.4/com.github.robertsanseries.ciano_0.1.4_amd64.deb)
+
+#### Hit the link to get Ciano!
+
+Flatpak format
+
+[Get the Flatpak](https://flathub.org/repo/appstream/com.github.robertsanseries.ciano.flatpakref)
+
+Source Code
+
+[Get the Source Code](https://github.com/robertsanseries/ciano/archive/master.zip)
+
+### Installation from the source code
+
+#### Application Dependencies 
 These dependencies must be present before building
  - `meson (>=0.40)`
  - `valac (>=0.16)`
@@ -36,7 +58,7 @@ These dependencies must be present before building
  - `ffmpeg`
  - `imagemMagick`
  
- ### Building
+ #### Building
 
 ```
 git clone https://github.com/robertsanseries/ciano.git && cd ciano
@@ -45,13 +67,13 @@ meson configure -Dprefix=/usr
 ninja
 ```
 
-### Installation & executing
+#### Installation & executing
 ```
 sudo ninja install
 com.github.robertsanseries.ciano
 ```
 
-### Uninstalling
+#### Uninstalling
 
 ```
 sudo ninja uninstall
