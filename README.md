@@ -4,8 +4,6 @@
   <h3 align="center">A multimedia file converter.</h3>
 </div>
 
-<br/>
-
 <p align="center">
     <img src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot">
 </p>
@@ -38,13 +36,9 @@ On debian, ubuntu and derivatives
 
 #### Hit the link to get Ciano!
 
-Flatpak format
+- [Get the Flatpak](https://flathub.org/repo/appstream/com.github.robertsanseries.ciano.flatpakref)
 
-[Get the Flatpak](https://flathub.org/repo/appstream/com.github.robertsanseries.ciano.flatpakref)
-
-Source Code
-
-[Get the Source Code](https://github.com/robertsanseries/ciano/archive/master.zip)
+- [Get the Source Code](https://github.com/robertsanseries/ciano/archive/master.zip)
 
 ### Installation from the source code
 
