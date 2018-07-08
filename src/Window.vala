@@ -17,10 +17,6 @@
 * Boston, MA 02110-1301 USA
 */
 
-using Ciano.Configs;
-using Ciano.Controllers;
-using Ciano.Views;
-
 namespace Ciano {
 
     /**
