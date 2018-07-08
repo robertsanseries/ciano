@@ -42,12 +42,6 @@ namespace Ciano {
                 // The Application associated with the window.
                 application: app,
 
-                // Sets the title of the window
-                title: _("Ciano"),
-
-                // Whether the window frame should have a close button.
-                deletable: true,
-
                 // If the window should be resizable.
                 resizable: true
             );
@@ -83,7 +77,7 @@ namespace Ciano {
          * @since v0.2.0
          */
         private void load_window_position_size () {
-            var settings = Ciano.Services.Settings.get_instance ();
+            Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
             int x = settings.window_x;
             int y = settings.window_y;
             int h = settings.window_height;
@@ -105,7 +99,7 @@ namespace Ciano {
          * @see Ciano.Configs.Constants
          */
         private void style_provider () {
-            var css_provider = new Gtk.CssProvider ();
+            Gtk.CssProvider css_provider = new Gtk.CssProvider ();
             css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/stylesheet.css");
             
             Gtk.StyleContext.add_provider_for_screen (
@@ -128,7 +122,7 @@ namespace Ciano {
             this.get_position (out x, out y);
             this.get_size (out w, out h);
 
-            var settings = Ciano.Services.Settings.get_instance ();
+            Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
             settings.window_x = x;
             settings.window_y = y;
             settings.window_width = w;
@@ -144,13 +138,31 @@ namespace Ciano {
          * @return {@code void}
          */
         private void build (Gtk.Application app) {
-            var welcome = new Welcome ();
+            Widgets.HeaderBar headerbar = new Widgets.HeaderBar ();
+            headerbar.icon_settings_clicked.connect (() => { 
+                Ciano.Services.DialogManager.get_instance ().open_dialog_preferences (this);
+            });
+            
+            headerbar.set_visible_icons(false);
 
-            var stack = new Gtk.Stack ();
+            Widgets.Welcome welcome = new Widgets.Welcome ();
+            welcome.activated.connect ((index) => {
+                switch (index) {
+                    case 0:
+                        //Ciano.Services.FileManager.open_presentation ();
+                        break;
+                    case 1:
+                        Ciano.Services.DialogManager.get_instance ().open_dialog_icon_informations (this);
+                        break;
+                 }
+            });
+
+            Gtk.Stack stack = new Gtk.Stack ();
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             stack.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
             stack.add_named (welcome, "WELCOME_ID");
 
+            this.set_titlebar (headerbar);
             this.add (stack);
             this.show_all ();
         }

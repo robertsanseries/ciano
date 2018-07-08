@@ -20,16 +20,12 @@
 namespace Ciano.Widgets {
 
     /**
-     * The {@code Settings} class is responsible for defining all 
-     * the texts that are displayed in the application and must be translated.
+     * The {@code Welcome} class is for making a first- launch screen easily
      *
-     * @see Gtk.Grid
+     * @see Granite.Widgets.Welcome
      * @since 0.1.0
      */
     public class Welcome : Granite.Widgets.Welcome {
-
-        public int document_open_index      { get; set; }
-        public int dialog_information_index { get; set; }
 
         public Welcome () {
             base (_("Convert some files"), _("Drag and drop files or open them to begin conversion."));
@@ -37,12 +33,12 @@ namespace Ciano.Widgets {
             this.margin_start = 6;
             this.margin_end = 6;
 
-            this.document_open_index = this.append (
+            this.append (
                 "document-open", _("Open"), 
                 _("Browse to open a single file")
             );
 
-            this.dialog_information_index = this.append (
+            this.append (
                 "dialog-information", _("Load from Downloads"), 
                 _("Load files from your Downloads folder")
             );
