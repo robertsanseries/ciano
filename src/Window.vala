@@ -17,6 +17,8 @@
 * Boston, MA 02110-1301 USA
 */
 
+using Ciano.Widgets;
+
 namespace Ciano {
 
     /**
@@ -68,6 +70,9 @@ namespace Ciano {
             
             // Load the application's CSS.
             this.style_provider ();
+
+            //
+            this.build (app);
         }
 
          /**
@@ -130,6 +135,24 @@ namespace Ciano {
             settings.window_height = h;
 
             return false;
+        }
+
+        /*
+         * Load classes for application building.
+         *
+         * @see Ciano.Views.WelcomeView
+         * @return {@code void}
+         */
+        private void build (Gtk.Application app) {
+            var welcome = new Welcome ();
+
+            var stack = new Gtk.Stack ();
+            stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
+            stack.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
+            stack.add_named (welcome, "WELCOME_ID");
+
+            this.add (stack);
+            this.show_all ();
         }
     }
 }
