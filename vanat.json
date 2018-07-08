@@ -1,0 +1,10 @@
+{
+    "name": "robertsanseries/ciano",
+    "description": "A multimedia file converter focused on simplicity.",
+    "version": "v0.1.9",
+    "author": "Robert San <robertsanseries@gmail.com>",
+    "require": {
+        "vala":"0.36.*",
+        "robertsanseries/ffmpeg-wrapper":"1.0.0"
+    }
+}

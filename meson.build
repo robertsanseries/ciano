@@ -6,6 +6,8 @@ project('com.github.robertsanseries.ciano', ['vala', 'c'],
 gnome = import('gnome')
 i18n = import('i18n')
 
+add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], language: 'vala')
+
 gresource = gnome.compile_resources(
     'as-resources', 'data/com.github.robertsanseries.ciano.gresource.xml',
     source_dir: 'data',
@@ -25,16 +27,19 @@ c_args = [
 subdir('data')
 subdir('po')
 subdir('src')
+subdir('vendor/ffmpeg-wrapper')
 
 executable('com.github.robertsanseries.ciano',
     sources,
     gresource,
+    robertsanseries_ffmpeg_wrapper_files,
     c_args: c_args,
     dependencies :[
         dependency('granite'),
         dependency('gobject-2.0'),
         dependency('gtk+-3.0'),
-        dependency('glib-2.0')
+        dependency('glib-2.0'),
+        dependency('json-glib-1.0')
     ],
     install : true
 )
