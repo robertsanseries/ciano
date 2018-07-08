@@ -41,54 +41,96 @@ namespace Ciano {
          */
         public Window (Gtk.Application app) {
             Object (
+                // The Application associated with the window.
                 application: app,
-                icon_name: Constants.APP_ICON,
+
+                // Sets the title of the window
+                title: _("Ciano"),
+
+                // Whether the window frame should have a close button.
                 deletable: true,
+
+                // If the window should be resizable.
                 resizable: true
             );
 
+            // Windows should be placed in the center of the screen.
+            this.window_position = Gtk.WindowPosition.CENTER;
+
+            // Sets the default size of a window.
+            this.set_default_size (500, 400);
+
+            // Sets the minimum size of a widget; that is, the widget’s size 
+            // request will be at least width by height.
+            this.set_size_request (500, 400);
+       
+            // Load position and window size in the last application session.
+            this.load_window_position_size ();
+            
+            // Load the application's CSS.
+            this.style_provider ();
+        }
+
+         /**
+         * Load position and window size in the last application session.
+         * 
+         * @return {@code void}
+         * @see Ciano.Services.Settings
+         * @since v0.2.0
+         */
+        private void load_window_position_size () {
             var settings = Ciano.Services.Settings.get_instance ();
             int x = settings.window_x;
             int y = settings.window_y;
+            int h = settings.window_height;
+            int w = settings.window_width;
 
             if (x != -1 && y != -1) {
-                move (x, y);
+                this.move (x, y);
             }
 
-            style_provider ();
-            build (app);
+            if (w != 0 && h != 0) {
+                this.resize (w, h);
+            }
         }
 
         /**
          * Load the application's CSS.
          *
-         * @see Ciano.Configs.Constants
          * @return {@code void}
+         * @see Ciano.Configs.Constants
          */
         private void style_provider () {
             var css_provider = new Gtk.CssProvider ();
-            css_provider.load_from_resource (Constants.URL_CSS);
+            css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/stylesheet.css");
             
             Gtk.StyleContext.add_provider_for_screen (
-                Gdk.Screen.get_default (),
-                css_provider,
+                Gdk.Screen.get_default (), css_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );
         }
 
         /**
-         * Load classes for application building.
+         * Method is triggered when the user closes the main window, saving the size and position
+         * of the window in the current state.
          *
-         * @see Ciano.Controllers.ConverterController
-         * @see Ciano.Views.ConverterView
-         * @return {@code void}
+         * @param {@code Gdk.EventAny} event
+         * @return {@code bool}
+         * @see Ciano.Services.Settings
+         * @since v0.2.0
          */
-        private void build (Gtk.Application app) {
-            var converter_view = new ConverterView (this);
-            new ConverterController (this, app, converter_view);
+        public override bool delete_event (Gdk.EventAny event) {
+            int x, y, w, h;
+            this.get_position (out x, out y);
+            this.get_size (out w, out h);
 
-            this.add (converter_view);
-            this.show_all ();
+            var settings = Ciano.Services.Settings.get_instance ();
+            settings.window_x = x;
+            settings.window_y = y;
+            settings.window_width = w;
+            settings.window_height = h;
+
+            return false;
         }
     }
 }
