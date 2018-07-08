@@ -17,14 +17,17 @@
 * Boston, MA 02110-1301 USA
 */
 
-/**
- * Main method. Responsible for starting the {@code Application} class.
- *
- * @see Ciano.Application
- * @return {@code void}
- * @since 0.1.0
- */
-public static void main (string [] args) {
-	var app = new Ciano.Application ();
-	app.run (args);
+namespace Ciano {
+
+    /**
+     * Main method. Responsible for starting the {@code Application} class.
+     *
+     * @see Ciano.Application
+     * @return {@code void}
+     * @since 0.1.0
+     */
+    public static void main (string [] args) {
+        var app = new Ciano.Application ();
+        app.run (args);
+    }
 }

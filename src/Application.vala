@@ -30,7 +30,11 @@ namespace Ciano {
      */
     public class Application : Granite.Application {
 
-        private Window window { get; private set; default = null; }
+        /**
+         * Variable responsible for the main window.
+         * @version v0.2.0
+         */
+        private Ciano.Window _window;
 
         /**
          * Constructs a new {@code Application} object and create default output folder if it does not exist.
@@ -44,29 +48,34 @@ namespace Ciano {
             );
         }
 
-
         /**
          * Create the window of this application through the class {@code Window} and show it. If user clicks
          * <quit> or press <control + q> the window will be destroyed.
-         * 
+         *
          * @return {@code void}
+         * @see Ciano.Window
+         * @version v0.2.0
          */
         public override void activate () {
-            if (window == null) {
-                window = new Window (this);
-                add_window (window);
-                window.show_all ();
+            if (this._window == null) {
+                this._window = new Ciano.Window (this);
+                this.add_window (this._window);
+                this._window.show_all ();
             }
 
+            // Creates action to destroy the main application window when the user clicks close.
             var quit_action = new SimpleAction ("quit", null);
             quit_action.activate.connect (() => {
-                if (window != null) {
-                    window.destroy ();
+                if (this._window != null) {
+                    this._window.destroy ();
                 }
             });
 
-            add_action (quit_action);
-            add_accelerator ("<Control>q", "app.quit", null);
+            // Adds the created action the application.
+            this.add_action (quit_action);
+
+            // Sets the specified key combination for the created action to be enabled.
+            this.add_accelerator ("<Control>q", "app.quit", null);
         }
     }
 }
