@@ -18,8 +18,6 @@
 *
 */
 
-using Ciano.Configs;
-
 namespace Ciano {
 
     /**
@@ -43,7 +41,7 @@ namespace Ciano {
          */
         public Application () {
             Object (
-                application_id: Constants.ID,
+                application_id: "com.github.robertsanseries.ciano",
                 flags: ApplicationFlags.FLAGS_NONE
             );
         }

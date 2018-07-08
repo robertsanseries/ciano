@@ -59,6 +59,9 @@ namespace Ciano {
             // Sets the minimum size of a widget; that is, the widget’s size 
             // request will be at least width by height.
             this.set_size_request (500, 400);
+
+            // Background-Color
+            this.get_style_context ().add_class ("window-background-color");
        
             // Load position and window size in the last application session.
             this.load_window_position_size ();

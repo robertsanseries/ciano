@@ -18,4 +18,8 @@
 */
 
 @define-color colorPrimary #80E5FF;
-@define-color textColorPrimary #4d4d4d;
+@define-color textColorPrimary #4D4D4D;
+
+.window-background-color {
+	background-color: #FFFFFF;
+}

@@ -17,7 +17,6 @@
  * Boston, MA 02110-1301 USA
  */
 
-using Ciano.Configs;
 using Ciano.Utils;
 
 namespace Ciano.Services {
@@ -116,13 +115,13 @@ namespace Ciano.Services {
          * @see Ciano.Constants
          */
         private Settings () {
-            base (Constants.ID);
+            base ("com.github.robertsanseries.ciano");
 
             if (StringUtil.is_empty (this.output_folder)) {
                 this.output_folder = Path.build_path (
                     Path.DIR_SEPARATOR_S, 
                     Environment.get_user_data_dir (), 
-                    "ciano" //Constants.DIRECTORY_CIANO 
+                    "ciano"
                 );
             }
         }
