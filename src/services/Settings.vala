@@ -1,21 +1,21 @@
 /*
-* Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public
-* License as published by the Free Software Foundation; either
-* version 2 of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public
-* License along with this program; if not, write to the
-* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-* Boston, MA 02110-1301 USA
-*/
+ * Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301 USA
+ */
 
 using Ciano.Configs;
 using Ciano.Utils;
@@ -49,11 +49,23 @@ namespace Ciano.Services {
         public int window_y { get; set; }
 
         /**
+         * Height in pixels to resize the window to.
+         * Variable of type {@code int} as declared.
+         */
+        public int window_height { get; set; }
+
+        /**
+         * Width in pixels to resize the window to.
+         * Variable of type {@code int} as declared.
+         */
+        public int window_width { get; set; }
+
+        /**
          * This property will receive the name of the output folder which
          * can be altered through dialog preferences.
          * Variable of type {@code string} as declared.
          */
-        public string output_folder    { get; set; }
+        public string output_folder { get; set; }
 
         /**
          * This property {@code bool} corresponds to {@code true} if option
@@ -107,7 +119,11 @@ namespace Ciano.Services {
             base (Constants.ID);
 
             if (StringUtil.is_empty (this.output_folder)) {
-                this.output_folder = Environment.get_home_dir () + Constants.DIRECTORY_CIANO;
+                this.output_folder = Path.build_path (
+                    Path.DIR_SEPARATOR_S, 
+                    Environment.get_user_data_dir (), 
+                    "ciano" //Constants.DIRECTORY_CIANO 
+                );
             }
         }
 

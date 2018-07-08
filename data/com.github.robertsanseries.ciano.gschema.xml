@@ -13,6 +13,18 @@
 			<summary>Most recent y position of Ciano</summary>
 			<description>Most recent y position of Ciano</description>
 		</key>
+
+		<key name="window-height" type="i">
+				<default>500</default>
+				<summary>Window position</summary>
+				<description>The height of the window</description>
+		</key>
+		
+		<key name="window-width" type="i">
+				<default>400</default>
+				<summary>Window position</summary>
+				<description>The width of the window</description>
+		</key>
 		
 		<key name="output-folder" type="s">
 			<default>''</default>
