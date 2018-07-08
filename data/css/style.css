@@ -16,8 +16,10 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 */
-
 @define-color colorPrimary #80E5FF;
+@define-color textColorPrimary #4d4d4d;
+
+/*
 @define-color textColorPrimary #333333;
 @define-color white #FFFFFF;
 @define-color black #000000;
@@ -46,4 +48,4 @@
 
 .progress_bar.progressbar {
     background: @colorPrimary;
-}
+}*/
