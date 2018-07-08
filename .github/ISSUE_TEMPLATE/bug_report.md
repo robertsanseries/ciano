@@ -12,7 +12,7 @@ A clear and concise description of what the bug is.
  - Version [e.g. Loki 4.1]
 
 ** Info do app (please complete the following information):**
- - Version [e.g. Loki 4.1]
+ - Version [e.g. Ciano 0.1.6]
  - Instalation [e.g. AppCenter, Flatpak, .Deb]
 
 **To Reproduce (If applicable)**
