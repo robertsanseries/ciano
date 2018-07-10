@@ -68,7 +68,7 @@ namespace Ciano.Widgets {
 	        column_end.orientation = Gtk.Orientation.VERTICAL;
 	        column_end.row_spacing = 12;
 
-	        var system_header = new Granite.HeaderLabel (_("Musics"));
+	        var system_header = new Granite.HeaderLabel (_("Music"));
         	column_end.add (system_header);
 
             this.get_content_area ().add (column_start);

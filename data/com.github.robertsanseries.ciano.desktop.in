@@ -1,10 +1,15 @@
 [Desktop Entry]
 Name=Ciano
 GenericName=Multimedia Converter
-Comment=Convert multimedia files to other formats
+Comment=A multimedia file converter focused on simplicity.
 Icon=com.github.robertsanseries.ciano
 Exec=com.github.robertsanseries.ciano
 Terminal=false
 Type=Application
 Categories=GNOME;GTK;Video;Audio;Photography;AudioVideo;Graphics;
 Keywords=converter;multimedia;audio;video;photo;photography;
+Actions=AboutDialog;
+
+[Desktop Action AboutDialog]
+Exec=com.github.robertsanseries.ciano --about
+Name=About Ciano

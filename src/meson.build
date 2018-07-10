@@ -3,6 +3,7 @@ sources = files(
     'services/Settings.vala',
     'utils/StringUtil.vala',
     'utils/WidgetUtil.vala',
+    'widgets/DialogAbout.vala',
     'widgets/DialogInformations.vala',
     'widgets/DialogPreferences.vala',
     'widgets/HeaderBar.vala',

@@ -142,17 +142,21 @@ namespace Ciano {
             headerbar.icon_settings_clicked.connect (() => { 
                 Ciano.Services.DialogManager.get_instance ().open_dialog_preferences (this);
             });
-            
+
+            headerbar.icon_about_clicked.connect (() => { 
+                Ciano.Services.DialogManager.get_instance ().open_dialog_about ();
+            });
+           
             headerbar.set_visible_icons(false);
 
             Widgets.Welcome welcome = new Widgets.Welcome ();
             welcome.activated.connect ((index) => {
                 switch (index) {
                     case 0:
-                        //Ciano.Services.FileManager.open_presentation ();
+                        
                         break;
                     case 1:
-                        Ciano.Services.DialogManager.get_instance ().open_dialog_icon_informations (this);
+                        Ciano.Services.DialogManager.get_instance ().open_dialog_informations (this);
                         break;
                  }
             });

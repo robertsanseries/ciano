@@ -45,9 +45,14 @@ namespace Ciano.Services {
             dialog_preferences.show_all ();
         }
 
-        public void open_dialog_icon_informations (Gtk.Window window) {
+        public void open_dialog_informations (Gtk.Window window) {
         	DialogInformations dialog_informations = new DialogInformations (window);
             dialog_informations.show_all ();
+        }
+
+        public void open_dialog_about () {
+            DialogAbout dialog_about = new DialogAbout ();
+            dialog_about.response.connect(() => { dialog_about.destroy (); });
         }
 
         /**
