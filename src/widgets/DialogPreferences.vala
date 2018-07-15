@@ -67,7 +67,13 @@ namespace Ciano.Widgets {
             init_options ();
             mount_options (grid);
 
-            this.get_content_area ().add (grid);
+            Gtk.Box content_area = (Gtk.Box) this.get_content_area ();
+            content_area.add (grid);
+
+            var close_button = (Gtk.Button) add_button (_("Close"), Gtk.ResponseType.CANCEL);
+            close_button.clicked.connect (() => { 
+                this.destroy (); 
+            });
         }
 
         /**
@@ -118,8 +124,6 @@ namespace Ciano.Widgets {
             mount_section_output_folder (grid, ref row);
 
             mount_section_notify (grid, ref row);
-
-            mount_buttons (grid, ref row);
         }
 
         /**
@@ -168,23 +172,6 @@ namespace Ciano.Widgets {
                 // Option: Erro Notify
                 var label_error_notify = new Gtk.Label (_("Notify about an error:"));
                 add_option (grid, label_error_notify, this.error_notify, ref row);
-        }
-
-        /**
-         * Mount buttons section.
-         *
-         * @see Ciano.Configs.Properties
-         * @param  {@code Gtk.Grid} grid
-         * @param  {@code int} row
-         * @return {@code void}
-         */
-        private void mount_buttons (Gtk.Grid grid, ref int row) {            
-            var close_button = new Gtk.Button.with_label (_("Close"));
-            close_button.clicked.connect (() => { this.destroy (); });
-            close_button.margin_top = 15;
-            close_button.halign     = Gtk.Align.END;
-            
-            grid.attach (close_button, 3, row, 1, 1);
         }
 
         /**

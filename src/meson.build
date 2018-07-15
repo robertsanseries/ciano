@@ -1,6 +1,7 @@
 sources = files(
-    'services/DialogManager.vala',
+    'facades/DialogFacade.vala',
     'services/Settings.vala',
+    'utils/CoreUtil.vala',
     'utils/StringUtil.vala',
     'utils/WidgetUtil.vala',
     'widgets/DialogAbout.vala',

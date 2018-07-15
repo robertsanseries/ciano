@@ -71,9 +71,15 @@ namespace Ciano.Widgets {
 	        var system_header = new Granite.HeaderLabel (_("Music"));
         	column_end.add (system_header);
 
-            this.get_content_area ().add (column_start);
-            this.get_content_area ().add (new Gtk.Separator (Gtk.Orientation.VERTICAL));
-            this.get_content_area ().add (column_end);
+            Gtk.Box content_area = (Gtk.Box) this.get_content_area ();
+            content_area.add (column_start);
+            content_area.add (new Gtk.Separator (Gtk.Orientation.VERTICAL));
+            content_area.add (column_end);
+
+            var close_button = (Gtk.Button) add_button (_("Close"), Gtk.ResponseType.CANCEL);
+            close_button.clicked.connect (() => { 
+                this.destroy (); 
+            });
         }
     }
 }

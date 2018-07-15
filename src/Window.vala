@@ -17,7 +17,9 @@
 * Boston, MA 02110-1301 USA
 */
 
+using Ciano.Utils;
 using Ciano.Widgets;
+using Ciano.Facades;
 
 namespace Ciano {
 
@@ -139,12 +141,17 @@ namespace Ciano {
          */
         private void build (Gtk.Application app) {
             Widgets.HeaderBar headerbar = new Widgets.HeaderBar ();
+            
             headerbar.icon_settings_clicked.connect (() => { 
-                Ciano.Services.DialogManager.get_instance ().open_dialog_preferences (this);
+                DialogFacade.open_dialog_preferences (this);
             });
 
+            headerbar.icon_report_problem_clicked.connect (() => { 
+                CoreUtil.launch_uri ("https://github.com/robertsanseries/ciano/issues");
+            });           
+
             headerbar.icon_about_clicked.connect (() => { 
-                Ciano.Services.DialogManager.get_instance ().open_dialog_about ();
+                DialogFacade.open_dialog_about (this);
             });
            
             headerbar.set_visible_icons(false);
@@ -156,7 +163,7 @@ namespace Ciano {
                         
                         break;
                     case 1:
-                        Ciano.Services.DialogManager.get_instance ().open_dialog_informations (this);
+                        DialogFacade.open_dialog_informations (this);
                         break;
                  }
             });
