@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
+* Copyright (c) 2017-2018 Robert San <robertsanseries@gmail.com>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -24,10 +24,12 @@ namespace Ciano.Widgets {
     public class DialogAbout : Gtk.Dialog {
 
         public DialogAbout (Gtk.Window parent) {
+            this.title= "About";
             this.border_width= 5;
             this.deletable= false;
             this.resizable= false;
-            this.title= null;
+            this.set_default_size (500, 350);
+            this.set_size_request (500, 350);
             this.set_transient_for (parent);
             this.set_modal (true);
 
@@ -85,6 +87,10 @@ namespace Ciano.Widgets {
             translators_label.wrap= true;
             translators_label.xalign= 0;
 
+            Gtk.Label copyright_label = new Gtk.Label ("© 2017-2018 Robert San. All Right Reserved.\n");
+            copyright_label.wrap= true;
+            copyright_label.xalign= 0;
+
             Gtk.Label license_label = new Gtk.Label (StringUtil.EMPTY);
             license_label.set_markup("<span size=\"small\">" + _("This program is published under the terms of the GPL license, it comes with ABSOLUTELY NO WARRANTY; for details, visit <a href=\"http://www.gnu.org/licenses/gpl.html\">http://www.gnu.org/licenses/gpl.html</a></span>\n"));
             license_label.wrap= true;
@@ -97,6 +103,7 @@ namespace Ciano.Widgets {
             content_scrolled_grid.add (authors_label);
             content_scrolled_grid.add (contributors_label);
             content_scrolled_grid.add (translators_label);
+            content_scrolled_grid.add (copyright_label);
             content_scrolled_grid.add (license_label);
 
             Gtk.ScrolledWindow content_scrolled = new Gtk.ScrolledWindow (null, null);
@@ -121,10 +128,8 @@ namespace Ciano.Widgets {
             Gtk.Box content_area = (Gtk.Box) this.get_content_area ();
             content_area.add (grid);
 
-            Gtk.Button close_button = (Gtk.Button) add_button (_("Close"), Gtk.ResponseType.CANCEL);
-            close_button.clicked.connect (() => { 
-                this.destroy (); 
-            });
+            Gtk.Button close_button = (Gtk.Button) this.add_button (_("Close"), Gtk.ResponseType.CANCEL);
+            close_button.clicked.connect (() => { this.destroy (); });
         }
 
         private string organize_block_markup (string title, string[] peoples) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
+ * Copyright (c) 2017-2018 Robert San <robertsanseries@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -19,12 +19,6 @@
 
 namespace Ciano.Widgets {
 
-    /**
-     * The {@code Welcome} class is for making a first- launch screen easily
-     *
-     * @see Granite.Widgets.Welcome
-     * @since 0.1.0
-     */
     public class Welcome : Granite.Widgets.Welcome {
 
         public Welcome () {
@@ -39,8 +33,8 @@ namespace Ciano.Widgets {
             );
 
             this.append (
-                "dialog-information", _("Load from Downloads"), 
-                _("Load files from your Downloads folder")
+                "dialog-information", _("Supported Formats"), 
+                _("Information about supported file types")
             );
         }
     }
