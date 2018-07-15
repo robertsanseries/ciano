@@ -39,9 +39,9 @@ namespace Ciano.Widgets {
 
         public HeaderBar () {
             this.title = "Ciano";
-        	this.set_show_close_button (true);
+            this.set_show_close_button (true);
 
-        	this.document_open = new Gtk.Button ();
+            this.document_open = new Gtk.Button ();
             this.document_open.set_image (new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR));
             this.document_open.tooltip_text = (_("Open output folder"));
             this.document_open.clicked.connect (() => { icon_document_open_clicked (); });

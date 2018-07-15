@@ -20,25 +20,10 @@
 
 namespace Ciano {
 
-    /**
-     * The {@code Application} class is a foundation for all granite-based applications.
-     *
-     * @see Granite.Application
-     * @since 0.1.0
-     */
     public class Application : Granite.Application {
 
-        /**
-         * Variable responsible for the main window.
-         * @version v0.2.0
-         */
         private Ciano.Window _window;
 
-        /**
-         * Constructs a new {@code Application} object and create default output folder if it does not exist.
-         *
-         * @see Ciano.Configs.Constants
-         */
         public Application () {
             Object (
                 application_id: "com.github.robertsanseries.ciano",
@@ -46,14 +31,6 @@ namespace Ciano {
             );
         }
 
-        /**
-         * Create the window of this application through the class {@code Window} and show it. If user clicks
-         * <quit> or press <control + q> the window will be destroyed.
-         *
-         * @return {@code void}
-         * @see Ciano.Window
-         * @version v0.2.0
-         */
         public override void activate () {
             if (this._window == null) {
                 this._window = new Ciano.Window (this);
@@ -61,7 +38,6 @@ namespace Ciano {
                 this._window.show_all ();
             }
 
-            // Creates action to destroy the main application window when the user clicks close.
             var quit_action = new SimpleAction ("quit", null);
             quit_action.activate.connect (() => {
                 if (this._window != null) {
@@ -69,10 +45,7 @@ namespace Ciano {
                 }
             });
 
-            // Adds the created action the application.
             this.add_action (quit_action);
-
-            // Sets the specified key combination for the created action to be enabled.
             this.add_accelerator ("<Control>q", "app.quit", null);
         }
     }

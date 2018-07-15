@@ -35,12 +35,12 @@ namespace Ciano.Widgets {
             this.set_modal (true);
 
             var column_start = new Gtk.Grid ();
-	        column_start.orientation = Gtk.Orientation.VERTICAL;
+            column_start.orientation = Gtk.Orientation.VERTICAL;
             column_start.hexpand = true;
-	        column_start.row_spacing = 5;
+            column_start.row_spacing = 5;
 
-	        var videos_label = new TitleLabel (_("Video"));
-        	column_start.add (videos_label);
+            var videos_label = new TitleLabel (_("Video"));
+            column_start.add (videos_label);
             column_start.add (new OptionLabel ("MP4"));
             column_start.add (new OptionLabel ("3GP"));
             column_start.add (new OptionLabel ("MPG"));
@@ -53,13 +53,13 @@ namespace Ciano.Widgets {
             column_start.add (new OptionLabel ("OGV"));
             column_start.add (new OptionLabel ("WEBM"));
 
-	        var column_center = new Gtk.Grid ();
-	        column_center.orientation = Gtk.Orientation.VERTICAL;
-	        column_center.hexpand = true;
-	        column_center.row_spacing = 5;
+            var column_center = new Gtk.Grid ();
+            column_center.orientation = Gtk.Orientation.VERTICAL;
+            column_center.hexpand = true;
+            column_center.row_spacing = 5;
 
-	        var music_label = new TitleLabel (_("Music"));
-        	column_center.add (music_label);
+            var music_label = new TitleLabel (_("Music"));
+            column_center.add (music_label);
             column_center.add (new OptionLabel ("MP3"));
             column_center.add (new OptionLabel ("WMA"));
             column_center.add (new OptionLabel ("AMR"));
