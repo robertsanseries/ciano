@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
+* Copyright (c) 2017-2018 Robert San <robertsanseries@gmail.com>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public

@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
+* Copyright (c) 2017-2018 Robert San <robertsanseries@gmail.com>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -18,24 +18,9 @@
 */
 
 namespace Ciano.Utils {
-
-    /**
-     * The {@code WidgetUtil} class is responsible for customizing widget actions.
-     *
-     * @since 0.1.0
-     */
+   
     public class WidgetUtil {
 
-        /**
-         * Change component visibility status.
-         *
-         * Exemple:
-         * > WidgetUtil.set_visible(widget, true)
-         * 
-         * @param   {@code widget} widget - component
-         * @param   {@code bool} visible - if true the component is displayed if false is not displayed
-         * @return  {@code void} 
-         */
         public static void set_visible (Gtk.Widget widget, bool visible) {
             widget.no_show_all = !visible;
             widget.visible = visible;
