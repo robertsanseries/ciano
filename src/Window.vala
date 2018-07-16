@@ -77,10 +77,26 @@ namespace Ciano {
             this.show_all ();
         }
 
-        private void style_provider () {
+        public void style_provider () {
+            Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
+            Gtk.Settings gtk_settings = Gtk.Settings.get_default ();
             Gtk.CssProvider css_provider = new Gtk.CssProvider ();
-            css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/stylesheet.css");
-            
+
+            switch (settings.theme) {
+                case 0:
+                    gtk_settings.gtk_application_prefer_dark_theme = true;
+                    css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/dark.css");
+                    break;
+                case 1:
+                    gtk_settings.gtk_application_prefer_dark_theme = false;
+                    css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/default.css");
+                    break;
+                case 2:
+                    gtk_settings.gtk_application_prefer_dark_theme = false;
+                    css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/elementary.css");
+                    break;
+            }
+
             Gtk.StyleContext.add_provider_for_screen (
                 Gdk.Screen.get_default (), css_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION

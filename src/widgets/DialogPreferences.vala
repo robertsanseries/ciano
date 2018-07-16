@@ -24,9 +24,7 @@ namespace Ciano.Widgets {
 
     public class DialogPreferences : Gtk.Dialog {
 
-        //private int row = 1;
-
-        public DialogPreferences (Gtk.Window parent) {
+        public DialogPreferences (Window parent) {
             this.title = _("Preferences");
             this.resizable = false;
             this.deletable = false;
@@ -37,7 +35,7 @@ namespace Ciano.Widgets {
 
             Gtk.Stack stack = new Gtk.Stack ();
             stack.set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
-            stack.add_titled (get_general_box (), "general", _("General"));
+            stack.add_titled (get_general_box (parent), "general", _("General"));
             stack.add_titled (get_behavior_box (), "behavior", _("Behavior"));
             
             Gtk.StackSwitcher stackswitcher = new Gtk.StackSwitcher ();
@@ -55,7 +53,7 @@ namespace Ciano.Widgets {
             });
         }
 
-        private Gtk.Grid get_general_box () {
+        private Gtk.Grid get_general_box (Window parent) {
 
             Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
             
@@ -66,11 +64,15 @@ namespace Ciano.Widgets {
                 settings.output_folder = output_folder.get_file ().get_path ();
             });
 
-            Gtk.ComboBoxText theme = new Gtk.ComboBoxText ();
+            Gtk.ComboBoxText theme = new Gtk.ComboBoxText ();           
             theme.append_text ("dark                                     ");
             theme.append_text ("default");
             theme.append_text ("elementary");
-            theme.active = 1;
+            theme.set_active (settings.theme);
+            theme.changed.connect (() => {
+                settings.theme = theme.get_active ();
+                parent.style_provider ();
+            });            
 
             Gtk.ComboBoxText language = new Gtk.ComboBoxText ();
             language.append_text ("Chinese  - Simplified        ");
@@ -80,7 +82,10 @@ namespace Ciano.Widgets {
             language.append_text ("Lithuanian");
             language.append_text ("Portuguese - Brazil");
             language.append_text ("Spanish");
-            language.active = 2;
+            language.set_active (settings.language);
+            language.changed.connect (() => {
+                settings.language = language.get_active ();
+            });
             
             Gtk.Switch output_source_file_folder = new Gtk.Switch ();
             settings.schema.bind ("output-source-file-folder", output_source_file_folder, "active", SettingsBindFlags.DEFAULT);
@@ -142,7 +147,7 @@ namespace Ciano.Widgets {
 
         private Gtk.Grid get_behavior_box () {
             
-            Gtk.SpinButton forward_spinner = new Gtk.SpinButton.with_range(0, 240, 15);
+            Gtk.SpinButton forward_spinner = new Gtk.SpinButton.with_range(0, 240, 1);
             //.value = (double)settings.fast_forward_seconds;
             /*forward_spinner.value_changed.connect(() => {
                 settings.fast_forward_seconds = (int) forward_spinner.value;

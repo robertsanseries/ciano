@@ -25,17 +25,17 @@ namespace Ciano.Facades {
 
 	    public DialogFacade () { }
 
-	    public static void open_dialog_preferences (Gtk.Window window) {
+	    public static void open_dialog_preferences (Window window) {
         	DialogPreferences dialog_preferences = new DialogPreferences (window);
             dialog_preferences.show_all ();
         }
 
-        public static void open_dialog_informations (Gtk.Window window) {
+        public static void open_dialog_informations (Window window) {
         	DialogInformations dialog_informations = new DialogInformations (window);
             dialog_informations.show_all ();
         }
 
-        public static void open_dialog_about (Gtk.Window window) {
+        public static void open_dialog_about (Window window) {
             DialogAbout dialog_about = new DialogAbout (window);
             dialog_about.show_all ();
         }

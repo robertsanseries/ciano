@@ -2,7 +2,11 @@
 <gresources>
 
 	<gresource prefix="/com/github/robertsanseries/ciano/css">
-		<file alias="stylesheet.css" compressed="true">css/stylesheet.css</file>
+		<file alias="dark.css" compressed="true">css/dark.css</file>
+	
+		<file alias="default.css" compressed="true">css/default.css</file>
+	
+		<file alias="elementary.css" compressed="true">css/elementary.css</file>
 	</gresource>
 
 	<gresource prefix="/com/github/robertsanseries/ciano/images">

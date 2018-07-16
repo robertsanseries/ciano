@@ -24,7 +24,7 @@ namespace Ciano.Widgets {
 
     public class DialogInformations : Gtk.Dialog {
 
-        public DialogInformations (Gtk.Window parent) {
+        public DialogInformations (Window parent) {
             this.title = _("Supported Formats");
             this.border_width= 5;
             this.deletable= false;

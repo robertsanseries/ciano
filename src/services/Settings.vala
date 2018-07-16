@@ -29,6 +29,8 @@ namespace Ciano.Services {
         public int window_y                   { get; set; }
         public int window_height              { get; set; }
         public int window_width               { get; set; }
+        public int theme                      { get; set; }
+        public int language                   { get; set; }
         public string output_folder           { get; set; }
         public bool output_source_file_folder { get; set; }
         public bool shutdown_computer         { get; set; }

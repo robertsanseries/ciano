@@ -25,6 +25,18 @@
 				<summary>Window position</summary>
 				<description>The width of the window</description>
 		</key>
+
+		<key name="theme" type="i">
+				<default>1</default>
+				<summary>Theme</summary>
+				<description>Theme</description>
+		</key>	
+
+		<key name="language" type="i">
+				<default>2</default>
+				<summary>language</summary>
+				<description>language</description>
+		</key>	
 		
 		<key name="output-folder" type="s">
 			<default>''</default>
