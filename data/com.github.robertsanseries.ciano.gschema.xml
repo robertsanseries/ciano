@@ -15,28 +15,34 @@
 		</key>
 
 		<key name="window-height" type="i">
-				<default>500</default>
-				<summary>Window position</summary>
-				<description>The height of the window</description>
+			<default>500</default>
+			<summary>Window position</summary>
+			<description>The height of the window</description>
 		</key>
 		
 		<key name="window-width" type="i">
-				<default>400</default>
-				<summary>Window position</summary>
-				<description>The width of the window</description>
+			<default>400</default>
+			<summary>Window position</summary>
+			<description>The width of the window</description>
 		</key>
 
 		<key name="theme" type="i">
-				<default>1</default>
-				<summary>Theme</summary>
-				<description>Theme</description>
+			<default>1</default>
+			<summary>Theme</summary>
+			<description>Theme</description>
 		</key>	
 
 		<key name="language" type="i">
-				<default>2</default>
-				<summary>language</summary>
-				<description>language</description>
-		</key>	
+			<default>2</default>
+			<summary>language</summary>
+			<description>language</description>
+		</key>
+
+		<key name="simultaneous-conversion" type="i">
+			<default>1</default>
+			<summary>simultaneous</summary>
+			<description>simultaneous</description>
+		</key>
 		
 		<key name="output-folder" type="s">
 			<default>''</default>
@@ -73,6 +79,42 @@
 			<summary>Erro Notify</summary>
 			<description>Erro Notify</description>
 		</key>
+
+		<key name="delete-source-files" type="b">
+			<default>false</default>
+			<summary>Erro Notify</summary>
+			<description>Erro Notify</description>
+		</key>
+
+		<key name="delete-files-conversion-fails" type="b">
+			<default>false</default>
+			<summary>Erro Notify</summary>
+			<description>Erro Notify</description>
+		</key>
+
+		<key name="open-output-folder-end" type="b">
+			<default>false</default>
+			<summary>Erro Notify</summary>
+			<description>Erro Notify</description>
+		</key>
+
+		<key name="suspend-computer" type="b">
+			<default>false</default>
+			<summary>Erro Notify</summary>
+			<description>Erro Notify</description>
+		</key>
+
+		<key name="off-computer" type="b">
+			<default>false</default>
+			<summary>Erro Notify</summary>
+			<description>Erro Notify</description>
+		</key>
+
+		<key name="continue-conversion" type="b">
+			<default>false</default>
+			<summary>Erro Notify</summary>
+			<description>Erro Notify</description>
+		</key>		
 	</schema>
 
 </schemalist>

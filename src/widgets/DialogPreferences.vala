@@ -146,25 +146,32 @@ namespace Ciano.Widgets {
         }
 
         private Gtk.Grid get_behavior_box () {
+
+            Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
             
-            Gtk.SpinButton forward_spinner = new Gtk.SpinButton.with_range(0, 240, 1);
-            //.value = (double)settings.fast_forward_seconds;
-            /*forward_spinner.value_changed.connect(() => {
-                settings.fast_forward_seconds = (int) forward_spinner.value;
-            });*/
-            //forward_spinner.halign = Gtk.Align.END;
-            
-            Gtk.Switch open_output_folder = new Gtk.Switch ();
+            Gtk.SpinButton simultaneous_conversion_spinner = new Gtk.SpinButton.with_range(1, 10, 1);
+            simultaneous_conversion_spinner.value = (double) settings.simultaneous_conversion;
+            simultaneous_conversion_spinner.value_changed.connect(() => {
+                settings.simultaneous_conversion = (int) simultaneous_conversion_spinner.value;
+            });
 
             Gtk.Switch delete_source_files = new Gtk.Switch ();
+            //settings.schema.bind ("delete-source-files", delete_source_files, "active", SettingsBindFlags.DEFAULT);
 
             Gtk.Switch delete_files_conversion_fails = new Gtk.Switch ();
+            //settings.schema.bind ("delete-files-conversion-fails", delete_files_conversion_fails, "active", SettingsBindFlags.DEFAULT);
+
+            Gtk.Switch open_output_folder_end = new Gtk.Switch ();
+            //settings.schema.bind ("open-output-folder-end", open_output_folder_end, "active", SettingsBindFlags.DEFAULT);
 
             Gtk.Switch suspend_computer = new Gtk.Switch ();
+            //settings.schema.bind ("suspend-computer", suspend_computer, "active", SettingsBindFlags.DEFAULT);
 
             Gtk.Switch off_computer = new Gtk.Switch ();
+            //settings.schema.bind ("off-computer", off_computer, "active", SettingsBindFlags.DEFAULT);
 
             Gtk.Switch continue_conversion = new Gtk.Switch ();
+            //settings.schema.bind ("continue-conversion", continue_conversion, "active", SettingsBindFlags.DEFAULT);
             
             int row = 1;
 
@@ -178,19 +185,19 @@ namespace Ciano.Widgets {
             add_section (grid, conversion_label, ref row);
 
             Gtk.Label label_language = new Gtk.Label (_("Simultaneous conversation:"));
-            add_option (grid, label_language, forward_spinner, ref row);
+            add_option (grid, label_language, simultaneous_conversion_spinner, ref row);
 
             Gtk.Label after_conversion_label = new Gtk.Label (_("After conversion:"));
             add_section (grid, after_conversion_label, ref row);
-
-            Gtk.Label open_output_folder_label = new Gtk.Label (_("Open output folder:"));
-            add_option (grid, open_output_folder_label, open_output_folder, ref row);
 
             Gtk.Label delete_source_files_label = new Gtk.Label (_("Delete source files:"));
             add_option (grid, delete_source_files_label, delete_source_files, ref row);
 
             Gtk.Label delete_files_conversion_fails_label = new Gtk.Label (_("Delete files if conversion fails:"));
             add_option (grid, delete_files_conversion_fails_label, delete_files_conversion_fails, ref row);
+
+            Gtk.Label open_output_folder_label = new Gtk.Label (_("Open output folder:"));
+            add_option (grid, open_output_folder_label, open_output_folder_end, ref row);
 
             Gtk.Label suspend_computer_label = new Gtk.Label (_("Suspend the computer:"));
             add_option (grid, suspend_computer_label, suspend_computer, ref row);

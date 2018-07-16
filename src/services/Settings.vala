@@ -25,18 +25,27 @@ namespace Ciano.Services {
 
         private static Settings? instance;
 
-        public int window_x                   { get; set; }
-        public int window_y                   { get; set; }
-        public int window_height              { get; set; }
-        public int window_width               { get; set; }
-        public int theme                      { get; set; }
-        public int language                   { get; set; }
-        public string output_folder           { get; set; }
-        public bool output_source_file_folder { get; set; }
-        public bool shutdown_computer         { get; set; }
-        public bool open_output_folder        { get; set; }
-        public bool complete_notify           { get; set; }
-        public bool error_notify              { get; set; }
+        //public bool continue_conversion;
+        public int simultaneous_conversion;
+        //public bool delete_source_files;
+        //public bool delete_files_conversion_fails;
+        //public bool open_output_folder_end;
+        //public bool suspend_computer;
+        //public bool off_computer;
+        public int window_x;
+        public int window_y;
+        public int window_height;
+        public int window_width;
+        public int theme;
+        public int language;
+        public string output_folder;
+        public bool output_source_file_folder;
+        public bool shutdown_computer;
+        public bool open_output_folder;
+        public bool complete_notify;
+        public bool error_notify;
+        
+        
 
         private Settings () {
             base ("com.github.robertsanseries.ciano");

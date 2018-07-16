@@ -35,7 +35,7 @@ namespace Ciano {
             this.set_default_size (500, 400);
             this.set_size_request (500, 400);
             this.get_style_context ().add_class ("window-background-color");
-            
+
             this.load_window_position_size ();
             this.style_provider ();
 
