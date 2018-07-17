@@ -34,22 +34,16 @@
 
 		<key name="language" type="i">
 			<default>2</default>
-			<summary>language</summary>
-			<description>language</description>
+			<summary>Language</summary>
+			<description>Language</description>
 		</key>
 
 		<key name="simultaneous-conversion" type="i">
 			<default>1</default>
-			<summary>simultaneous</summary>
-			<description>simultaneous</description>
+			<summary>Simultaneous Conversion</summary>
+			<description>Simultaneous Conversion</description>
 		</key>
 		
-		<key name="output-folder" type="s">
-			<default>''</default>
-			<summary>Select the output folder</summary>
-			<description>Select the output folder</description>
-		</key>
-	
 		<key name="output-source-file-folder" type="b">
 			<default>false</default>
 			<summary>Output to source file folder</summary>
@@ -82,39 +76,45 @@
 
 		<key name="delete-source-files" type="b">
 			<default>false</default>
-			<summary>Erro Notify</summary>
-			<description>Erro Notify</description>
+			<summary>Delete Source Files</summary>
+			<description>Delete Source Files</description>
 		</key>
 
 		<key name="delete-files-conversion-fails" type="b">
 			<default>false</default>
-			<summary>Erro Notify</summary>
-			<description>Erro Notify</description>
+			<summary>Delete Files Conversion Fails</summary>
+			<description>Delete Files Conversion Fails</description>
 		</key>
 
 		<key name="open-output-folder-end" type="b">
 			<default>false</default>
-			<summary>Erro Notify</summary>
-			<description>Erro Notify</description>
+			<summary>Open Output Folder End</summary>
+			<description>Open Output Folder End</description>
 		</key>
 
 		<key name="suspend-computer" type="b">
 			<default>false</default>
-			<summary>Erro Notify</summary>
-			<description>Erro Notify</description>
+			<summary>Suspend Computer</summary>
+			<description>Suspend Computer</description>
 		</key>
 
 		<key name="off-computer" type="b">
 			<default>false</default>
-			<summary>Erro Notify</summary>
-			<description>Erro Notify</description>
+			<summary>Off Computer</summary>
+			<description>Off Computer</description>
 		</key>
 
 		<key name="continue-conversion" type="b">
 			<default>false</default>
-			<summary>Erro Notify</summary>
-			<description>Erro Notify</description>
+			<summary>Continue Conversion</summary>
+			<description>Continue Conversion</description>
 		</key>		
+
+		<key name="output-folder" type="s">
+			<default>''</default>
+			<summary>Select the output folder</summary>
+			<description>Select the output folder</description>
+		</key>
 	</schema>
 
 </schemalist>

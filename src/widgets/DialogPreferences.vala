@@ -64,8 +64,9 @@ namespace Ciano.Widgets {
                 settings.output_folder = output_folder.get_file ().get_path ();
             });
 
-            Gtk.ComboBoxText theme = new Gtk.ComboBoxText ();           
-            theme.append_text ("dark                                     ");
+            Gtk.ComboBoxText theme = new Gtk.ComboBoxText ();
+            theme.width_request =  170;
+            theme.append_text ("dark");
             theme.append_text ("default");
             theme.append_text ("elementary");
             theme.set_active (settings.theme);
@@ -75,7 +76,8 @@ namespace Ciano.Widgets {
             });            
 
             Gtk.ComboBoxText language = new Gtk.ComboBoxText ();
-            language.append_text ("Chinese  - Simplified        ");
+            language.width_request =  170;
+            language.append_text ("Chinese  - Simplified");
             language.append_text ("Dutch");
             language.append_text ("English");
             language.append_text ("French");
@@ -150,28 +152,29 @@ namespace Ciano.Widgets {
             Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
             
             Gtk.SpinButton simultaneous_conversion_spinner = new Gtk.SpinButton.with_range(1, 10, 1);
+            simultaneous_conversion_spinner.width_request =  170;
             simultaneous_conversion_spinner.value = (double) settings.simultaneous_conversion;
             simultaneous_conversion_spinner.value_changed.connect(() => {
                 settings.simultaneous_conversion = (int) simultaneous_conversion_spinner.value;
             });
 
             Gtk.Switch delete_source_files = new Gtk.Switch ();
-            //settings.schema.bind ("delete-source-files", delete_source_files, "active", SettingsBindFlags.DEFAULT);
+            settings.schema.bind ("delete-source-files", delete_source_files, "active", SettingsBindFlags.DEFAULT);
 
             Gtk.Switch delete_files_conversion_fails = new Gtk.Switch ();
-            //settings.schema.bind ("delete-files-conversion-fails", delete_files_conversion_fails, "active", SettingsBindFlags.DEFAULT);
+            settings.schema.bind ("delete-files-conversion-fails", delete_files_conversion_fails, "active", SettingsBindFlags.DEFAULT);
 
             Gtk.Switch open_output_folder_end = new Gtk.Switch ();
-            //settings.schema.bind ("open-output-folder-end", open_output_folder_end, "active", SettingsBindFlags.DEFAULT);
+            settings.schema.bind ("open-output-folder-end", open_output_folder_end, "active", SettingsBindFlags.DEFAULT);
 
             Gtk.Switch suspend_computer = new Gtk.Switch ();
-            //settings.schema.bind ("suspend-computer", suspend_computer, "active", SettingsBindFlags.DEFAULT);
+            settings.schema.bind ("suspend-computer", suspend_computer, "active", SettingsBindFlags.DEFAULT);
 
             Gtk.Switch off_computer = new Gtk.Switch ();
-            //settings.schema.bind ("off-computer", off_computer, "active", SettingsBindFlags.DEFAULT);
+            settings.schema.bind ("off-computer", off_computer, "active", SettingsBindFlags.DEFAULT);
 
             Gtk.Switch continue_conversion = new Gtk.Switch ();
-            //settings.schema.bind ("continue-conversion", continue_conversion, "active", SettingsBindFlags.DEFAULT);
+            settings.schema.bind ("continue-conversion", continue_conversion, "active", SettingsBindFlags.DEFAULT);
             
             int row = 1;
 
