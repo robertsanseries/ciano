@@ -1,27 +1,28 @@
 /*
-* Copyright (c) 2017-2018 Robert San <robertsanseries@gmail.com>
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public
-* License as published by the Free Software Foundation; either
-* version 2 of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public
-* License along with this program; if not, write to the
-* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-* Boston, MA 02110-1301 USA
-*/
+ * Copyright (c) 2017-2018 Robert San <robertsanseries@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301 USA
+ */
 
 using Ciano.Config;
+using Ciano.Enums;
 using Ciano.Helpers;
 using Ciano.Utils;
 using Ciano.Widgets;
-using Ciano.Facades;
+using Ciano.Views.Factory;
 using Ciano.Controllers;
 
 namespace Ciano.Views {
@@ -42,7 +43,7 @@ namespace Ciano.Views {
             Widgets.HeaderBar headerbar = new Widgets.HeaderBar ();
             
             headerbar.icon_settings_clicked.connect (() => { 
-                DialogFacade.open_dialog_preferences (this);
+                DialogFactory.open_dialog (this, DialogEnum.PREFERENCES);
             });
 
             headerbar.icon_report_problem_clicked.connect (() => { 
@@ -50,7 +51,7 @@ namespace Ciano.Views {
             });           
 
             headerbar.icon_about_clicked.connect (() => { 
-                DialogFacade.open_dialog_about (this);
+                DialogFactory.open_dialog (this, DialogEnum.ABOUT);
             });
            
             headerbar.set_visible_icons(false);
@@ -62,7 +63,7 @@ namespace Ciano.Views {
                         this.open_dialog_file_chooser ();
                         break;
                     case 1:
-                        DialogFacade.open_dialog_informations (this);
+                        DialogFactory.open_dialog (this, DialogEnum.INFORMATIONS);
                         break;
                  }
             });

@@ -1,7 +1,7 @@
 sources = files(
     'configs/Constants.vala',
     'controllers/ActionController.vala',
-    'facades/DialogFacade.vala',
+    'enums/DialogEnum.vala',
     'helpers/FormatsHelper.vala',
     'models/objects/FileVO.vala',
     'services/Settings.vala',
@@ -9,6 +9,7 @@ sources = files(
     'utils/CoreUtil.vala',
     'utils/StringUtil.vala',
     'utils/WidgetUtil.vala',
+    'views/factory/DialogFactory.vala',
     'views/ApplicationView.vala',
     'widgets/DialogAbout.vala',
     'widgets/DialogInformations.vala',
