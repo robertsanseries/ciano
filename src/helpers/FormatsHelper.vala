@@ -24,23 +24,23 @@ namespace Ciano.Helpers {
     public class FormatsHelper {
 
         public static string[] get_supported_types () {
-        	GLib.GenericArray<string> formats = new GLib.GenericArray<string> ();
+            GLib.GenericArray<string> formats = new GLib.GenericArray<string> ();
             
             formats = ArrayUtil.join_generic_string_arrays (
-            	get_supported_videos (),
-            	get_supported_musics ()
+                get_supported_videos (),
+                get_supported_musics ()
             );
 
             formats = ArrayUtil.join_generic_string_arrays (
-            	formats,
-            	get_supported_images ()
+                formats,
+                get_supported_images ()
             );
 
             return formats.data;
         }
 
         public static GLib.GenericArray<string> get_supported_videos () {
-        	GLib.GenericArray<string> formats_videos = new GLib.GenericArray<string> ();
+            GLib.GenericArray<string> formats_videos = new GLib.GenericArray<string> ();
             formats_videos.add("MP4");
             formats_videos.add("3GP");
             formats_videos.add("MPG");
@@ -58,7 +58,7 @@ namespace Ciano.Helpers {
         }
 
         public static GLib.GenericArray<string> get_supported_musics () {
-        	GLib.GenericArray<string> formats_musics = new GLib.GenericArray<string> ();
+            GLib.GenericArray<string> formats_musics = new GLib.GenericArray<string> ();
             formats_musics.add("MP3");
             formats_musics.add("WMA");
             formats_musics.add("AMR");
@@ -74,7 +74,7 @@ namespace Ciano.Helpers {
         }
 
         public static GLib.GenericArray<string> get_supported_images () {
-        	GLib.GenericArray<string> formats_images = new GLib.GenericArray<string> ();
+            GLib.GenericArray<string> formats_images = new GLib.GenericArray<string> ();
             formats_images.add("JPG");
             formats_images.add("BMP");
             formats_images.add("PNG");

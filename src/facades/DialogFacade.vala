@@ -22,21 +22,21 @@ using Ciano.Widgets;
 
 namespace Ciano.Facades {
 
-	public class DialogFacade {
+    public class DialogFacade {
 
         public static void open_dialog_about (ApplicationView parent) {
             DialogAbout dialog_about = new DialogAbout (parent);
             dialog_about.show_all ();
         }
 
-	    public static void open_dialog_informations (ApplicationView parent) {
+        public static void open_dialog_informations (ApplicationView parent) {
             DialogInformations dialog_informations = new DialogInformations (parent);
             dialog_informations.show_all ();
         }
 
         public static void open_dialog_preferences (ApplicationView parent) {
-        	DialogPreferences dialog_preferences = new DialogPreferences (parent);
+            DialogPreferences dialog_preferences = new DialogPreferences (parent);
             dialog_preferences.show_all ();
         }
-	}
+    }
 }
