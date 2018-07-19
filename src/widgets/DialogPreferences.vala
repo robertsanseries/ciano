@@ -19,12 +19,13 @@
 
 using Ciano.Services;
 using Ciano.Utils;
+using Ciano.Views;
 
 namespace Ciano.Widgets {
 
     public class DialogPreferences : Gtk.Dialog {
 
-        public DialogPreferences (Window parent) {
+        public DialogPreferences (ApplicationView parent) {
             this.title = _("Preferences");
             this.resizable = false;
             this.deletable = false;
@@ -53,7 +54,7 @@ namespace Ciano.Widgets {
             });
         }
 
-        private Gtk.Grid get_general_box (Window parent) {
+        private Gtk.Grid get_general_box (ApplicationView parent) {
 
             Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
             
@@ -72,7 +73,7 @@ namespace Ciano.Widgets {
             theme.set_active (settings.theme);
             theme.changed.connect (() => {
                 settings.theme = theme.get_active ();
-                parent.style_provider ();
+                parent.load_css_provider ();
             });            
 
             Gtk.ComboBoxText language = new Gtk.ComboBoxText ();
@@ -141,8 +142,8 @@ namespace Ciano.Widgets {
             Gtk.Label label_theme = new Gtk.Label (_("Theme:"));
             add_option (grid, label_theme, theme, ref row);
 
-            Gtk.Label label_language = new Gtk.Label (_("Language:"));
-            add_option (grid, label_language, language, ref row);
+            //Gtk.Label label_language = new Gtk.Label (_("Language:"));
+            //add_option (grid, label_language, language, ref row);
 
             return grid;
         }

@@ -17,10 +17,22 @@
 * Boston, MA 02110-1301 USA
 */
 
-@define-color colorPrimary #DEDEDE;
-@define-color textColorPrimary shade (@text_color, 0.9);
+namespace Ciano.Utils {
 
+    public class ArrayUtil {
 
-.GtkWindow {
-	background-color: #F5F5F5;
+        public static GenericArray join_generic_string_arrays (GenericArray<string> array1, GenericArray<string> array2) {
+            var new_array = new GenericArray<string> ();
+
+           array1.foreach ((str) => {
+                new_array.add (str);
+            });
+
+            array2.foreach ((str) => {
+                new_array.add (str);
+            });
+
+            return new_array;
+        }
+    }
 }

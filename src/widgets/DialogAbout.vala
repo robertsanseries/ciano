@@ -18,12 +18,13 @@
 */
 
 using Ciano.Utils;
+using Ciano.Views;
 
 namespace Ciano.Widgets {
 
     public class DialogAbout : Gtk.Dialog {
 
-        public DialogAbout (Window parent) {
+        public DialogAbout (ApplicationView parent) {
             this.title= "About";
             this.border_width= 5;
             this.deletable= false;

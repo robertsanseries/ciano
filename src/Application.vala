@@ -18,11 +18,14 @@
 *
 */
 
+using Ciano.Controllers;
+using Ciano.Views;
+
 namespace Ciano {
 
     public class Application : Granite.Application {
 
-        private Ciano.Window _window;
+        private ApplicationView _window;
 
         public Application () {
             Object (
@@ -33,12 +36,13 @@ namespace Ciano {
 
         public override void activate () {
             if (this._window == null) {
-                this._window = new Ciano.Window (this);
+                ActionController action = new ActionController ();
+                this._window = new ApplicationView (this, action);
                 this.add_window (this._window);
                 this._window.show_all ();
             }
 
-            var quit_action = new SimpleAction ("quit", null);
+            SimpleAction quit_action = new SimpleAction ("quit", null);
             quit_action.activate.connect (() => {
                 if (this._window != null) {
                     this._window.destroy ();

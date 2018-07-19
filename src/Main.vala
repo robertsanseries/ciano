@@ -15,12 +15,13 @@
 * License along with this program; if not, write to the
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
+*
 */
 
 namespace Ciano {
 
     public static void main (string [] args) {
-        var app = new Ciano.Application ();
-        app.run (args);
+        Ciano.Application application = new Ciano.Application ();
+        application.run (args);
     }
 }

@@ -1,9 +1,14 @@
 sources = files(
+    'configs/Constants.vala',
+    'controllers/ActionController.vala',
     'facades/DialogFacade.vala',
+    'helpers/FormatsHelper.vala',
     'services/Settings.vala',
+    'utils/ArrayUtil.vala',
     'utils/CoreUtil.vala',
     'utils/StringUtil.vala',
     'utils/WidgetUtil.vala',
+    'views/ApplicationView.vala',
     'widgets/DialogAbout.vala',
     'widgets/DialogInformations.vala',
     'widgets/DialogPreferences.vala',
@@ -11,5 +16,4 @@ sources = files(
     'widgets/Welcome.vala',
     'Application.vala',
     'Main.vala',
-    'Window.vala'
 )

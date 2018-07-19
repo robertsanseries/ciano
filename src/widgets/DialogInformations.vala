@@ -19,12 +19,13 @@
 
 using Ciano.Services;
 using Ciano.Utils;
+using Ciano.Views;
 
 namespace Ciano.Widgets {
 
     public class DialogInformations : Gtk.Dialog {
 
-        public DialogInformations (Window parent) {
+        public DialogInformations (ApplicationView parent) {
             this.title = _("Supported Formats");
             this.border_width= 5;
             this.deletable= false;
@@ -45,6 +46,7 @@ namespace Ciano.Widgets {
             column_start.add (new OptionLabel ("3GP"));
             column_start.add (new OptionLabel ("MPG"));
             column_start.add (new OptionLabel ("AVI"));
+            column_start.add (new OptionLabel ("FLV"));
             column_start.add (new OptionLabel ("WMV"));
             column_start.add (new OptionLabel ("SWF"));
             column_start.add (new OptionLabel ("MOV"));

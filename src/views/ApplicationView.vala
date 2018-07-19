@@ -17,27 +17,27 @@
 * Boston, MA 02110-1301 USA
 */
 
+using Ciano.Config;
+using Ciano.Helpers;
 using Ciano.Utils;
 using Ciano.Widgets;
 using Ciano.Facades;
+using Ciano.Controllers;
 
-namespace Ciano {
+namespace Ciano.Views {
 
-    public class Window : Gtk.ApplicationWindow {
-         
-        public Window (Gtk.Application app) {
-            Object (
-                application: app,
-                resizable: true
-            );
-
+    public class ApplicationView : Gtk.ApplicationWindow {
+        
+        public ApplicationView (Gtk.Application application, ActionController action) {
+            this.application = application;
+            this.resizable = true;
             this.window_position = Gtk.WindowPosition.CENTER;
             this.set_default_size (500, 400);
             this.set_size_request (500, 400);
             this.get_style_context ().add_class ("window-background-color");
-
-            this.load_window_position_size ();
-            this.style_provider ();
+            
+            this.begin_event ();
+            this.load_css_provider ();
 
             Widgets.HeaderBar headerbar = new Widgets.HeaderBar ();
             
@@ -59,7 +59,7 @@ namespace Ciano {
             welcome.activated.connect ((index) => {
                 switch (index) {
                     case 0:
-                        
+                        this.open_dialog_file_chooser ();
                         break;
                     case 1:
                         DialogFacade.open_dialog_informations (this);
@@ -67,17 +67,20 @@ namespace Ciano {
                  }
             });
 
+            Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+
             Gtk.Stack stack = new Gtk.Stack ();
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             stack.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-            stack.add_named (welcome, "WELCOME_ID");
+            stack.add_named (welcome, Constants.WELCOME_VIEW);
+            stack.add_named (box, Constants.CONVERSION_VIEW);
 
             this.set_titlebar (headerbar);
             this.add (stack);
             this.show_all ();
         }
 
-        public void style_provider () {
+        public void load_css_provider () {
             Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
             Gtk.Settings gtk_settings = Gtk.Settings.get_default ();
             Gtk.CssProvider css_provider = new Gtk.CssProvider ();
@@ -103,7 +106,49 @@ namespace Ciano {
             );
         }
 
-        private void load_window_position_size () {
+        private void open_dialog_file_chooser () {
+            Gtk.FileChooserDialog chooser = new Gtk.FileChooserDialog (
+                "Select packages to install",
+                this,
+                Gtk.FileChooserAction.OPEN
+            );
+
+            chooser.add_buttons (
+                _("Cancel"), Gtk.ResponseType.CANCEL,
+                _("Open"), Gtk.ResponseType.ACCEPT
+            );
+
+            Gtk.FileFilter filter = new Gtk.FileFilter ();
+            foreach (string format in FormatsHelper.get_supported_types ()) {
+                filter.add_pattern ("*.".concat (format.down ()));
+            } 
+
+            chooser.select_multiple = true;
+            chooser.set_filter (filter);
+
+            chooser.response.connect ((response) => {
+                if (response == Gtk.ResponseType.ACCEPT) {
+                    SList<string> uris = chooser.get_filenames ();
+
+                    foreach (unowned string uri in uris)  {
+                        var file         = File.new_for_uri (uri);
+                        int index        = file.get_basename ().last_index_of("/");
+                        string name      = file.get_basename ().substring(index + 1, -1);
+                        string directory = file.get_basename ().substring(0, index + 1);
+
+                        message ("name: ".concat(name).concat(" directory: ").concat(directory));
+                    }
+
+                    chooser.destroy ();
+                } else {
+                    chooser.destroy ();
+                }
+            });
+
+            chooser.run ();
+        }
+
+        private void begin_event () {
             Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
             int x = settings.window_x;
             int y = settings.window_y;
