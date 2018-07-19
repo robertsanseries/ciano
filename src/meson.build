@@ -3,6 +3,7 @@ sources = files(
     'controllers/ActionController.vala',
     'facades/DialogFacade.vala',
     'helpers/FormatsHelper.vala',
+    'models/objects/FileVO.vala',
     'services/Settings.vala',
     'utils/ArrayUtil.vala',
     'utils/CoreUtil.vala',
