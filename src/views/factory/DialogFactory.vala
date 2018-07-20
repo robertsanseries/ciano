@@ -27,12 +27,11 @@ namespace Ciano.Views.Factory {
        
         public static void open_dialog (ApplicationView parent, DialogEnum dialog) {
             
-            switch (dialog) {
-                
+            switch (dialog) {       
                 case DialogEnum.ABOUT:
                     DialogAbout dialog_about = new DialogAbout (parent);
                     dialog_about.show_all ();
-                     break;
+                    break;
 
                 case DialogEnum.INFORMATIONS:
                     DialogInformations dialog_informations = new DialogInformations (parent);

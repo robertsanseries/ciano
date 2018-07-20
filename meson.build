@@ -39,7 +39,8 @@ executable('com.github.robertsanseries.ciano',
         dependency('gobject-2.0'),
         dependency('gtk+-3.0'),
         dependency('glib-2.0'),
-        dependency('json-glib-1.0')
+        dependency('json-glib-1.0'),
+        dependency('libgda-5.0')
     ],
     install : true
 )

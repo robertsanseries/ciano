@@ -17,13 +17,10 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Karim.Core {
+namespace Ciano.Models.DB {
 
     public class Database : GLib.Object {
 
-        /**
-         * variables
-         */
         private Gda.Connection   connection;
         public string           provider;
         public string           data_dir;
@@ -31,9 +28,6 @@ namespace Karim.Core {
         public File             database_dir;
         public string           hostname;
 
-        /**
-         * Constructor
-         */
         public Database () {
             try {
                 this.provider     = "SQLite";
@@ -43,27 +37,12 @@ namespace Karim.Core {
                 this.hostname     = "DB_DIR=%s;DB_NAME=%s".printf (database_dir.get_path (), "karim");
                 check_dir ();
                 create_database ();
-                create_connection ();
                 create_table_downloads ();
             } catch (Error e) {
                 critical (e.message);
             }
         }
 
-        /**
-         * Get connection.
-         * 
-         * @return {@code Connection}
-         */
-        public Gda.Connection get_connection () {
-            return connection;
-        }
-
-        /**
-         * Check directory.
-         * 
-         * @return void
-         */
         private void check_dir () {
             try {
                 this.database_dir.make_directory_with_parents (null);
@@ -74,11 +53,6 @@ namespace Karim.Core {
             }
         }
 
-        /**
-         * Create database if it does not exist.
-         * 
-         * @return void
-         */
         private void create_database () {
             var db_file = this.database_dir.get_child ("karim.db");
             bool new_db = !db_file.query_exists ();
@@ -92,29 +66,6 @@ namespace Karim.Core {
             }
         }
 
-        /**
-         * Initiate connection with data bank
-         * 
-         * @return void
-         */
-        private void create_connection () {
-            try {
-                this.connection = Gda.Connection.open_from_string (
-                    this.provider,
-                    this.hostname,
-                    null,
-                    Gda.ConnectionOptions.NONE
-                );
-            } catch (Error e) {
-                error (e.message);
-            }
-        }
-
-        /**
-         * Create table downloads if it does not exist
-         * 
-         * @return void
-         */
         private void create_table_downloads () throws Error requires (this.connection.is_opened()) {
             Error e = null;
             var operation = Gda.ServerOperation.prepare_create_table (
