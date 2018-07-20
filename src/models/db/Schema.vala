@@ -19,57 +19,32 @@
 
 namespace Ciano.Models.DB {
 
-    public class Database : GLib.Object {
+    public class Schema {
 
-        private Gda.Connection   connection;
-        public string           provider;
-        public string           data_dir;
-        public string           dir_path;
-        public File             database_dir;
-        public string           hostname;
+        private Gda.Connection connection;
 
-        public Database () {
+        public Schema () {
             try {
-                this.provider     = "SQLite";
-                this.data_dir     = Environment.get_user_data_dir ();
-                this.dir_path     = Path.build_path (Path.DIR_SEPARATOR_S, data_dir, "karim");
-                this.database_dir = File.new_for_path (dir_path);
-                this.hostname     = "DB_DIR=%s;DB_NAME=%s".printf (database_dir.get_path (), "karim");
-                check_dir ();
-                create_database ();
-                create_table_downloads ();
+                File sqlite_db_dir = DBHelper.get_sqlite_db_dir ();
+                
+                if (!DBHelper.exist_sqlite_db ()) {
+                    DBHelper.generate_sqlite_db_dir ();
+                    DBHelper.generate_sqlite_file_db ();
+                    this.generate_table_arquive ();
+                }
             } catch (Error e) {
-                critical (e.message);
-            }
-        }
-
-        private void check_dir () {
-            try {
-                this.database_dir.make_directory_with_parents (null);
-            } catch (Error err) {
                 if (err is IOError.EXISTS == false) {
                     error (err.message);
+                } else {
+                    critical (e.message);    
                 }
             }
         }
 
-        private void create_database () {
-            var db_file = this.database_dir.get_child ("karim.db");
-            bool new_db = !db_file.query_exists ();
-
-            if (new_db) {
-                try {
-                    db_file.create (FileCreateFlags.PRIVATE);
-                } catch (Error e) {
-                    critical (e.message);
-                }
-            }
-        }
-
-        private void create_table_downloads () throws Error requires (this.connection.is_opened()) {
+        private void generate_table_arquive () throws Error requires (this.connection.is_opened()) {
             Error e = null;
             var operation = Gda.ServerOperation.prepare_create_table (
-                connection, "downloads", e,
+                connection, "arquive", e,
                 "id",         typeof (int),    Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG,
                 "name",       typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
                 "url",        typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,

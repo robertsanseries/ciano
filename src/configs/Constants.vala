@@ -20,7 +20,7 @@
 namespace Ciano.Config {
 
     public class Constants {
-        public const string WELCOME_VIEW   = "welcome-view";
-        public const string CONVERSION_VIEW   = "conversion-view";
+        public const string WELCOME_VIEW    = "welcome-view";
+        public const string CONVERSION_VIEW = "conversion-view";
     }
 }

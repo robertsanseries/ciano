@@ -22,16 +22,10 @@ namespace Ciano.Models.DB {
     public class ConnectionFactory {
 
         public static Gda.Connection? get_connection () {
-        	string provider     = "SQLite";
-        	string data_dir     = Environment.get_user_data_dir ();
-            string dir_path     = Path.build_path (Path.DIR_SEPARATOR_S, data_dir, "ciano");
-            string database_dir = File.new_for_path (dir_path);
-            string hostname     = "DB_DIR=%s;DB_NAME=%s".printf (database_dir.get_path (), "ciano");
-
         	try {
                 return Gda.Connection.open_from_string (
-                    provider,
-                    hostname,
+                    DBHelper.get_sqlite_provider (),
+                    DBHelper.get_sqlite_hostname (),
                     null,
                     Gda.ConnectionOptions.NONE
                 );

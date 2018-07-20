@@ -17,9 +17,34 @@
  * Boston, MA 02110-1301 USA
  */
 
-interface GenericDAO : Object {
-    public abstract void create ();
-    public abstract void read ();
-    public abstract void update ();
-    public abstract void delete ();
+using Ciano.Models.DB;
+using Ciano.Models.Object;
+
+namespace Ciano.Models.DAO {
+
+    public class DatabaseDAOImpl : ArchiveDAO {
+
+        public DatabaseDAOImpl () {
+        }
+
+        public int insert (Archive user){
+            stdout.printf("insert");
+        }
+
+        public Archive find (int id){
+            stdout.printf("find");
+        }
+
+        public List<Archive> selectAll (){
+            stdout.printf("selectAll");
+        }
+
+        public int update (Archive user){
+            stdout.printf("update");
+        }
+
+        public int delete (int id){
+            stdout.printf("delete");
+        }
+    }
 }

@@ -17,9 +17,9 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano.Models.Objects {
+namespace Ciano.Models.Object {
 
-    public class FileVO {
+    public class Archive {
 
         public string name       { get; set; }
         public string directory  { get; set; }
@@ -29,7 +29,7 @@ namespace Ciano.Models.Objects {
         public long size         { get; set; }
         public int percentage    { get; set; }
 
-        public FileVO (
+        public Archive (
             string name, 
             string directory,
             string uri,

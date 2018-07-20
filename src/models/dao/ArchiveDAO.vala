@@ -17,27 +17,12 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano.Models.Database {
+using Ciano.Models.Object;
 
-    public class DatabaseDAOImpl : IGenericDAO {
-
-        public DatabaseDAOImpl () {
-        }
-
-        public void create () {
-        	stdout.printf("create");
-        }
-	    
-	    public void read () {
-	    	stdout.printf("read");
-        }
-	    
-	    public void update () {
-	    	stdout.printf("update");
-        }
-	    
-	    public void delete () {
-	    	stdout.printf("delete");
-        }
-    }
+interface ArchiveDAO {
+    public abstract int insert(Archive user);
+    public abstract Archive find(int id);
+    public abstract List<Archive> selectAll ();
+    public abstract int update(Archive user);
+    public abstract int delete(int id);
 }
