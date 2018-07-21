@@ -18,6 +18,7 @@
  */
 
 using Ciano.Controllers;
+using Ciano.Models.DB;
 using Ciano.Views;
 
 namespace Ciano {
@@ -35,6 +36,7 @@ namespace Ciano {
 
         public override void activate () {
             if (this._window == null) {
+                SQLiteSchemaHandler.init_loader ();
                 ActionController action = new ActionController ();
                 this._window = new ApplicationView (this, action);
                 this.add_window (this._window);

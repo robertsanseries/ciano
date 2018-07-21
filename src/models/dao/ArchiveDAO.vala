@@ -17,12 +17,15 @@
  * Boston, MA 02110-1301 USA
  */
 
-using Ciano.Models.Object;
+using Ciano.Models.Objects;
 
-interface ArchiveDAO {
-    public abstract int insert(Archive user);
-    public abstract Archive find(int id);
-    public abstract List<Archive> selectAll ();
-    public abstract int update(Archive user);
-    public abstract int delete(int id);
+namespace Ciano.Models.DAO {
+
+	public interface ArchiveDAO {
+	    public abstract bool insert(Archive user);
+	    public abstract Archive find(int id);
+	    public abstract GenericArray<Archive> selectAll ();
+	    public abstract bool update(Archive user);
+	    public abstract bool delete(int id);
+	}
 }

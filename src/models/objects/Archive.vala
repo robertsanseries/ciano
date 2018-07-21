@@ -17,7 +17,7 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano.Models.Object {
+namespace Ciano.Models.Objects {
 
     public class Archive {
 

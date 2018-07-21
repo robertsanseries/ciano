@@ -18,33 +18,43 @@
  */
 
 using Ciano.Models.DB;
-using Ciano.Models.Object;
+using Ciano.Models.Objects;
 
 namespace Ciano.Models.DAO {
 
-    public class DatabaseDAOImpl : ArchiveDAO {
+    public class ArchiveDAOImpl : ArchiveDAO {
 
-        public DatabaseDAOImpl () {
+        public ArchiveDAOImpl () {
         }
 
-        public int insert (Archive user){
+        public bool insert (Archive user){
             stdout.printf("insert");
+
+            return true;
         }
 
         public Archive find (int id){
             stdout.printf("find");
+
+            return new Archive ("", "", "", 0, 0, 0, 0);
         }
 
-        public List<Archive> selectAll (){
+        public GenericArray<Archive> selectAll (){
             stdout.printf("selectAll");
+
+            return new GenericArray<Archive> ();;
         }
 
-        public int update (Archive user){
+        public bool update (Archive user){
             stdout.printf("update");
+
+            return true;
         }
 
-        public int delete (int id){
+        public bool delete (int id){
             stdout.printf("delete");
+
+            return true;
         }
     }
 }

@@ -17,6 +17,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+using Ciano.Helpers;
+
 namespace Ciano.Models.DB {
 
     public class ConnectionFactory {
@@ -24,24 +26,12 @@ namespace Ciano.Models.DB {
         public static Gda.Connection? get_connection () {
         	try {
                 return Gda.Connection.open_from_string (
-                    DBHelper.get_sqlite_provider (),
-                    DBHelper.get_sqlite_hostname (),
+                    SqliteHelper.get_provider (),
+                    SqliteHelper.get_hostname (),
                     null,
                     Gda.ConnectionOptions.NONE
                 );
             } catch (Error e) {
-                GLib.error (e.message);
-            }
-            
-            return null;
-        }
-
-        public static void close_connection (Gda.Connection? connection) {
-        	try {
-        		if (connection != null) {
-        			connection.close();	
-        		}
-        	} catch (Error e) {
                 GLib.error (e.message);
             }
         }

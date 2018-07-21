@@ -21,13 +21,13 @@ using Ciano.Utils;
 
 namespace Ciano.Helpers {
 
-    public class DBHelper {
+    public class SqliteHelper {
 
-        public static string get_sqlite_provider () {
+        public static string get_provider () {
             return "SQLite";
         }
 
-        public static File get_sqlite_db_dir () {
+        public static File get_database_dir () {
             return File.new_for_path (
             	Path.build_path (
             		Path.DIR_SEPARATOR_S, 
@@ -37,24 +37,36 @@ namespace Ciano.Helpers {
             );
         }
 
-        public static string get_sqlite_hostname () {
-            return "DB_DIR=%s;DB_NAME=%s".printf (get_sqlite_db_dir ().get_path (), "ciano");            
+        public static string get_hostname () {
+            return "DB_DIR=%s;DB_NAME=%s".printf (get_database_dir ().get_path (), "ciano");            
         }
 
-        public static File get_sqlite_file_db (File sqlite_database_dir) {
-            return sqlite_database_dir.get_child ("ciano.db");
+        public static File get_database_file (File database_dir) {
+            return database_dir.get_child ("ciano.db");
         }
 
-        public static bool exist_sqlite_db () {
-            return get_sqlite_file_db ().query_exists ();
+        public static bool exist_database () {
+            return get_database_file (get_database_dir ()).query_exists ();
         }
 
-        public static bool generate_sqlite_db_dir () {
-            return get_sqlite_db_dir ().make_directory_with_parents ();
+        public static bool generate_database_dir () {
+            if(!get_database_dir().query_exists ()) {
+                try {
+                    return get_database_dir ().make_directory_with_parents ();        
+                } catch (Error e) {
+                    GLib.error (e.message);
+                }
+            }
+
+            return true;
         }
 
-        public static void generate_sqlite_file_db () {
-            get_sqlite_file_db ().create (FileCreateFlags.PRIVATE);
+        public static void generate_database_file () {
+            try {
+                get_database_file (get_database_dir ()).create (FileCreateFlags.PRIVATE);
+            } catch (Error e) {
+                GLib.error (e.message);   
+            }
         }
     }
 }
