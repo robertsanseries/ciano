@@ -29,11 +29,11 @@ namespace Ciano.Helpers {
 
         public static File get_database_dir () {
             return File.new_for_path (
-            	Path.build_path (
-            		Path.DIR_SEPARATOR_S, 
-            		Environment.get_user_data_dir (), 
-            		"ciano"
-            	)
+                Path.build_path (
+                    Path.DIR_SEPARATOR_S, 
+                    Environment.get_user_data_dir (), 
+                    "ciano"
+                )
             );
         }
 

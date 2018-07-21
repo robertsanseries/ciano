@@ -24,7 +24,7 @@ namespace Ciano.Models.DB {
     public class ConnectionFactory {
 
         public static Gda.Connection? get_connection () {
-        	try {
+            try {
                 return Gda.Connection.open_from_string (
                     SqliteHelper.get_provider (),
                     SqliteHelper.get_hostname (),
@@ -35,5 +35,5 @@ namespace Ciano.Models.DB {
                 GLib.error (e.message);
             }
         }
-	}
+    }
 }

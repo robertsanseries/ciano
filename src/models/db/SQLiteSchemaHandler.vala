@@ -41,8 +41,11 @@ namespace Ciano.Models.DB {
                         connection, "arquive", e,
                         "id",         typeof (int),    Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG,
                         "name",       typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                        "url",        typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                        "directory",  typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                        "uri",        typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                        "duration",   typeof (double), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
                         "progress",   typeof (double), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                        "size",       typeof (long),   Gda.ServerOperationCreateTableFlag.NOTHING_FLAG
                         "percentage", typeof (int),    Gda.ServerOperationCreateTableFlag.NOTHING_FLAG
                     );
 

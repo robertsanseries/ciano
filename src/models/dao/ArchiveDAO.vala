@@ -21,11 +21,11 @@ using Ciano.Models.Objects;
 
 namespace Ciano.Models.DAO {
 
-	public interface ArchiveDAO {
-	    public abstract bool insert(Archive user);
-	    public abstract Archive find(int id);
-	    public abstract GenericArray<Archive> selectAll ();
-	    public abstract bool update(Archive user);
-	    public abstract bool delete(int id);
-	}
+    public interface ArchiveDAO {
+        public abstract bool insert(Archive user);
+        public abstract Archive find(int id);
+        public abstract GenericArray<Archive> selectAll ();
+        public abstract bool update(Archive user);
+        public abstract bool delete(int id);
+    }
 }
