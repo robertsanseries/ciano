@@ -25,8 +25,7 @@ namespace Ciano.Widgets {
 
         public signal void icon_document_open_clicked ();
         public signal void icon_output_folder_clicked ();
-        public signal void icon_start_clicked ();
-        public signal void icon_pause_clicked ();
+        public signal void icon_start_pause_clicked ();
         public signal void icon_information_clicked ();
         public signal void icon_settings_clicked ();
         public signal void icon_about_clicked ();
@@ -57,7 +56,7 @@ namespace Ciano.Widgets {
             this.start_pause = new Gtk.Button ();
             this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.SMALL_TOOLBAR));
             this.start_pause.tooltip_text = (_("Start all conversions"));
-            this.start_pause.clicked.connect (() => { icon_start_clicked (); });
+            this.start_pause.clicked.connect (() => { icon_start_pause_clicked (); });
 
             this.information = new Gtk.Button ();
             this.information.set_image (new Gtk.Image.from_icon_name ("dialog-information", Gtk.IconSize.LARGE_TOOLBAR));
@@ -116,13 +115,11 @@ namespace Ciano.Widgets {
                 this.start = false;
                 this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-pause", Gtk.IconSize.SMALL_TOOLBAR));
                 this.start_pause.tooltip_text = (_("Pause all conversions"));
-                this.start_pause.clicked.connect (() => { icon_pause_clicked (); });
                 this.start_pause.show_all ();
             } else {
                 this.start = true;
                 this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.SMALL_TOOLBAR));
                 this.start_pause.tooltip_text = (_("Start all conversions"));
-                this.start_pause.clicked.connect (() => { icon_start_clicked (); });
                 this.start_pause.show_all ();
             }
         }
