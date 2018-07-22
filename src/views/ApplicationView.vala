@@ -41,14 +41,30 @@ namespace Ciano.Views {
             this.load_css_provider ();
 
             Widgets.HeaderBar headerbar = new Widgets.HeaderBar ();
+
+            headerbar.icon_document_open_clicked.connect (() => { 
+                this.open_dialog_file_chooser ();
+            });
+
+            headerbar.icon_output_folder_clicked.connect (() => { 
+                this.open_dialog_file_chooser ();
+            }); 
+
+            headerbar.icon_start_clicked.connect (() => { 
+                this.open_dialog_file_chooser ();
+            }); 
+
+            headerbar.icon_information_clicked.connect (() => { 
+                DialogFactory.open_dialog (this, DialogEnum.INFORMATIONS);
+            }); 
             
             headerbar.icon_settings_clicked.connect (() => { 
                 DialogFactory.open_dialog (this, DialogEnum.PREFERENCES);
             });
 
-            headerbar.icon_report_problem_clicked.connect (() => { 
+            /*headerbar.icon_report_problem_clicked.connect (() => { 
                 CoreUtil.launch_uri ("https://github.com/robertsanseries/ciano/issues");
-            });           
+            });           */
 
             headerbar.icon_about_clicked.connect (() => { 
                 DialogFactory.open_dialog (this, DialogEnum.ABOUT);

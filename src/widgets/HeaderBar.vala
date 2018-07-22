@@ -26,14 +26,15 @@ namespace Ciano.Widgets {
         public signal void icon_document_open_clicked ();
         public signal void icon_output_folder_clicked ();
         public signal void icon_start_clicked ();
+        public signal void icon_pause_clicked ();
         public signal void icon_information_clicked ();
         public signal void icon_settings_clicked ();
-        public signal void icon_report_problem_clicked ();
         public signal void icon_about_clicked ();
 
         public Gtk.Button document_open { get; private set;}
         public Gtk.Button output_folder { get; private set;}
         public Gtk.Button start         { get; private set;}
+        public Gtk.Button pause         { get; private set;}
         public Gtk.Button information   { get; private set;}
         public Gtk.MenuButton settings  { get; private set;}
 
@@ -43,7 +44,7 @@ namespace Ciano.Widgets {
 
             this.document_open = new Gtk.Button ();
             this.document_open.set_image (new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR));
-            this.document_open.tooltip_text = (_("Open output folder"));
+            this.document_open.tooltip_text = (_("Add files to convert"));
             this.document_open.clicked.connect (() => { icon_document_open_clicked (); });
 
             this.output_folder = new Gtk.Button ();
@@ -53,19 +54,21 @@ namespace Ciano.Widgets {
 
             this.start = new Gtk.Button ();
             this.start.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.SMALL_TOOLBAR));
-            this.start.tooltip_text = (_("Open output folder"));
+            this.start.tooltip_text = (_("Start all conversions"));
             this.start.clicked.connect (() => { icon_start_clicked (); });
+
+            this.pause = new Gtk.Button ();
+            this.pause.set_image (new Gtk.Image.from_icon_name ("media-playback-pause", Gtk.IconSize.SMALL_TOOLBAR));
+            this.pause.tooltip_text = (_("Pause all conversions"));
+            this.pause.clicked.connect (() => { icon_pause_clicked (); });
 
             this.information = new Gtk.Button ();
             this.information.set_image (new Gtk.Image.from_icon_name ("dialog-information", Gtk.IconSize.LARGE_TOOLBAR));
-            this.information.tooltip_text = (_("Open output folder"));
+            this.information.tooltip_text = (_("Supported Formats"));
             this.information.clicked.connect (() => { icon_information_clicked (); });
             
             Gtk.MenuItem item_preferences = new Gtk.MenuItem.with_label (_("Preferences"));
             item_preferences.activate.connect(() => { icon_settings_clicked (); });
-
-            Gtk.MenuItem item_report_problem = new Gtk.MenuItem.with_label (_("Report a Problem…"));
-            item_report_problem.activate.connect (() => { icon_report_problem_clicked (); });
 
             Gtk.MenuItem item_about = new Gtk.MenuItem.with_label (_("About"));
             item_about.activate.connect(() => { icon_about_clicked (); });
@@ -73,7 +76,6 @@ namespace Ciano.Widgets {
             Gtk.Menu menu = new Gtk.Menu ();
             menu.add (item_preferences);
             menu.add (new Gtk.SeparatorMenuItem());
-            //menu.add (item_report_problem);
             menu.add (item_about);
             menu.show_all ();
 
@@ -85,6 +87,7 @@ namespace Ciano.Widgets {
             this.pack_start (this.document_open);
             this.pack_start (this.output_folder);
             this.pack_start (this.start);
+            this.pack_start (this.pause);
             this.pack_end (this.settings);
             this.pack_end (this.information);
         }

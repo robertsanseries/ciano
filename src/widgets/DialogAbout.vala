@@ -24,8 +24,12 @@ namespace Ciano.Widgets {
 
     public class DialogAbout : Gtk.Dialog {
 
+        public signal void button_translate_clicked ();
+        public signal void button_bug_clicked ();
+        public signal void button_help_clicked ();
+
         public DialogAbout (ApplicationView parent) {
-            this.title= "About";
+            this.title= _("About");
             this.border_width= 5;
             this.deletable= false;
             this.resizable= false;
@@ -74,7 +78,7 @@ namespace Ciano.Widgets {
             website_label.xalign= 0;
 
             Gtk.Label authors_label = new Gtk.Label (StringUtil.EMPTY);
-            authors_label.set_markup(organize_block_markup("<span size=\"small\">"+_(" Authors:")+"</span>\n", authors));
+            authors_label.set_markup(organize_block_markup("<span size=\"small\">"+_("Authors:")+"</span>\n", authors));
             authors_label.wrap= true;
             authors_label.xalign= 0;
 
@@ -88,7 +92,7 @@ namespace Ciano.Widgets {
             translators_label.wrap= true;
             translators_label.xalign= 0;
 
-            Gtk.Label copyright_label = new Gtk.Label ("© 2017-2018 Ciano Developers.\n");
+            Gtk.Label copyright_label = new Gtk.Label (_("© 2017-2018 Ciano Developers.\n"));
             copyright_label.wrap= true;
             copyright_label.xalign= 0;
             copyright_label.selectable= true;
@@ -101,9 +105,9 @@ namespace Ciano.Widgets {
 
             Gtk.Grid content_scrolled_grid = new Gtk.Grid ();
             content_scrolled_grid.orientation = Gtk.Orientation.VERTICAL;
-            content_scrolled_grid.add (website_label);
             content_scrolled_grid.add (copyright_label);
             content_scrolled_grid.add (license_label);
+            content_scrolled_grid.add (website_label);
             content_scrolled_grid.add (authors_label);
             content_scrolled_grid.add (contributors_label);
             content_scrolled_grid.add (translators_label);
@@ -111,7 +115,7 @@ namespace Ciano.Widgets {
             Gtk.ScrolledWindow content_scrolled = new Gtk.ScrolledWindow (null, null);
             content_scrolled.hscrollbar_policy = Gtk.PolicyType.NEVER;
             content_scrolled.vexpand = true;
-            content_scrolled.width_request = 330;
+            content_scrolled.width_request = 330;           
             content_scrolled.add (content_scrolled_grid);
 
             Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -133,10 +137,13 @@ namespace Ciano.Widgets {
             var help_button = new Gtk.Button.with_label (" ? ");
             help_button.halign = Gtk.Align.CENTER;
             help_button.get_style_context ().add_class ("circular");
+            help_button.clicked.connect (() => { button_help_clicked (); });
 
-            var translate_button = new Gtk.Button.with_label (_("Suggest Translations"));
+            Gtk.Button translate_button = new Gtk.Button.with_label (_("Suggest Translations"));
+            translate_button.clicked.connect (() => { button_translate_clicked (); });
 
-            var bug_button = new Gtk.Button.with_label (_("Report a Problem"));
+            Gtk.Button bug_button = new Gtk.Button.with_label (_("Report a Problem"));
+            bug_button.clicked.connect (() => { button_bug_clicked (); });
 
             var action_area = (Gtk.Box) this.get_action_area ();
             action_area.pack_end (help_button, false, false, 0);
@@ -150,6 +157,9 @@ namespace Ciano.Widgets {
 
             Gtk.Button close_button = (Gtk.Button) this.add_button (_("Close"), Gtk.ResponseType.CANCEL);
             close_button.clicked.connect (() => { this.destroy (); });
+
+            this.show_all ();
+            content_scrolled.get_vadjustment ().set_value (0);
         }
 
         private string organize_block_markup (string title, string[] peoples) {

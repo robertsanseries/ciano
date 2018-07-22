@@ -20,6 +20,7 @@
 using Ciano.Enums;
 using Ciano.Views;
 using Ciano.Widgets;
+using Ciano.Utils;
 
 namespace Ciano.Views.Factory {
 
@@ -30,7 +31,17 @@ namespace Ciano.Views.Factory {
             switch (dialog) {       
                 case DialogEnum.ABOUT:
                     DialogAbout dialog_about = new DialogAbout (parent);
-                    dialog_about.show_all ();
+                    dialog_about.button_translate_clicked.connect (() => {
+                        CoreUtil.launch_uri ("https://github.com/robertsanseries/ciano/issues");
+                    });
+
+                    dialog_about.button_bug_clicked.connect (() => {
+                        CoreUtil.launch_uri ("https://github.com/robertsanseries/ciano/issues");
+                    });
+
+                    dialog_about.button_help_clicked.connect (() => {
+                        CoreUtil.launch_uri ("https://github.com/robertsanseries/ciano/issues");
+                    });
                     break;
 
                 case DialogEnum.INFORMATIONS:
