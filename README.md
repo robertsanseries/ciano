@@ -31,7 +31,7 @@ Convert videos, music and pictures with the best possible experience.
 
   [<img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_200x51.png" height="26" alt="PayPal" />](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S698J2TUEMT3C)
 
-#### To Contributors
+#### Development
 To help, access the links below:
 
 - [Reporting Bugs](https://github.com/robertsanseries/ciano/wiki/Reporting-Bugs)
