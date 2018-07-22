@@ -54,7 +54,8 @@ namespace Ciano.Views {
                 DialogFactory.open_dialog (this, DialogEnum.ABOUT);
             });
            
-            headerbar.set_visible_icons(false);
+            headerbar.set_visible_icons(true);
+            //headerbar.set_visible_icons(false);
 
             Widgets.Welcome welcome = new Widgets.Welcome ();
             welcome.activated.connect ((index) => {
@@ -68,13 +69,20 @@ namespace Ciano.Views {
                  }
             });
 
-            Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+            ConversionListBox conversion_list = new ConversionListBox ();
+            conversion_list.add_archive ("media-playback-start-symbolic");
+            conversion_list.add_archive ("media-playback-pause-symbolic");
+            conversion_list.add_archive ("process-completed");
+
+            var scrolled = new Gtk.ScrolledWindow (null, null);
+            scrolled.hscrollbar_policy = Gtk.PolicyType.NEVER;
+            scrolled.add (conversion_list);
 
             Gtk.Stack stack = new Gtk.Stack ();
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             stack.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-            stack.add_named (welcome, Constants.WELCOME_VIEW);
-            stack.add_named (box, Constants.CONVERSION_VIEW);
+            //stack.add_named (welcome, Constants.WELCOME_VIEW);
+            stack.add_named (scrolled, Constants.CONVERSION_VIEW);
 
             this.set_titlebar (headerbar);
             this.add (stack);

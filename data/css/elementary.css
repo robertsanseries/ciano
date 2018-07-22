@@ -19,7 +19,12 @@
 
 @define-color colorPrimary #DEDEDE;
 @define-color textColorPrimary shade (@text_color, 0.9);
+@define-color selected_bg_color #3d9bda;
 
+.circular {
+    padding-left: 5px;
+    padding-right: 5px;
+}
 
 .GtkWindow {
 	background-color: #F5F5F5;

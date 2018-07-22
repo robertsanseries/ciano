@@ -45,7 +45,7 @@ namespace Ciano.Models.DB {
                         "uri",        typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
                         "duration",   typeof (double), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
                         "progress",   typeof (double), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                        "size",       typeof (long),   Gda.ServerOperationCreateTableFlag.NOTHING_FLAG
+                        "size",       typeof (long),   Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
                         "percentage", typeof (int),    Gda.ServerOperationCreateTableFlag.NOTHING_FLAG
                     );
 

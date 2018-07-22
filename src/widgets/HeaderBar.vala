@@ -52,7 +52,7 @@ namespace Ciano.Widgets {
             this.output_folder.clicked.connect (() => { icon_output_folder_clicked (); });
 
             this.start = new Gtk.Button ();
-            this.start.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR));
+            this.start.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.SMALL_TOOLBAR));
             this.start.tooltip_text = (_("Open output folder"));
             this.start.clicked.connect (() => { icon_start_clicked (); });
 
@@ -73,7 +73,7 @@ namespace Ciano.Widgets {
             Gtk.Menu menu = new Gtk.Menu ();
             menu.add (item_preferences);
             menu.add (new Gtk.SeparatorMenuItem());
-            menu.add (item_report_problem);
+            //menu.add (item_report_problem);
             menu.add (item_about);
             menu.show_all ();
 

@@ -19,3 +19,9 @@
 
 @define-color colorPrimary #383e41;
 @define-color textColorPrimary #A5ABAA;
+@define-color selected_bg_color #37C8AB;
+
+.circular {
+    padding-left: 5px;
+    padding-right: 5px;
+}

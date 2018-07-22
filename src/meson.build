@@ -16,6 +16,8 @@ sources = files(
     'utils/WidgetUtil.vala',
     'views/factory/DialogFactory.vala',
     'views/ApplicationView.vala',
+    'widgets/ConversionListBox.vala',
+    'widgets/ConversionListRow.vala',
     'widgets/DialogAbout.vala',
     'widgets/DialogInformations.vala',
     'widgets/DialogPreferences.vala',
