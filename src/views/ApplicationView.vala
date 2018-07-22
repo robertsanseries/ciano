@@ -51,7 +51,7 @@ namespace Ciano.Views {
             }); 
 
             headerbar.icon_start_clicked.connect (() => { 
-                this.open_dialog_file_chooser ();
+                headerbar.change_icon_start_pause ();
             }); 
 
             headerbar.icon_information_clicked.connect (() => { 
@@ -61,10 +61,6 @@ namespace Ciano.Views {
             headerbar.icon_settings_clicked.connect (() => { 
                 DialogFactory.open_dialog (this, DialogEnum.PREFERENCES);
             });
-
-            /*headerbar.icon_report_problem_clicked.connect (() => { 
-                CoreUtil.launch_uri ("https://github.com/robertsanseries/ciano/issues");
-            });           */
 
             headerbar.icon_about_clicked.connect (() => { 
                 DialogFactory.open_dialog (this, DialogEnum.ABOUT);

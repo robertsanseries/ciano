@@ -33,10 +33,12 @@ namespace Ciano.Widgets {
 
         public Gtk.Button document_open { get; private set;}
         public Gtk.Button output_folder { get; private set;}
-        public Gtk.Button start         { get; private set;}
+        public Gtk.Button start_pause         { get; private set;}
         public Gtk.Button pause         { get; private set;}
         public Gtk.Button information   { get; private set;}
         public Gtk.MenuButton settings  { get; private set;}
+
+        private bool start = true;
 
         public HeaderBar () {
             this.title = "Ciano";
@@ -52,15 +54,10 @@ namespace Ciano.Widgets {
             this.output_folder.tooltip_text = (_("Open output folder"));
             this.output_folder.clicked.connect (() => { icon_output_folder_clicked (); });
 
-            this.start = new Gtk.Button ();
-            this.start.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.SMALL_TOOLBAR));
-            this.start.tooltip_text = (_("Start all conversions"));
-            this.start.clicked.connect (() => { icon_start_clicked (); });
-
-            this.pause = new Gtk.Button ();
-            this.pause.set_image (new Gtk.Image.from_icon_name ("media-playback-pause", Gtk.IconSize.SMALL_TOOLBAR));
-            this.pause.tooltip_text = (_("Pause all conversions"));
-            this.pause.clicked.connect (() => { icon_pause_clicked (); });
+            this.start_pause = new Gtk.Button ();
+            this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.SMALL_TOOLBAR));
+            this.start_pause.tooltip_text = (_("Start all conversions"));
+            this.start_pause.clicked.connect (() => { icon_start_clicked (); });
 
             this.information = new Gtk.Button ();
             this.information.set_image (new Gtk.Image.from_icon_name ("dialog-information", Gtk.IconSize.LARGE_TOOLBAR));
@@ -86,8 +83,7 @@ namespace Ciano.Widgets {
             
             this.pack_start (this.document_open);
             this.pack_start (this.output_folder);
-            this.pack_start (this.start);
-            this.pack_start (this.pause);
+            this.pack_start (this.start_pause);
             this.pack_end (this.settings);
             this.pack_end (this.information);
         }
@@ -95,7 +91,7 @@ namespace Ciano.Widgets {
         public void set_visible_icons (bool visible) {
             WidgetUtil.set_visible (this.document_open, visible);
             WidgetUtil.set_visible (this.output_folder, visible);
-            WidgetUtil.set_visible (this.start, visible);
+            WidgetUtil.set_visible (this.start_pause, visible);
             WidgetUtil.set_visible (this.information, visible);
         }
 
@@ -108,11 +104,27 @@ namespace Ciano.Widgets {
         }
 
         public void set_visible_icon_start (bool visible) {
-            WidgetUtil.set_visible (this.start, visible);
+            WidgetUtil.set_visible (this.start_pause, visible);
         }
 
         public void set_visible_icon_information (bool visible) {
             WidgetUtil.set_visible (this.information, visible);
+        }
+
+        public void change_icon_start_pause () {
+            if(this.start) {
+                this.start = false;
+                this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-pause", Gtk.IconSize.SMALL_TOOLBAR));
+                this.start_pause.tooltip_text = (_("Pause all conversions"));
+                this.start_pause.clicked.connect (() => { icon_pause_clicked (); });
+                this.start_pause.show_all ();
+            } else {
+                this.start = true;
+                this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.SMALL_TOOLBAR));
+                this.start_pause.tooltip_text = (_("Start all conversions"));
+                this.start_pause.clicked.connect (() => { icon_start_clicked (); });
+                this.start_pause.show_all ();
+            }
         }
     }
 }
