@@ -32,7 +32,7 @@ namespace Ciano.Widgets {
 
         public Gtk.Button document_open { get; private set;}
         public Gtk.Button output_folder { get; private set;}
-        public Gtk.Button start_pause         { get; private set;}
+        public Gtk.Button start_pause   { get; private set;}
         public Gtk.Button pause         { get; private set;}
         public Gtk.Button information   { get; private set;}
         public Gtk.MenuButton settings  { get; private set;}

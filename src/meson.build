@@ -9,6 +9,7 @@ sources = files(
     'models/db/ConnectionFactory.vala',
     'models/db/SQLiteSchemaHandler.vala',
     'models/objects/Archive.vala',
+    'models/objects/ArchiveBuilder.vala',
     'services/Settings.vala',
     'utils/ArrayUtil.vala',
     'utils/CoreUtil.vala',

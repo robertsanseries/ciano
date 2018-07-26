@@ -31,7 +31,7 @@ namespace Ciano.Widgets {
             this.popup_menu.connect (on_popup_menu);
         }
 
-        public void add_archive (string icon_status, Archive? archive = null) {
+        public void add_archive (string icon_status, Archive archive) {
             this.add (new ConversionListRow (icon_status, archive));
         }
 

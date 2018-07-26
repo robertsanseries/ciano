@@ -23,11 +23,14 @@ namespace Ciano.Widgets {
 
     public class ConversionListRow : Gtk.ListBoxRow {
 
-        private Archive? _archive;
-        public Gtk.Button status_button;
+        public Gtk.Image icon_image { get; set; }
+        public Gtk.Label name_label { get; set; }
+        public Gtk.Label file_size { get; set; }
+        public Gtk.Label status { get; set; }
+        public Gtk.ProgressBar progress { get; set; }
+        public Gtk.Button status_button { get; set; }
 
-        public ConversionListRow (string icon_status, Archive? archive) {
-            this._archive;
+        public ConversionListRow (string icon_status, Archive archive) {
             this.set_selectable (false);
 
             var grid = new Gtk.Grid ();
@@ -38,27 +41,19 @@ namespace Ciano.Widgets {
             grid.row_spacing = 1;
             grid.hexpand = true;
 
-            var icon_image = new Gtk.Image.from_icon_name ("media-video", Gtk.IconSize.DIALOG);
+            this.icon_image = new Gtk.Image.from_icon_name ("media-video", Gtk.IconSize.DIALOG);
 
-            var name = new Gtk.Label ("name");
-            name.halign = Gtk.Align.START;
-            name.get_style_context ().add_class ("h3");
+            this.name_label = new Gtk.Label (archive.name);
+            this.name_label.halign = Gtk.Align.START;
+            this.name_label.get_style_context ().add_class ("h3");
 
-            var completeness = new Gtk.Label ("<small>%s</small>".printf ("0 byte 900 MB"));
-            completeness.halign = Gtk.Align.START;
-            completeness.use_markup = true;
+            this.file_size = new Gtk.Label ("<small>%s</small>".printf ("0 byte 900 MB"));
+            this.file_size.halign = Gtk.Align.START;
+            this.file_size.use_markup = true;
 
-            var progress = new Gtk.ProgressBar ();
-            progress.hexpand = true;
-            progress.fraction = 1.0;
-            //progress.opacity = 0;
-
-            // open-menu-symbolic
-            // selection-remove
-            // selection-checked
-            // list-remove
-            // dialog-error
-            // edit-delete-symbolic
+            this.progress = new Gtk.ProgressBar ();
+            this.progress.hexpand = true;
+            this.progress.fraction = archive.progress;
             
             switch (icon_status) {
                 case "media-playback-start-symbolic":
@@ -83,9 +78,9 @@ namespace Ciano.Widgets {
                 //toggle_pause ();
             });*/
 
-            var status = new Gtk.Label ("<small>%s</small>".printf ("generate_status_text"));
-            status.halign = Gtk.Align.START;
-            status.use_markup = true;
+            this.status = new Gtk.Label ("<small>%s</small>".printf (archive.status));
+            this.status.halign = Gtk.Align.START;
+            this.status.use_markup = true;
 
             var finaly_button = new Gtk.Button.from_icon_name ("process-completed");
             finaly_button.valign = Gtk.Align.CENTER;
@@ -102,10 +97,10 @@ namespace Ciano.Widgets {
             button_box.pack_start (status_button, false, false, 7);
             
             grid.attach (icon_image, 0, 0, 1, 4);
-            grid.attach (name, 1, 0, 1, 1);
-            grid.attach (completeness, 1, 1, 1, 1);
-            grid.attach (progress, 1, 2, 1, 1);
-            grid.attach (status, 1, 3, 1, 1);
+            grid.attach (this.name_label, 1, 0, 1, 1);
+            grid.attach (this.file_size, 1, 1, 1, 1);
+            grid.attach (this.progress, 1, 2, 1, 1);
+            grid.attach (this.status, 1, 3, 1, 1);
             grid.attach (button_box, 2, 0, 1, 4);
 
             this.add (grid);

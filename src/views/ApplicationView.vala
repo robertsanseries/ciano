@@ -20,6 +20,7 @@
 using Ciano.Config;
 using Ciano.Enums;
 using Ciano.Helpers;
+using Ciano.Models.Objects;
 using Ciano.Utils;
 using Ciano.Widgets;
 using Ciano.Views.Factory;
@@ -28,6 +29,9 @@ using Ciano.Controllers;
 namespace Ciano.Views {
 
     public class ApplicationView : Gtk.ApplicationWindow {
+
+        public Gtk.Stack stack;
+        public Widgets.HeaderBar headerbar;
         
         public ApplicationView (Gtk.Application application, ActionController action) {
             this.application = application;
@@ -40,34 +44,33 @@ namespace Ciano.Views {
             this.begin_event ();
             this.load_css_provider ();
 
-            Widgets.HeaderBar headerbar = new Widgets.HeaderBar ();
+            this.headerbar = new Widgets.HeaderBar ();
 
-            headerbar.icon_document_open_clicked.connect (() => { 
+            this.headerbar.icon_document_open_clicked.connect (() => { 
                 this.open_dialog_file_chooser ();
             });
 
-            headerbar.icon_output_folder_clicked.connect (() => { 
+            this.headerbar.icon_output_folder_clicked.connect (() => { 
                 this.open_dialog_file_chooser ();
             }); 
 
-            headerbar.icon_start_clicked.connect (() => { 
-                headerbar.change_icon_start_pause ();
+            this.headerbar.icon_start_pause_clicked.connect (() => { 
+                this.headerbar.change_icon_start_pause ();
             }); 
 
-            headerbar.icon_information_clicked.connect (() => { 
+            this.headerbar.icon_information_clicked.connect (() => { 
                 DialogFactory.open_dialog (this, DialogEnum.INFORMATIONS);
             }); 
             
-            headerbar.icon_settings_clicked.connect (() => { 
+            this.headerbar.icon_settings_clicked.connect (() => { 
                 DialogFactory.open_dialog (this, DialogEnum.PREFERENCES);
             });
 
-            headerbar.icon_about_clicked.connect (() => { 
+            this.headerbar.icon_about_clicked.connect (() => { 
                 DialogFactory.open_dialog (this, DialogEnum.ABOUT);
             });
            
-            headerbar.set_visible_icons(true);
-            //headerbar.set_visible_icons(false);
+            this.headerbar.set_visible_icons(false);
 
             Widgets.Welcome welcome = new Widgets.Welcome ();
             welcome.activated.connect ((index) => {
@@ -82,22 +85,27 @@ namespace Ciano.Views {
             });
 
             ConversionListBox conversion_list = new ConversionListBox ();
-            conversion_list.add_archive ("media-playback-start-symbolic");
-            conversion_list.add_archive ("media-playback-pause-symbolic");
-            conversion_list.add_archive ("process-completed");
+            ArchiveBuilder builder = new ArchiveBuilder ();
+            builder.set_name ("nome do video");
+            builder.set_progress (1);
+            builder.set_status ("carregando...");
+
+            conversion_list.add_archive ("media-playback-start-symbolic", builder.get_archive ());
+            conversion_list.add_archive ("media-playback-pause-symbolic", builder.get_archive ());
+            conversion_list.add_archive ("process-completed", builder.get_archive ());
 
             var scrolled = new Gtk.ScrolledWindow (null, null);
             scrolled.hscrollbar_policy = Gtk.PolicyType.NEVER;
             scrolled.add (conversion_list);
 
-            Gtk.Stack stack = new Gtk.Stack ();
-            stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
-            stack.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-            //stack.add_named (welcome, Constants.WELCOME_VIEW);
-            stack.add_named (scrolled, Constants.CONVERSION_VIEW);
+            this.stack = new Gtk.Stack ();
+            this.stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
+            this.stack.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
+            this.stack.add_named (welcome, Constants.WELCOME_VIEW);
+            this.stack.add_named (scrolled, Constants.CONVERSION_VIEW);
 
             this.set_titlebar (headerbar);
-            this.add (stack);
+            this.add (this.stack);
             this.show_all ();
         }
 
@@ -151,6 +159,8 @@ namespace Ciano.Views {
                 if (response == Gtk.ResponseType.ACCEPT) {
                     SList<string> uris = chooser.get_filenames ();
 
+                    int count = 0;
+
                     foreach (unowned string uri in uris)  {
                         var file         = File.new_for_uri (uri);
                         int index        = file.get_basename ().last_index_of("/");
@@ -158,8 +168,14 @@ namespace Ciano.Views {
                         string directory = file.get_basename ().substring(0, index + 1);
 
                         message ("name: ".concat(name).concat(" directory: ").concat(directory));
+                        count++;
                     }
 
+                    if (count > 0) {
+                        this.stack.visible_child_name = Constants.CONVERSION_VIEW;
+                        this.headerbar.set_visible_icons(true);   
+                    }
+                    
                     chooser.destroy ();
                 } else {
                     chooser.destroy ();

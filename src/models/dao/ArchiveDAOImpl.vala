@@ -64,7 +64,7 @@ namespace Ciano.Models.DAO {
         public Archive find (int id){
             stdout.printf("find");
 
-            return new Archive ("", "", "", 0, 0, 0, 0);
+            return new Archive ();
         }
 
         public GenericArray<Archive> selectAll (){
