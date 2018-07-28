@@ -25,3 +25,9 @@
     padding-left: 5px;
     padding-right: 5px;
 }
+
+.GtkListBoxRow:selected,
+.GtkListBoxRow:selected:focus {
+    background-color: #4D5559;
+    color: #FFFFFF;
+}

@@ -32,9 +32,11 @@ namespace Ciano.Views {
 
         public Gtk.Stack stack;
         public Widgets.HeaderBar headerbar;
+        public ActionController action;
         
         public ApplicationView (Gtk.Application application, ActionController action) {
             this.application = application;
+            this.action = action;
             this.resizable = true;
             this.window_position = Gtk.WindowPosition.CENTER;
             this.set_default_size (500, 400);

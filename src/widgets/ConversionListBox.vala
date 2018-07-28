@@ -52,22 +52,20 @@ namespace Ciano.Widgets {
             Gdk.Event event = Gtk.get_current_event ();
             var menu = new Gtk.Menu ();
 
-            var items = get_selected_rows ();
+           GLib.List<weak Gtk.ListBoxRow> items = this.get_selected_rows ();
             var all_paused = true;
 
-           /* foreach (var selected_row in items) {
+           /*foreach (var selected_row in items) {
                 if (!(selected_row as TorrentListRow).paused) {
                     all_paused = false;
                     break;
                 }
             }*/
 
-            var remove_item = new Gtk.MenuItem.with_label (_("Remove"));
-            /*remove_item.activate.connect (() => {
-                foreach (var selected_row in items) {
-                    (selected_row as TorrentListRow).remove_torrent ();
-                }
-            });*/
+            Gtk.MenuItem remove_item = new Gtk.MenuItem.with_label (_("Remove"));
+            remove_item.activate.connect (() => {
+                (this.get_selected_row () as ConversionListRow).remove_item ();
+            });
 
             var pause_item = new Gtk.MenuItem.with_label (_("Pause"));
            /* pause_item.activate.connect (() => {

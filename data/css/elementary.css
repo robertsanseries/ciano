@@ -29,3 +29,9 @@
 .GtkWindow {
 	background-color: #F5F5F5;
 }
+
+.GtkListBoxRow:selected,
+.GtkListBoxRow:selected:focus {
+    background-color: #DDDDDD;
+    color: #000000;
+}

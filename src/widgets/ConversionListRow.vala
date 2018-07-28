@@ -31,8 +31,6 @@ namespace Ciano.Widgets {
         public Gtk.Button status_button { get; set; }
 
         public ConversionListRow (string icon_status, Archive archive) {
-            this.set_selectable (false);
-
             var grid = new Gtk.Grid ();
             grid.margin = 12;
             grid.margin_top = 6;
@@ -54,6 +52,7 @@ namespace Ciano.Widgets {
             this.progress = new Gtk.ProgressBar ();
             this.progress.hexpand = true;
             this.progress.fraction = archive.progress;
+            this.progress.get_style_context ().add_class ("GtkProgress");
             
             switch (icon_status) {
                 case "media-playback-start-symbolic":
@@ -104,6 +103,12 @@ namespace Ciano.Widgets {
             grid.attach (button_box, 2, 0, 1, 4);
 
             this.add (grid);
+            this.get_style_context ().add_class ("GtkListBoxRow");
+        }
+
+        public void remove_item () {
+            //torrent_removed (torrent);
+            this.destroy ();
         }
     }
 }
