@@ -5,6 +5,6 @@
     "author": "Robert San <robertsanseries@gmail.com>",
     "require": {
         "vala":"0.36.*",
-        "robertsanseries/ffmpeg-wrapper":"1.0.0"
+        "robertsanseries/ffmpeg-cli-wrapper":"1.0.0"
     }
 }
