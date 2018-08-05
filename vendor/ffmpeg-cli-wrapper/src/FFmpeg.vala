@@ -48,15 +48,15 @@ namespace com.github.robertsanseries.FFmpegCliWrapper {
             }
 
             if (StringUtil.is_not_empty (output)) {
-                set_output (output);
+                this.set_output (output);
             }
 
             if (override_output) {
-                set_override_output (override_output);
+                this.set_override_output (override_output);
             }
 
             if (StringUtil.is_not_empty (format)) {
-                set_format (format);
+                this.set_format (format);
             }
         }
 

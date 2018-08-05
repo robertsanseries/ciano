@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>FFmpeg Wrapper</h1>
+    <h1>FFmpeg Cli Wrapper</h1>
     <h3 align="center">Vala wrapper around the FFmpeg command line tool</h3>
     <p align="center">
         <img src="https://api.travis-ci.org/robertsanseries/ffmpeg-cli-wrapper.svg?branch=master">
@@ -17,7 +17,7 @@ This library requires a working FFMpeg install. You will need both FFMpeg and FF
 
 ### Installation
 
-You can download FFmpeg Wrapper via Github [Here](https://github.com/robertsanseries/ffmpeg-cli-wrapper/archive/master.zip)
+You can download FFmpeg Cli Wrapper via Github [Here](https://github.com/robertsanseries/ffmpeg-cli-wrapper/archive/master.zip)
 
 or If you want install via [Vanat](https://vanat.github.io). *recommended
 
@@ -167,7 +167,7 @@ $ ffmpeg -y -i /home/Vídeos/MarcusMiller.mkv -f avi /home/Vídeos/MarcusMiller.
 #### compile
 
 ```sh
-$ valac --pkg json-glib-1.0 --pkg gio-2.0 --pkg gee-0.8 src/FFconvert.vala src/FFmpeg.vala src/exceptions/CodecNotEnabledException.vala src/exceptions/FileOrDirectoryNotFoundException.vala src/exceptions/NullReferenceException.vala src/utils/StringUtil.vala test/FFmpegTest.vala src/exceptions/IllegalArgumentException.vala src/exceptions/IOException.vala src/probe/FFprobeError.vala src/probe/FFprobeFormat.vala src/probe/FFprobeStream.vala -o ffmpeg-cli-wrapper
+$ valac --pkg json-glib-1.0 --pkg gio-2.0 --pkg gee-0.8 src/FFconvert.vala src/FFmpeg.vala src/FFprobe.vala src/exceptions/CodecNotEnabledException.vala src/exceptions/FileOrDirectoryNotFoundException.vala src/exceptions/NullReferenceException.vala src/utils/StringUtil.vala test/FFmpegTest.vala src/exceptions/IllegalArgumentException.vala src/exceptions/IOException.vala src/probe/FFprobeDisposition.vala src/probe/FFprobeFormat.vala src/probe/FFprobeStream.vala -o ffmpeg-cli-wrapper
 ```
 
 #### execute
