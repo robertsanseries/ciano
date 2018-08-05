@@ -52,15 +52,7 @@ namespace Ciano.Widgets {
             Gdk.Event event = Gtk.get_current_event ();
             var menu = new Gtk.Menu ();
 
-           GLib.List<weak Gtk.ListBoxRow> items = this.get_selected_rows ();
-            var all_paused = true;
-
-           /*foreach (var selected_row in items) {
-                if (!(selected_row as TorrentListRow).paused) {
-                    all_paused = false;
-                    break;
-                }
-            }*/
+            //var all_paused = true;
 
             Gtk.MenuItem remove_item = new Gtk.MenuItem.with_label (_("Remove"));
             remove_item.activate.connect (() => {
@@ -69,16 +61,12 @@ namespace Ciano.Widgets {
 
             var pause_item = new Gtk.MenuItem.with_label (_("Pause"));
            /* pause_item.activate.connect (() => {
-                foreach (var selected_row in items) {
-                    (selected_row as TorrentListRow).pause_torrent ();
-                }
+                (this.get_selected_row () as ConversionListRow).pause_item ();
             });*/
 
             var unpause_item = new Gtk.MenuItem.with_label (_("Resume"));
             /*unpause_item.activate.connect (() => {
-                foreach (var selected_row in items) {
-                    (selected_row as TorrentListRow).resume_torrent ();
-                }
+                (this.get_selected_row () as ConversionListRow).resume_item ();
             });*/
 
             var open_item = new Gtk.MenuItem.with_label (_("Show in File Browser"));
@@ -99,11 +87,11 @@ namespace Ciano.Widgets {
             });*/
 
             
-            if (all_paused) {
+            /*if (all_paused) {
                 menu.add (unpause_item);
             } else {
                 menu.add (pause_item);
-            }
+            }*/
 
             menu.add (remove_item);
 

@@ -31,8 +31,9 @@ namespace Ciano.Views {
     public class ApplicationView : Gtk.ApplicationWindow {
 
         public Gtk.Stack stack;
-        public Widgets.HeaderBar headerbar;
         public ActionController action;
+        public Widgets.HeaderBar headerbar;
+        public ConversionListBox conversion_list;
         
         public ApplicationView (Gtk.Application application, ActionController action) {
             this.application = application;
@@ -86,19 +87,11 @@ namespace Ciano.Views {
                  }
             });
 
-            ConversionListBox conversion_list = new ConversionListBox ();
-            ArchiveBuilder builder = new ArchiveBuilder ();
-            builder.set_name ("nome do video");
-            builder.set_progress (1);
-            builder.set_status ("carregando...");
-
-            conversion_list.add_archive ("media-playback-start-symbolic", builder.get_archive ());
-            conversion_list.add_archive ("media-playback-pause-symbolic", builder.get_archive ());
-            conversion_list.add_archive ("process-completed", builder.get_archive ());
+            this.conversion_list = new ConversionListBox ();
 
             var scrolled = new Gtk.ScrolledWindow (null, null);
             scrolled.hscrollbar_policy = Gtk.PolicyType.NEVER;
-            scrolled.add (conversion_list);
+            scrolled.add (this.conversion_list);
 
             this.stack = new Gtk.Stack ();
             this.stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
@@ -164,6 +157,17 @@ namespace Ciano.Views {
                     int count = 0;
 
                     foreach (unowned string uri in uris)  {
+
+                        ArchiveBuilder builder = new ArchiveBuilder ();
+                        builder.set_name ("nome do video");
+                        builder.set_progress (1);
+                        builder.set_status ("carregando...");
+
+                        this.conversion_list.add_archive ("media-playback-start-symbolic", builder.get_archive ());
+                        //this.conversion_list.add_archive ("media-playback-pause-symbolic", builder.get_archive ());
+                        //this.conversion_list.add_archive ("process-completed", builder.get_archive ());
+
+                        this.action 
                         var file         = File.new_for_uri (uri);
                         int index        = file.get_basename ().last_index_of("/");
                         string name      = file.get_basename ().substring(index + 1, -1);
