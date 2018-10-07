@@ -1,7 +1,0 @@
-{
-    "name": "robertsanseries/ffmpeg-cli-wrapper",
-    "description": "Vala wrapper around the FFmpeg command line tool",
-    "version": "1.0.0",
-    "author": "Robert San",
-    "require": {}
-}
