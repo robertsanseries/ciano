@@ -1,0 +1,121 @@
+{
+    "app-id": "com.github.robertsanseries.ciano",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "1.6",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "com.github.robertsanseries.ciano",
+    "base": "io.elementary.Loki.BaseApp",
+    "base-version": "stable",
+    "build-options": {
+        "env": {
+            "PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR": "/app/share/gir-1.0",
+            "PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR": "/app/lib/girepository-1.0"
+        }
+    },
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--filesystem=home",
+        "--talk-name=ca.desrt.dconf",
+        "--filesystem=xdg-run/dconf",
+        "--filesystem=~/.config/dconf:ro",
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+    ],
+    "cleanup": [
+        "/include",
+        "/lib/pkgconfig",
+        "/share/vala",
+        "/share/gir-1.0",
+        "/share/gtk-doc",
+        "/lib/girepository-1.0",
+        "/lib/*.la"
+    ],
+    "modules": [
+        {
+          "name": "imagemagick",
+          "config-opts": [
+            "--enable-static=no",
+            "--disable-docs",
+            "--disable-deprecated",
+            "--without-autotrace",
+            "--without-bzlib",
+            "--without-djvu",
+            "--without-dps",
+            "--without-fftw",
+            "--without-fontconfig",
+            "--without-fpx",
+            "--without-freetype",
+            "--without-gvc",
+            "--without-jbig",
+            "--without-jpeg",
+            "--without-lcms",
+            "--without-lzma",
+            "--without-magick-plus-plus",
+            "--without-openexr",
+            "--without-openjp2",
+            "--without-pango",
+            "--without-raqm",
+            "--without-tiff",
+            "--without-webp",
+            "--without-wmf",
+            "--without-x",
+            "--without-xml",
+            "--without-zlib"
+          ],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://github.com/ImageMagick/ImageMagick/archive/7.0.7-39.tar.gz",
+              "sha256": "e7c1b19923bb97ed456c78b63b3259b809ebc8e3967c6d086450370c67eedf06"
+            }
+          ]
+        },
+        {
+            "name": "ffmpeg",
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig",
+                "/share/ffmpeg/examples"
+            ],
+            "config-opts": [
+                "--enable-shared",
+                "--disable-static",
+                "--disable-ffserver",
+                "--disable-ffplay",
+                "--disable-ffprobe",
+                "--disable-doc",
+                "--disable-network"
+            ],
+            "sources": [
+                {
+                  "type": "archive",
+                  "url": "https://www.ffmpeg.org/releases/ffmpeg-3.4.1.tar.xz",
+                  "sha256": "5a77278a63741efa74e26bf197b9bb09ac6381b9757391b922407210f0f991c0"
+                }
+            ],
+            "post-install": [
+                "chrpath -d /app/bin/ffmpeg"
+            ]
+        },
+        {
+            "name": "ciano",
+            "buildsystem": "meson",
+            "builddir": true,
+            "config-opts": [
+              "--buildtype=release"
+            ],
+            "sources": [
+                {
+                   "type":"archive",
+                   "url":"https://github.com/robertsanseries/ciano/archive/0.1.9.zip",
+                   "sha256":"b4c1e58d80fe1894f2341b693b0d84a686ced2853040312bbfef3ab31872b714"
+                },
+                {
+                  "type": "patch",
+                  "path": "elementary-theme.patch"
+                }
+            ]
+        }
+    ]
+}
