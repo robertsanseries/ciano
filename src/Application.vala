@@ -48,7 +48,7 @@ namespace Ciano {
         /**
          * Create the window of this application through the class {@code Window} and show it. If user clicks
          * <quit> or press <control + q> the window will be destroyed.
-         * 
+         *
          * @return {@code void}
          */
         public override void activate () {
@@ -66,7 +66,8 @@ namespace Ciano {
             });
 
             add_action (quit_action);
-            add_accelerator ("<Control>q", "app.quit", null);
+            set_accels_for_action ("app.quit", {"<Ctrl>q"});
         }
     }
 }
+

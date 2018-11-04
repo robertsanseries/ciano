@@ -64,7 +64,7 @@ namespace Ciano.Widgets {
             grid.column_spacing = 5;
             grid.margin = 7;
             grid.margin_top = 5;
-            
+
             init_options ();
             mount_options (grid);
 
@@ -85,7 +85,7 @@ namespace Ciano.Widgets {
             this.output_folder.selection_changed.connect (() => {
                 this.settings.output_folder = this.output_folder.get_file ().get_path ();
             });
-            
+
             this.output_source_file_folder = new Gtk.Switch ();
             this.settings.schema.bind ("output-source-file-folder", this.output_source_file_folder, "active", SettingsBindFlags.DEFAULT);
             this.output_source_file_folder.notify["active"].connect (() => {
@@ -115,7 +115,7 @@ namespace Ciano.Widgets {
          */
         private void mount_options (Gtk.Grid grid) {
             var row = 0;
-            
+
             mount_section_output_folder (grid, ref row);
 
             mount_section_notify (grid, ref row);
@@ -165,7 +165,7 @@ namespace Ciano.Widgets {
                 // Option: Complete Notify
                 var label_complete_notify = new Gtk.Label (Properties.TEXT_COMPLETE_NOTIFY);
                 add_option (grid, label_complete_notify, this.complete_notify, ref row);
-                
+
                 // Option: Erro Notify
                 var label_error_notify = new Gtk.Label (Properties.TEXT_ERRO_NOTIFY);
                 add_option (grid, label_error_notify, this.error_notify, ref row);
@@ -179,18 +179,18 @@ namespace Ciano.Widgets {
          * @param  {@code int} row
          * @return {@code void}
          */
-        private void mount_buttons (Gtk.Grid grid, ref int row) {            
+        private void mount_buttons (Gtk.Grid grid, ref int row) {
             var close_button = new Gtk.Button.with_label (Properties.TEXT_CLOSE);
             close_button.clicked.connect (() => { this.destroy (); });
             close_button.margin_top = 15;
             close_button.halign     = Gtk.Align.END;
-            
+
             grid.attach (close_button, 3, row, 1, 1);
         }
 
         /**
          * Responsible for setting the label at the beginning of each section.
-         * 
+         *
          * @param  {@code Gtk.Grid}  grid
          * @param  {@code Gtk.Label} name
          * @param  {@code int}       row
@@ -213,7 +213,7 @@ namespace Ciano.Widgets {
 
         /**
          * Responsible for adding an option widget.
-         * 
+         *
          * @param  {@code Gtk.Grid}   grid
          * @param  {@code Gtk.Label}  label
          * @param  {@code Gtk.Switch} widget
@@ -223,12 +223,12 @@ namespace Ciano.Widgets {
         private void add_option (Gtk.Grid grid, Gtk.Label label, Gtk.Widget widget, ref int row) {
             label.halign         = Gtk.Align.END;
             label.hexpand        = true;
-            label.margin_left    = 35;
+            label.margin_start    = 35;
             label.margin_top     = 0;
 
             widget.halign     = Gtk.Align.START;
             widget.hexpand    = true;
-            widget.margin_top = 0;            
+            widget.margin_top = 0;
 
             grid.attach (label, 0, row, 1, 1);
             grid.attach_next_to (widget, label, Gtk.PositionType.RIGHT, 3, 1);
@@ -237,3 +237,4 @@ namespace Ciano.Widgets {
         }
     }
 }
+

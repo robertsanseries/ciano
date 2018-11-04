@@ -43,7 +43,7 @@ namespace Ciano.Widgets {
 
         /**
          * Constructs a new {@code DialogConvertFile} object responsible for assemble the structure of the dialog.
-         * Defines the title and description to be performed. Then mount the grid using the "mount_frame" method 
+         * Defines the title and description to be performed. Then mount the grid using the "mount_frame" method
          * and add the buttons with the method "mount_buttons".
          *
          * @see Ciano.Configs.Properties
@@ -79,11 +79,11 @@ namespace Ciano.Widgets {
 
             var frame = mount_frame ();
             var grid_buttons = mount_buttons ();
-            
+
             var grid = new Gtk.Grid ();
             grid.orientation = Gtk.Orientation.VERTICAL;
-            grid.margin_left = 15;
-            grid.margin_right = 15;
+            grid.margin_start = 15;
+            grid.margin_end = 15;
             grid.margin_top = 0;
             grid.margin_bottom = 0;
             grid.add (title);
@@ -95,10 +95,10 @@ namespace Ciano.Widgets {
         }
 
         /**
-         * Mounts to {@code Gtk.Frame} structure with your widgets. 
+         * Mounts to {@code Gtk.Frame} structure with your widgets.
          * 1 - create the {@code Gtk.Treeview} and add the {@code Gtk.Grid} that will be in the {@code Gtk.Frame}.
          * 2 - create the {@code Gtk.Toobar} and add the {@code Gtk.Grid} that will be in the {@code Gtk.Frame}.
-         * 
+         *
          * @see mount_treeview
          * @see mount_toolbar
          * @return {@code Gtk.Frame}
@@ -113,13 +113,13 @@ namespace Ciano.Widgets {
             grid_itens.add (toolbar);
 
             var frame = new Gtk.Frame (null);
-            frame.add (grid_itens);    
+            frame.add (grid_itens);
 
             return frame;
         }
 
         /**
-         * Mount the {@code Gtk.Treeview} structure. {@code Gtk.Treeview} will have only two columns "name" 
+         * Mount the {@code Gtk.Treeview} structure. {@code Gtk.Treeview} will have only two columns "name"
          * and "Directory".
          *
          * @see Ciano.Configs.Properties
@@ -137,7 +137,7 @@ namespace Ciano.Widgets {
             name_column.title = Properties.NAME;
             name_column.expand = true;
             name_column.min_width = 200;
-            name_column.max_width = 200;            
+            name_column.max_width = 200;
             name_column.pack_start (cell1, false);
             name_column.add_attribute (cell1, "text", ColumnEnum.NAME);
 
@@ -161,9 +161,9 @@ namespace Ciano.Widgets {
         }
 
         /**
-         * Mount the {@code Gtk.Toolbar} structure. The {@code Gtk.Toolbar} will have the option to add items 
+         * Mount the {@code Gtk.Toolbar} structure. The {@code Gtk.Toolbar} will have the option to add items
          * and remove them from the {@code Gtk.Treeview}. The methods responsible for performing the actions of
-         * adding ({@code on_activate_button_add_file}) and removing ({@code on_activate_button_remove}) 
+         * adding ({@code on_activate_button_add_file}) and removing ({@code on_activate_button_remove})
          * the items are implemented in the controller ({@code ConverterController}).
          *
          * @see Ciano.Configs.Properties
@@ -180,7 +180,7 @@ namespace Ciano.Widgets {
             button_add_file.clicked.connect (() => {
                 this.converter_controller.on_activate_button_add_file (
                     this, this.tree_view, this.iter, this.list_store, this.formats
-                );                
+                );
             });
 
             var button_remove = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
@@ -195,7 +195,7 @@ namespace Ciano.Widgets {
             this.tree_view.cursor_changed.connect (() => {
                 button_remove.sensitive = true;
             });
-            
+
             toolbar.insert (button_add_file, -1);
             toolbar.insert (button_remove, -1);
 
@@ -204,7 +204,7 @@ namespace Ciano.Widgets {
 
         /**
          * Mount the {@code Gtk.Grid} where the cancel and start conversion buttons are displayed.
-         * When you click the convert_button button, the "{@code on_activate_button_start_conversion}" method of 
+         * When you click the convert_button button, the "{@code on_activate_button_start_conversion}" method of
          * the "{@code ConverterController}" is responsible for performing all operations after the click.
          *
          * @see Ciano.Configs.Properties
@@ -214,11 +214,11 @@ namespace Ciano.Widgets {
         private Gtk.Grid mount_buttons () {
             var calcel_button = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
             calcel_button.clicked.connect (() => { this.destroy (); });
-            calcel_button.margin_right = 10;
-            
+            calcel_button.margin_end = 10;
+
             var convert_button = new Gtk.Button.with_label (Properties.TEXT_START_CONVERSION);
             convert_button.get_style_context ().add_class ("suggested-action");
-            convert_button.clicked.connect (() => { 
+            convert_button.clicked.connect (() => {
                 this.destroy ();
                 this.converter_controller.on_activate_button_start_conversion (this.list_store, this.name_format);
             });
@@ -233,3 +233,4 @@ namespace Ciano.Widgets {
         }
     }
 }
+
