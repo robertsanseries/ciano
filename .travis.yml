@@ -23,7 +23,6 @@ cache:
 
 matrix:
   include:
-    - env: DIST=loki
     - env: DIST=juno
 
 install:
@@ -31,3 +30,5 @@ install:
 
 script:
   - houston ci
+    --name-human Ciano
+    --distribution $DIST
