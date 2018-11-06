@@ -6,5 +6,5 @@ Icon=com.github.robertsanseries.ciano
 Exec=com.github.robertsanseries.ciano
 Terminal=false
 Type=Application
-Categories=GNOME;GTK;Video;Audio;Photography;AudioVideo;Graphics;
+Categories=GTK;Video;Audio;Photography;AudioVideo;AudioVideoEditing;Graphics;
 Keywords=converter;multimedia;audio;video;photo;photography;
