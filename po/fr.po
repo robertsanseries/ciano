@@ -162,7 +162,7 @@ msgstr "- durée :"
 
 #: src/configs/Properties.vala:103
 msgid " - bitrate: "
-msgstr " - bitrate : "
+msgstr " - débit : "
 
 #: src/configs/Properties.vala:105
 msgid "Error: experimental codecs are not enabled"
@@ -174,7 +174,7 @@ msgstr "Erreur : données invalides en entrée"
 
 #: src/configs/Properties.vala:109
 msgid "Error: No such file or directory"
-msgstr "Erreur : fichier ou répertoire inexistants"
+msgstr "Erreur : fichier ou répertoire inexistant"
 
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
@@ -187,7 +187,7 @@ msgstr "Convertisseur de fichiers multimédia"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:19
 msgid "The easiest way to convert your multimedia files to the most popular formats."
-msgstr "La façon la plus simple de convertir vos fichiers multimédias dans les formats les plus populaires."
+msgstr "La façon la plus simple de convertir vos fichiers multimédia dans les formats les plus populaires."
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:20
 msgid "Characteristics:"
@@ -195,7 +195,7 @@ msgstr "Caractéristiques :"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:22
 msgid "Conversion of multiple files at the same time"
-msgstr "Conversion en masse"
+msgstr "Conversion simultanée de plusieurs fichiers"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:23
 msgid "Possibility of changing the output folder"
@@ -207,7 +207,7 @@ msgstr "Support des notifications"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:25
 msgid "Close the application at any time with Ctrl + Q"
-msgstr "Fermez l'application avec Ctrl + Q"
+msgstr "Fermez l'application à tout moment avec Ctrl + Q"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:27
 msgid "Supports the conversion of:"
