@@ -43,7 +43,8 @@
                </ul>
            </description>
         </release>
-    </releases> 
+    </releases>
+    <content_rating type="oars-1.1" />
     <url type="homepage">https://robertsanseries.github.io/ciano/</url>
     <url type="bugtracker">https://github.com/robertsanseries/ciano/issues</url>
     <url type="help">https://github.com/robertsanseries/ciano/issues</url>
