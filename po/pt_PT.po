@@ -1,224 +1,261 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
-"POT-Creation-Date: 2018-08-24 18:09+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-20 12:01+0100\n"
 "PO-Revision-Date: 2018-08-24 18:28+0100\n"
+"Last-Translator: Diogo Oliveira <https://drom98.github.io>\n"
 "Language-Team: \n"
+"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: Diogo Oliveira <https://drom98.github.io>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: pt_PT\n"
 
+#. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:31
-msgid "Convert file"
+#, fuzzy
+msgid "Convert File"
 msgstr "Converter ficheiro"
 
+#. widgets/DialogConvertFile.vala // widgets/SourceListSidebar.vala
 #: src/configs/Properties.vala:33
 msgid "Convert file to"
 msgstr "Converter ficheiro para"
 
+#. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:35
 msgid "Name"
 msgstr "Nome"
 
+#. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:37
 msgid "Add items to conversion:"
 msgstr "Adicionar itens para converter:"
 
+#. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:39
 msgid "Directory"
 msgstr "Directório"
 
+#. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:41
 msgid "Add file"
 msgstr "Adicionar ficheiro"
 
+#. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:43
 msgid "Delete"
 msgstr "Apagar"
 
+#. widgets/DialogConvertFile.vala // widgets/RowConversion.vala // controller/ConverterController.vala
 #: src/configs/Properties.vala:45
 msgid "Cancel"
 msgstr "Cancelar"
 
+#. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:47
 msgid "Start conversion"
 msgstr "Começar conversão"
 
+#. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:49
 msgid "Output folder:"
 msgstr "Pasta de destino:"
 
+#. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:51
 msgid "Files origin:"
 msgstr "Origem dos ficheiros:"
 
+#. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:53
 msgid "Select the output folder:"
 msgstr "Selecione a pasta de destino:"
 
+#. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:55
 msgid "Notifications:"
 msgstr "Notificações:"
 
+#. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:57
 msgid "Notify about completed action:"
 msgstr "Notificar uma ação terminada:"
 
+#. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:59
 msgid "Notify about an error:"
 msgstr "Notificar um erro:"
 
+#. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:61
 msgid "Close"
 msgstr "Fechar"
 
+#. widgets/HeaderBar.vala
 #: src/configs/Properties.vala:63
 msgid "Open output folder"
 msgstr "Abrir pasta de destino"
 
+#. widgets/HeaderBar.vala
 #: src/configs/Properties.vala:65
 msgid "Settings"
 msgstr "Definições"
 
+#. widgets/HeaderBar.vala //widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:67
 msgid "Preferences"
 msgstr "Preferências"
 
+#. widgets/ListConversion.vala
 #: src/configs/Properties.vala:69
 msgid "Empty conversion list"
 msgstr "Lista de conversão vazia"
 
+#. widgets/ListConversion.vala
 #: src/configs/Properties.vala:71
 msgid ""
 "Select an option from the side menu to which you want to \n"
 " convert your file"
 msgstr "Selecione no menu ao lado o formato para converter o seu ficheiro"
 
+#. widgets/RowConversion.vala
 #: src/configs/Properties.vala:73
 msgid "Starting..."
 msgstr "A começar..."
 
+#. widgets/RowConversion.vala
 #: src/configs/Properties.vala:75
 msgid "Cancel conversion"
 msgstr "Cancelar conversão"
 
+#. widgets/RowConversion.vala
 #: src/configs/Properties.vala:77
 msgid "Remove"
 msgstr "Remover"
 
+#. widgets/RowConversion.vala
 #: src/configs/Properties.vala:79
 msgid "Remove item from list"
 msgstr "Remover item da lista"
 
+#. widgets/SourceListSidebar.vala
 #: src/configs/Properties.vala:81
 msgid "Video"
 msgstr "Vídeo"
 
+#. widgets/SourceListSidebar.vala
 #: src/configs/Properties.vala:83
 msgid "Music"
 msgstr "Música"
 
+#. widgets/SourceListSidebar.vala
 #: src/configs/Properties.vala:85
 msgid "Image"
 msgstr "Imagem"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:87
 msgid "Select file"
 msgstr "Selecionar ficheiro"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:89
 msgid "Add"
 msgstr "Adicionar"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:91
 msgid "Conversion completed"
 msgstr "Conversão completa"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:93
 msgid "Conversion canceled"
 msgstr "Conversão cancelada"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:95
 msgid "Error in conversion"
 msgstr "Erro ao converter"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:97
 msgid "percentage: "
 msgstr "percentagem:"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:99
 msgid " - size: "
 msgstr "- tamanho:"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:101
 msgid " - time: "
 msgstr "- tempo:"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:103
 msgid " - bitrate: "
 msgstr "- bitrate"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:105
-msgid "Error: experimental codecs are not enabled"
+#, fuzzy
+msgid "Error: Experimental codecs are not enabled"
 msgstr "Erro: os codecs experimentais não estão ativos"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:107
-msgid "Error: invalid data found when processing input"
+#, fuzzy
+msgid "Error: Invalid data found when processing input"
 msgstr "Erro: encontrados dados inválidos enquanto processava a entrada"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:109
 msgid "Error: No such file or directory"
 msgstr "Erro: O ficheiro ou o directório não existem"
 
+#. controllers/ConverterController.vala
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
 msgstr "Erro: Argumento inválido"
 
-#: data/com.github.robertsanseries.ciano.desktop.in:3
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:8
-msgid "A multimedia file converter"
-msgstr "Um conversor multimedia"
+#~ msgid "A multimedia file converter"
+#~ msgstr "Um conversor multimedia"
 
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:19
-msgid "The easiest way to convert your multimedia files to the most popular formats."
-msgstr "A forma mais fácil para converter os seus ficheiros multimedia nos mais populares formatos."
+#~ msgid ""
+#~ "The easiest way to convert your multimedia files to the most popular "
+#~ "formats."
+#~ msgstr ""
+#~ "A forma mais fácil para converter os seus ficheiros multimedia nos mais "
+#~ "populares formatos."
 
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:20
-msgid "Characteristics:"
-msgstr "Características:"
+#~ msgid "Characteristics:"
+#~ msgstr "Características:"
 
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:22
-msgid "Conversion of multiple files at the same time"
-msgstr "Conversão de vários ficheiros ao mesmo tempo"
+#~ msgid "Conversion of multiple files at the same time"
+#~ msgstr "Conversão de vários ficheiros ao mesmo tempo"
 
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:23
-msgid "Possibility of changing the output folder"
-msgstr "Possibilidade de alteração da pasta destino"
+#~ msgid "Possibility of changing the output folder"
+#~ msgstr "Possibilidade de alteração da pasta destino"
 
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:24
-msgid "Notification support"
-msgstr "Suporte a notificações"
+#~ msgid "Notification support"
+#~ msgstr "Suporte a notificações"
 
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:25
-msgid "Close the application at any time with Ctrl + Q"
-msgstr "Feche a aplicação a qualquer momento pressionando Ctrl + Q"
+#~ msgid "Close the application at any time with Ctrl + Q"
+#~ msgstr "Feche a aplicação a qualquer momento pressionando Ctrl + Q"
 
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:27
-msgid "Supports the conversion of:"
-msgstr "Suporta a conversão de:"
+#~ msgid "Supports the conversion of:"
+#~ msgstr "Suporta a conversão de:"
 
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:29
-msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-msgstr "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+#~ msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+#~ msgstr "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
 
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:30
-msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-msgstr "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+#~ msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+#~ msgstr "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
 
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:31
-msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
-msgstr "Images - JPG, BMP, PNG, TIF, GIF, TGA"
+#~ msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
+#~ msgstr "Images - JPG, BMP, PNG, TIF, GIF, TGA"

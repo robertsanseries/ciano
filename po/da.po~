@@ -1,115 +1,121 @@
+# Danish translations for com.github.robertsanseries.ciano package.
+# Copyright (C) 2019 THE com.github.robertsanseries.ciano'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.robertsanseries.ciano package.
+# Automatically generated, 2019.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-20 12:01+0100\n"
-"PO-Revision-Date: 2017-10-20 20:46-0000\n"
-"Last-Translator:  Robert San <robertsanseries@gmail.com>\n"
-"Language: pt_BR\n"
+"PO-Revision-Date: 2019-11-20 12:01+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:31
-#, fuzzy
 msgid "Convert File"
-msgstr "Converter arquivo"
+msgstr ""
 
 #. widgets/DialogConvertFile.vala // widgets/SourceListSidebar.vala
 #: src/configs/Properties.vala:33
 msgid "Convert file to"
-msgstr "Converter arquivo para"
+msgstr ""
 
 #. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:35
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 #. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:37
 msgid "Add items to conversion:"
-msgstr "Adicione os itens para conversão:"
+msgstr ""
 
 #. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:39
 msgid "Directory"
-msgstr "Diretório"
+msgstr ""
 
 #. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:41
 msgid "Add file"
-msgstr "Adicionar arquivo"
+msgstr ""
 
 #. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:43
 msgid "Delete"
-msgstr "Excluir"
+msgstr ""
 
 #. widgets/DialogConvertFile.vala // widgets/RowConversion.vala // controller/ConverterController.vala
 #: src/configs/Properties.vala:45
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #. widgets/DialogConvertFile.vala
 #: src/configs/Properties.vala:47
 msgid "Start conversion"
-msgstr "Iniciar conversão"
+msgstr ""
 
 #. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:49
 msgid "Output folder:"
-msgstr "Pasta de saída:"
+msgstr ""
 
 #. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:51
 msgid "Files origin:"
-msgstr "Origem do arquivo:"
+msgstr ""
 
 #. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:53
 msgid "Select the output folder:"
-msgstr "Selecione a pasta de saída:"
+msgstr ""
 
 #. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:55
 msgid "Notifications:"
-msgstr "Notificações:"
+msgstr ""
 
 #. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:57
 msgid "Notify about completed action:"
-msgstr "Notificar sobre a ação concluída:"
+msgstr ""
 
 #. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:59
 msgid "Notify about an error:"
-msgstr "Notificar sobre um erro:"
+msgstr ""
 
 #. widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:61
 msgid "Close"
-msgstr "Fechar"
+msgstr ""
 
 #. widgets/HeaderBar.vala
 #: src/configs/Properties.vala:63
 msgid "Open output folder"
-msgstr "Abrir pasta de saída"
+msgstr ""
 
 #. widgets/HeaderBar.vala
 #: src/configs/Properties.vala:65
 msgid "Settings"
-msgstr "Configurações"
+msgstr ""
 
 #. widgets/HeaderBar.vala //widgets/DialogPreferences.vala
 #: src/configs/Properties.vala:67
 msgid "Preferences"
-msgstr "Preferências"
+msgstr ""
 
 #. widgets/ListConversion.vala
 #: src/configs/Properties.vala:69
 msgid "Empty conversion list"
-msgstr "Lista de conversão vazia"
+msgstr ""
 
 #. widgets/ListConversion.vala
 #: src/configs/Properties.vala:71
@@ -117,144 +123,103 @@ msgid ""
 "Select an option from the side menu to which you want to \n"
 " convert your file"
 msgstr ""
-"Selecione uma opção no menu lateral para a qual deseja \n"
-" converter seu arquivo"
 
 #. widgets/RowConversion.vala
 #: src/configs/Properties.vala:73
 msgid "Starting..."
-msgstr "Iniciando..."
+msgstr ""
 
 #. widgets/RowConversion.vala
 #: src/configs/Properties.vala:75
 msgid "Cancel conversion"
-msgstr "Cancelar conversão"
+msgstr ""
 
 #. widgets/RowConversion.vala
 #: src/configs/Properties.vala:77
 msgid "Remove"
-msgstr "Remover"
+msgstr ""
 
 #. widgets/RowConversion.vala
 #: src/configs/Properties.vala:79
 msgid "Remove item from list"
-msgstr "Remover item da lista"
+msgstr ""
 
 #. widgets/SourceListSidebar.vala
 #: src/configs/Properties.vala:81
 msgid "Video"
-msgstr "Vídeo"
+msgstr ""
 
 #. widgets/SourceListSidebar.vala
 #: src/configs/Properties.vala:83
 msgid "Music"
-msgstr "Música"
+msgstr ""
 
 #. widgets/SourceListSidebar.vala
 #: src/configs/Properties.vala:85
 msgid "Image"
-msgstr "Imagem"
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:87
 msgid "Select file"
-msgstr "Selecione o arquivo"
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:89
 msgid "Add"
-msgstr "Adicionar"
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:91
 msgid "Conversion completed"
-msgstr "Conversão concluída"
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:93
 msgid "Conversion canceled"
-msgstr "Conversão cancelada"
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:95
 msgid "Error in conversion"
-msgstr "Erro na conversão"
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:97
 msgid "percentage: "
-msgstr "porcentagem: "
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:99
 msgid " - size: "
-msgstr " - tamanho: "
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:101
 msgid " - time: "
-msgstr " - tempo: "
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:103
 msgid " - bitrate: "
-msgstr " - taxa de bits: "
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:105
-#, fuzzy
 msgid "Error: Experimental codecs are not enabled"
-msgstr "Erro: codecs experimentais não estão habilitados"
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:107
-#, fuzzy
 msgid "Error: Invalid data found when processing input"
-msgstr "Erro: dados inválidos encontrados ao processar a entrada"
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:109
 msgid "Error: No such file or directory"
-msgstr "Erro: Nenhum arquivo ou diretório"
+msgstr ""
 
 #. controllers/ConverterController.vala
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
-msgstr "Erro: Argumento inválido"
-
-#~ msgid "A multimedia file converter"
-#~ msgstr "Um conversor de arquivos multimídia"
-
-#~ msgid ""
-#~ "The easiest way to convert your multimedia files to the most popular "
-#~ "formats."
-#~ msgstr ""
-#~ "A maneira mais fácil de converter seus arquivos multimídia para os "
-#~ "formatos mais populares."
-
-#~ msgid "Characteristics:"
-#~ msgstr "Características"
-
-#~ msgid "Conversion of multiple files at the same time"
-#~ msgstr "Conversão de múltiplos arquivos ao mesmo tempo"
-
-#~ msgid "Possibility of changing the output folder"
-#~ msgstr "Possibilidade de alterar a pasta de saída"
-
-#~ msgid "Notification support"
-#~ msgstr "Suporte de notificação"
-
-#~ msgid "Close the application at any time with Ctrl + Q"
-#~ msgstr "Feche o aplicativo a qualquer momento com Ctrl + Q"
-
-#~ msgid "Supports the conversion of:"
-#~ msgstr "Suporta a conversão de:"
-
-#~ msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-#~ msgstr "Vídeo - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-
-#~ msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-#~ msgstr "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-
-#~ msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
-#~ msgstr "Imagens - JPG, BMP, PNG, TIF, GIF, TGA"
+msgstr ""
