@@ -3,219 +3,219 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
 "POT-Creation-Date: 2017-09-14 22:30-0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator:  FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2020-03-04 00:42+0300\n"
+"Last-Translator:  Safak Genisol <Bjksafak45@gmail.com>\n"
+"Language-Team: none\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/configs/Properties.vala:31
 msgid "Convert file"
-msgstr ""
+msgstr "Dosyayı dönüştür"
 
 #: src/configs/Properties.vala:33
 msgid "Convert file to"
-msgstr ""
+msgstr "Dosyayı şuna dönüştür:"
 
 #: src/configs/Properties.vala:35
 msgid "Name"
-msgstr ""
+msgstr "İsim"
 
 #: src/configs/Properties.vala:37
 msgid "Add items to conversion:"
-msgstr ""
+msgstr "Dönüşüme öğeler ekleyin:"
 
 #: src/configs/Properties.vala:39
 msgid "Directory"
-msgstr ""
+msgstr "Dizin"
 
 #: src/configs/Properties.vala:41
 msgid "Add file"
-msgstr ""
+msgstr "Dosya ekle"
 
 #: src/configs/Properties.vala:43
 msgid "Delete"
-msgstr ""
+msgstr "Sil"
 
 #: src/configs/Properties.vala:45
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #: src/configs/Properties.vala:47
 msgid "Start conversion"
-msgstr ""
+msgstr "Dönüştürmeyi başlat"
 
 #: src/configs/Properties.vala:49
 msgid "Output folder:"
-msgstr ""
+msgstr "Çıktı dosyası:"
 
 #: src/configs/Properties.vala:51
 msgid "Files origin:"
-msgstr ""
+msgstr "Dosyaların kökeni:"
 
 #: src/configs/Properties.vala:53
 msgid "Select the output folder:"
-msgstr ""
+msgstr "Çıktı klasörünü seçin:"
 
 #: src/configs/Properties.vala:55
 msgid "Notifications:"
-msgstr ""
+msgstr "Bildirimler:"
 
 #: src/configs/Properties.vala:57
 msgid "Notify about completed action:"
-msgstr ""
+msgstr "Tamamlanan işlem hakkında bilgilendir:"
 
 #: src/configs/Properties.vala:59
 msgid "Notify about an error:"
-msgstr ""
+msgstr "Bir hata hakkında bilgilendir:"
 
 #: src/configs/Properties.vala:61
 msgid "Close"
-msgstr ""
+msgstr "Kapat"
 
 #: src/configs/Properties.vala:63
 msgid "Open output folder"
-msgstr ""
+msgstr "Çıktı klasörünü aç"
 
 #: src/configs/Properties.vala:65
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: src/configs/Properties.vala:67
 msgid "Preferences"
-msgstr ""
+msgstr "Tercihler"
 
 #: src/configs/Properties.vala:69
 msgid "Empty conversion list"
-msgstr ""
+msgstr "Dönüşüm listesi boş"
 
 #: src/configs/Properties.vala:71
 msgid "Select an option from the side menu to which you want to \n convert your file"
-msgstr ""
+msgstr "Dönüştürmek istediğiniz dosyanızı \n yan menüden bir seçenek belirleyin"
 
 #: src/configs/Properties.vala:73
 msgid "Starting..."
-msgstr ""
+msgstr "Başlıyor..."
 
 #: src/configs/Properties.vala:75
 msgid "Cancel conversion"
-msgstr ""
+msgstr "Dönüşümü iptal et"
 
 #: src/configs/Properties.vala:77
 msgid "Remove"
-msgstr ""
+msgstr "Kaldır"
 
 #: src/configs/Properties.vala:79
 msgid "Remove item from list"
-msgstr ""
+msgstr "Öğeyi listeden kaldır"
 
 #: src/configs/Properties.vala:81
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: src/configs/Properties.vala:83
 msgid "Music"
-msgstr ""
+msgstr "Müzik"
 
 #: src/configs/Properties.vala:85
 msgid "Image"
-msgstr ""
+msgstr "Resim"
 
 #: src/configs/Properties.vala:87
 msgid "Select file"
-msgstr ""
+msgstr "Dosya seç"
 
 #: src/configs/Properties.vala:89
 msgid "Add"
-msgstr ""
+msgstr "Ekle"
 
 #: src/configs/Properties.vala:91
 msgid "Conversion completed"
-msgstr ""
+msgstr "Dönüşüm tamamlandı"
 
 #: src/configs/Properties.vala:93
 msgid "Conversion canceled"
-msgstr ""
+msgstr "Dönüşüm iptal edildi"
 
 #: src/configs/Properties.vala:95
 msgid "Error in conversion"
-msgstr ""
+msgstr "Dönüşüm hatası"
 
 #: src/configs/Properties.vala:97
 msgid "percentage: "
-msgstr ""
+msgstr "yüzde: "
 
 #: src/configs/Properties.vala:99
 msgid " - size: "
-msgstr ""
+msgstr " - boyut: "
 
 #: src/configs/Properties.vala:101
 msgid " - time: "
-msgstr ""
+msgstr " - süre: "
 
 #: src/configs/Properties.vala:103
 msgid " - bitrate: "
-msgstr ""
+msgstr " - bitrate: "
 
 #: src/configs/Properties.vala:105
 msgid "Error: experimental codecs are not enabled"
-msgstr ""
+msgstr "Hata: deneysel kodeksler etkin değil"
 
 #: src/configs/Properties.vala:107
 msgid "Error: invalid data found when processing input"
-msgstr ""
+msgstr "Hata: giriş işlenirken geçersiz veri bulundu"
 
 #: src/configs/Properties.vala:109
 msgid "Error: No such file or directory"
-msgstr ""
+msgstr "Hata: Böyle bir dosya veya dizin yok"
 
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
-msgstr ""
+msgstr "Hata: Geçersiz argüman"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:3
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:8
 msgid "A multimedia file converter"
-msgstr ""
+msgstr "Bir multimedya dosya dönüştürücü"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:19
 msgid "The easiest way to convert your multimedia files to the most popular formats."
-msgstr ""
+msgstr "Multimedya dosyalarınızı en popüler biçimlere dönüştürmenin en kolay yolu."
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:20
 msgid "Characteristics:"
-msgstr ""
+msgstr "Özellikler:"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:22
 msgid "Conversion of multiple files at the same time"
-msgstr ""
+msgstr "Aynı anda birden fazla dosyanın dönüştürülmesi"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:23
 msgid "Possibility of changing the output folder"
-msgstr ""
+msgstr "Çıktı klasörünü değiştirme imkanı"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:24
 msgid "Notification support"
-msgstr ""
+msgstr "Bildirim desteği"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:25
 msgid "Close the application at any time with Ctrl + Q"
-msgstr ""
+msgstr "Uygulamayı istediğiniz zaman Ctrl + Q ile kapatın"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:27
 msgid "Supports the conversion of:"
-msgstr ""
+msgstr "Dönüşümünü destekler:"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:29
 msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-msgstr ""
+msgstr "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:30
 msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-msgstr ""
+msgstr "Ses - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:31
 msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
-msgstr ""
+msgstr "Resimler - JPG, BMP, PNG, TIF, GIF, TGA"
