@@ -18,13 +18,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/configs/Properties.vala:31
-#, fuzzy
 msgid "Convert File"
-msgstr "Convertir"
+msgstr "Convertir le fichier"
 
 #: src/configs/Properties.vala:33
 msgid "Convert file to"
-msgstr "Convertir vers"
+msgstr "Convertir le fichier en"
 
 #: src/configs/Properties.vala:35
 msgid "Name"
@@ -32,11 +31,11 @@ msgstr "Nom"
 
 #: src/configs/Properties.vala:37
 msgid "Add items to conversion:"
-msgstr "Ajouter un élément à convertir"
+msgstr "Ajouter les éléments à convertir :"
 
 #: src/configs/Properties.vala:39
 msgid "Directory"
-msgstr "Répertoire"
+msgstr "Dossier"
 
 #: src/configs/Properties.vala:41
 msgid "Add file"
@@ -52,7 +51,7 @@ msgstr "Annuler"
 
 #: src/configs/Properties.vala:47
 msgid "Start conversion"
-msgstr "Lancer la conversion"
+msgstr "Démarrer la conversion"
 
 #: src/configs/Properties.vala:49
 msgid "Output folder:"
@@ -64,7 +63,7 @@ msgstr "Origine des fichiers :"
 
 #: src/configs/Properties.vala:53
 msgid "Select the output folder:"
-msgstr "Choisir le répertoire de destination :"
+msgstr "Sélectionner le répertoire de destination :"
 
 #: src/configs/Properties.vala:55
 msgid "Notifications:"
@@ -84,7 +83,7 @@ msgstr "Fermer"
 
 #: src/configs/Properties.vala:63
 msgid "Open output folder"
-msgstr "Ouvrir le répertoire de destination"
+msgstr "Ouvrir le dossier de destination"
 
 #: src/configs/Properties.vala:65
 msgid "Settings"
@@ -96,14 +95,14 @@ msgstr "Préférences"
 
 #: src/configs/Properties.vala:69
 msgid "Empty conversion list"
-msgstr "Liste vide"
+msgstr "Liste de conversion vide"
 
 #: src/configs/Properties.vala:71
 msgid ""
 "Select an option from the side menu to which you want to \n"
 " convert your file"
 msgstr ""
-"Choisir le format de conversion dans le \n"
+"Sélectionnez le format de conversion que vous souhaitez dans le \n"
 " menu de gauche"
 
 #: src/configs/Properties.vala:73
@@ -136,7 +135,7 @@ msgstr "Image"
 
 #: src/configs/Properties.vala:87
 msgid "Select file"
-msgstr "Choisir un fichier"
+msgstr "Sélectionner un fichier"
 
 #: src/configs/Properties.vala:89
 msgid "Add"
@@ -164,26 +163,24 @@ msgstr " - taille : "
 
 #: src/configs/Properties.vala:101
 msgid " - time: "
-msgstr "- durée :"
+msgstr " - durée : "
 
 #: src/configs/Properties.vala:103
 msgid " - bitrate: "
 msgstr " - débit : "
 
 #: src/configs/Properties.vala:105
-#, fuzzy
 msgid "Error: Experimental codecs are not enabled"
-msgstr "Erreur : codecs expérimentaux désactivés"
+msgstr "Erreur : Les codecs expérimentaux ne sont pas activés"
 
 #: src/configs/Properties.vala:107
-#, fuzzy
 msgid "Error: Invalid data found when processing input"
-msgstr "Erreur : données invalides en entrée"
+msgstr "Erreur : Données invalides en entrée"
 
 #: src/configs/Properties.vala:109
 msgid "Error: No such file or directory"
-msgstr "Erreur : fichier ou répertoire inexistant"
+msgstr "Erreur : Fichier ou dossier inexistant"
 
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
-msgstr "Erreur : argument invalide"
+msgstr "Erreur : Argument invalide"
