@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-09 17:47+0200\n"
+"POT-Creation-Date: 2020-06-09 18:57+0200\n"
 "PO-Revision-Date: 2020-06-09 17:38+0200\n"
 "Last-Translator: Nathan Bonnemains (@NathanBnm)\n"
 "Language-Team: none\n"
@@ -23,32 +23,28 @@ msgid "Ciano"
 msgstr "Ciano"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:4
-#, fuzzy
 msgid "Multimedia Converter"
 msgstr "Convertisseur de fichiers multimédia"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:5
-#, fuzzy
 msgid "Convert multimedia files to other formats"
-msgstr ""
-"La façon la plus simple de convertir vos fichiers multimédia dans les "
-"formats les plus populaires."
+msgstr "Convertissez des fichiers multimédia dans d'autres formats"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:6
 msgid "com.github.robertsanseries.ciano"
-msgstr ""
+msgstr "com.github.robertsanseries.ciano"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:11
 msgid "converter;multimedia;audio;video;photo;photography;"
-msgstr ""
+msgstr "convertisseur;multimédia;audio;vidéo;photo;photographie;"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:8
 msgid "A multimedia file converter"
-msgstr "Convertisseur de fichiers multimédia"
+msgstr "Un convertisseur de fichiers multimédia"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:9
 msgid "Robert San"
-msgstr ""
+msgstr "Robert San"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:19
 msgid ""
@@ -67,11 +63,11 @@ msgstr "Conversion simultanée de plusieurs fichiers"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:23
 msgid "Possibility of changing the output folder"
-msgstr "Possibilité de choisir le répertoire de destination"
+msgstr "Possibilité de modifier le dossier de destination"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:24
 msgid "Notification support"
-msgstr "Support des notifications"
+msgstr "Prise en charge des notifications"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:25
 msgid "Close the application at any time with Ctrl + Q"
@@ -79,7 +75,7 @@ msgstr "Fermez l'application à tout moment avec Ctrl + Q"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:27
 msgid "Supports the conversion of:"
-msgstr "Supporte la conversion de :"
+msgstr "Prend en charge les formats de conversion suivants :"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:29
 msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
@@ -96,19 +92,20 @@ msgstr "Images - JPG, BMP, PNG, TIF, GIF, TGA"
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:37
 msgid "Icons in the HIG standard and Inclusion/Update of languages"
 msgstr ""
+"Les icônes suivent désormais les standards et ajout, mise à jour de langues"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:39
 msgid "The icons follow the HIG (@lainsce)"
-msgstr ""
+msgstr "Les icônes suivent désormais les standards (@lainsce)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:40
 msgid "Language: Inclusion of the French (@nvivant)"
-msgstr ""
+msgstr "Langue : Ajout du Français (@nvivant)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:41
 msgid "Language: Inclusion of Chinese simplified (@trampover)"
-msgstr ""
+msgstr "Langue : Ajout du Chinois simplifié (@trampover)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:42
-msgid "Language: pdate in Lithuanian (@welaq)"
-msgstr ""
+msgid "Language: Update in Lithuanian (@welaq)"
+msgstr "Langue : Mise à jour du Lituanien (@welaq)"
