@@ -1,27 +1,25 @@
-# Turkish translation for Ciano.
-# Copyright (C) 2019 Ciano'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the Ciano package.
-# Ciano: com.github.robertsanseries.ciano
-#
-# Sabri Ünal <libreajans@gmail.com>, 2019.
+# Turkish translations for com.github.robertsanseries.ciano package.
+# Copyright (C) 2020 THE com.github.robertsanseries.ciano'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.robertsanseries.ciano package.
+# Sabri Ünal <libreajans@gmail.com>, 2020.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Ciano master\n"
-"Report-Msgid-Bugs-To: https://github.com/torikulhabib/mindi/issues\n"
-"POT-Creation-Date: 2017-09-14 22:30-0000\n"
-"PO-Revision-Date: 2019-10-02 20:20+0300\n"
+"Project-Id-Version: com.github.robertsanseries.ciano\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-09 17:37+0200\n"
+"PO-Revision-Date: 2020-06-09 17:27+0200\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
-"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
+"Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/configs/Properties.vala:31
-msgid "Convert file"
+#, fuzzy
+msgid "Convert File"
 msgstr "Dosya dönüştür"
 
 #: src/configs/Properties.vala:33
@@ -171,11 +169,13 @@ msgid " - bitrate: "
 msgstr " - bit oranı: "
 
 #: src/configs/Properties.vala:105
-msgid "Error: experimental codecs are not enabled"
+#, fuzzy
+msgid "Error: Experimental codecs are not enabled"
 msgstr "Hata: Deneysel kod çözücüler etkin değil"
 
 #: src/configs/Properties.vala:107
-msgid "Error: invalid data found when processing input"
+#, fuzzy
+msgid "Error: Invalid data found when processing input"
 msgstr "Hata: Girdi işlenirken geçersiz veriler bulundu"
 
 #: src/configs/Properties.vala:109
@@ -185,48 +185,3 @@ msgstr "Hata: Böyle bir dosya veya dizin yok"
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
 msgstr "Hata: Geçersiz bağımsız değişken"
-
-#: data/com.github.robertsanseries.ciano.desktop.in:3
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:8
-msgid "A multimedia file converter"
-msgstr "Çoklu ortam dosya dönüştürücü"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:19
-msgid "The easiest way to convert your multimedia files to the most popular formats."
-msgstr "Çoklu ortam dosyalarını en yaygın biçimlere dönüştürmenin en kolay yolu."
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:20
-msgid "Characteristics:"
-msgstr "Özellikleri:"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:22
-msgid "Conversion of multiple files at the same time"
-msgstr "Aynı anda birden fazla dosya dönüştürülebilir"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:23
-msgid "Possibility of changing the output folder"
-msgstr "Çıktı klasörünü değiştirmek mümkündür"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:24
-msgid "Notification support"
-msgstr "Bildirim desteği vardır"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:25
-msgid "Close the application at any time with Ctrl + Q"
-msgstr "Ctrl + Q kısayolu ile uygulamadan dilediğiniz zamanda çıkabilirsiniz"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:27
-msgid "Supports the conversion of:"
-msgstr "Aşağıdaki biçimleri destekler:"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:29
-msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-msgstr "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:30
-msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-msgstr "Ses - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:31
-msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
-msgstr "Görüntü - JPG, BMP, PNG, TIF, GIF, TGA"

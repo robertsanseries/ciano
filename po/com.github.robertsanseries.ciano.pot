@@ -1,18 +1,24 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.robertsanseries.ciano package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
-"POT-Creation-Date: 2017-09-14 22:30-0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-09 17:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator:  FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/configs/Properties.vala:31
-msgid "Convert file"
+msgid "Convert File"
 msgstr ""
 
 #: src/configs/Properties.vala:33
@@ -92,7 +98,9 @@ msgid "Empty conversion list"
 msgstr ""
 
 #: src/configs/Properties.vala:71
-msgid "Select an option from the side menu to which you want to \n convert your file"
+msgid ""
+"Select an option from the side menu to which you want to \n"
+" convert your file"
 msgstr ""
 
 #: src/configs/Properties.vala:73
@@ -160,11 +168,11 @@ msgid " - bitrate: "
 msgstr ""
 
 #: src/configs/Properties.vala:105
-msgid "Error: experimental codecs are not enabled"
+msgid "Error: Experimental codecs are not enabled"
 msgstr ""
 
 #: src/configs/Properties.vala:107
-msgid "Error: invalid data found when processing input"
+msgid "Error: Invalid data found when processing input"
 msgstr ""
 
 #: src/configs/Properties.vala:109
@@ -173,49 +181,4 @@ msgstr ""
 
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.desktop.in:3
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:8
-msgid "A multimedia file converter"
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:19
-msgid "The easiest way to convert your multimedia files to the most popular formats."
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:20
-msgid "Characteristics:"
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:22
-msgid "Conversion of multiple files at the same time"
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:23
-msgid "Possibility of changing the output folder"
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:24
-msgid "Notification support"
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:25
-msgid "Close the application at any time with Ctrl + Q"
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:27
-msgid "Supports the conversion of:"
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:29
-msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:30
-msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-msgstr ""
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:31
-msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
 msgstr ""
