@@ -11,3 +11,4 @@ debian/files
 language/*
 src/models/*
 .com.github.robertsanseries.ciano.json
+*~
