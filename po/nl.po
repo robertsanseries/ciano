@@ -1,19 +1,25 @@
+# Dutch translations for com.github.robertsanseries.ciano package.
+# Copyright (C) 2020 THE com.github.robertsanseries.ciano'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.robertsanseries.ciano package.
+# Automatically generated, 2020.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
-"POT-Creation-Date: 2018-01-28 11:22+0100\n"
-"PO-Revision-Date: 2018-01-28 11:35+0100\n"
-"Language-Team: Dutch - vistausss@outlook.com\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-09 17:37+0200\n"
+"PO-Revision-Date: 2020-06-09 17:27+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: nl_NL\n"
 
 #: src/configs/Properties.vala:31
-msgid "Convert file"
+#, fuzzy
+msgid "Convert File"
 msgstr "Bestand converteren"
 
 #: src/configs/Properties.vala:33
@@ -165,11 +171,13 @@ msgid " - bitrate: "
 msgstr " - bitsnelheid: "
 
 #: src/configs/Properties.vala:105
-msgid "Error: experimental codecs are not enabled"
+#, fuzzy
+msgid "Error: Experimental codecs are not enabled"
 msgstr "Fout: experimentele codecs zijn niet ingeschakeld"
 
 #: src/configs/Properties.vala:107
-msgid "Error: invalid data found when processing input"
+#, fuzzy
+msgid "Error: Invalid data found when processing input"
 msgstr "Fout: ongeldige gegevens gevonden tijdens verwerken van invoer"
 
 #: src/configs/Properties.vala:109
@@ -179,48 +187,3 @@ msgstr "Fout: is geen bestand of map"
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
 msgstr "Fout: ongeldig argument"
-
-#: data/com.github.robertsanseries.ciano.desktop.in:3
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:8
-msgid "A multimedia file converter"
-msgstr "Een conversieprogramma voor multimediabestanden"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:19
-msgid "The easiest way to convert your multimedia files to the most popular formats."
-msgstr "Dé makkelijkste manier om uw multimedia-bestanden te converteren naar de populairste bestandsformaten."
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:20
-msgid "Characteristics:"
-msgstr "Karakteristieken:"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:22
-msgid "Conversion of multiple files at the same time"
-msgstr "Meerdere bestanden tegelijk converteren"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:23
-msgid "Possibility of changing the output folder"
-msgstr "Mogelijkheid om de uitvoermap te wijzigen"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:24
-msgid "Notification support"
-msgstr "Ondersteuning voor meldingen"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:25
-msgid "Close the application at any time with Ctrl + Q"
-msgstr "De mogelijkheid om de applicatie ten allen tijde af te sluiten met Ctrl+Q"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:27
-msgid "Supports the conversion of:"
-msgstr "Ondersteunt de conversie van:"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:29
-msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-msgstr "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:30
-msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-msgstr "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-
-#: data/com.github.robertsanseries.ciano.appdata.xml.in:31
-msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
-msgstr "Afbeeldingen - JPG, BMP, PNG, TIF, GIF, TGA"

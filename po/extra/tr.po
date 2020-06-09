@@ -1,0 +1,112 @@
+# Turkish translations for extra package.
+# Copyright (C) 2020 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Sabri Ünal <libreajans@gmail.com>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-09 17:47+0200\n"
+"PO-Revision-Date: 2020-06-09 17:38+0200\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:3
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:7
+msgid "Ciano"
+msgstr "Ciano"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:4
+#, fuzzy
+msgid "Multimedia Converter"
+msgstr "Çoklu ortam dosya dönüştürücü"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:5
+#, fuzzy
+msgid "Convert multimedia files to other formats"
+msgstr ""
+"Çoklu ortam dosyalarını en yaygın biçimlere dönüştürmenin en kolay yolu."
+
+#: data/com.github.robertsanseries.ciano.desktop.in:6
+msgid "com.github.robertsanseries.ciano"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.desktop.in:11
+msgid "converter;multimedia;audio;video;photo;photography;"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:8
+msgid "A multimedia file converter"
+msgstr "Çoklu ortam dosya dönüştürücü"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:9
+msgid "Robert San"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:19
+msgid ""
+"The easiest way to convert your multimedia files to the most popular formats."
+msgstr ""
+"Çoklu ortam dosyalarını en yaygın biçimlere dönüştürmenin en kolay yolu."
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:20
+msgid "Characteristics:"
+msgstr "Özellikleri:"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:22
+msgid "Conversion of multiple files at the same time"
+msgstr "Aynı anda birden fazla dosya dönüştürülebilir"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:23
+msgid "Possibility of changing the output folder"
+msgstr "Çıktı klasörünü değiştirmek mümkündür"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:24
+msgid "Notification support"
+msgstr "Bildirim desteği vardır"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:25
+msgid "Close the application at any time with Ctrl + Q"
+msgstr "Ctrl + Q kısayolu ile uygulamadan dilediğiniz zamanda çıkabilirsiniz"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:27
+msgid "Supports the conversion of:"
+msgstr "Aşağıdaki biçimleri destekler:"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:29
+msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+msgstr "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:30
+msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+msgstr "Ses - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:31
+msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
+msgstr "Görüntü - JPG, BMP, PNG, TIF, GIF, TGA"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:37
+msgid "Icons in the HIG standard and Inclusion/Update of languages"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:39
+msgid "The icons follow the HIG (@lainsce)"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:40
+msgid "Language: Inclusion of the French (@nvivant)"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:41
+msgid "Language: Inclusion of Chinese simplified (@trampover)"
+msgstr ""
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:42
+msgid "Language: pdate in Lithuanian (@welaq)"
+msgstr ""
