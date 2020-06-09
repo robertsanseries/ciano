@@ -768,50 +768,62 @@ namespace Ciano.Controllers {
 
             if(format_video != Constants.TEXT_MP4) {
                 array.add (Constants.TEXT_MP4);    
+                array.add (Constants.TEXT_MP4.up());    
             }
             
             if(format_video != Constants.TEXT_3GP) {
                 array.add (Constants.TEXT_3GP);    
+                array.add (Constants.TEXT_3GP.up());    
             }
 
             if(format_video != Constants.TEXT_MPG) {
                 array.add (Constants.TEXT_MPG);    
+                array.add (Constants.TEXT_MPG.up());       
             }
 
             if(format_video != Constants.TEXT_AVI) {
-                array.add (Constants.TEXT_AVI);    
+                array.add (Constants.TEXT_AVI);
+                array.add (Constants.TEXT_AVI.up());        
             }
 
             if(format_video != Constants.TEXT_WMV) {
                 array.add (Constants.TEXT_WMV);    
+                array.add (Constants.TEXT_WMV.up());    
             }
 
             if(format_video != Constants.TEXT_FLV) {
-                array.add (Constants.TEXT_FLV);    
+                array.add (Constants.TEXT_FLV);  
+                array.add (Constants.TEXT_FLV.up());      
             }
 
             if(format_video != Constants.TEXT_SWF) {
-                array.add (Constants.TEXT_SWF);    
+                array.add (Constants.TEXT_SWF);   
+                array.add (Constants.TEXT_SWF.up());     
             }
 
             if(format_video != Constants.TEXT_MOV) {
-                array.add (Constants.TEXT_MOV);    
+                array.add (Constants.TEXT_MOV); 
+                array.add (Constants.TEXT_MOV.up());       
             }
 
             if(format_video != Constants.TEXT_MKV) {
-                array.add (Constants.TEXT_MKV);    
+                array.add (Constants.TEXT_MKV); 
+                array.add (Constants.TEXT_MKV.up());       
             }
 
             if(format_video != Constants.TEXT_VOB) {
-                array.add (Constants.TEXT_VOB);    
+                array.add (Constants.TEXT_VOB);  
+                array.add (Constants.TEXT_VOB.up());      
             }
 
             if(format_video != Constants.TEXT_OGV) {
-                array.add (Constants.TEXT_OGV);    
+                array.add (Constants.TEXT_OGV);  
+                array.add (Constants.TEXT_OGV.up());      
             }
 
             if(format_video != Constants.TEXT_WEBM && format_video != Constants.TEXT_GIF && this.type_item == TypeItemEnum.VIDEO) {
-                array.add (Constants.TEXT_WEBM);    
+                array.add (Constants.TEXT_WEBM); 
+                array.add (Constants.TEXT_WEBM.up());       
             }
 
             return array;
@@ -833,43 +845,53 @@ namespace Ciano.Controllers {
             }
 
             if(format_music != Constants.TEXT_MP3) {
-                array.add (Constants.TEXT_MP3);    
+                array.add (Constants.TEXT_MP3);   
+                array.add (Constants.TEXT_MP3.up()); 
             }
             
             if(format_music != Constants.TEXT_WMA) {
                 array.add (Constants.TEXT_WMA);    
+                array.add (Constants.TEXT_WMA.up());
             }
 
             if(format_music != Constants.TEXT_AMR) {
                 array.add (Constants.TEXT_AMR);    
+                array.add (Constants.TEXT_AMR.up());
             }
 
             if(format_music != Constants.TEXT_OGG) {
                 array.add (Constants.TEXT_OGG);    
+                array.add (Constants.TEXT_OGG.up());
             }
 
             if(format_music != Constants.TEXT_WAV) {
                 array.add (Constants.TEXT_WAV);    
+                array.add (Constants.TEXT_WAV.up());
             }
 
             if(format_music != Constants.TEXT_AAC) {
                 array.add (Constants.TEXT_AAC);    
+                array.add (Constants.TEXT_AAC.up());
             }
 
             if(format_music != Constants.TEXT_FLAC) {
                 array.add (Constants.TEXT_FLAC);    
+                array.add (Constants.TEXT_FLAC.up());
             }
 
             if(format_music != Constants.TEXT_AIFF) {
                 array.add (Constants.TEXT_AIFF);    
+                array.add (Constants.TEXT_AIFF.up());
             }
 
             if(format_music != Constants.TEXT_MMF) {
                 array.add (Constants.TEXT_MMF);    
+                array.add (Constants.TEXT_MMF.up());
             }
 
             if(format_music != Constants.TEXT_M4A) {
                 array.add (Constants.TEXT_M4A);    
+                array.add (Constants.TEXT_M4A.up());
             }
 
             return array;
@@ -893,30 +915,37 @@ namespace Ciano.Controllers {
 
             if(format_image != Constants.TEXT_JPG) {
                 array.add (Constants.TEXT_JPG);    
+                array.add (Constants.TEXT_JPG.up());
             }
             
             if(format_image != Constants.TEXT_BMP) {
                 array.add (Constants.TEXT_BMP);    
+                array.add (Constants.TEXT_BMP.up());
             }
 
             if(format_image != Constants.TEXT_PNG) {
                 array.add (Constants.TEXT_PNG);    
+                array.add (Constants.TEXT_PNG.up());
             }
 
             if(format_image != Constants.TEXT_TIF) {
                 array.add (Constants.TEXT_TIF);    
+                array.add (Constants.TEXT_TIF.up());
             }
 
             if(format_image != Constants.TEXT_ICO) {
                 array.add (Constants.TEXT_ICO);    
+                array.add (Constants.TEXT_ICO.up());
             }
 
             if(format_image != Constants.TEXT_GIF) {
                 array.add (Constants.TEXT_GIF);    
+                array.add (Constants.TEXT_GIF.up());
             }
 
             if(format_image != Constants.TEXT_TGA) {
                 array.add (Constants.TEXT_TGA);    
+                array.add (Constants.TEXT_TGA.up());
             }
 
             return array;
