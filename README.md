@@ -5,7 +5,7 @@
 </div>
 
 <p align="center">
-    <img src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot">
+    <img src="https://github.com/robertsanseries/ciano/blob/master/data/screenshot.png" alt="Screenshot">
 </p>
 
 <div class="center">
