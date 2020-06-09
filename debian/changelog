@@ -1,3 +1,9 @@
+com.github.robertsanseries.ciano (0.2.2) xenial; urgency=low
+
+  * New translations and code improvements
+
+ -- Robert San <robertsanseries@gmail.com>  Tue, 09 June 2020 15:12:00 -0300
+
 com.github.robertsanseries.ciano (0.2.1) xenial; urgency=low
 
   * Fixes for version 0.2.0
