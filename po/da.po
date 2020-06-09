@@ -1,0 +1,223 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.robertsanseries.ciano\n"
+"POT-Creation-Date: 2017-09-14 22:30-0000\n"
+"PO-Revision-Date: 2019-11-20 12:01+0100\n"
+"Last-Translator: rasmus91 <https://github.com/rasmus91>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/configs/Properties.vala:31
+msgid "Convert File"
+msgstr "Konvertér Fil"
+
+#: src/configs/Properties.vala:33
+msgid "Convert file to"
+msgstr "Konvertér fil til"
+
+#: src/configs/Properties.vala:35
+msgid "Name"
+msgstr "Navn"
+
+#: src/configs/Properties.vala:37
+msgid "Add items to conversion:"
+msgstr "Tilføj elementer til konvertéring"
+
+#: src/configs/Properties.vala:39
+msgid "Directory"
+msgstr "Mappe"
+
+#: src/configs/Properties.vala:41
+msgid "Add file"
+msgstr "Tilføj fil"
+
+#: src/configs/Properties.vala:43
+msgid "Delete"
+msgstr "Fjern"
+
+#: src/configs/Properties.vala:45
+msgid "Cancel"
+msgstr "Anullér"
+
+#: src/configs/Properties.vala:47
+msgid "Start conversion"
+msgstr "Begynd Konvertéring"
+
+#: src/configs/Properties.vala:49
+msgid "Output folder:"
+msgstr "Destinations mappe:"
+
+#: src/configs/Properties.vala:51
+msgid "Files origin:"
+msgstr "Fil oprindelse:"
+
+#: src/configs/Properties.vala:53
+msgid "Select the output folder:"
+msgstr "Vælg destinations mappen:"
+
+#: src/configs/Properties.vala:55
+msgid "Notifications:"
+msgstr "Notifikationer:"
+
+#: src/configs/Properties.vala:57
+msgid "Notify about completed action:"
+msgstr "Notificér om afsluttede handlinger:"
+
+#: src/configs/Properties.vala:59
+msgid "Notify about an error:"
+msgstr "Notificér om fejl:"
+
+#: src/configs/Properties.vala:61
+msgid "Close"
+msgstr "Luk"
+
+#: src/configs/Properties.vala:63
+msgid "Open output folder"
+msgstr "Åben destinations mappe"
+
+#: src/configs/Properties.vala:65
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: src/configs/Properties.vala:67
+msgid "Preferences"
+msgstr "Præferencér"
+
+#: src/configs/Properties.vala:69
+msgid "Empty conversion list"
+msgstr "Tøm konverteringsliste"
+
+#: src/configs/Properties.vala:71
+msgid ""
+"Select an option from the side menu to which you want to \n"
+" convert your file"
+msgstr ""
+"Vælg en et format fra side menuen til hvilken du ønsker \n"
+" at konvertere din fil"
+
+#: src/configs/Properties.vala:73
+msgid "Starting..."
+msgstr "Påbegynder..."
+
+#: src/configs/Properties.vala:75
+msgid "Cancel conversion"
+msgstr "Anullér konvertéring"
+
+#: src/configs/Properties.vala:77
+msgid "Remove"
+msgstr "Fjern"
+
+#: src/configs/Properties.vala:79
+msgid "Remove item from list"
+msgstr "Fjern element fra liste"
+
+#: src/configs/Properties.vala:81
+msgid "Video"
+msgstr "Video"
+
+#: src/configs/Properties.vala:83
+msgid "Music"
+msgstr "Musik"
+
+#: src/configs/Properties.vala:85
+msgid "Image"
+msgstr "Billede"
+
+#: src/configs/Properties.vala:87
+msgid "Select file"
+msgstr "Vælg fil"
+
+#: src/configs/Properties.vala:89
+msgid "Add"
+msgstr "Tilføj"
+
+#: src/configs/Properties.vala:91
+msgid "Conversion completed"
+msgstr "Konvertéring færdig"
+
+#: src/configs/Properties.vala:93
+msgid "Conversion canceled"
+msgstr "Konvertéring annulleret"
+
+#: src/configs/Properties.vala:95
+msgid "Error in conversion"
+msgstr "Fejl i konvertéring"
+
+#: src/configs/Properties.vala:97
+msgid "percentage: "
+msgstr "procent: "
+
+#: src/configs/Properties.vala:99
+msgid " - size: "
+msgstr " - størrelse: "
+
+#: src/configs/Properties.vala:101
+msgid " - time: "
+msgstr " - tid: "
+
+#: src/configs/Properties.vala:103
+msgid " - bitrate: "
+msgstr " - bitrate: "
+
+#: src/configs/Properties.vala:105
+msgid "Error: Experimental codecs are not enabled"
+msgstr "Fejl: Experimentielt codecs er ikke tilvalgt"
+
+#: src/configs/Properties.vala:107
+msgid "Error: Invalid data found when processing input"
+msgstr "Fejl: Ugyldig data fundet under proccessering af input"
+
+#: src/configs/Properties.vala:109
+msgid "Error: No such file or directory"
+msgstr "Fejl: Den valgte fil eller mappe findes ikke"
+
+#: src/configs/Properties.vala:111
+msgid "Error: Invalid argument"
+msgstr "Fejl: ugyldigt argument"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:3
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:8
+msgid "A multimedia file converter"
+msgstr "En multimediefilkonverter"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:19
+msgid "The easiest way to convert your multimedia files to the most popular formats."
+msgstr "Den nemmeste måde at konvertere dine multimediefiler til de mest populære formater."
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:20
+msgid "Characteristics:"
+msgstr "Egenskaber"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:22
+msgid "Conversion of multiple files at the same time"
+msgstr "Konvertering af flere filer på samme tid"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:23
+msgid "Possibility of changing the output folder"
+msgstr "Mulighed for at ændre outputmappen"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:24
+msgid "Notification support"
+msgstr "Underretningssupport"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:25
+msgid "Close the application at any time with Ctrl + Q"
+msgstr "Luk applikationen når som helst med Ctrl + Q"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:27
+msgid "Supports the conversion of:"
+msgstr "Understøtter konvertering af:"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:29
+msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+msgstr "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:30
+msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+msgstr "Lyd - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:31
+msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
+msgstr "Billeder - JPG, BMP, PNG, TIF, GIF, TGA"
