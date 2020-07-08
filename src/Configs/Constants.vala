@@ -73,6 +73,7 @@ namespace Ciano.Configs {
         public abstract const string TEXT_TGA                               = "TGA";
         public abstract const string TEXT_OGV                               = "OGV";
         public abstract const string TEXT_WEBM                              = "WEBM";
+        public abstract const string TEXT_WEBP                              = "WEBP";
         public abstract const string [] ABOUT_AUTHORS                       = { "Robert San <robertsanseries@gmail.com>" };
         public abstract const Gtk.License ABOUT_LICENSE_TYPE                = Gtk.License.GPL_3_0;
     }
