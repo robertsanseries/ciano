@@ -370,7 +370,7 @@ namespace Ciano.Controllers {
                         break; 
                     } else {
                         // there is no return on image conversion, if display is pq was generated some error.
-                        if (item.type_item != TypeItemEnum.IMAGE || this.name_format_selected.down () == "gif") {
+                        if (item.type_item != TypeItemEnum.IMAGE) {
                             process_line (str_return, row, ref total, error);
 
                             if (error > 0) {
@@ -552,26 +552,8 @@ namespace Ciano.Controllers {
                 array.add ("-2");
                 array.add (new_file);
             } else if (this.type_item == TypeItemEnum.IMAGE) {
-                if (this.name_format_selected.down () == "gif") {
-                    array.add ("ffmpeg");
-                    array.add ("-y");
-                    array.add ("-i");
-                    array.add (uri);
-
-                    if("webm" == FileUtil.get_file_extension_name(uri)) {
-                        array.add ("-pix_fmt");
-                        array.add ("rgb8");
-                    } else {
-                        array.add ("-ss");
-                        array.add ("00:00:00.000");
-                        array.add ("-vf");
-                        array.add ("format=rgb8,format=rgb24");                       
-                    }
-                } else {
-                    array.add ("convert");
-                    array.add (uri);
-                }
-
+                array.add ("convert");
+                array.add (uri);
                 array.add (new_file);
             }
 
@@ -738,10 +720,7 @@ namespace Ciano.Controllers {
                     formats = get_array_formats_image (Constants.TEXT_ICO);
                     break;
                 case Constants.TEXT_GIF:
-                    formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_image (Constants.TEXT_GIF), 
-                        get_array_formats_videos (StringUtil.EMPTY)
-                    );
+                    formats = get_array_formats_image (Constants.TEXT_GIF);
                     break;
                 case Constants.TEXT_TGA:
                     formats = get_array_formats_image (Constants.TEXT_TGA);
@@ -821,7 +800,7 @@ namespace Ciano.Controllers {
                 array.add (Constants.TEXT_OGV.up());      
             }
 
-            if(format_video != Constants.TEXT_WEBM && format_video != Constants.TEXT_GIF && this.type_item == TypeItemEnum.VIDEO) {
+            if(format_video != Constants.TEXT_WEBM) {
                 array.add (Constants.TEXT_WEBM); 
                 array.add (Constants.TEXT_WEBM.up());       
             }
