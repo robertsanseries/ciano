@@ -251,7 +251,7 @@ namespace Ciano.Controllers {
          */
         private void start_conversion_process (ItemConversion item, string name_format) {
             try {
-                var directory = File.new_for_path (item.directory);
+                var directory = File.new_for_path (this.settings.output_folder);
                 if (!directory.query_exists ()) {
                     directory.make_directory_with_parents();
                 }
