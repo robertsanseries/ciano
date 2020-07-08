@@ -439,16 +439,16 @@ namespace Ciano.Controllers {
 
             switch (item.type_item) {
                 case TypeItemEnum.VIDEO:
-                    icon = "media-video";
+                    icon = "video-x-generic";
                     break;
                 case TypeItemEnum.MUSIC:
                     icon = "audio-x-generic";
                     break;
                 case TypeItemEnum.IMAGE:
-                    icon = "image";
+                    icon = "image-x-generic";
                     break;
                 default:
-                    icon = "file";
+                    icon = "text-x-generic";
                     break;
             }
 
