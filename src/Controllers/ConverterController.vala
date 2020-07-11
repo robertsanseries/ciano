@@ -721,6 +721,12 @@ namespace Ciano.Controllers {
                         get_array_formats_videos (StringUtil.EMPTY)
                     );
                     break;
+                case Constants.TEXT_AT9:
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_AT9), 
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
+                    break;
 
                 case Constants.TEXT_JPG:
                     formats = get_array_formats_image (Constants.TEXT_JPG);
