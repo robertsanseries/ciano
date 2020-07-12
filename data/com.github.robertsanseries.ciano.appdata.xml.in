@@ -32,87 +32,102 @@
         </ul>
     </description>
     <releases>
+        <release version="0.2.4" date="2020-07-12">
+            <description>
+                <p>Release: Minor fixes and changes.</p>
+                <ul>
+                    <li>Fixes for version 0.2.3</li>
+                    <li>New translations and code improvements</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.2.3" date="2020-07-11">
             <description>
-                <p>Release: Minor fixes and changes</p>
-                <li>Fixes for version 0.2.2</li>
-                <li>New translations and code improvements</li>
+                <p>Release: Minor fixes and changes.</p>
+                <ul>
+                    <li>Fixes for version 0.2.2</li>
+                    <li>New translations and code improvements</li>
+                </ul>
             </description>
         </release>
         <release version="0.2.2" date="2020-06-09">
             <description>
-                <p>New translations and code improvements</p>
+                <p>New translations and code improvements.</p>
             </description>
         </release>
         <release version="0.2.1" date="2018-11-04">
             <description>
-                <p>Fixes for version 0.2.0</p>
+                <p>Fixes for version 0.2.0.</p>
             </description>
         </release>
         <release version="0.2.0" date="2018-11-04">
             <description>
-                <p>Hello juno!!</p>
+                <p>Release release for elementary juno.</p>
             </description>
         </release>
         <release version="0.1.9" date="2018-01-03">
             <description>
-                <p>Flatpak</p>
+                <p>Flatpack release version.</p>
             </description>
         </release>
         <release version="0.1.8" date="2018-01-02">
             <description>
-                <p>Fixes for version 0.1.7</p>
+                <p>Fixes for version 0.1.7.</p>
             </description>
         </release>
         <release version="0.1.7" date="2018-01-02">
             <description>
-                <p>Icons in the HIG standard and Inclusion/Update of languages</p>
+                <p>Icons in the HIG standard and Inclusion/Update of languages.</p>
             </description>
         </release>
         <release version="0.1.6" date="2017-10-28">
             <description>
-                <ul>Sidebar Size Correction.</ul>
-                <ul>Correction of support for translations.</ul>
+                <p>Release: Minor fixes and changes.</p>
+                <ul>
+                    <li>Sidebar Size Correction</li>
+                    <li>Correction of support for translations</li>
+                </ul>
             </description>
         </release>
         <release version="0.1.5" date="2017-10-17">
             <description>
+                <p>Release: Minor fixes and changes.</p>
                 <ul>
                     <li>Support for video to audio conversion</li>
-                    <li>Support for video to gif conversion.</li>
-                    <li>OGV video format support.</li>
-                    <li>WebM video format support.</li>
-                    <li>Added Brazilian Portuguese translations.</li>
-                    <li>Added Spanish translations.</li>
-                    <li>Added Lituano translations.</li>
-                    <li>Improving application description.</li>
-                    <li>Icon according to the Iconography section of the Human Interface Guidelines.</li>
+                    <li>Support for video to gif conversion</li>
+                    <li>OGV video format support</li>
+                    <li>WebM video format support</li>
+                    <li>Added Brazilian Portuguese translations</li>
+                    <li>Added Spanish translations</li>
+                    <li>Added Lituano translations</li>
+                    <li>Improving application description</li>
+                    <li>Icon according to the Iconography section of the Human Interface Guidelines</li>
                 </ul>
             </description>
         </release>
         <release version="0.1.4" date="2017-09-21">
             <description>
-               <p>Improvements made to the first stable release</p>
+               <p>Improvements made to the first stable release.</p>
             </description>
         </release>
         <release version="0.1.3" date="2017-09-21">
             <description>
-                <p>Minor fixes made to the first stable release</p>
+                <p>Minor fixes made to the first stable release.</p>
             </description>
         </release>
         <release version="0.1.2" date="2017-09-18">
            <description>
-                <p>Correction of the incorrect filename bug (formart -> format)</p>
+                <p>Correction of the incorrect filename bug (formart -> format).</p>
            </description>
         </release>
         <release version="0.1.1" date="2017-09-15">
             <description>
-                <p>Invalid Desktop File Fix</p>
+                <p>Invalid Desktop File Fix.</p>
             </description>
         </release>
         <release version="0.1.0" date="2017-09-15">
             <description>
-                <p>Initial Release</p>
+                <p>Ciano first release.</p>
             </description>
         </release>
     </releases>
