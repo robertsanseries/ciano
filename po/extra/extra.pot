@@ -65,7 +65,7 @@ msgstr "Possibilità di cambiare la cartella di output"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:24
 msgid "Notification support"
-Supporto per le notifichemsgstr ""
+msgstr "Supporto per le notifiche"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:25
 msgid "Close the application at any time with Ctrl + Q"
