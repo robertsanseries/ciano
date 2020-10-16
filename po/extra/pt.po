@@ -8,14 +8,15 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-09 18:57+0200\n"
-"PO-Revision-Date: 2020-06-09 17:38+0200\n"
-"Last-Translator: Diogo Oliveira <https://drom98.github.io>\n"
+"PO-Revision-Date: 2020-10-16 15:07+0100\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:3
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:7
@@ -23,39 +24,35 @@ msgid "Ciano"
 msgstr "Ciano"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:4
-#, fuzzy
 msgid "Multimedia Converter"
-msgstr "Um conversor multimedia"
+msgstr "Conversor Multimédia"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:5
-#, fuzzy
 msgid "Convert multimedia files to other formats"
-msgstr ""
-"A forma mais fácil para converter os seus ficheiros multimedia nos mais "
-"populares formatos."
+msgstr "Converter ficheiros multimédia para outros formatos"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:6
 msgid "com.github.robertsanseries.ciano"
-msgstr ""
+msgstr "com.github.robertsanseries.ciano"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:11
 msgid "converter;multimedia;audio;video;photo;photography;"
-msgstr ""
+msgstr "conversor;multimédia;áudio;vídeo;foto;fotografia;"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:8
 msgid "A multimedia file converter"
-msgstr "Um conversor multimedia"
+msgstr "Um conversor multimédia"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:9
 msgid "Robert San"
-msgstr ""
+msgstr "Robert San"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:19
 msgid ""
 "The easiest way to convert your multimedia files to the most popular formats."
 msgstr ""
-"A forma mais fácil para converter os seus ficheiros multimedia nos mais "
-"populares formatos."
+"A maneira mais fácil de converter os seus ficheiros multimédia para os "
+"formatos mais populares."
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:20
 msgid "Characteristics:"
@@ -67,7 +64,7 @@ msgstr "Conversão de vários ficheiros ao mesmo tempo"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:23
 msgid "Possibility of changing the output folder"
-msgstr "Possibilidade de alteração da pasta destino"
+msgstr "Possibilidade de alterar a pasta de destino"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:24
 msgid "Notification support"
@@ -75,7 +72,7 @@ msgstr "Suporte a notificações"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:25
 msgid "Close the application at any time with Ctrl + Q"
-msgstr "Feche a aplicação a qualquer momento pressionando Ctrl + Q"
+msgstr "Feche a aplicação em qualquer altura ao premir Ctrl + Q"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:27
 msgid "Supports the conversion of:"
@@ -83,32 +80,32 @@ msgstr "Suporta a conversão de:"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:29
 msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-msgstr "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+msgstr "Vídeo - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:30
 msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-msgstr "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+msgstr "Áudio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:31
 msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
-msgstr "Images - JPG, BMP, PNG, TIF, GIF, TGA"
+msgstr "Imagens - JPG, BMP, PNG, TIF, GIF, TGA"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:37
 msgid "Icons in the HIG standard and Inclusion/Update of languages"
-msgstr ""
+msgstr "Ícones na norma HIG e Inclusão/Atualização dos idiomas"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:39
 msgid "The icons follow the HIG (@lainsce)"
-msgstr ""
+msgstr "Os ícones seguem o HIG (@lainsce)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:40
 msgid "Language: Inclusion of the French (@nvivant)"
-msgstr ""
+msgstr "Idioma: Inclusão do francês (@nvivant)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:41
 msgid "Language: Inclusion of Chinese simplified (@trampover)"
-msgstr ""
+msgstr "Idioma: Inclusão do chinês simplificado (@trampover)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:42
 msgid "Language: Update in Lithuanian (@welaq)"
-msgstr ""
+msgstr "Idioma: Atualização em lituano (@welaq)"
