@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-09 17:37+0200\n"
-"PO-Revision-Date: 2020-06-09 17:27+0200\n"
-"Last-Translator: Diogo Oliveira <https://drom98.github.io>\n"
+"PO-Revision-Date: 2020-10-16 15:18+0100\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: src/configs/Properties.vala:31
-#, fuzzy
 msgid "Convert File"
 msgstr "Converter ficheiro"
 
@@ -44,7 +44,7 @@ msgstr "Adicionar ficheiro"
 
 #: src/configs/Properties.vala:43
 msgid "Delete"
-msgstr "Apagar"
+msgstr "Eliminar"
 
 #: src/configs/Properties.vala:45
 msgid "Cancel"
@@ -52,7 +52,7 @@ msgstr "Cancelar"
 
 #: src/configs/Properties.vala:47
 msgid "Start conversion"
-msgstr "Começar conversão"
+msgstr "Iniciar conversão"
 
 #: src/configs/Properties.vala:49
 msgid "Output folder:"
@@ -72,11 +72,11 @@ msgstr "Notificações:"
 
 #: src/configs/Properties.vala:57
 msgid "Notify about completed action:"
-msgstr "Notificar uma ação terminada:"
+msgstr "Notificar sobre uma ação concluída:"
 
 #: src/configs/Properties.vala:59
 msgid "Notify about an error:"
-msgstr "Notificar um erro:"
+msgstr "Notificar sobre um erro:"
 
 #: src/configs/Properties.vala:61
 msgid "Close"
@@ -102,11 +102,13 @@ msgstr "Lista de conversão vazia"
 msgid ""
 "Select an option from the side menu to which you want to \n"
 " convert your file"
-msgstr "Selecione no menu ao lado o formato para converter o seu ficheiro"
+msgstr ""
+"Selecione uma opção do menu lateral para a qual deseja \n"
+" converter o seu ficheiro"
 
 #: src/configs/Properties.vala:73
 msgid "Starting..."
-msgstr "A começar..."
+msgstr "A iniciar..."
 
 #: src/configs/Properties.vala:75
 msgid "Cancel conversion"
@@ -142,7 +144,7 @@ msgstr "Adicionar"
 
 #: src/configs/Properties.vala:91
 msgid "Conversion completed"
-msgstr "Conversão completa"
+msgstr "Conversão concluída"
 
 #: src/configs/Properties.vala:93
 msgid "Conversion canceled"
@@ -154,33 +156,31 @@ msgstr "Erro ao converter"
 
 #: src/configs/Properties.vala:97
 msgid "percentage: "
-msgstr "percentagem:"
+msgstr "percentagem: "
 
 #: src/configs/Properties.vala:99
 msgid " - size: "
-msgstr "- tamanho:"
+msgstr " - tamanho: "
 
 #: src/configs/Properties.vala:101
 msgid " - time: "
-msgstr "- tempo:"
+msgstr " - tempo: "
 
 #: src/configs/Properties.vala:103
 msgid " - bitrate: "
-msgstr "- bitrate"
+msgstr " - taxa de bits: "
 
 #: src/configs/Properties.vala:105
-#, fuzzy
 msgid "Error: Experimental codecs are not enabled"
-msgstr "Erro: os codecs experimentais não estão ativos"
+msgstr "Erro: Os codecs experimentais não estão ativados"
 
 #: src/configs/Properties.vala:107
-#, fuzzy
 msgid "Error: Invalid data found when processing input"
-msgstr "Erro: encontrados dados inválidos enquanto processava a entrada"
+msgstr "Erro: Dados inválidos encontrados ao processar a entrada"
 
 #: src/configs/Properties.vala:109
 msgid "Error: No such file or directory"
-msgstr "Erro: O ficheiro ou o directório não existem"
+msgstr "Erro: O ficheiro ou o diretório não existe"
 
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
