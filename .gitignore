@@ -12,3 +12,10 @@ language/*
 src/models/*
 .com.github.robertsanseries.ciano.json
 *~
+
+# IDE Intellij 
+.idea/*
+
+# branchs
+deb-packaging-juno/*
+deb-packaging-loki/*
