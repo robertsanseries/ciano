@@ -61,6 +61,7 @@ namespace Ciano.Configs {
         public abstract const string TEXT_AAC                               = "AAC";
         public abstract const string TEXT_MMF                               = "MMF";
         public abstract const string TEXT_M4A                               = "M4A";
+        public abstract const string TEXT_OPUS                              = "OPUS";
         public abstract const string TEXT_WAV                               = "WAV";
         public abstract const string TEXT_FLAC                              = "FLAC";
         public abstract const string TEXT_AIFF                              = "AIFF";
