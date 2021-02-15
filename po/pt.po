@@ -2,25 +2,26 @@
 # Copyright (C) 2020 THE com.github.robertsanseries.ciano'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.robertsanseries.ciano package.
 # Diogo Oliveira <https://drom98.github.io>, 2020.
+# André Barata <andretiagob@protonmail.com>, 2020
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-09 17:37+0200\n"
-"PO-Revision-Date: 2020-06-09 17:27+0200\n"
-"Last-Translator: Diogo Oliveira <https://drom98.github.io>\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-08-19 14:37+0100\n"
+"Last-Translator: André Barata <andretiagob@protonmail.com>\n"
+"Language-Team: Portuguese (Portugal)\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: src/configs/Properties.vala:31
-#, fuzzy
 msgid "Convert File"
-msgstr "Converter ficheiro"
+msgstr "Converter Ficheiro"
 
 #: src/configs/Properties.vala:33
 msgid "Convert file to"
@@ -102,11 +103,13 @@ msgstr "Lista de conversão vazia"
 msgid ""
 "Select an option from the side menu to which you want to \n"
 " convert your file"
-msgstr "Selecione no menu ao lado o formato para converter o seu ficheiro"
+msgstr ""
+"Selecione uma opção no menu ao lado para converter o seu\n"
+"ficheiro"
 
 #: src/configs/Properties.vala:73
 msgid "Starting..."
-msgstr "A começar..."
+msgstr "A iniciar..."
 
 #: src/configs/Properties.vala:75
 msgid "Cancel conversion"
@@ -166,21 +169,19 @@ msgstr "- tempo:"
 
 #: src/configs/Properties.vala:103
 msgid " - bitrate: "
-msgstr "- bitrate"
+msgstr "- bitrate:"
 
 #: src/configs/Properties.vala:105
-#, fuzzy
 msgid "Error: Experimental codecs are not enabled"
-msgstr "Erro: os codecs experimentais não estão ativos"
+msgstr "Erro: Os codecs experimentais não estão ativos"
 
 #: src/configs/Properties.vala:107
-#, fuzzy
 msgid "Error: Invalid data found when processing input"
-msgstr "Erro: encontrados dados inválidos enquanto processava a entrada"
+msgstr "Erro: Foram encontrados dados inválidos enquanto processava a entrada"
 
 #: src/configs/Properties.vala:109
 msgid "Error: No such file or directory"
-msgstr "Erro: O ficheiro ou o directório não existem"
+msgstr "Erro: O ficheiro ou o diretório não existem"
 
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
