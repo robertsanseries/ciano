@@ -61,6 +61,7 @@ namespace Ciano.Configs {
         public abstract const string TEXT_AAC                               = "AAC";
         public abstract const string TEXT_MMF                               = "MMF";
         public abstract const string TEXT_M4A                               = "M4A";
+        public abstract const string TEXT_OPUS                              = "OPUS";
         public abstract const string TEXT_WAV                               = "WAV";
         public abstract const string TEXT_FLAC                              = "FLAC";
         public abstract const string TEXT_AIFF                              = "AIFF";
@@ -74,6 +75,7 @@ namespace Ciano.Configs {
         public abstract const string TEXT_OGV                               = "OGV";
         public abstract const string TEXT_WEBM                              = "WEBM";
         public abstract const string TEXT_WEBP                              = "WEBP";
+        public abstract const string TEXT_AT9                               = "AT9";
         public abstract const string [] ABOUT_AUTHORS                       = { "Robert San <robertsanseries@gmail.com>" };
         public abstract const Gtk.License ABOUT_LICENSE_TYPE                = Gtk.License.GPL_3_0;
     }

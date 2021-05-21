@@ -2,7 +2,7 @@
 project (
     'com.github.robertsanseries.ciano',
     'vala', 'c',
-    version: '0.1.8',
+    version: '0.2.3',
     license: 'GPL-3.0'
 )
 
