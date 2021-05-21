@@ -760,6 +760,9 @@ namespace Ciano.Controllers {
                 case Constants.TEXT_TGA:
                     formats = get_array_formats_image (Constants.TEXT_TGA);
                     break;
+                case Constants.TEXT_WEBP:
+                    formats = get_array_formats_image (Constants.TEXT_WEBP);
+                    break;
             }
 
             return formats.data;
@@ -967,6 +970,11 @@ namespace Ciano.Controllers {
                 array.add (Constants.TEXT_TGA.up());
             }
 
+            if(format_image != Constants.TEXT_WEBP) {
+                array.add (Constants.TEXT_WEBP);    
+                array.add (Constants.TEXT_WEBP.up());
+            }
+            
             return array;
         }
     }

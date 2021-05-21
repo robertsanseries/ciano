@@ -152,6 +152,7 @@ namespace Ciano.Widgets {
             var tif_item = new SourceList.Item (Constants.TEXT_TIF);
             var gif_item = new SourceList.Item (Constants.TEXT_GIF);
             var tga_item = new SourceList.Item (Constants.TEXT_TGA);
+            var webp_item = new SourceList.Item (Constants.TEXT_WEBP);
 
             image_list.add (jpg_item);
             image_list.add (bmp_item);
@@ -159,6 +160,7 @@ namespace Ciano.Widgets {
             image_list.add (tif_item);
             image_list.add (gif_item);
             image_list.add (tga_item);
+            image_list.add (webp_item);
 
             this.type_list.add (image_list);
         }
