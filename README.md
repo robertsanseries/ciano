@@ -2,6 +2,13 @@
     <h1>
         <img width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">Ciano</h1>
   <h3 align="center">A multimedia file converter focused on simplicity.</h3>
+    
+<p align="center">
+    <img src="https://api.travis-ci.org/ciano/ciano.svg?branch=master">
+    <img src="https://img.shields.io/badge/ciano-v0.2.4-79E0FA.svg">
+    <img src="https://img.shields.io/badge/meson-v0.40-39207C.svg">
+    <img src="https://img.shields.io/badge/License-GPLv3-B70000.svg">
+</p>
 
 <p align="center">
     <a href="https://appcenter.elementary.io/com.github.robertsanseries.ciano">
@@ -11,7 +18,6 @@
         <img src="https://flathub.org/assets/badges/flathub-badge-i-en.svg" width="160px" alt="Get it from Flathub!">
     </a>
 </p>
-
 </div>
 
 <p align="center">
