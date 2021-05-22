@@ -15,7 +15,7 @@
 </div>
 
 <p align="center">
-    <img src="https://github.com/robertsanseries/ciano/blob/master/data/images/screenshot.png" alt="Screenshot">
+    <img src="https://raw.githubusercontent.com/robertsanseries/ciano/master/data/screenshot.png" alt="Screenshot">
 </p>
 
 ### Description
@@ -25,7 +25,7 @@ Convert videos, music and pictures with the best possible experience.
 ### Links
 
 - [Website](https://robertsanseries.github.io/ciano)
-- [Installation](https://github.com/robertsanseries/ciano/wiki)
+- [Installation](https://github.com/robertsanseries/ciano/blob/redesign/INSTALL.md)
 - [Report a problem](https://github.com/robertsanseries/ciano/issues/new?template=bug_report.md)
 - [Feature request](https://github.com/robertsanseries/ciano/issues/new?template=feature_request.md)
 
@@ -34,7 +34,7 @@ Convert videos, music and pictures with the best possible experience.
 
 #### Donations
  
-  - Support development by making a donation! You can donate any amount you wish by clicking on the PayPal logo below.
+Support development by making a donation! You can donate any amount you wish by clicking on the PayPal logo below.
 
   [<img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_200x51.png" height="26" alt="PayPal" />](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S698J2TUEMT3C)
 
@@ -44,8 +44,6 @@ To help, access the links below:
 - [How to Translate Ciano](https://github.com/robertsanseries/ciano/wiki/Translate)
 
 - [Guide on Code Style](https://github.com/robertsanseries/ciano/wiki/Guide-on-code-style)
-
-- [Proposing Design Changes](https://github.com/robertsanseries/ciano/wiki/Proposing-Design-Changes)
 
 ### License
 
