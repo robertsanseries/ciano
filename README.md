@@ -1,8 +1,9 @@
 <div align="center">
     <h1>
-        <img width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png">Ciano</h1>
+        <img width="64" height="64" src="https://raw.githubusercontent.com/robertsanseries/ciano/redesign/data/icons/com.github.robertsanseries.ciano.png">Ciano</h1>
   <h3 align="center">A multimedia file converter focused on simplicity.</h3>
     
+
 <p align="center">
     <img src="https://api.travis-ci.org/ciano/ciano.svg?branch=master">
     <img src="https://img.shields.io/badge/ciano-v0.2.4-79E0FA.svg">
