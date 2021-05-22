@@ -1,6 +1,6 @@
 <div align="center">
     <h1>
-        <img width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">Ciano</h1>
+        <img width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png">Ciano</h1>
   <h3 align="center">A multimedia file converter focused on simplicity.</h3>
     
 <p align="center">
@@ -24,7 +24,7 @@
     <img src="https://raw.githubusercontent.com/robertsanseries/ciano/master/data/screenshot.png" alt="Screenshot">
 </p>
 
-### Description
+### About Ciano
 
 Convert videos, music and pictures with the best possible experience.
 
