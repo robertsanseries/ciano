@@ -41,8 +41,6 @@ Convert videos, music and pictures with the best possible experience.
 #### Development
 To help, access the links below:
 
-- [Reporting Bugs](https://github.com/robertsanseries/ciano/wiki/Reporting-Bugs)
-
 - [How to Translate Ciano](https://github.com/robertsanseries/ciano/wiki/Translate)
 
 - [Guide on Code Style](https://github.com/robertsanseries/ciano/wiki/Guide-on-code-style)
@@ -51,7 +49,7 @@ To help, access the links below:
 
 ### License
 
-Copyright (c) 2017-2018 Robert San.
+Copyright (c) 2017-2021 Robert San.
 
 Ciano is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
