@@ -1,0 +1,65 @@
+/*
+* Copyright (c) 2017-2018 Robert San <robertsanseries@gmail.com>
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public
+* License as published by the Free Software Foundation; either
+* version 2 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public
+* License along with this program; if not, write to the
+* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+* Boston, MA 02110-1301 USA
+*/
+
+@define-color colorPrimary #383e41;
+@define-color textColorPrimary #A5ABAA;
+@define-color selected_bg_color #37C8AB;
+@define-color color_ciano #00CAFF; 
+@define-color color_elementary #FFFFFF; 
+@define-color color_dark #252E32; 
+
+.circular {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.GtkListBoxRow:selected,
+.GtkListBoxRow:selected:focus {
+    background-color: #4D5559;
+    color: #FFFFFF;
+}
+
+.button-theme,
+.button-theme:hover,
+.button-theme:active {
+	border-radius: 50px;
+    box-shadow: 
+        0px 0px 0px rgba(0, 0, 0, 0.2) inset,
+        0px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.button-theme:focus {
+    border-color: @colorAccent;
+}
+
+.theme-ciano {
+	background: @color_ciano;
+}
+
+.theme-elementary {
+	background: @color_elementary;
+}
+
+.theme-dark {
+	background: @color_dark;
+}
+
+.titlebar {
+    padding: 1px;
+}

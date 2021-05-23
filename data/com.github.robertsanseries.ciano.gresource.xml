@@ -2,23 +2,27 @@
 <gresources>
 
 	<gresource prefix="/com/github/robertsanseries/ciano/css">
-		<file alias="style.css" compressed="true">css/style.css</file>
+		<file alias="dark.css" compressed="true">css/dark.css</file>
+	
+		<file alias="ciano.css" compressed="true">css/ciano.css</file>
+	
+		<file alias="elementary.css" compressed="true">css/elementary.css</file>
 	</gresource>
 
-	<gresource prefix="/com/github/robertsanseries/ciano/icons">
-		<file alias="com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">icons/com.github.robertsanseries.ciano.svg</file>
+	<gresource prefix="/com/github/robertsanseries/ciano/images">
+		<file alias="com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">images/com.github.robertsanseries.ciano.svg</file>
 
-		<file alias="16-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">icons/16/com.github.robertsanseries.ciano.svg</file>
+		<file alias="16-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">images/icons/16/com.github.robertsanseries.ciano.svg</file>
 
-		<file alias="24-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">icons/24/com.github.robertsanseries.ciano.svg</file>
+		<file alias="24-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">images/icons/24/com.github.robertsanseries.ciano.svg</file>
 
-		<file alias="32-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">icons/32/com.github.robertsanseries.ciano.svg</file>
+		<file alias="32-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">images/icons/32/com.github.robertsanseries.ciano.svg</file>
 
-		<file alias="48-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">icons/48/com.github.robertsanseries.ciano.svg</file>
+		<file alias="48-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">images/icons/48/com.github.robertsanseries.ciano.svg</file>
 	
-		<file alias="64-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">icons/64/com.github.robertsanseries.ciano.svg</file>
+		<file alias="64-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">images/icons/64/com.github.robertsanseries.ciano.svg</file>
 	
-		<file alias="128-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">icons/128/com.github.robertsanseries.ciano.svg</file>
+		<file alias="128-com.github.robertsanseries.ciano.svg" compressed="true" preprocess="xml-stripblanks">images/icons/128/com.github.robertsanseries.ciano.svg</file>
 	</gresource>
   
 </gresources>
