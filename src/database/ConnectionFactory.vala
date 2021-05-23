@@ -17,10 +17,23 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano {
+using Ciano.Helpers;
 
-    public static void main (string [] args) {
-        Ciano.Application application = new Ciano.Application ();
-        application.run (args);
+namespace Ciano.Database {
+
+    public class ConnectionFactory {
+
+        public static Gda.Connection? get_connection () {
+            try {
+                return Gda.Connection.open_from_string (
+                    SqliteHelper.get_provider (),
+                    SqliteHelper.get_hostname (),
+                    null,
+                    Gda.ConnectionOptions.NONE
+                );
+            } catch (Error e) {
+                GLib.error (e.message);
+            }
+        }
     }
 }

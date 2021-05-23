@@ -17,10 +17,22 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano {
+namespace Ciano.Utils {
 
-    public static void main (string [] args) {
-        Ciano.Application application = new Ciano.Application ();
-        application.run (args);
+    public class ArrayUtil {
+
+        public static GenericArray join_generic_string_arrays (GenericArray<string> array1, GenericArray<string> array2) {
+            var new_array = new GenericArray<string> ();
+
+           array1.foreach ((str) => {
+                new_array.add (str);
+            });
+
+            array2.foreach ((str) => {
+                new_array.add (str);
+            });
+
+            return new_array;
+        }
     }
 }

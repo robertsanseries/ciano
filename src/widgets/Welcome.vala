@@ -17,10 +17,25 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano {
+namespace Ciano.Widgets {
 
-    public static void main (string [] args) {
-        Ciano.Application application = new Ciano.Application ();
-        application.run (args);
+    public class Welcome : Granite.Widgets.Welcome {
+
+        public Welcome () {
+            base (_("Convert some files"), _("Drag and drop files or open them to begin conversion."));
+            
+            this.margin_start = 6;
+            this.margin_end = 6;
+
+            this.append (
+                "document-open", _("Open"), 
+                _("Browse to open a single file")
+            );
+
+            this.append (
+                "dialog-information", _("Supported Formats"), 
+                _("Information about supported file types")
+            );
+        }
     }
 }

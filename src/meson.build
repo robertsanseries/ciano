@@ -1,33 +1,28 @@
 sources = files(
-	'Configs/Constants.vala',
-	'Configs/Properties.vala',
-	
-	'Controllers/ConverterController.vala',
-
-	'Enums/ColumnEnum.vala',
-	'Enums/TypeItemEnum.vala',
-
-	'Services/Settings.vala',
-
-	'Utils/ArrayUtil.vala',
-	'Utils/FileUtil.vala',
-	'Utils/StringUtil.vala',
-	'Utils/TimeUtil.vala',
-	'Utils/WidgetUtil.vala',
-	
-	'Views/ConverterView.vala',
-
-	'Objects/ItemConversion.vala',
-
-	'Widgets/HeaderBar.vala',
-	'Widgets/SourceListSidebar.vala',
-	'Widgets/SourceList.vala',
-	'Widgets/DialogPreferences.vala',
-	'Widgets/DialogConvertFile.vala',
-	'Widgets/ListConversion.vala',
-	'Widgets/RowConversion.vala',
-
-	'Application.vala',
-	'Main.vala',
-	'Window.vala'
+    'configs/Constants.vala',
+    'controllers/ActionController.vala',
+    'enums/DialogEnum.vala',
+    'helpers/FormatsHelper.vala',
+    'helpers/SqliteHelper.vala',
+    'models/dao/ArchiveDAO.vala',
+    'models/dao/ArchiveDAOImpl.vala',
+    'database/ConnectionFactory.vala',
+    'database/SQLiteSchemaHandler.vala',
+    'models/objects/Archive.vala',
+    'models/objects/ArchiveBuilder.vala',
+    'services/Settings.vala',
+    'utils/ArrayUtil.vala',
+    'utils/CoreUtil.vala',
+    'utils/WidgetUtil.vala',
+    'views/factory/DialogFactory.vala',
+    'views/ApplicationView.vala',
+    'widgets/ConversionListBox.vala',
+    'widgets/ConversionListRow.vala',
+    'widgets/DialogAbout.vala',
+    'widgets/DialogInformations.vala',
+    'widgets/DialogPreferences.vala',
+    'widgets/HeaderBar.vala',
+    'widgets/Welcome.vala',
+    'Application.vala',
+    'Main.vala',
 )

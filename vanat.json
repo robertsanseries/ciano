@@ -1,0 +1,10 @@
+{
+    "name": "robertsanseries/ciano",
+    "description": "A multimedia file converter focused on simplicity.",
+    "version": "v0.3.0",
+    "author": "Robert San <robertsanseries@gmail.com>",
+    "require": {
+        "robertsanseries/ffmpeg-cli-wrapper":"v0.1.0",
+        "robertsanseries/alvane-framework":"master"
+    }
+}

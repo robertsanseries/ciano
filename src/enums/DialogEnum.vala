@@ -17,10 +17,11 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano {
+namespace Ciano.Enums {
 
-    public static void main (string [] args) {
-        Ciano.Application application = new Ciano.Application ();
-        application.run (args);
+    public enum DialogEnum {
+        ABOUT,
+        INFORMATIONS,
+        PREFERENCES
     }
 }

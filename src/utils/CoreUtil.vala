@@ -17,10 +17,16 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano {
+namespace Ciano.Utils {
 
-    public static void main (string [] args) {
-        Ciano.Application application = new Ciano.Application ();
-        application.run (args);
+    public class CoreUtil {
+
+        public static void launch_uri (string uri) {
+           try {
+                AppInfo.launch_default_for_uri (uri, null);
+            } catch (Error e) {
+                GLib.error (e.message);
+            }
+        }
     }
 }

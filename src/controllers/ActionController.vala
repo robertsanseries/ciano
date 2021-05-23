@@ -17,10 +17,14 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano {
+using Alvane.Core;
 
-    public static void main (string [] args) {
-        Ciano.Application application = new Ciano.Application ();
-        application.run (args);
+namespace Ciano.Controllers {
+
+    public class ActionController : Controller {
+
+        public ActionController () {
+
+        }
     }
 }

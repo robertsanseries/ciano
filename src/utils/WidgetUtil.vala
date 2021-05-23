@@ -17,10 +17,13 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano {
+namespace Ciano.Utils {
+   
+    public class WidgetUtil {
 
-    public static void main (string [] args) {
-        Ciano.Application application = new Ciano.Application ();
-        application.run (args);
+        public static void set_visible (Gtk.Widget widget, bool visible) {
+            widget.no_show_all = !visible;
+            widget.visible = visible;
+        }
     }
 }

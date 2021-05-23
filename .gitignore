@@ -1,6 +1,9 @@
 ### myproject ###
 *~
 
+### Vanat Dependency Manager ###
+vendor/*
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

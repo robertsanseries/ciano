@@ -17,10 +17,15 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano {
+using Ciano.Models.Objects;
 
-    public static void main (string [] args) {
-        Ciano.Application application = new Ciano.Application ();
-        application.run (args);
+namespace Ciano.Models.DAO {
+
+    public interface ArchiveDAO {
+        public abstract bool insert(Archive user);
+        public abstract Archive find(int id);
+        public abstract GenericArray<Archive> selectAll ();
+        public abstract bool update(Archive user);
+        public abstract bool delete(int id);
     }
 }

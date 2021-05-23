@@ -17,10 +17,10 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano {
+namespace Ciano.Config {
 
-    public static void main (string [] args) {
-        Ciano.Application application = new Ciano.Application ();
-        application.run (args);
+    public class Constants {
+        public const string WELCOME_VIEW    = "welcome-view";
+        public const string CONVERSION_VIEW = "conversion-view";
     }
 }
