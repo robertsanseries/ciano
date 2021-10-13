@@ -1,0 +1,111 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+#
+# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020.
+# 이정희 <daemul72@gmail.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-09 18:57+0200\n"
+"PO-Revision-Date: 2021-09-14 14:24+0900\n"
+"Language-Team: Italian <kde-i18n-doc@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.08.1\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko\n"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:3
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:7
+msgid "Ciano"
+msgstr "Ciano"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:4
+msgid "Multimedia Converter"
+msgstr "멀티미디어 변환기"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:5
+msgid "Convert multimedia files to other formats"
+msgstr "멀티미디어 파일을 다른 형식으로 변환"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:6
+msgid "com.github.robertsanseries.ciano"
+msgstr "com.github.robertsanseries.ciano"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:11
+msgid "converter;multimedia;audio;video;photo;photography;"
+msgstr ""
+"converter;multimedia;audio;video;photo;photography;변환기;멀티미디어;오디오;"
+"비디오;그림;사진;이미지;"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:8
+msgid "A multimedia file converter"
+msgstr "멀티미디어 파일 변환기"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:9
+msgid "Robert San"
+msgstr "Robert San"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:19
+msgid ""
+"The easiest way to convert your multimedia files to the most popular formats."
+msgstr "멀티미디어 파일을 가장 널리 사용되는 형식으로 변환하는 가장 쉬운 방법입니다."
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:20
+msgid "Characteristics:"
+msgstr "특성:"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:22
+msgid "Conversion of multiple files at the same time"
+msgstr "여러 파일을 동시에 변환"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:23
+msgid "Possibility of changing the output folder"
+msgstr "출력 폴더 변경 가능성"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:24
+msgid "Notification support"
+msgstr "알림 지원"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:25
+msgid "Close the application at any time with Ctrl + Q"
+msgstr "Ctrl + Q를 사용하여 언제든지 응용 프로그램 닫기"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:27
+msgid "Supports the conversion of:"
+msgstr "변환 지원:"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:29
+msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+msgstr "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:30
+msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+msgstr "오디오 - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:31
+msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
+msgstr "이미지 - JPG, BMP, PNG, TIF, GIF, TGA"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:37
+msgid "Icons in the HIG standard and Inclusion/Update of languages"
+msgstr "HIGH 표준의 아이콘 및 언어의 포함/업데이트"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:39
+msgid "The icons follow the HIG (@lainsce)"
+msgstr "아이콘은 HIG를 따릅니다 (@laince)"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:40
+msgid "Language: Inclusion of the French (@nvivant)"
+msgstr "언어: 프랑스어 포함 (@nvivant)"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:41
+msgid "Language: Inclusion of Chinese simplified (@trampover)"
+msgstr "언어: 중국어 간체 포함 (@trampover)"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:42
+msgid "Language: Update in Lithuanian (@welaq)"
+msgstr "언어: 리투아니아어 업데이트 (@welaq)"
