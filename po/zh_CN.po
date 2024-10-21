@@ -31,7 +31,7 @@ msgstr "名称"
 
 #: src/configs/Properties.vala:37
 msgid "Add items to conversion:"
-msgstr "选择需要转换得文件:"
+msgstr "选择需要转换的文件:"
 
 #: src/configs/Properties.vala:39
 msgid "Directory"
