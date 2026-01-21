@@ -1,31 +1,28 @@
-# Portuguese translations for com.github.robertsanseries.ciano package.
-# Copyright (C) 2020 THE com.github.robertsanseries.ciano'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.robertsanseries.ciano package.
-# Diogo Oliveira <https://drom98.github.io>, 2020.
-# André Barata <andretiagob@protonmail.com>, 2020
+# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-09 17:37+0200\n"
-"PO-Revision-Date: 2020-10-16 15:18+0100\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
-"Language-Team: none\n"
-"Language: pt\n"
+"PO-Revision-Date: 2020-08-24 15:55+0100\n"
+"Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
 
 #: src/configs/Properties.vala:31
 msgid "Convert File"
-msgstr "Converter Ficheiro"
+msgstr "Converti File"
 
 #: src/configs/Properties.vala:33
 msgid "Convert file to"
-msgstr "Converter ficheiro para"
+msgstr "Converti file in"
 
 #: src/configs/Properties.vala:35
 msgid "Name"
@@ -33,156 +30,156 @@ msgstr "Nome"
 
 #: src/configs/Properties.vala:37
 msgid "Add items to conversion:"
-msgstr "Adicionar itens para converter:"
+msgstr "Aggiungi elementi alla conversione:"
 
 #: src/configs/Properties.vala:39
 msgid "Directory"
-msgstr "Directório"
+msgstr "Directory"
 
 #: src/configs/Properties.vala:41
 msgid "Add file"
-msgstr "Adicionar ficheiro"
+msgstr "Aggiungi file"
 
 #: src/configs/Properties.vala:43
 msgid "Delete"
-msgstr "Eliminar"
+msgstr "Elimina"
 
 #: src/configs/Properties.vala:45
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Cancella"
 
 #: src/configs/Properties.vala:47
 msgid "Start conversion"
-msgstr "Iniciar conversão"
+msgstr "Inizia conversione"
 
 #: src/configs/Properties.vala:49
 msgid "Output folder:"
-msgstr "Pasta de destino:"
+msgstr "Cartella di output:"
 
 #: src/configs/Properties.vala:51
 msgid "Files origin:"
-msgstr "Origem dos ficheiros:"
+msgstr "Origine dei File:"
 
 #: src/configs/Properties.vala:53
 msgid "Select the output folder:"
-msgstr "Selecione a pasta de destino:"
+msgstr "Seleziona la cartella di output:"
 
 #: src/configs/Properties.vala:55
 msgid "Notifications:"
-msgstr "Notificações:"
+msgstr "Notifiche:"
 
 #: src/configs/Properties.vala:57
 msgid "Notify about completed action:"
-msgstr "Notificar sobre uma ação concluída:"
+msgstr "Notifica su un'azione completata:"
 
 #: src/configs/Properties.vala:59
 msgid "Notify about an error:"
-msgstr "Notificar sobre um erro:"
+msgstr "Notifica di un errore:"
 
 #: src/configs/Properties.vala:61
 msgid "Close"
-msgstr "Fechar"
+msgstr "Chiudi"
 
 #: src/configs/Properties.vala:63
 msgid "Open output folder"
-msgstr "Abrir pasta de destino"
+msgstr "Apri la cartella di output"
 
 #: src/configs/Properties.vala:65
 msgid "Settings"
-msgstr "Definições"
+msgstr "Impostazioni"
 
 #: src/configs/Properties.vala:67
 msgid "Preferences"
-msgstr "Preferências"
+msgstr "Preferenze"
 
 #: src/configs/Properties.vala:69
 msgid "Empty conversion list"
-msgstr "Lista de conversão vazia"
+msgstr "Elenco conversioni vuoto"
 
 #: src/configs/Properties.vala:71
 msgid ""
 "Select an option from the side menu to which you want to \n"
 " convert your file"
 msgstr ""
-"Selecione uma opção do menu lateral para a qual deseja \n"
-" converter o seu ficheiro"
+"Seleziona un'opzione dal menu laterale a cui desideri\n"
+"convertire il tuo file"
 
 #: src/configs/Properties.vala:73
 msgid "Starting..."
-msgstr "A iniciar..."
+msgstr "Avvio..."
 
 #: src/configs/Properties.vala:75
 msgid "Cancel conversion"
-msgstr "Cancelar conversão"
+msgstr "Annulla conversione"
 
 #: src/configs/Properties.vala:77
 msgid "Remove"
-msgstr "Remover"
+msgstr "Rimuovi"
 
 #: src/configs/Properties.vala:79
 msgid "Remove item from list"
-msgstr "Remover item da lista"
+msgstr "Rimuovi elemento dall'elenco"
 
 #: src/configs/Properties.vala:81
 msgid "Video"
-msgstr "Vídeo"
+msgstr "Video"
 
 #: src/configs/Properties.vala:83
 msgid "Music"
-msgstr "Música"
+msgstr "Musica"
 
 #: src/configs/Properties.vala:85
 msgid "Image"
-msgstr "Imagem"
+msgstr "Immagine"
 
 #: src/configs/Properties.vala:87
 msgid "Select file"
-msgstr "Selecionar ficheiro"
+msgstr "Seleziona file"
 
 #: src/configs/Properties.vala:89
 msgid "Add"
-msgstr "Adicionar"
+msgstr "Aggiungi"
 
 #: src/configs/Properties.vala:91
 msgid "Conversion completed"
-msgstr "Conversão concluída"
+msgstr "Conversione completata"
 
 #: src/configs/Properties.vala:93
 msgid "Conversion canceled"
-msgstr "Conversão cancelada"
+msgstr "Conversione cancellata"
 
 #: src/configs/Properties.vala:95
 msgid "Error in conversion"
-msgstr "Erro ao converter"
+msgstr "Errore nella conversione"
 
 #: src/configs/Properties.vala:97
 msgid "percentage: "
-msgstr "percentagem: "
+msgstr "percentuale:"
 
 #: src/configs/Properties.vala:99
 msgid " - size: "
-msgstr " - tamanho: "
+msgstr " - dimensione: "
 
 #: src/configs/Properties.vala:101
 msgid " - time: "
-msgstr " - tempo: "
+msgstr " - durata: "
 
 #: src/configs/Properties.vala:103
 msgid " - bitrate: "
-msgstr " - taxa de bits: "
+msgstr " - bitrate: "
 
 #: src/configs/Properties.vala:105
 msgid "Error: Experimental codecs are not enabled"
-msgstr "Erro: Os codecs experimentais não estão ativados"
+msgstr "Errore: i codec sperimentali non sono abilitati"
 
 #: src/configs/Properties.vala:107
 msgid "Error: Invalid data found when processing input"
-msgstr "Erro: Dados inválidos encontrados ao processar a entrada"
+msgstr "Errore: sono stati trovati dati non validi durante l'elaborazione dell'input"
 
 #: src/configs/Properties.vala:109
 msgid "Error: No such file or directory"
-msgstr "Erro: O ficheiro ou o diretório não existe"
+msgstr "Errore: nessun file o directory di questo tipo"
 
 #: src/configs/Properties.vala:111
 msgid "Error: Invalid argument"
-msgstr "Erro: Argumento inválido"
+msgstr "Errore: argomento non valido"
