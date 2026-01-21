@@ -251,9 +251,11 @@ namespace Ciano.Controllers {
          */
         private void start_conversion_process (ItemConversion item, string name_format) {
             try {
-                var directory = File.new_for_path (item.directory);
-                if (!directory.query_exists ()) {
-                    directory.make_directory_with_parents();
+                if(!this.settings.output_source_file_folder){
+                    var directory = File.new_for_path (this.settings.output_folder);
+                    if (!directory.query_exists ()) {
+                        directory.make_directory_with_parents();
+                    }
                 }
 
                 string uri = item.directory + item.name;
@@ -439,16 +441,16 @@ namespace Ciano.Controllers {
 
             switch (item.type_item) {
                 case TypeItemEnum.VIDEO:
-                    icon = "media-video";
+                    icon = "video-x-generic";
                     break;
                 case TypeItemEnum.MUSIC:
                     icon = "audio-x-generic";
                     break;
                 case TypeItemEnum.IMAGE:
-                    icon = "image";
+                    icon = "image-x-generic";
                     break;
                 default:
-                    icon = "file";
+                    icon = "text-x-generic";
                     break;
             }
 
@@ -721,9 +723,15 @@ namespace Ciano.Controllers {
                         get_array_formats_videos (StringUtil.EMPTY)
                     );
                     break;
+                case Constants.TEXT_OPUS:
+                    formats = ArrayUtil.join_generic_string_arrays ( 
+                        get_array_formats_music (Constants.TEXT_OPUS),
+                        get_array_formats_videos (StringUtil.EMPTY)
+                    );
+                    break;
                 case Constants.TEXT_AT9:
                     formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_AT9), 
+                        get_array_formats_music (Constants.TEXT_AT9),
                         get_array_formats_videos (StringUtil.EMPTY)
                     );
                     break;
@@ -751,6 +759,9 @@ namespace Ciano.Controllers {
                     break;
                 case Constants.TEXT_TGA:
                     formats = get_array_formats_image (Constants.TEXT_TGA);
+                    break;
+                case Constants.TEXT_WEBP:
+                    formats = get_array_formats_image (Constants.TEXT_WEBP);
                     break;
             }
 
@@ -900,6 +911,11 @@ namespace Ciano.Controllers {
                 array.add (Constants.TEXT_M4A.up());
             }
 
+            if(format_music != Constants.TEXT_OPUS) {
+                array.add (Constants.TEXT_OPUS);    
+                array.add (Constants.TEXT_OPUS.up());
+            }
+
             return array;
         }
 
@@ -954,6 +970,11 @@ namespace Ciano.Controllers {
                 array.add (Constants.TEXT_TGA.up());
             }
 
+            if(format_image != Constants.TEXT_WEBP) {
+                array.add (Constants.TEXT_WEBP);    
+                array.add (Constants.TEXT_WEBP.up());
+            }
+            
             return array;
         }
     }
