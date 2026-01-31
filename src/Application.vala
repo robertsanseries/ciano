@@ -40,7 +40,7 @@ namespace Ciano {
         public Application () {
             Object (
                 application_id: Constants.ID,
-                flags: ApplicationFlags.FLAGS_NONE
+                flags: GLib.ApplicationFlags.DEFAULT_FLAGS
             );
         }
 

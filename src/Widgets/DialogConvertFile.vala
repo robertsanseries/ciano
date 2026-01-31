@@ -91,7 +91,7 @@ namespace Ciano.Widgets {
             grid.add (frame);
             grid.add (grid_buttons);
 
-            this.get_content_area ().add (grid);
+            ((Gtk.Container) this.get_content_area ()).add (grid);
         }
 
         /**

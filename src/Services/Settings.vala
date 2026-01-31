@@ -53,7 +53,7 @@ namespace Ciano.Services {
          * can be altered through dialog preferences.
          * Variable of type {@code string} as declared.
          */
-        public string output_folder    { get; set; }
+        public string output_folder { get; set; default = ""; }
 
         /**
          * This property {@code bool} corresponds to {@code true} if option

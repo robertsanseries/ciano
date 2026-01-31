@@ -55,6 +55,8 @@ namespace Ciano.Widgets {
               Properties.TEXT_SELECT_OPTION_TO_CONVERT
             );
 
+            this.welcome.get_style_context ().add_class (Granite.STYLE_CLASS_WELCOME);
+
             this.list_box = new Gtk.ListBox ();
             this.list_box.expand = true;
 

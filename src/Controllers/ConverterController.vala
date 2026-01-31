@@ -125,7 +125,7 @@ namespace Ciano.Controllers {
          * @return {@code void}
          */
         public void on_activate_button_add_file (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.TreeIter iter, Gtk.ListStore list_store, string [] formats) {
-            var chooser_file = new Gtk.FileChooserDialog (Properties.TEXT_SELECT_FILE, parent_dialog, Gtk.FileChooserAction.OPEN);
+            var chooser_file = new Gtk.FileChooserDialog (Properties.TEXT_SELECT_FILE, parent_dialog, Gtk.FileChooserAction.OPEN, null);
             chooser_file.select_multiple = true;
 
             var filter = new Gtk.FileFilter ();
@@ -258,7 +258,7 @@ namespace Ciano.Controllers {
 
                 string uri = item.directory + item.name;
                 SubprocessLauncher launcher = new SubprocessLauncher (SubprocessFlags.STDERR_PIPE);
-                Subprocess subprocess       = launcher.spawnv (get_command (uri));
+                Subprocess subprocess       = launcher.spawnv ((string[]) get_command (uri));
                 InputStream input_stream    = subprocess.get_stderr_pipe ();
 
                 int error                   = 0;
@@ -529,6 +529,7 @@ namespace Ciano.Controllers {
         public string[] get_command (string uri) {
             var array = new GenericArray<string> ();
             var new_file = get_uri_new_file (uri);
+            var format_down = this.name_format_selected.down ();
             
             if (this.type_item == TypeItemEnum.VIDEO || this.type_item == TypeItemEnum.MUSIC) {
                 array.add ("ffmpeg");
@@ -536,14 +537,14 @@ namespace Ciano.Controllers {
                 array.add ("-i");
                 array.add (uri);
                 
-                if (this.name_format_selected.down () == "3gp" || this.name_format_selected.down () == "flv") {
+                if (format_down == "3gp" || format_down == "flv") {
                     array.add ("-vcodec");
                     array.add ("libx264");
                     array.add ("-acodec");
                     array.add ("aac");
                 }
 
-                if(this.name_format_selected.down () == "mmf") {
+                if (format_down == "mmf") {
                     array.add ("-ar");
                     array.add ("44100");
                 }
@@ -552,20 +553,20 @@ namespace Ciano.Controllers {
                 array.add ("-2");
                 array.add (new_file);
             } else if (this.type_item == TypeItemEnum.IMAGE) {
-                if (this.name_format_selected.down () == "gif") {
+                if (format_down == "gif") {
                     array.add ("ffmpeg");
                     array.add ("-y");
                     array.add ("-i");
                     array.add (uri);
 
-                    if("webm" == FileUtil.get_file_extension_name(uri)) {
+                    if ("webm" == FileUtil.get_file_extension_name(uri)) {
                         array.add ("-pix_fmt");
                         array.add ("rgb8");
                     } else {
                         array.add ("-ss");
                         array.add ("00:00:00.000");
                         array.add ("-vf");
-                        array.add ("format=rgb8,format=rgb24");                       
+                        array.add ("format=rgb8,format=rgb24");
                     }
                 } else {
                     array.add ("convert");
@@ -575,7 +576,7 @@ namespace Ciano.Controllers {
                 array.add (new_file);
             }
 
-            return array.data;
+            return (string[]) array.data;
         }
 
         /**
@@ -587,17 +588,18 @@ namespace Ciano.Controllers {
          */
         private string get_uri_new_file (string uri) {
             string new_file;
+            var format_down = this.name_format_selected.down ();
 
             if (this.settings.output_source_file_folder) {
                 int index = uri.last_index_of(".");
-                new_file = uri.substring(0, index + 1) + this.name_format_selected.down ();
+                new_file = uri.substring(0, index + 1) + format_down;
             } else {
                 int index_start = uri.last_index_of("/");
                 int index_end = uri.last_index_of(".");
                 var file = uri.substring(index_start, index_start - index_end);
 
                 int index = file.last_index_of(".");
-                new_file = this.settings.output_folder + file.substring(0, index + 1) + this.name_format_selected.down ();
+                new_file = this.settings.output_folder + file.substring(0, index + 1) + format_down;
             }
 
             return new_file;
@@ -627,134 +629,63 @@ namespace Ciano.Controllers {
          * @return {@code void}
          */
         private string [] mount_array_with_supported_formats (string name_format) {
-            var formats = new GenericArray<string> ();
+            GenericArray<string> formats;
             
             switch (name_format) {
                 case Constants.TEXT_MP4:
-                    formats = get_array_formats_videos (Constants.TEXT_MP4);
-                    break;
                 case Constants.TEXT_3GP:
-                    formats = get_array_formats_videos (Constants.TEXT_3GP);
-                    break;
                 case Constants.TEXT_MPG:
-                    formats = get_array_formats_videos (Constants.TEXT_MPG);
-                    break;
                 case Constants.TEXT_AVI:
-                    formats = get_array_formats_videos (Constants.TEXT_AVI);
-                    break;
                 case Constants.TEXT_WMV:
-                    formats = get_array_formats_videos (Constants.TEXT_WMV);
-                    break;
                 case Constants.TEXT_FLV:
-                    formats = get_array_formats_videos (Constants.TEXT_FLV);
-                    break;
                 case Constants.TEXT_SWF:
-                    formats = get_array_formats_videos (Constants.TEXT_SWF);
-                    break;
                 case Constants.TEXT_MOV:
-                    formats = get_array_formats_videos (Constants.TEXT_MOV);
-                    break;
                 case Constants.TEXT_MKV:
-                    formats = get_array_formats_videos (Constants.TEXT_MKV);
-                    break;
                 case Constants.TEXT_VOB:
-                    formats = get_array_formats_videos (Constants.TEXT_VOB);
-                    break;
                 case Constants.TEXT_OGV:
-                    formats = get_array_formats_videos (Constants.TEXT_OGV);
-                    break;
                 case Constants.TEXT_WEBM:
-                    formats = get_array_formats_videos (Constants.TEXT_WEBM);
+                    formats = get_array_formats_videos (name_format);
                     break;
 
                 case Constants.TEXT_MP3:
-                    formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_MP3), 
-                        get_array_formats_videos (StringUtil.EMPTY)
-                    );
-                    break;
                 case Constants.TEXT_WMA:
-                    formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_WMA), 
-                        get_array_formats_videos (StringUtil.EMPTY)
-                    );
-                    break;
                 case Constants.TEXT_OGG:
-                    formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_OGG), 
-                        get_array_formats_videos (StringUtil.EMPTY)
-                    );
-                    break;
                 case Constants.TEXT_WAV:
-                    formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_WAV), 
-                        get_array_formats_videos (StringUtil.EMPTY)
-                    );
-                    break;
                 case Constants.TEXT_AAC:
-                    formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_AAC), 
-                        get_array_formats_videos (StringUtil.EMPTY)
-                    );
-                    break;
                 case Constants.TEXT_FLAC:
-                    formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_FLAC), 
-                        get_array_formats_videos (StringUtil.EMPTY)
-                    );
-                    break;
                 case Constants.TEXT_AIFF:
-                    formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_AIFF), 
-                        get_array_formats_videos (StringUtil.EMPTY)
-                    );
-                    break;
                 case Constants.TEXT_MMF:
-                    formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_MMF), 
-                        get_array_formats_videos (StringUtil.EMPTY)
-                    );
-                    break;
                 case Constants.TEXT_M4A:
-                    formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_M4A), 
-                        get_array_formats_videos (StringUtil.EMPTY)
-                    );
-                    break;
                 case Constants.TEXT_AT9:
                     formats = ArrayUtil.join_generic_string_arrays ( 
-                        get_array_formats_music (Constants.TEXT_AT9), 
+                        get_array_formats_music (name_format), 
                         get_array_formats_videos (StringUtil.EMPTY)
                     );
                     break;
 
                 case Constants.TEXT_JPG:
-                    formats = get_array_formats_image (Constants.TEXT_JPG);
-                    break;
                 case Constants.TEXT_BMP:
-                    formats = get_array_formats_image (Constants.TEXT_BMP);
-                    break;
                 case Constants.TEXT_PNG:
-                    formats = get_array_formats_image (Constants.TEXT_PNG);
-                    break;
                 case Constants.TEXT_TIF:
-                    formats = get_array_formats_image (Constants.TEXT_TIF);
-                    break;
                 case Constants.TEXT_ICO:
-                    formats = get_array_formats_image (Constants.TEXT_ICO);
+                case Constants.TEXT_TGA:
+                    formats = get_array_formats_image (Constants.TEXT_TGA);
                     break;
+
                 case Constants.TEXT_GIF:
                     formats = ArrayUtil.join_generic_string_arrays ( 
                         get_array_formats_image (Constants.TEXT_GIF), 
                         get_array_formats_videos (StringUtil.EMPTY)
                     );
                     break;
-                case Constants.TEXT_TGA:
-                    formats = get_array_formats_image (Constants.TEXT_TGA);
+
+                default:
+                    formats = new GenericArray<string> ();
                     break;
+
             }
 
-            return formats.data;
+            return (string[]) formats.data;
         }
 
         /**
@@ -772,62 +703,62 @@ namespace Ciano.Controllers {
                 this.type_item = TypeItemEnum.VIDEO;
             }
 
-            if(format_video != Constants.TEXT_MP4) {
+            if (format_video != Constants.TEXT_MP4) {
                 array.add (Constants.TEXT_MP4);    
-                array.add (Constants.TEXT_MP4.up());    
+                array.add (Constants.TEXT_MP4.up());
             }
-            
-            if(format_video != Constants.TEXT_3GP) {
+
+            if (format_video != Constants.TEXT_3GP) {
                 array.add (Constants.TEXT_3GP);    
                 array.add (Constants.TEXT_3GP.up());    
             }
 
-            if(format_video != Constants.TEXT_MPG) {
+            if (format_video != Constants.TEXT_MPG) {
                 array.add (Constants.TEXT_MPG);    
                 array.add (Constants.TEXT_MPG.up());       
             }
 
-            if(format_video != Constants.TEXT_AVI) {
+            if (format_video != Constants.TEXT_AVI) {
                 array.add (Constants.TEXT_AVI);
                 array.add (Constants.TEXT_AVI.up());        
             }
 
-            if(format_video != Constants.TEXT_WMV) {
+            if (format_video != Constants.TEXT_WMV) {
                 array.add (Constants.TEXT_WMV);    
                 array.add (Constants.TEXT_WMV.up());    
             }
 
-            if(format_video != Constants.TEXT_FLV) {
+            if (format_video != Constants.TEXT_FLV) {
                 array.add (Constants.TEXT_FLV);  
                 array.add (Constants.TEXT_FLV.up());      
             }
 
-            if(format_video != Constants.TEXT_SWF) {
+            if (format_video != Constants.TEXT_SWF) {
                 array.add (Constants.TEXT_SWF);   
                 array.add (Constants.TEXT_SWF.up());     
             }
 
-            if(format_video != Constants.TEXT_MOV) {
+            if (format_video != Constants.TEXT_MOV) {
                 array.add (Constants.TEXT_MOV); 
                 array.add (Constants.TEXT_MOV.up());       
             }
 
-            if(format_video != Constants.TEXT_MKV) {
+            if (format_video != Constants.TEXT_MKV) {
                 array.add (Constants.TEXT_MKV); 
                 array.add (Constants.TEXT_MKV.up());       
             }
 
-            if(format_video != Constants.TEXT_VOB) {
+            if (format_video != Constants.TEXT_VOB) {
                 array.add (Constants.TEXT_VOB);  
                 array.add (Constants.TEXT_VOB.up());      
             }
 
-            if(format_video != Constants.TEXT_OGV) {
+            if (format_video != Constants.TEXT_OGV) {
                 array.add (Constants.TEXT_OGV);  
                 array.add (Constants.TEXT_OGV.up());      
             }
 
-            if(format_video != Constants.TEXT_WEBM && format_video != Constants.TEXT_GIF && this.type_item == TypeItemEnum.VIDEO) {
+            if (format_video != Constants.TEXT_WEBM && format_video != Constants.TEXT_GIF && this.type_item == TypeItemEnum.VIDEO) {
                 array.add (Constants.TEXT_WEBM); 
                 array.add (Constants.TEXT_WEBM.up());       
             }
@@ -850,52 +781,52 @@ namespace Ciano.Controllers {
                 this.type_item = TypeItemEnum.MUSIC;
             }
 
-            if(format_music != Constants.TEXT_MP3) {
+            if (format_music != Constants.TEXT_MP3) {
                 array.add (Constants.TEXT_MP3);   
                 array.add (Constants.TEXT_MP3.up()); 
             }
             
-            if(format_music != Constants.TEXT_WMA) {
+            if (format_music != Constants.TEXT_WMA) {
                 array.add (Constants.TEXT_WMA);    
                 array.add (Constants.TEXT_WMA.up());
             }
 
-            if(format_music != Constants.TEXT_AMR) {
+            if (format_music != Constants.TEXT_AMR) {
                 array.add (Constants.TEXT_AMR);    
                 array.add (Constants.TEXT_AMR.up());
             }
 
-            if(format_music != Constants.TEXT_OGG) {
+            if (format_music != Constants.TEXT_OGG) {
                 array.add (Constants.TEXT_OGG);    
                 array.add (Constants.TEXT_OGG.up());
             }
 
-            if(format_music != Constants.TEXT_WAV) {
+            if (format_music != Constants.TEXT_WAV) {
                 array.add (Constants.TEXT_WAV);    
                 array.add (Constants.TEXT_WAV.up());
             }
 
-            if(format_music != Constants.TEXT_AAC) {
+            if (format_music != Constants.TEXT_AAC) {
                 array.add (Constants.TEXT_AAC);    
                 array.add (Constants.TEXT_AAC.up());
             }
 
-            if(format_music != Constants.TEXT_FLAC) {
+            if (format_music != Constants.TEXT_FLAC) {
                 array.add (Constants.TEXT_FLAC);    
                 array.add (Constants.TEXT_FLAC.up());
             }
 
-            if(format_music != Constants.TEXT_AIFF) {
+            if (format_music != Constants.TEXT_AIFF) {
                 array.add (Constants.TEXT_AIFF);    
                 array.add (Constants.TEXT_AIFF.up());
             }
 
-            if(format_music != Constants.TEXT_MMF) {
+            if (format_music != Constants.TEXT_MMF) {
                 array.add (Constants.TEXT_MMF);    
                 array.add (Constants.TEXT_MMF.up());
             }
 
-            if(format_music != Constants.TEXT_M4A) {
+            if (format_music != Constants.TEXT_M4A) {
                 array.add (Constants.TEXT_M4A);    
                 array.add (Constants.TEXT_M4A.up());
             }
@@ -919,37 +850,37 @@ namespace Ciano.Controllers {
                 this.type_item = TypeItemEnum.IMAGE;
             }
 
-            if(format_image != Constants.TEXT_JPG) {
+            if (format_image != Constants.TEXT_JPG) {
                 array.add (Constants.TEXT_JPG);    
                 array.add (Constants.TEXT_JPG.up());
             }
-            
-            if(format_image != Constants.TEXT_BMP) {
+
+            if (format_image != Constants.TEXT_BMP) {
                 array.add (Constants.TEXT_BMP);    
                 array.add (Constants.TEXT_BMP.up());
             }
 
-            if(format_image != Constants.TEXT_PNG) {
+            if (format_image != Constants.TEXT_PNG) {
                 array.add (Constants.TEXT_PNG);    
                 array.add (Constants.TEXT_PNG.up());
             }
 
-            if(format_image != Constants.TEXT_TIF) {
+            if (format_image != Constants.TEXT_TIF) {
                 array.add (Constants.TEXT_TIF);    
                 array.add (Constants.TEXT_TIF.up());
             }
 
-            if(format_image != Constants.TEXT_ICO) {
+            if (format_image != Constants.TEXT_ICO) {
                 array.add (Constants.TEXT_ICO);    
                 array.add (Constants.TEXT_ICO.up());
             }
 
-            if(format_image != Constants.TEXT_GIF) {
+            if (format_image != Constants.TEXT_GIF) {
                 array.add (Constants.TEXT_GIF);    
                 array.add (Constants.TEXT_GIF.up());
             }
 
-            if(format_image != Constants.TEXT_TGA) {
+            if (format_image != Constants.TEXT_TGA) {
                 array.add (Constants.TEXT_TGA);    
                 array.add (Constants.TEXT_TGA.up());
             }

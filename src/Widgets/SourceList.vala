@@ -18,8 +18,8 @@
  */
 
 /**
- * Note: This file is the same as the "{@code SourceList}" of granite. 
- * 
+ * Note: This file is the same as the "{@code SourceList}" of granite.
+ *
  * Only the following changes were made:
  *
  * 1 - Ability to execute more than one action on the same selected item.
@@ -1473,11 +1473,11 @@ public class SourceList : Gtk.ScrolledWindow {
         public CellRendererIcon () {
             mode = Gtk.CellRendererMode.ACTIVATABLE;
             stock_size = ICON_SIZE;
-            follow_state = true;
         }
 
         public override bool activate (Gdk.Event event, Gtk.Widget widget, string path,
-                                       Gdk.Rectangle background_area, Gdk.Rectangle cell_area,
+                                       [CCode (type = "const GdkRectangle*")] Gdk.Rectangle background_area,
+                                       [CCode (type = "const GdkRectangle*")] Gdk.Rectangle cell_area,
                                        Gtk.CellRendererState flags)
         {
             activated (path);
@@ -1500,8 +1500,12 @@ public class SourceList : Gtk.ScrolledWindow {
             return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
         }
 
-        public override void get_preferred_width (Gtk.Widget widget, out int min_size, out int natural_size) {
-            min_size = natural_size = 2 * (int) xpad;
+        public override void get_preferred_width (Gtk.Widget widget, out int minimum_width, out int natural_width) {
+            minimum_width = natural_width = 0;
+        }
+
+        public override void get_preferred_height (Gtk.Widget widget, out int minimum_height, out int natural_height) {
+            minimum_height = natural_height = 8; 
         }
 
         public override void get_preferred_height_for_width (Gtk.Widget widget, int width,
@@ -1514,14 +1518,6 @@ public class SourceList : Gtk.ScrolledWindow {
                                      Gdk.Rectangle cell_area, Gtk.CellRendererState flags)
         {
             // Nothing to do. This renderer only adds space.
-        }
-
-        [Version (deprecated = true, deprecated_since = "", replacement = "Gtk.CellRenderer.get_preferred_size")]
-        public override void get_size (Gtk.Widget widget, Gdk.Rectangle? cell_area,
-                                       out int x_offset, out int y_offset,
-                                       out int width, out int height)
-        {
-            assert_not_reached ();
         }
     }
 
@@ -1604,8 +1600,20 @@ public class SourceList : Gtk.ScrolledWindow {
         }
 
         public Tree (DataModel data_model) {
-            Granite.Widgets.Utils.set_theming (this, DEFAULT_STYLESHEET, StyleClass.SOURCE_LIST,
-                               Gtk.STYLE_PROVIDER_PRIORITY_FALLBACK);
+            var css_provider = new Gtk.CssProvider ();
+
+            try {
+                css_provider.load_from_data (DEFAULT_STYLESHEET);
+
+                this.get_style_context ().add_provider (
+                    css_provider,
+                    Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                );
+
+                this.get_style_context ().add_class (Granite.STYLE_CLASS_SOURCE_LIST);
+            } catch (Error e) {
+                warning ("Erro ao carregar CSS do SourceList: %s", e.message);
+            }
 
             this.data_model = data_model;
             set_model (data_model);
@@ -2274,11 +2282,11 @@ public class SourceList : Gtk.ScrolledWindow {
                     bool is_ltr = false;
 
                     var dir = this.get_direction ();
-                    
+
                     if (dir == Gtk.TextDirection.NONE) {
                         dir = Gtk.Widget.get_default_direction ();
                     }
-                    
+
                     if (dir == Gtk.TextDirection.LTR) {
                         is_ltr = true;
                     }
@@ -2318,15 +2326,12 @@ public class SourceList : Gtk.ScrolledWindow {
             if (item != null) {
                 var menu = item.get_context_menu ();
                 if (menu != null) {
-                    var time = (event != null) ? event.time : Gtk.get_current_event_time ();
-                    var button = (event != null) ? event.button : 0;
-
                     menu.attach_to_widget (this, null);
 
                     if (event != null) {
-                        menu.popup (null, null, null, button, time);
+                        menu.popup_at_pointer ((Gdk.Event) event);
                     } else {
-                        menu.popup (null, null, menu_position_func, button, time);
+                        menu.popup_at_widget (this, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, null);
                         menu.select_first (false);
                     }
 
@@ -2335,61 +2340,6 @@ public class SourceList : Gtk.ScrolledWindow {
             }
 
             return false;
-        }
-
-        /**
-         * Positions a menu based on an item's coordinates.
-         *
-         * This function is only used for menu pop-ups triggered by events other than button
-         * presses (e.g. key-press events). Since such events provide no coordinates, it is
-         * assumed that the item in question is the one currently selected.
-         */
-        private void menu_position_func (Gtk.Menu menu, out int x, out int y, out bool push_in) {
-            push_in = true;
-            x = y = 0;
-
-            if (selected_item == null || !get_realized ())
-                return;
-
-            var path = data_model.get_item_path (selected_item);
-            if (path == null)
-                return;
-
-            // Try to find the position of the item
-            Gdk.Rectangle item_bin_coords;
-            get_cell_area (path, get_column (Column.ITEM), out item_bin_coords);
-
-            int item_y = item_bin_coords.y + item_bin_coords.height / 2;
-            int item_x = item_bin_coords.x;
-
-            bool is_ltr = false;
-
-            var dir = this.get_direction ();
-            
-            if (dir == Gtk.TextDirection.NONE) {
-                dir = Gtk.Widget.get_default_direction ();
-            }
-            
-            if (dir == Gtk.TextDirection.LTR) {
-                is_ltr = true;
-            }
-
-
-            if (is_ltr)
-                item_x += item_bin_coords.width - 6;
-
-            int widget_x, widget_y;
-            convert_bin_window_to_widget_coords (item_x, item_y, out widget_x, out widget_y);
-
-            get_window ().get_origin (out x, out y);
-            x += widget_x.clamp (0, get_allocated_width ());
-            y += widget_y.clamp (0, get_allocated_height ());
-
-            if (!is_ltr) {
-                Gtk.Requisition menu_req;
-                menu.get_preferred_size (out menu_req, null);
-                y -= menu_req.width;
-            }
         }
 
         private static Item? get_item_from_model (Gtk.TreeModel model, Gtk.TreeIter iter) {
@@ -2628,10 +2578,7 @@ public class SourceList : Gtk.ScrolledWindow {
     public SourceList (ExpandableItem root = new ExpandableItem ()) {
         this.root = root;
 
-        push_composite_child ();
         tree = new Tree (data_model);
-        tree.set_composite_name ("treeview");
-        pop_composite_child ();
 
         set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
         add (tree);

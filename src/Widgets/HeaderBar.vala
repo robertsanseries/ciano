@@ -76,7 +76,7 @@ namespace Ciano.Widgets {
 
             menu_settings();
 
-            this.app_menu.popup = this.menu;
+            this.app_menu.set_popup (this.menu);
             this.pack_end (this.app_menu);
         }
 

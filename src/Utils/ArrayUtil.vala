@@ -39,13 +39,13 @@ namespace Ciano.Utils {
         public static GenericArray join_generic_string_arrays (GenericArray<string> array1, GenericArray<string> array2) {
             var new_array = new GenericArray<string> ();
 
-           array1.foreach ((str) => {
-                new_array.add (str);
-            });
+            for (int i = 0; i < array1.length; i++) {
+                new_array.add (array1.get (i));
+            }
 
-            array2.foreach ((str) => {
-                new_array.add (str);
-            });
+            for (int i = 0; i < array2.length; i++) {
+                new_array.add (array2.get (i));
+            }
 
             return new_array;
         }

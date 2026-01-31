@@ -68,7 +68,7 @@ namespace Ciano.Widgets {
             init_options ();
             mount_options (grid);
 
-            this.get_content_area ().add (grid);
+            ((Gtk.Container) this.get_content_area ()).add (grid);
         }
 
         /**
