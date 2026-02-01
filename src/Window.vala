@@ -80,11 +80,15 @@ namespace Ciano {
             var css_provider = new Gtk.CssProvider ();
             css_provider.load_from_resource (Constants.URL_CSS);
             
-            Gtk.StyleContext.add_provider_for_display (
-                Gdk.Display.get_default (),
-                css_provider,
-                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-            );
+            Gdk.Display display = Gdk.Display.get_default ();
+            
+            if (display != null) {
+                Gtk.StyleContext.add_provider_for_display (
+                    display,
+                    css_provider,
+                    Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                );
+            }
         }
 
         /**
@@ -99,7 +103,7 @@ namespace Ciano {
             new ConverterController (this, app, converter_view);
 
             this.set_child (converter_view);
-            this.show_all ();
+            this.present ();
         }
     }
 }
