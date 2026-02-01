@@ -48,12 +48,23 @@ namespace Ciano {
             );
 
             var settings = Ciano.Services.Settings.get_instance ();
-            int x = settings.window_x;
-            int y = settings.window_y;
-
-            if (x != -1 && y != -1) {
-                move (x, y);
+            this.set_default_size (settings.window_width, settings.window_height);
+            
+            if (settings.is_maximized) {
+                this.maximize ();
             }
+            
+            this.notify["default-width"].connect (() => {
+                if (!this.maximized) settings.window_width = this.default_width;
+            });
+            
+            this.notify["default-height"].connect (() => {
+                if (!this.maximized) settings.window_height = this.default_height;
+            });
+            
+            this.notify["maximized"].connect (() => {
+                settings.is_maximized = this.maximized;
+            });
 
             style_provider ();
             build (app);
@@ -69,8 +80,8 @@ namespace Ciano {
             var css_provider = new Gtk.CssProvider ();
             css_provider.load_from_resource (Constants.URL_CSS);
             
-            Gtk.StyleContext.add_provider_for_screen (
-                Gdk.Screen.get_default (),
+            Gtk.StyleContext.add_provider_for_display (
+                Gdk.Display.get_default (),
                 css_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );
@@ -87,7 +98,7 @@ namespace Ciano {
             var converter_view = new ConverterView (this);
             new ConverterController (this, app, converter_view);
 
-            this.add (converter_view);
+            this.set_child (converter_view);
             this.show_all ();
         }
     }

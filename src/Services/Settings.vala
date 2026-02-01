@@ -35,18 +35,39 @@ namespace Ciano.Services {
          * This static property represents the {@code Settings} type.
          */
         private static Settings? instance;
-
+        
         /**
-         * This property will represent the location x of the screen.
+         * This property represents the internal GSettings backend.
+         * It is responsible for synchronizing application properties 
+         * with the system's configuration database.
+         * Object of type {@code GLib.Settings} as declared.
+         */
+        private GLib.Settings schema;
+        
+        /**
+         * This property will represent the width of the main window.
+         * Stored in pixels, it is used to restore the user's preferred 
+         * window size upon application startup.
          * Variable of type {@code int} as declared.
          */
-        public int window_x { get; set; }
+        public int window_width { get; set; }
 
         /**
-         * This property will represent the location y of the screen.
+         * This property will represent the height of the main window.
+         * Stored in pixels, it is used to restore the user's preferred 
+         * window size upon application startup.
          * Variable of type {@code int} as declared.
          */
-        public int window_y { get; set; }
+        public int window_height { get; set; }
+
+        /**
+         * This property {@code bool} corresponds to {@code true} if the
+         * main window should be launched in a maximized state. If active,
+         * the window will occupy the entire screen, ignoring {@code window_width} 
+         * and {@code window_height} until unmaximized. 
+         * Otherwise the value will be {@code false}.
+         */
+        public bool is_maximized { get; set; }
 
         /**
          * This property will receive the name of the output folder which
@@ -104,17 +125,22 @@ namespace Ciano.Services {
          * @see Ciano.Constants
          */
         private Settings () {
-            settings = new GLib.Settings (Constants.ID);
+            schema = new GLib.Settings (Constants.ID);
             
-            settings.bind ("window-x", this, "window-x", SettingsBindFlags.DEFAULT);
-            settings.bind ("window-y", this, "window-y", SettingsBindFlags.DEFAULT);
-            settings.bind ("output-folder", this, "output-folder", SettingsBindFlags.DEFAULT);
-            settings.bind ("output-source-file-folder", this, "output-source-file-folder", SettingsBindFlags.DEFAULT);
-            settings.bind ("shutdown-computer", this, "shutdown-computer", SettingsBindFlags.DEFAULT);
-            settings.bind ("open-output-folder", this, "open-output-folder", SettingsBindFlags.DEFAULT);
-            settings.bind ("complete-notify", this, "complete-notify", SettingsBindFlags.DEFAULT);
-            settings.bind ("error-notify", this, "error-notify", SettingsBindFlags.DEFAULT);
+            // Window Binds
+            schema.bind ("window-width", this, "window-width", SettingsBindFlags.DEFAULT);
+            schema.bind ("window-height", this, "window-height", SettingsBindFlags.DEFAULT);
+            schema.bind ("is-maximized", this, "is-maximized", SettingsBindFlags.DEFAULT);
+            
+            // Preferences Binds
+            schema.bind ("output-folder", this, "output-folder", SettingsBindFlags.DEFAULT);
+            schema.bind ("output-source-file-folder", this, "output-source-file-folder", SettingsBindFlags.DEFAULT);
+            schema.bind ("shutdown-computer", this, "shutdown-computer", SettingsBindFlags.DEFAULT);
+            schema.bind ("open-output-folder", this, "open-output-folder", SettingsBindFlags.DEFAULT);
+            schema.bind ("complete-notify", this, "complete-notify", SettingsBindFlags.DEFAULT);
+            schema.bind ("error-notify", this, "error-notify", SettingsBindFlags.DEFAULT);
 
+            // Set default output folder if empty
             if (StringUtil.is_empty (this.output_folder)) {
                 this.output_folder = Environment.get_home_dir () + Constants.DIRECTORY_CIANO;
             }
