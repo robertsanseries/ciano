@@ -38,7 +38,16 @@ namespace Ciano.Utils {
          * @return {@code int}
          */
         public static int duration_in_seconds (string duration) {
+            if (duration == null || duration.contains ("N/A") || duration.strip () == "") {
+                return 0;
+            }
+            
             var parts = duration.split (".")[0].split (":");
+            
+            if (parts.length < 3) {
+                return 0;
+            }
+
 
             var hours = int.parse (parts[0]);
             var mins = int.parse (parts[1]);

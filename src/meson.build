@@ -11,6 +11,7 @@ sources = files(
 
 	'Utils/ArrayUtil.vala',
 	'Utils/FileUtil.vala',
+	'Utils/Logger.vala',
 	'Utils/StringUtil.vala',
 	'Utils/TimeUtil.vala',
 	'Utils/WidgetUtil.vala',

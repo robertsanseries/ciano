@@ -138,20 +138,23 @@ namespace Ciano.Controllers {
             chooser_file.add_buttons (Properties.TEXT_CANCEL, Gtk.ResponseType.CANCEL, Properties.TEXT_ADD, Gtk.ResponseType.OK);
 
             if (chooser_file.run () == Gtk.ResponseType.OK) {
+                SList<string> paths = chooser_file.get_filenames ();
 
-                SList<string> uris = chooser_file.get_filenames ();
+                foreach (unowned string path in paths) {
+                    if (path == null) continue;
 
-                foreach (unowned string uri in uris)  {
-                    
-                    var file         = File.new_for_uri (uri);
-                    int index        = file.get_basename ().last_index_of("/");
-                    string name      = file.get_basename ().substring(index + 1, -1);
-                    string directory = file.get_basename ().substring(0, index + 1);
+                    var file = File.new_for_path (path);
+                    var parent_file = file.get_parent ();
 
-                    list_store.append (out iter);
-                    list_store.set (iter, 0, name, 1, directory);
-                    tree_view.expand_all ();
+                    string directory = (parent_file != null) ? parent_file.get_path () + Path.DIR_SEPARATOR_S : "";
+                    string name = file.get_basename ();
+
+                    if (name != null) {
+                        list_store.append (out iter);
+                        list_store.set (iter, 0, name, 1, directory);
+                    }
                 }
+                tree_view.expand_all ();
             }
 
             chooser_file.hide ();
@@ -256,7 +259,12 @@ namespace Ciano.Controllers {
                     directory.make_directory_with_parents();
                 }
 
-                string uri = item.directory + item.name;
+                string uri = Path.build_filename (item.directory, item.name);
+                string[] spawn_args = (string[]) get_command (uri);
+                
+                string full_command_log = string.joinv (" ", spawn_args);
+                Logger.debug (@"Comando FFmpeg: $full_command_log");
+        
                 SubprocessLauncher launcher = new SubprocessLauncher (SubprocessFlags.STDERR_PIPE);
                 Subprocess subprocess       = launcher.spawnv ((string[]) get_command (uri));
                 InputStream input_stream    = subprocess.get_stderr_pipe ();
@@ -269,16 +277,28 @@ namespace Ciano.Controllers {
                 this.converter_view.list_conversion.list_box.add (row);
 
                 convert_async.begin (input_stream, row, item, error, (obj, async_res) => {
+                    Logger.debug (@"Stream de log do FFmpeg fechado para: $(item.name)");
+                    
                     try {
                         WidgetUtil.set_visible (row.button_cancel, false);
                         WidgetUtil.set_visible (row.button_remove, true);
 
                         if (subprocess.wait_check ()) {
+                            Logger.debug ("Sucesso: O processo do FFmpeg terminou corretamente (Exit 0).");
                             validate_process_completed (subprocess, row, item, error);      
                         } 
                     } catch (Error e) {
-                        validate_error_in_process (subprocess, row, item, error); 
-                        GLib.warning ("Error: %s\n", e.message);
+                        int exit_status = subprocess.get_exit_status ();
+        
+                        Logger.debug (@"Finalizado com retorno: $exit_status");
+                        
+                        if (exit_status == 9) {
+                            Logger.debug ("Info: O processo foi cancelado pelo usuário (SIGKILL).");
+                        } else {
+                            Logger.error (@"Erro Crítico: FFmpeg retornou erro ou crashou. Mensagem: $(e.message)");
+                        }
+
+                        validate_error_in_process (subprocess, row, item, error);
                     }
                 });
             } catch (Error e) {                
@@ -302,7 +322,7 @@ namespace Ciano.Controllers {
             row.status.label = Properties.TEXT_SUCESS_IN_CONVERSION;
             
             if (this.settings.complete_notify) {
-                send_notification (item.name, Properties.TEXT_SUCESS_IN_CONVERSION);
+                send_notification (item, Properties.TEXT_SUCESS_IN_CONVERSION);
             } 
         }
 
@@ -327,7 +347,7 @@ namespace Ciano.Controllers {
                 }
 
                 if (this.settings.complete_notify) {
-                    send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION);
+                    send_notification (item, Properties.TEXT_ERROR_IN_CONVERSION);
                 }
             }
 
@@ -355,18 +375,22 @@ namespace Ciano.Controllers {
          * @return {@code void}
          */
         public async void convert_async (InputStream input_stream, RowConversion row, ItemConversion item, int error) {
+            Logger.debug (@"Iniciando convert_async para: $(item.name)");
+            
+            int line_count = 0;
+            int total = 0;
+                
             try {
                 var charset_converter   = new CharsetConverter ("utf-8", "iso-8859-1");
                 var costream            = new ConverterInputStream (input_stream, charset_converter);
                 var data_input_stream   = new DataInputStream (costream);
                 data_input_stream.set_newline_type (DataStreamNewlineType.ANY);
-              
-                int total = 0;
 
                 while (true) {
                     string str_return = yield data_input_stream.read_line_utf8_async ();
 
                     if (str_return == null) {
+                        Logger.debug (@"Fim do stream (line == null) após $line_count linhas");
                         break; 
                     } else {
                         // there is no return on image conversion, if display is pq was generated some error.
@@ -375,7 +399,7 @@ namespace Ciano.Controllers {
 
                             if (error > 0) {
                                 if (this.settings.error_notify) {
-                                    send_notification (item.name, Properties.TEXT_ERROR_IN_CONVERSION);    
+                                    send_notification (item, Properties.TEXT_ERROR_IN_CONVERSION);    
                                 }
                                 break;
                             }
@@ -384,9 +408,10 @@ namespace Ciano.Controllers {
                             break;
                         }
                     }
+                    line_count++;
                 }
             } catch (Error e) {
-                GLib.critical ("Error: %s\n", e.message);
+                Logger.error (@"ERRO CRÍTICO no loop de leitura: $(e.message)");
             }
         }
 
@@ -471,32 +496,45 @@ namespace Ciano.Controllers {
          * @return {@code void}
          */
         private void process_line (string str_return, RowConversion row, ref int total, int error) {
-            string time     = StringUtil.EMPTY;
-            string size     = StringUtil.EMPTY;
-            string bitrate  = StringUtil.EMPTY;
+            if (str_return == null || str_return == "" || row == null) return;
 
+            // 1. Extração da Duração (Já sabemos que funciona até aqui)
             if (str_return.contains ("Duration:")) {
-                int index       = str_return.index_of ("Duration:");
-                string duration = str_return.substring (index + 10, 11);
-
-                total = TimeUtil.duration_in_seconds (duration);
+                int index = str_return.index_of ("Duration:");
+                if (index != -1 && str_return.length >= index + 21) {
+                    string duration = str_return.substring (index + 10, 11);
+                    total = TimeUtil.duration_in_seconds (duration);
+                    Logger.debug(@"Duração total capturada: $total segundos");
+                }
             }
 
-            if (str_return.contains ("time=") && str_return.contains ("size=") && str_return.contains ("bitrate=") ) {
-                int index_time  = str_return.index_of ("time=");
-                time            = str_return.substring ( index_time + 5, 11);
+            // 2. Extração do Progresso - O ponto do crash
+            if (str_return.contains ("time=") && total > 0) {
+                int index_time = str_return.index_of ("time=");
+                
+                if (index_time != -1 && str_return.length >= index_time + 16) {
+                    string time_val = str_return.substring (index_time + 5, 11);
 
-                int loading     = TimeUtil.duration_in_seconds (time);
-                double progress = (100 * loading) / total;
-                row.progress_bar.set_fraction (progress / 100);
-        
-                int index_size  = str_return.index_of ("size=");
-                size            = str_return.substring ( index_size + 5, 11);
-            
-                int index_bitrate = str_return.index_of ("bitrate=");
-                bitrate           = str_return.substring ( index_bitrate + 8, 11);
+                    if (time_val.contains ("N/A")) {
+                        Logger.debug ("Ignorando log com tempo N/A");
+                        return;
+                    }
 
-                row.status.label = Properties.TEXT_PERCENTAGE + progress.to_string() + "%" + Properties.TEXT_SIZE_CUSTOM + size.strip () + Properties.TEXT_TIME_CUSTOM + time.strip () + Properties.TEXT_BITRATE_CUSTOM + bitrate.strip ();
+                    Logger.debug (@"Tentando converter tempo: $time_val");
+                    int loading = TimeUtil.duration_in_seconds (time_val);
+                    
+                    double progress = (100.0 * loading) / total;
+                    double fraction = progress / 100.0;
+                    string label_text = @"$((int)progress)%";
+
+                    Idle.add (() => {
+                        if (row != null && row.progress_bar != null) {
+                            row.progress_bar.set_fraction (fraction);
+                            row.status.label = label_text;
+                        }
+                        return false;
+                    });
+                }
             }
 
             if (str_return.contains ("No such file or directory")) {
@@ -612,11 +650,15 @@ namespace Ciano.Controllers {
          * @param  {@code string}    body_text
          * @return {@code void}
          */
-        private void send_notification (string file_name, string body_text) {
-            var notification = new Notification (file_name);
-            var image = new Gtk.Image.from_icon_name ("com.github.robertsanseries.ciano", Gtk.IconSize.DIALOG);
+        private void send_notification (ItemConversion item, string body_text) {
+            var notification = new Notification (item.name);
             notification.set_body (body_text);
-            notification.set_icon (image.gicon);
+
+            string icon_name = get_type_icon (item); 
+            var icon = new ThemedIcon (icon_name);
+            
+            notification.set_icon (icon);
+            
             this.application.send_notification ("finished", notification);
         }
 

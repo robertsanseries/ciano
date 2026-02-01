@@ -55,6 +55,8 @@ dependencies = [
     dependency ('gobject-2.0', include_type: 'system')
 ]
 
+ffmpeg = find_program('ffmpeg', required: true)
+
 subdir ('src')
 
 # Defining executable
