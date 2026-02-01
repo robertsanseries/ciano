@@ -33,7 +33,7 @@ namespace Ciano.Widgets {
         
         public Gtk.Stack               stack;
         public Gtk.ListBox             list_box;
-        public Granite.Widgets.Welcome welcome;
+        public Adw.StatusPage welcome;
 
         // Responsible for the amount of item in the ListBox
         public int item_quantity = 0;
@@ -50,7 +50,7 @@ namespace Ciano.Widgets {
             this.stack = new Gtk.Stack ();
             this.stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
 
-            this.welcome = new Granite.Widgets.Welcome (
+            this.welcome = new Adw.StatusPage (
               Properties.TEXT_EMPTY_CONVERTING_LIST,
               Properties.TEXT_SELECT_OPTION_TO_CONVERT
             );

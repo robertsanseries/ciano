@@ -91,7 +91,7 @@ namespace Ciano.Widgets {
             grid.add (frame);
             grid.add (grid_buttons);
 
-            ((Gtk.Container) this.get_content_area ()).add (grid);
+            this.get_content_area ().append (grid);
         }
 
         /**
@@ -170,12 +170,11 @@ namespace Ciano.Widgets {
          * @see Ciano.Controllers.ConverterController
          * @return Gtk.Toolbar
          */
-        private Gtk.Toolbar mount_toolbar () {
-            var toolbar = new Gtk.Toolbar ();
-            toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
-            toolbar.set_icon_size (Gtk.IconSize.SMALL_TOOLBAR);
+        private Gtk.Box mount_toolbar () {
+            var toolbar_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            toolbar_box.add_css_class ("inline-toolbar");
 
-            var button_add_file = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("application-add-symbolic",    Gtk.IconSize.SMALL_TOOLBAR), null);
+            var button_add_file = new Gtk.Button.from_icon_name ("application-add-symbolic");
             button_add_file.tooltip_text = Properties.TEXT_ADD_FILE;
             button_add_file.clicked.connect (() => {
                 this.converter_controller.on_activate_button_add_file (
@@ -183,7 +182,7 @@ namespace Ciano.Widgets {
                 );
             });
 
-            var button_remove = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
+            var button_remove = new Gtk.Button.from_icon_name ("list-remove-symbolic");
             button_remove.tooltip_text = Properties.TEXT_DELETE;
             button_remove.sensitive = false;
             button_remove.clicked.connect (() => {
@@ -192,14 +191,14 @@ namespace Ciano.Widgets {
                 );
             });
 
-            this.tree_view.cursor_changed.connect (() => {
-                button_remove.sensitive = true;
+            this.tree_view.get_selection ().changed.connect (() => {
+                button_remove.sensitive = this.tree_view.get_selection ().count_selected_rows () > 0;
             });
 
-            toolbar.insert (button_add_file, -1);
-            toolbar.insert (button_remove, -1);
+            toolbar_box.append (button_add_file);
+            toolbar_box.append (button_remove);
 
-            return toolbar;
+            return toolbar_box;
         }
 
         /**
@@ -211,25 +210,25 @@ namespace Ciano.Widgets {
          * @see Ciano.Controllers.ConverterController
          * @return Gtk.Grid
          */
-        private Gtk.Grid mount_buttons () {
-            var calcel_button = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
-            calcel_button.clicked.connect (() => { this.destroy (); });
-            calcel_button.margin_end = 10;
+        private Gtk.Box mount_buttons () {
+            var cancel_button = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
+            cancel_button.clicked.connect (() => { this.destroy (); });
 
             var convert_button = new Gtk.Button.with_label (Properties.TEXT_START_CONVERSION);
-            convert_button.get_style_context ().add_class ("suggested-action");
+            convert_button.add_css_class ("suggested-action");
             convert_button.clicked.connect (() => {
                 this.destroy ();
                 this.converter_controller.on_activate_button_start_conversion (this.list_store, this.name_format);
             });
 
-            var grid_buttons = new Gtk.Grid ();
-            grid_buttons.margin_top = 10;
-            grid_buttons.halign = Gtk.Align.END;
-            grid_buttons.attach (calcel_button, 0, 0, 1, 1);
-            grid_buttons.attach_next_to (convert_button, calcel_button, Gtk.PositionType.RIGHT, 3, 1);
+            var box_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
+            box_buttons.margin_top = 10;
+            box_buttons.halign = Gtk.Align.END;
+            
+            box_buttons.append (cancel_button);
+            box_buttons.append (convert_button);
 
-            return grid_buttons;
+            return box_buttons;
         }
     }
 }

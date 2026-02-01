@@ -169,7 +169,7 @@ namespace Ciano.Controllers {
          * @param  {@code Gtk.ToolButton} button_remove
          * @return {@code void}
          */
-        public void on_activate_button_remove (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.ListStore list_store, Gtk.ToolButton button_remove) {
+        public void on_activate_button_remove (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.ListStore list_store, Gtk.Button button_remove) {
 
             Gtk.TreePath path;
             Gtk.TreeViewColumn column;

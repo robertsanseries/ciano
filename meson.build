@@ -49,10 +49,11 @@ c_args = [
 
 # Listing dependencies
 dependencies = [
-    dependency ('glib-2.0', include_type: 'system'),
-    dependency ('gtk+-3.0', include_type: 'system'),
-    dependency ('granite', include_type: 'system'),
-    dependency ('gobject-2.0', include_type: 'system')
+    dependency ('glib-2.0', version: '>=2.50', include_type: 'system'),
+    dependency ('gtk4', version: '>=4.1', include_type: 'system'),
+    dependency ('granite-7',  version: '>=7.7.0', include_type: 'system'),
+    dependency ('gobject-2.0', version: '>=2.50', include_type: 'system'),
+    dependency ('libadwaita-1', version: '>= 1.0.0', include_type: 'system')
 ]
 
 ffmpeg = find_program('ffmpeg', required: true)

@@ -33,10 +33,10 @@ namespace Ciano.Widgets {
     public class DialogPreferences : Gtk.Dialog {
 
         private Ciano.Services.Settings settings;
-        private Gtk.FileChooserButton  output_folder;
-        private Gtk.Switch             output_source_file_folder;
-        private Gtk.Switch             complete_notify;
-        private Gtk.Switch             error_notify;
+        private Gtk.Button              output_folder_button;
+        private Gtk.Switch              output_source_file_folder;
+        private Gtk.Switch              complete_notify;
+        private Gtk.Switch              error_notify;
 
         /**
          * Constructs a new {@code DialogPreferences} object responsible for assembling the dialog box structure and
@@ -49,12 +49,16 @@ namespace Ciano.Widgets {
          * @param {@code Gtk.Window} parent
          */
         public DialogPreferences (Gtk.Window parent) {
+            Object (
+                use_header_bar: 1
+            );
+            
             this.title = Properties.TEXT_PREFERENCES;
             this.resizable = false;
             this.deletable = false;
             this.set_transient_for (parent);
-            this.set_default_size (500, 350);
-            this.set_size_request (500, 350);
+            this.set_default_size (500, 250);
+            this.set_size_request (500, 250);
             this.set_modal (true);
 
             this.settings = Ciano.Services.Settings.get_instance ();
@@ -68,7 +72,7 @@ namespace Ciano.Widgets {
             init_options ();
             mount_options (grid);
 
-            ((Gtk.Container) this.get_content_area ()).add (grid);
+            this.get_content_area ().append (grid);
         }
 
         /**
@@ -79,11 +83,29 @@ namespace Ciano.Widgets {
          * @return {@code void}
          */
         private void init_options () {
-            this.output_folder = new Gtk.FileChooserButton (StringUtil.EMPTY, Gtk.FileChooserAction.SELECT_FOLDER);
+            this.output_folder_button = new Gtk.Button.with_label (this.settings.output_folder);
             this.output_folder.hexpand = true;
-            this.output_folder.set_current_folder (this.settings.output_folder);
-            this.output_folder.selection_changed.connect (() => {
-                this.settings.output_folder = this.output_folder.get_file ().get_path ();
+            
+            this.output_folder_button.clicked.connect (() => {
+                var chooser = new Gtk.FileChooserNative (
+                    Properties.TEXT_SELECT_OUTPUT_FOLDER,
+                    (Gtk.Window) this.get_root (),
+                    Gtk.FileChooserAction.SELECT_FOLDER,
+                    Properties.TEXT_SELECT,
+                    Properties.TEXT_CANCEL
+                );
+
+                chooser.response.connect ((response_id) => {
+                    if (response_id == Gtk.ResponseType.ACCEPT) {
+                        var folder = chooser.get_file ();
+                        if (folder != null) {
+                            this.settings.output_folder = folder.get_path ();
+                            this.output_folder_button.label = folder.get_path ();
+                        }
+                    }
+                    chooser.destroy ();
+                });
+                chooser.show ();
             });
 
             this.output_source_file_folder = new Gtk.Switch ();

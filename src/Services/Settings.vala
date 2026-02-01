@@ -29,7 +29,7 @@ namespace Ciano.Services {
      * @see Granite.Services.Settings
      * @since 0.1.0
      */
-    public class Settings : Granite.Services.Settings {
+    public class Settings : Object {
 
         /**
          * This static property represents the {@code Settings} type.
@@ -104,7 +104,16 @@ namespace Ciano.Services {
          * @see Ciano.Constants
          */
         private Settings () {
-            base (Constants.ID);
+            settings = new GLib.Settings (Constants.ID);
+            
+            settings.bind ("window-x", this, "window-x", SettingsBindFlags.DEFAULT);
+            settings.bind ("window-y", this, "window-y", SettingsBindFlags.DEFAULT);
+            settings.bind ("output-folder", this, "output-folder", SettingsBindFlags.DEFAULT);
+            settings.bind ("output-source-file-folder", this, "output-source-file-folder", SettingsBindFlags.DEFAULT);
+            settings.bind ("shutdown-computer", this, "shutdown-computer", SettingsBindFlags.DEFAULT);
+            settings.bind ("open-output-folder", this, "open-output-folder", SettingsBindFlags.DEFAULT);
+            settings.bind ("complete-notify", this, "complete-notify", SettingsBindFlags.DEFAULT);
+            settings.bind ("error-notify", this, "error-notify", SettingsBindFlags.DEFAULT);
 
             if (StringUtil.is_empty (this.output_folder)) {
                 this.output_folder = Environment.get_home_dir () + Constants.DIRECTORY_CIANO;

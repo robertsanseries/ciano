@@ -29,12 +29,11 @@ namespace Ciano.Widgets {
      * @see Gtk.HeaderBar
      * @since 0.1.0
      */
-    public class HeaderBar : Gtk.HeaderBar {
+    public class HeaderBar : Adw.HeaderBar {
 
         public signal void item_selected ();
         
         public Gtk.MenuButton app_menu;
-        public Gtk.Menu       menu;   
 
         /**
          * Constructs a new {@code HeaderBar} object. Sets the title of the top bar and
@@ -44,8 +43,10 @@ namespace Ciano.Widgets {
          * @see icon_settings
          */
         public HeaderBar () {
-            this.set_title (Constants.PROGRAME_NAME);
-            this.show_close_button = true;
+            var title_label = new Gtk.Label (Constants.PROGRAME_NAME);
+            title_label.add_css_class ("title");
+            this.title_widget = title_label;
+
             icon_open_output_folder ();
             icon_settings ();
         }
@@ -74,29 +75,11 @@ namespace Ciano.Widgets {
             this.app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
             this.app_menu.tooltip_text = (Properties.TEXT_SETTINGS);
 
-            menu_settings();
+           var menu_model = new Gio.Menu ();
+            menu_model.append (Properties.TEXT_PREFERENCES, "app.preferences");
 
-            this.app_menu.set_popup (this.menu);
+            this.app_menu.menu_model = menu_model;
             this.pack_end (this.app_menu);
-        }
-
-        /**
-         * Creates the settings menu. When the user clicks the preferences option, {@code Gtk.MenuItem} will call
-         * the signal "item_selected". The actions of this signal are in the "on_activate_button_preferences" method
-         * of the ConverterController;
-         *
-         * @see Ciano.Controllers.ConverterController;
-         * @return {@code void}
-         */
-        private void menu_settings () {
-            var about_item = new Gtk.MenuItem.with_label (Properties.TEXT_PREFERENCES);
-            about_item.activate.connect(() => {
-                item_selected ();
-            });
-
-            this.menu = new Gtk.Menu ();
-            this.menu.add (about_item);
-            this.menu.show_all ();
         }
     }
 }

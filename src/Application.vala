@@ -28,7 +28,7 @@ namespace Ciano {
      * @see Granite.Application
      * @since 0.1.0
      */
-    public class Application : Granite.Application {
+    public class Application : Adw.Application {
 
         private Window window { get; private set; default = null; }
 
@@ -40,7 +40,7 @@ namespace Ciano {
         public Application () {
             Object (
                 application_id: Constants.ID,
-                flags: GLib.ApplicationFlags.DEFAULT_FLAGS
+                flags: GLib.ApplicationFlags.FLAGS_NONE
             );
         }
 
