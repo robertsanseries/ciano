@@ -55,7 +55,7 @@ namespace Ciano {
             if (window == null) {
                 window = new Window (this);
                 add_window (window);
-                window.show_all ();
+                window.present ();
             }
 
             var quit_action = new SimpleAction ("quit", null);

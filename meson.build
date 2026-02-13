@@ -14,6 +14,11 @@ i18n = import ('i18n')
 gnome = import('gnome')
 
 # Project arguments
+add_project_arguments(
+    '--disable-warnings',
+    language: 'vala'
+)
+
 add_project_arguments (
     '-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name ()),
     '-Wno-discarded-qualifiers',
@@ -53,7 +58,8 @@ dependencies = [
     dependency ('gtk4', version: '>=4.1', include_type: 'system'),
     dependency ('granite-7',  version: '>=7.7.0', include_type: 'system'),
     dependency ('gobject-2.0', version: '>=2.50', include_type: 'system'),
-    dependency ('libadwaita-1', version: '>= 1.0.0', include_type: 'system')
+    dependency ('libadwaita-1', version: '>= 1.0.0', include_type: 'system'),
+    dependency ('gio-2.0', version: '>= 2.66', include_type: 'system')
 ]
 
 ffmpeg = find_program('ffmpeg', required: true)

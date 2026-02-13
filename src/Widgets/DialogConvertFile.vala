@@ -71,11 +71,17 @@ namespace Ciano.Widgets {
             title.set_use_markup (true);
             title.get_style_context ().add_class ("title-section-dialog");
             title.halign = Gtk.Align.CENTER;
-            title.margin = 5;
+            title.margin_start = 5;
+            title.margin_end = 5;
+            title.margin_top = 5;
+            title.margin_bottom = 5;
 
             var label = new Gtk.Label (Properties.TEXT_ADD_ITEMS_TO_CONVERSION);
             label.halign = Gtk.Align.START;
-            label.margin = 5;
+            label.margin_start = 5;
+            label.margin_end = 5;
+            label.margin_top = 5;
+            label.margin_bottom = 5;
 
             var frame = mount_frame ();
             var grid_buttons = mount_buttons ();
@@ -86,10 +92,10 @@ namespace Ciano.Widgets {
             grid.margin_end = 15;
             grid.margin_top = 0;
             grid.margin_bottom = 0;
-            grid.add (title);
-            grid.add (label);
-            grid.add (frame);
-            grid.add (grid_buttons);
+            grid.attach (title, 0, 0, 1, 1);
+            grid.attach (label, 0, 1, 1, 1);
+            grid.attach (frame, 0, 2, 1, 1);
+            grid.attach (grid_buttons, 0, 3, 1, 1);
 
             this.get_content_area ().append (grid);
         }
@@ -109,11 +115,11 @@ namespace Ciano.Widgets {
 
             var grid_itens = new Gtk.Grid ();
             grid_itens.orientation = Gtk.Orientation.VERTICAL;
-            grid_itens.add (treeview);
-            grid_itens.add (toolbar);
+            grid_itens.attach (treeview, 0, 0, 1, 1);
+            grid_itens.attach (toolbar, 0, 1, 1, 1);
 
             var frame = new Gtk.Frame (null);
-            frame.add (grid_itens);
+            frame.set_child (grid_itens);
 
             return frame;
         }
@@ -153,9 +159,9 @@ namespace Ciano.Widgets {
             this.tree_view.insert_column (name_column, -1);
             this.tree_view.insert_column (directory_column, -1);
 
-            var scrolled = new Gtk.ScrolledWindow (null, null);
+            var scrolled = new Gtk.ScrolledWindow ();
             scrolled.expand = true;
-            scrolled.add (this.tree_view);
+            scrolled.set_child (this.tree_view);
 
             return scrolled;
         }
