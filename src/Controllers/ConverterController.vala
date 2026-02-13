@@ -38,7 +38,8 @@ namespace Ciano.Controllers {
         public  Gee.ArrayList<RowConversion>    convertions;
         private Gee.ArrayList<ItemConversion>   list_items;
         private Gtk.Application                 application;
-        private Ciano.Services.Settings          settings;
+        private Gtk.ApplicationWindow           window;
+        private Ciano.Services.Settings         settings;
         private ConverterView                   converter_view;
         private DialogPreferences               dialog_preferences;
         private DialogConvertFile               dialog_convert_file;       
@@ -65,6 +66,7 @@ namespace Ciano.Controllers {
         public ConverterController (Gtk.ApplicationWindow window, Gtk.Application application,  ConverterView converter_view) {
             this.converter_view = converter_view;
             this.application    = application;
+            this.window         = window;
             
             this.settings   = Ciano.Services.Settings.get_instance ();
             this.list_items = new Gee.ArrayList<ItemConversion> ();
@@ -85,7 +87,7 @@ namespace Ciano.Controllers {
         private void on_activate_button_preferences (Gtk.ApplicationWindow window) {
             this.converter_view.headerbar.item_selected.connect (() => {
                 this.dialog_preferences = new DialogPreferences (window);
-                this.dialog_preferences.show_all ();
+                this.dialog_preferences.present ();
             }); 
         }
 
@@ -104,13 +106,29 @@ namespace Ciano.Controllers {
         private void on_activate_button_item (Gtk.ApplicationWindow window) {
             this.converter_view.source_list.item_selected.connect ((item) => {
 
+                // Ignore categories (Video, Music, Image)
+                if (!item.selectable) {
+                    return;
+                }
+
+                // Saves the selected format
                 this.name_format_selected = item.name;
+
+                // Assembles supported formats (remains the same)
                 var types = mount_array_with_supported_formats (item.name);
 
-                this.dialog_convert_file = new DialogConvertFile (this, types, item.name, window);
-                this.dialog_convert_file.show_all ();
+                // Open the dialogue
+                this.dialog_convert_file = new DialogConvertFile (
+                    this,
+                    types,
+                    item.name,
+                    window
+                );
+
+                this.dialog_convert_file.present ();
             });
         }
+
 
         /**
          * Method responsible for adding one or more files to {@code Gtk.TreeView} from {@code DialogConvertFile}.
@@ -125,39 +143,48 @@ namespace Ciano.Controllers {
          * @return {@code void}
          */
         public void on_activate_button_add_file (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.TreeIter iter, Gtk.ListStore list_store, string [] formats) {
-            var chooser_file = new Gtk.FileChooserDialog (Properties.TEXT_SELECT_FILE, parent_dialog, Gtk.FileChooserAction.OPEN, null);
+            var chooser_file = new Gtk.FileChooserDialog (
+                Properties.TEXT_SELECT_FILE, 
+                this.window, 
+                Gtk.FileChooserAction.OPEN,
+                Properties.TEXT_CANCEL, Gtk.ResponseType.CANCEL,
+                Properties.TEXT_ADD, Gtk.ResponseType.OK
+            );
+            
             chooser_file.select_multiple = true;
 
             var filter = new Gtk.FileFilter ();
 
             foreach (string format in formats) {
                 filter.add_pattern ("*.".concat (format.down ()));
-            }       
-
-            chooser_file.set_filter (filter);
-            chooser_file.add_buttons (Properties.TEXT_CANCEL, Gtk.ResponseType.CANCEL, Properties.TEXT_ADD, Gtk.ResponseType.OK);
-
-            if (chooser_file.run () == Gtk.ResponseType.OK) {
-                SList<string> paths = chooser_file.get_filenames ();
-
-                foreach (unowned string path in paths) {
-                    if (path == null) continue;
-
-                    var file = File.new_for_path (path);
-                    var parent_file = file.get_parent ();
-
-                    string directory = (parent_file != null) ? parent_file.get_path () + Path.DIR_SEPARATOR_S : "";
-                    string name = file.get_basename ();
-
-                    if (name != null) {
-                        list_store.append (out iter);
-                        list_store.set (iter, 0, name, 1, directory);
-                    }
-                }
-                tree_view.expand_all ();
             }
 
-            chooser_file.hide ();
+            chooser_file.set_filter (filter);
+            
+            chooser_file.response.connect ((response_id) => {
+                if (response_id == Gtk.ResponseType.OK) {
+                    var files = chooser_file.get_files ();
+                    
+                    for (uint i = 0; i < files.get_n_items (); i++) {
+                        var file = (File) files.get_item (i);
+                        var parent_file = file.get_parent ();
+
+                        string directory = (parent_file != null) ? parent_file.get_path () + Path.DIR_SEPARATOR_S : "";
+                        string name = file.get_basename ();
+
+                        if (name != null) {
+                            list_store.append (out iter);
+                            list_store.set (iter, 0, name, 1, directory);
+                        }
+                    }
+                    
+                    tree_view.expand_all ();
+                }
+                
+                chooser_file.destroy ();
+            });
+
+            chooser_file.present ();
         }
         
         /**
@@ -208,7 +235,6 @@ namespace Ciano.Controllers {
         public void on_activate_button_start_conversion (Gtk.ListStore list_store, string name_format){
 
             this.converter_view.list_conversion.stack.set_visible_child_name (Constants.LIST_BOX_VIEW);
-            this.converter_view.list_conversion.stack.show_all ();
 
             Gtk.TreeModelForeachFunc load_list_for_conversion = (model, path, iter) => {
                 GLib.Value cell1;
@@ -274,7 +300,7 @@ namespace Ciano.Controllers {
                 string icon                 = get_type_icon (item);
                 RowConversion row           = create_row_conversion (icon, item.name, name_format, subprocess, btn_cancel);
                 
-                this.converter_view.list_conversion.list_box.add (row);
+                this.converter_view.list_conversion.list_box.append (row);
 
                 convert_async.begin (input_stream, row, item, error, (obj, async_res) => {
                     Logger.debug (@"Stream de log do FFmpeg fechado para: $(item.name)");

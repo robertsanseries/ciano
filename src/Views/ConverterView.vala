@@ -68,7 +68,7 @@ namespace Ciano.Views {
             var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
             paned.pack1 (frame, false, false);
             paned.pack2 (list_conversion, true, false);
-            this.add (paned);
+            this.set_child (paned);
         }
     }
 }
