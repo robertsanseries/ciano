@@ -55,9 +55,14 @@ namespace Ciano.Widgets {
          */
         public RowConversion (string icon, string name, double progress, string name_format) {
             this.container = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            this.container.margin = 3;
+            this.container.margin_start = 3;
+            this.container.margin_end = 3;
+            this.container.margin_top = 3;
+            this.container.margin_bottom = 3;
 
-            var icone = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
+            var icone = new Gtk.Image.from_icon_name (icon);
+            icone.pixel_size = 48;
+            
             this.box_name_progress = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
             if (name.length > 85) {
@@ -78,7 +83,7 @@ namespace Ciano.Widgets {
             this.status.halign = Gtk.Align.START;
 
             this.button_cancel = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
-            this.button_cancel.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+            this.button_cancel.add_css_class ("destructive-action");
             this.button_cancel.tooltip_text = (Properties.TEXT_CANCEL_CONVERSION);
             this.button_cancel.valign = Gtk.Align.CENTER;
             this.button_cancel.halign = Gtk.Align.CENTER;
@@ -88,20 +93,34 @@ namespace Ciano.Widgets {
             this.button_remove.valign = Gtk.Align.CENTER;
             this.button_remove.halign = Gtk.Align.CENTER;
             
-            box_name_progress.pack_start (this.name_video, true, true);
-            box_name_progress.pack_start (this.progress_bar, true, true);
-            box_name_progress.pack_start (this.status, true,true);
+            this.name_video.vexpand = true; 
+            box_name_progress.append (this.name_video);
 
-            this.container.pack_start (icone, false, false, 5);
-            this.container.pack_start (box_name_progress, true, true, 5);
-            this.container.pack_start (this.convert_to, false, false, 2);
-            this.container.pack_start (this.button_cancel, false, false, 8);
-            this.container.pack_start (this.button_remove, false, false, 8);
+            this.progress_bar.vexpand = true;
+            box_name_progress.append (this.progress_bar);
+
+            this.status.vexpand = true;
+            box_name_progress.append (this.status);
+
+            icone.margin_end = 5;
+            this.container.append (icone);
+
+            box_name_progress.hexpand = true;
+            box_name_progress.margin_end = 5;
+            this.container.append (box_name_progress);
+
+            this.convert_to.margin_end = 2;
+            this.container.append (this.convert_to);
+
+            this.button_cancel.margin_end = 8;
+            this.container.append (this.button_cancel);
+
+            this.button_remove.margin_end = 8;
+            this.container.append (this.button_remove);
 
             this.selectable = false;
             this.activatable = false;
-            this.add(container);
-            this.show_all ();
+            this.set_child(container);
         }
     }
 }
