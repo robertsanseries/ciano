@@ -85,7 +85,7 @@ namespace Ciano.Configs {
         public abstract const string TEXT_IMAGE                         = _("Image");
         // controllers/ConverterController.vala
         public abstract const string TEXT_SELECT_FILE                   = _("Select file");
-        // controllers/ConverterController.vala
+        // controllers/ConverterController.vala // widgets/DialogPreferences.vala
         public abstract const string TEXT_ADD                           = _("Add");
         // controllers/ConverterController.vala
         public abstract const string TEXT_SUCESS_IN_CONVERSION          = _("Conversion completed");

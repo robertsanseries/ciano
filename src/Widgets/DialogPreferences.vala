@@ -93,7 +93,7 @@ namespace Ciano.Widgets {
                     Properties.TEXT_SELECT_OUTPUT_FOLDER,
                     (Gtk.Window) this.get_root (),
                     Gtk.FileChooserAction.SELECT_FOLDER,
-                    Properties.TEXT_SELECT,
+                    Properties.TEXT_ADD,
                     Properties.TEXT_CANCEL
                 );
 
@@ -114,9 +114,9 @@ namespace Ciano.Widgets {
             this.settings.schema.bind ("output-source-file-folder", this.output_source_file_folder, "active", SettingsBindFlags.DEFAULT);
             this.output_source_file_folder.notify["active"].connect (() => {
                 if (this.output_source_file_folder.active) {
-                    this.output_folder.sensitive = false;
+                    this.output_folder_button.sensitive = false;
                 } else {
-                    this.output_folder.sensitive = true;
+                    this.output_folder_button.sensitive = true;
                 }
             });
 
@@ -127,7 +127,7 @@ namespace Ciano.Widgets {
             this.settings.schema.bind ("error-notify", this.error_notify, "active", SettingsBindFlags.DEFAULT);
 
             if (this.output_source_file_folder.active) {
-                this.output_folder.sensitive = false;
+                this.output_folder_button.sensitive = false;
             }
         }
 
@@ -168,7 +168,7 @@ namespace Ciano.Widgets {
 
                 // Option: Select output
                 var label_select_output_folder = new Gtk.Label (Properties.TEXT_SELECT_OUTPUT_FOLDER);
-                add_option (grid, label_select_output_folder, this.output_folder, ref row);
+                add_option (grid, label_select_output_folder, this.output_folder_button, ref row);
         }
 
         /**
