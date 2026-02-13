@@ -60,15 +60,20 @@ namespace Ciano.Views {
 
             this.source_list = new SourceListSidebar ();
             var frame = new Gtk.Frame (null);
-            frame.add (this.source_list);
+            frame.set_child (this.source_list);
             frame.width_request = 185;
 
             this.list_conversion = new ListConversion ();
-            
+
             var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-            paned.pack1 (frame, false, false);
-            paned.pack2 (list_conversion, true, false);
-            this.set_child (paned);
+            paned.start_child = frame;
+            paned.resize_start_child = false;
+            paned.shrink_start_child = false;
+            paned.end_child = list_conversion;
+            paned.resize_end_child = true;
+            paned.shrink_end_child = false;
+
+            this.attach (paned, 0, 0, 1, 1);
         }
     }
 }
