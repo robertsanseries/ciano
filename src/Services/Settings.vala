@@ -42,7 +42,7 @@ namespace Ciano.Services {
          * with the system's configuration database.
          * Object of type {@code GLib.Settings} as declared.
          */
-        private GLib.Settings schema;
+        public GLib.Settings schema;
         
         /**
          * This property will represent the width of the main window.

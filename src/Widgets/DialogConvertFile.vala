@@ -160,7 +160,8 @@ namespace Ciano.Widgets {
             this.tree_view.insert_column (directory_column, -1);
 
             var scrolled = new Gtk.ScrolledWindow ();
-            scrolled.expand = true;
+            scrolled.hexpand = true;
+            scrolled.vexpand = true;
             scrolled.set_child (this.tree_view);
 
             return scrolled;

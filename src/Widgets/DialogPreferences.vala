@@ -66,8 +66,10 @@ namespace Ciano.Widgets {
             var grid = new Gtk.Grid ();
             grid.row_spacing = 5;
             grid.column_spacing = 5;
-            grid.margin = 7;
-            grid.margin_top = 5;
+            grid.margin_start = 5;
+            grid.margin_end = 5;
+            grid.margin_top = 7;
+            grid.margin_bottom = 5;
 
             init_options ();
             mount_options (grid);
@@ -84,7 +86,7 @@ namespace Ciano.Widgets {
          */
         private void init_options () {
             this.output_folder_button = new Gtk.Button.with_label (this.settings.output_folder);
-            this.output_folder.hexpand = true;
+            this.output_folder_button.hexpand = true;
             
             this.output_folder_button.clicked.connect (() => {
                 var chooser = new Gtk.FileChooserNative (
