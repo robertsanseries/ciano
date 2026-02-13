@@ -37,7 +37,6 @@ namespace Ciano.Utils {
          * @return  {@code void} 
          */
         public static void set_visible (Gtk.Widget widget, bool visible) {
-            widget.no_show_all = !visible;
             widget.visible = visible;
         }
     }
