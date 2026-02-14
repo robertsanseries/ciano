@@ -74,7 +74,7 @@ namespace Ciano.Widgets {
 
             this.progress_bar = new Gtk.ProgressBar ();
             this.progress_bar.add_css_class ("progress_bar");
-            this.progress_bar.set_fraction (progress);
+            this.update_progress (progress);
             
             this.convert_to = new Gtk.Label (name_format);
             this.convert_to.set_use_markup (true);
@@ -121,6 +121,16 @@ namespace Ciano.Widgets {
             this.selectable = false;
             this.activatable = false;
             this.set_child(container);
+        }
+        
+        public void update_progress (double fraction) {
+            this.progress_bar.set_fraction (fraction);
+
+            if (fraction >= 1.0) {
+                this.progress_bar.add_css_class ("complete");
+            } else {
+                this.progress_bar.remove_css_class ("complete");
+            }
         }
     }
 }

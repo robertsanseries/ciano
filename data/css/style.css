@@ -17,9 +17,12 @@
 * Boston, MA 02110-1301 USA
 */
 
-@define-color colorPrimary #80E5FF;
+/*@define-color colorPrimary #80E5FF;*/
+@define-color colorPrimary #37C8AB;
 @define-color textColorPrimary #333333;
 @define-color white #FFFFFF;
+@define-color gray #F1F1F1;
+
 /*@define-color black #000000;*/
 /*@define-color whiteElementary #FAFAFA;*/
 /*@define-color blackElementary #333333;*/
@@ -57,7 +60,7 @@ window {
    =============================== */
 
 listview {
-    background-color: @white;
+    background-color: @gray;
     color: @textColorPrimary;
 }
 
@@ -94,8 +97,14 @@ label {
    PROGRESS BAR (GTK4)
    =============================== */
 
-progressbar > trough > progress {
+progressbar.progress_bar trough progress {
+    background: none;
     background-color: @colorPrimary;
+}
+
+progressbar.progress_bar.complete trough progress {
+    background: none;
+    background-color: #37C8AB;
 }
 
 .dialog-preferences,

@@ -553,7 +553,7 @@ namespace Ciano.Controllers {
 
                     Idle.add (() => {
                         if (row != null && row.progress_bar != null) {
-                            row.progress_bar.set_fraction (fraction);
+                            row.update_progress (fraction);
                             row.status.label = label_text;
                         }
                         return false;
