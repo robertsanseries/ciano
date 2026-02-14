@@ -25,22 +25,19 @@ namespace Ciano.Widgets {
         public string? icon_name { get; set; }
         public bool selectable { get; set; default = true; }
 
-        private GLib.ListStore? children = null;
+        private GLib.ListStore children = new GLib.ListStore (typeof (SourceItem));
 
         public SourceItem (string name, string? icon_name = null) {
             this.name = name;
             this.icon_name = icon_name;
         }
 
-        public void append_child (SourceItem child) {
-            if (this.children == null) {
-                this.children = new ListStore (typeof (SourceItem));
-            }
-            this.children.append (child);
+        public GLib.ListStore get_child_model () {
+            return children;
         }
 
-        public GLib.ListStore? get_child_model () {
-            return this.children;
+        public void append_child (SourceItem item) {
+            children.append (item);
         }
 
         public signal void activated ();

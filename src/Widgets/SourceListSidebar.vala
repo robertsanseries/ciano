@@ -54,6 +54,8 @@ namespace Ciano.Widgets {
             mount_image_list ();
 
             this.root_item.append_child (this.type_list);
+            
+            this.initialize_model(); 
         }
 
         /**

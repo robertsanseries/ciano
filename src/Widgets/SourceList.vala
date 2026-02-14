@@ -19,6 +19,7 @@
 
 using Granite;
 using Granite.Widgets;
+using Ciano.Configs;
 
 namespace Ciano.Widgets {
 
@@ -41,28 +42,60 @@ namespace Ciano.Widgets {
 
             /* Create ScrolledWindow internally */
             scrolled_window = new Gtk.ScrolledWindow ();
+            scrolled_window.set_hexpand (true);
+            scrolled_window.set_vexpand (true);
             append (scrolled_window);
+        
+        
+        }
 
-            // Transform the data structure into a GTK4 TreeListModel
+          public void initialize_model () {
+
+            // Cria o TreeListModel sem autoexpand
             tree_model = new Gtk.TreeListModel (
-                root.get_child_model (),
+                root_item.get_child_model (),
                 false,
-                true,
+                false,
                 (item) => {
-                    return ((SourceItem)item).get_child_model ();
+                    var model = ((SourceItem)item).get_child_model ();
+                    return model.get_n_items () > 0 ? model : null;
                 }
             );
 
-            // Manage selection
+            // Controle de seleção
             var selection = new Gtk.SingleSelection (tree_model);
+            selection.set_autoselect (true);
+            selection.set_can_unselect (false);
 
-            // ListView with optimized Factory
+            // Criação da ListView
             list_view = new Gtk.ListView (selection, create_factory ());
             list_view.add_css_class ("navigation-sidebar");
 
-            // Attach ListView inside ScrolledWindow
             scrolled_window.set_child (list_view);
+
+            // Expansão inicial controlada
+            Idle.add (() => {
+
+                for (uint i = 0; i < tree_model.get_n_items (); i++) {
+
+                    var row = (Gtk.TreeListRow) tree_model.get_item (i);
+                    var item = (SourceItem) row.get_item ();
+
+                    // Expandir nível 0: "Convert file to"
+                    if (item.name == Properties.TEXT_CONVERT_FILE_TO) {
+                        row.set_expanded (true);
+                    }
+
+                    // Expandir nível 1: "Video"
+                    if (item.name == Properties.TEXT_VIDEO) {
+                        row.set_expanded (true);
+                    }
+                }
+
+                return false;
+            });
         }
+
 
         private Gtk.ListItemFactory create_factory () {
 
@@ -88,7 +121,7 @@ namespace Ciano.Widgets {
                     var row_data = (Gtk.TreeListRow) list_item.get_item ();
                     var item_data = (SourceItem) row_data.get_item ();
 
-                    if (row_data.get_children () != null) {
+                    if (row_data.is_expandable ()) {
                         row_data.set_expanded (!row_data.get_expanded ());
                     } else {
                         this.item_selected (item_data);
@@ -111,7 +144,7 @@ namespace Ciano.Widgets {
                 var main_icon = (Gtk.Image) expander_icon.get_next_sibling ();
                 var label = (Gtk.Label) main_icon.get_next_sibling ();
 
-                expander_icon.visible = (row_data.get_children () != null);
+                expander_icon.visible = row_data.is_expandable ();
                 expander_icon.icon_name =
                     row_data.get_expanded ()
                     ? "pan-down-symbolic"
