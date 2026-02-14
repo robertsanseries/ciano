@@ -87,47 +87,79 @@ namespace Ciano.Widgets {
         private void init_options () {
             this.output_folder_button = new Gtk.Button.with_label (this.settings.output_folder);
             this.output_folder_button.hexpand = true;
-            
+
             this.output_folder_button.clicked.connect (() => {
-                var chooser = new Gtk.FileChooserNative (
-                    Properties.TEXT_SELECT_OUTPUT_FOLDER,
-                    (Gtk.Window) this.get_root (),
-                    Gtk.FileChooserAction.SELECT_FOLDER,
-                    Properties.TEXT_ADD,
-                    Properties.TEXT_CANCEL
-                );
-
-                chooser.response.connect ((response_id) => {
-                    if (response_id == Gtk.ResponseType.ACCEPT) {
-                        var folder = chooser.get_file ();
-                        if (folder != null) {
-                            this.settings.output_folder = folder.get_path ();
-                            this.output_folder_button.label = folder.get_path ();
-                        }
-                    }
-                    chooser.destroy ();
-                });
-                chooser.show ();
+                // Start async folder selection
+                select_output_folder.begin ();
             });
 
+            // Switch: use source file folder as output
             this.output_source_file_folder = new Gtk.Switch ();
-            this.settings.schema.bind ("output-source-file-folder", this.output_source_file_folder, "active", SettingsBindFlags.DEFAULT);
+            this.settings.schema.bind (
+                "output-source-file-folder",
+                this.output_source_file_folder,
+                "active",
+                SettingsBindFlags.DEFAULT
+            );
+
             this.output_source_file_folder.notify["active"].connect (() => {
-                if (this.output_source_file_folder.active) {
-                    this.output_folder_button.sensitive = false;
-                } else {
-                    this.output_folder_button.sensitive = true;
-                }
+                // Disable custom folder button if source folder mode is active
+                this.output_folder_button.sensitive = !this.output_source_file_folder.active;
             });
 
+            // Notification switches
             this.complete_notify = new Gtk.Switch ();
-            this.settings.schema.bind ("complete-notify", this.complete_notify, "active", SettingsBindFlags.DEFAULT);
+            this.settings.schema.bind (
+                "complete-notify",
+                this.complete_notify,
+                "active",
+                SettingsBindFlags.DEFAULT
+            );
 
             this.error_notify = new Gtk.Switch ();
-            this.settings.schema.bind ("error-notify", this.error_notify, "active", SettingsBindFlags.DEFAULT);
+            this.settings.schema.bind (
+                "error-notify",
+                this.error_notify,
+                "active",
+                SettingsBindFlags.DEFAULT
+            );
 
+            // Initial state check
             if (this.output_source_file_folder.active) {
                 this.output_folder_button.sensitive = false;
+            }
+        }
+        
+        /**
+         * Open modern GTK4 folder selection dialog.
+         *
+         * Uses async API instead of deprecated Gtk.FileChooserNative.
+         */
+        private async void select_output_folder () {
+
+            // Create modern GTK4 folder selection dialog
+            var dialog = new Gtk.FileDialog ();
+            dialog.set_title (Properties.TEXT_SELECT_OUTPUT_FOLDER);
+            dialog.set_modal (true);
+
+            try {
+                // Await folder selection
+                var folder = yield dialog.select_folder (
+                    (Gtk.Window) this.get_root (),
+                    null
+                );
+
+                if (folder != null) {
+
+                    string path = folder.get_path ();
+
+                    if (path != null) {
+                        this.settings.output_folder = path;
+                        this.output_folder_button.label = path;
+                    }
+                }
+            } catch (Error e) {
+                print ("Error selecting folder: %s\n", e.message);
             }
         }
 

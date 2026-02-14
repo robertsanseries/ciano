@@ -142,51 +142,85 @@ namespace Ciano.Controllers {
          * @param  {@code string []}     formats
          * @return {@code void}
          */
-        public void on_activate_button_add_file (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.TreeIter iter, Gtk.ListStore list_store, string [] formats) {
-            var chooser_file = new Gtk.FileChooserDialog (
-                Properties.TEXT_SELECT_FILE, 
-                this.window, 
-                Gtk.FileChooserAction.OPEN,
-                Properties.TEXT_CANCEL, Gtk.ResponseType.CANCEL,
-                Properties.TEXT_ADD, Gtk.ResponseType.OK
-            );
-            
-            chooser_file.select_multiple = true;
+        public void on_activate_button_add_file (
+            Gtk.Dialog parent_dialog, 
+            Gtk.TreeView tree_view, 
+            Gtk.TreeIter iter, 
+            Gtk.ListStore list_store, 
+            string [] formats) {
 
+            // Start async file selection
+            select_files.begin (tree_view, list_store, formats);
+        }
+        
+        /**
+         * Open modern GTK4 file dialog for multiple file selection.
+         */
+        private async void select_files (
+            Gtk.TreeView tree_view,
+            Gtk.ListStore list_store,
+            string [] formats) {
+
+            // Create modern GTK4 file dialog
+            var dialog = new Gtk.FileDialog ();
+            dialog.set_title (Properties.TEXT_SELECT_FILE);
+            dialog.set_modal (true);
+
+            // Create file filter
             var filter = new Gtk.FileFilter ();
+            filter.name = Properties.TEXT_SELECT_FILE;
 
             foreach (string format in formats) {
                 filter.add_pattern ("*.".concat (format.down ()));
             }
 
-            chooser_file.set_filter (filter);
-            
-            chooser_file.response.connect ((response_id) => {
-                if (response_id == Gtk.ResponseType.OK) {
-                    var files = chooser_file.get_files ();
-                    
-                    for (uint i = 0; i < files.get_n_items (); i++) {
-                        var file = (File) files.get_item (i);
-                        var parent_file = file.get_parent ();
+            // Gtk.FileDialog requires filters inside a GListModel
+            var filters = new GLib.ListStore (typeof (Gtk.FileFilter));
+            filters.append (filter);
 
-                        string directory = (parent_file != null) ? parent_file.get_path () + Path.DIR_SEPARATOR_S : "";
-                        string name = file.get_basename ();
+            dialog.set_filters (filters);
 
-                        if (name != null) {
-                            list_store.append (out iter);
-                            list_store.set (iter, 0, name, 1, directory);
-                        }
+            try {
+                // Await multiple selection
+                var files = yield dialog.open_multiple (
+                    this.window,
+                    null
+                );
+
+                for (uint i = 0; i < files.get_n_items (); i++) {
+
+                    var file = (File) files.get_item (i);
+
+                    if (file == null)
+                        continue;
+
+                    // Extract parent directory
+                    var parent_file = file.get_parent ();
+
+                    string directory =
+                        (parent_file != null)
+                        ? parent_file.get_path () + Path.DIR_SEPARATOR_S
+                        : "";
+
+                    // Extract file name
+                    string name = file.get_basename ();
+
+                    if (name != null) {
+                        Gtk.TreeIter new_iter;
+                        list_store.append (out new_iter);
+                        list_store.set (new_iter, 0, name, 1, directory);
                     }
-                    
-                    tree_view.expand_all ();
                 }
-                
-                chooser_file.destroy ();
-            });
 
-            chooser_file.present ();
+                // Expand rows
+                tree_view.expand_all ();
+
+            } catch (Error e) {
+                print ("Error selecting files: %s\n", e.message);
+            }
         }
-        
+
+
         /**
          * Removeable add-on method added in {@code Gtk.TreeView} {@code DialogConvertFile}
          * 
