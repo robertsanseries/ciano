@@ -599,19 +599,19 @@ namespace Ciano.Controllers {
 
             if (str_return.contains ("No such file or directory")) {
                 row.status.label = Properties.MSG_ERROR_NO_SUCH_FILE_DIRECTORY;
-                row.status.get_style_context ().add_class ("color-label-error");
+                row.status.add_css_class ("color-label-error");
                 error++;
             } else if (str_return.contains ("Invalid argument")) {
                 row.status.label = Properties.MSG_ERROR_INVALID_ARGUMENT;
-                row.status.get_style_context ().add_class ("color-label-error");
+                row.status.add_css_class ("color-label-error");
                 error++;
             } else if (str_return.contains ("Experimental codecs are not enabled")) {
                 row.status.label = Properties.MSG_ERROR_CODECS;
-                row.status.get_style_context ().add_class ("color-label-error");
+                row.status.add_css_class ("color-label-error");
                 error++;
             } else if (str_return.contains ("Invalid data found when processing input")) {
                 row.status.label = Properties.MSG_ERROR_INVALID_INPUT_DATA;
-                row.status.get_style_context ().add_class ("color-label-error");
+                row.status.add_css_class ("color-label-error");
                 error++;
             }
         }

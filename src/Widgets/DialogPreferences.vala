@@ -256,7 +256,7 @@ namespace Ciano.Widgets {
             name.halign     = Gtk.Align.START;
             name.use_markup = true;
             name.set_markup ("<b>%s</b>".printf (name.get_text ()));
-            name.get_style_context ().add_class ("title-section-dialog");
+            name.add_css_class ("title-section-dialog");
 
             if (row > 0) {
                 name.margin_top = 10;

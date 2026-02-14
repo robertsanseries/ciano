@@ -53,7 +53,7 @@ namespace Ciano.Views {
             this.app.set_size_request (1050, 700);
             this.app.deletable = true;
             this.app.resizable = true;
-            this.app.get_style_context ().add_class ("window-background-color");
+            this.app.add_css_class ("window-background-color");
 
             this.headerbar = new HeaderBar ();
             this.app.set_titlebar (this.headerbar);
