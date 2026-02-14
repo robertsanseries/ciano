@@ -95,7 +95,7 @@ namespace Ciano.Controllers {
          * When selecting which type to convert:
          * 1 - Stores the name of the selected type.
          * 2 - Call the {@code mount_array_with_supported_formats} method to define the types of formats that will be
-         *     possible to add in the {@code Gtk.TreeView} of {@code DialogConvertFile} for conversion.
+         *     possible to add in the {@code Gtk.ListView} of {@code DialogConvertFile} for conversion.
          * 3 - Build the {@code DialogConvertFile}.
          *
          * @see Ciano.Widgets.DialogConvertFile
@@ -131,42 +131,39 @@ namespace Ciano.Controllers {
 
 
         /**
-         * Method responsible for adding one or more files to {@code Gtk.TreeView} from {@code DialogConvertFile}.
+         * Method responsible for adding one or more files to the
+         * {@code GLib.ListStore} used by {@code Gtk.ListView}
+         * in {@code DialogConvertFile}.
+         *
+         * Files are selected using the GTK4 {@code Gtk.FileDialog}
+         * and appended as {@code FileItem} objects to the model.
          *
          * @see Ciano.Widgets.DialogConvertFile
-         * @see Ciano.Configs.Properties
-         * @param  {@code Gtk.Dialog}    parent_dialog
-         * @param  {@code Gtk.TreeView}  tree_view
-         * @param  {@code Gtk.TreeIter}  iter
-         * @param  {@code Gtk.ListStore} list_store
-         * @param  {@code string []}     formats
+         * @see Ciano.Objects.FileItem
+         * @see Gtk.FileDialog
+         * @param  {@code GLib.ListStore} list_store
+         * @param  {@code string []}      formats
          * @return {@code void}
          */
         public void on_activate_button_add_file (
-            Gtk.Dialog parent_dialog, 
-            Gtk.TreeView tree_view, 
-            Gtk.TreeIter iter, 
-            Gtk.ListStore list_store, 
+            GLib.ListStore list_store,
             string [] formats) {
-
-            // Start async file selection
-            select_files.begin (tree_view, list_store, formats);
+            select_files.begin (list_store, formats);
         }
         
         /**
          * Open modern GTK4 file dialog for multiple file selection.
          */
         private async void select_files (
-            Gtk.TreeView tree_view,
-            Gtk.ListStore list_store,
+            GLib.ListStore list_store,
             string [] formats) {
 
-            // Create modern GTK4 file dialog
+            // Create GTK4 file dialog
             var dialog = new Gtk.FileDialog ();
             dialog.set_title (Properties.TEXT_SELECT_FILE);
             dialog.set_modal (true);
 
-            // Create file filter
+            // Create filter
             var filter = new Gtk.FileFilter ();
             filter.name = Properties.TEXT_SELECT_FILE;
 
@@ -174,27 +171,19 @@ namespace Ciano.Controllers {
                 filter.add_pattern ("*.".concat (format.down ()));
             }
 
-            // Gtk.FileDialog requires filters inside a GListModel
             var filters = new GLib.ListStore (typeof (Gtk.FileFilter));
             filters.append (filter);
-
             dialog.set_filters (filters);
 
             try {
-                // Await multiple selection
-                var files = yield dialog.open_multiple (
-                    this.window,
-                    null
-                );
+                var files = yield dialog.open_multiple (this.window, null);
 
                 for (uint i = 0; i < files.get_n_items (); i++) {
 
                     var file = (File) files.get_item (i);
-
                     if (file == null)
                         continue;
 
-                    // Extract parent directory
                     var parent_file = file.get_parent ();
 
                     string directory =
@@ -202,99 +191,74 @@ namespace Ciano.Controllers {
                         ? parent_file.get_path () + Path.DIR_SEPARATOR_S
                         : "";
 
-                    // Extract file name
                     string name = file.get_basename ();
 
                     if (name != null) {
-                        Gtk.TreeIter new_iter;
-                        list_store.append (out new_iter);
-                        list_store.set (new_iter, 0, name, 1, directory);
+
+                        // 🔥 Create FileItem (GTK4 model object)
+                        var file_item = new FileItem (name, directory);
+
+                        list_store.append (file_item);
                     }
                 }
-
-                // Expand rows
-                tree_view.expand_all ();
 
             } catch (Error e) {
                 print ("Error selecting files: %s\n", e.message);
             }
         }
 
-
-        /**
-         * Removeable add-on method added in {@code Gtk.TreeView} {@code DialogConvertFile}
-         * 
-         * @param  {@code Gtk.Dialog}     parent_dialog
-         * @param  {@code Gtk.TreeView}   tree_view
-         * @param  {@code Gtk.ListStore}  list_store
-         * @param  {@code Gtk.ToolButton} button_remove
-         * @return {@code void}
-         */
-        public void on_activate_button_remove (Gtk.Dialog parent_dialog, Gtk.TreeView tree_view, Gtk.ListStore list_store, Gtk.Button button_remove) {
-
-            Gtk.TreePath path;
-            Gtk.TreeViewColumn column;
-
-            tree_view.get_cursor (out path, out column);
-
-            if(path != null) {
-                Gtk.TreeIter iter;
-                
-                list_store.get_iter (out iter, path);
-                list_store.remove (ref iter);
-
-                if (path.to_string () == "0") {
-                    button_remove.sensitive = false;
-                }
-            }
-        }
         
         /**
-         * Method responsible for initiating action when user clicks "start conversion" 
-         * button on {@code Gtk.TreeView} from {@code DialogConvertFile}.
-         * 
-         * In each foreach item {@code load_list_for_conversion} will perform the following action:
-         * 1 - Get the name and directory of the file.
-         * 2 - Creates an {@code ItemConversion} to store the status of each item.
-         * 3 - Adds {@code ItemConversion} to {@code list list_items}.
-         * 4 - {@code start_conversion_process} method responsible for starting the item conversion..
-         * 
+         * Method responsible for initiating the conversion process when the user
+         * clicks the "start conversion" button in {@code DialogConvertFile}.
+         *
+         * It iterates over the items stored in the {@code GLib.ListStore}
+         * (used by {@code Gtk.ListView}) and performs the following actions:
+         *
+         * 1 - Retrieves the file name and directory.
+         * 2 - Creates an {@code ItemConversion} instance to track conversion status.
+         * 3 - Adds the {@code ItemConversion} to the internal list.
+         * 4 - Calls {@code start_conversion_process} to execute the conversion.
+         *
          * @see Ciano.Configs.Constants
-         * @see Ciano.Objects.ItemConvertion
+         * @see Ciano.Objects.ItemConversion
          * @see start_conversion_process
-         * @param  {@code Gtk.ListStore} list_store
-         * @param  {@code string}        name_format
+         * @param  {@code GLib.ListStore} list_store
+         * @param  {@code string}         name_format
          * @return {@code void}
          */
-        public void on_activate_button_start_conversion (Gtk.ListStore list_store, string name_format){
+        public void on_activate_button_start_conversion (
+            GLib.ListStore list_store,
+            string name_format)
+        {
+            this.converter_view.list_conversion.stack
+                .set_visible_child_name (Constants.LIST_BOX_VIEW);
 
-            this.converter_view.list_conversion.stack.set_visible_child_name (Constants.LIST_BOX_VIEW);
+            for (uint i = 0; i < list_store.get_n_items (); i++) {
 
-            Gtk.TreeModelForeachFunc load_list_for_conversion = (model, path, iter) => {
-                GLib.Value cell1;
-                GLib.Value cell2;
+                var obj = list_store.get_item (i);
 
-                list_store.get_value (iter, 0, out cell1);
-                list_store.get_value (iter, 1, out cell2);
+                if (obj == null) {
+                    continue;
+                }
+
+                var file_item = (Ciano.Objects.FileItem) obj;
 
                 var item = new ItemConversion (
-                    id_item, 
-                    cell1.get_string (), 
-                    cell2.get_string (),
+                    id_item,
+                    file_item.name,
+                    file_item.directory,
                     this.name_format_selected,
                     0,
                     this.type_item
                 );
 
                 this.list_items.add (item);
-                
-                start_conversion_process (item, name_format);
-                this.id_item++;
-               
-                return false;
-            };
 
-            list_store.foreach (load_list_for_conversion);
+                start_conversion_process (item, name_format);
+
+                this.id_item++;
+            }
         }
 
         /**

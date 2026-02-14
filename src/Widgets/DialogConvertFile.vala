@@ -36,9 +36,9 @@ namespace Ciano.Widgets {
 
         private string []           formats;
         private string              name_format;
-        private Gtk.ListStore       list_store;
-        private Gtk.TreeView        tree_view;
-        private Gtk.TreeIter        iter;
+        private Gtk.ListView        list_view;
+        private GLib.ListStore      list_store;
+        private Gtk.SingleSelection selection;
         private ConverterController converter_controller;
 
         /**
@@ -102,20 +102,20 @@ namespace Ciano.Widgets {
 
         /**
          * Mounts to {@code Gtk.Frame} structure with your widgets.
-         * 1 - create the {@code Gtk.Treeview} and add the {@code Gtk.Grid} that will be in the {@code Gtk.Frame}.
-         * 2 - create the {@code Gtk.Toobar} and add the {@code Gtk.Grid} that will be in the {@code Gtk.Frame}.
+         * 1 - create the {@code Gtk.ListView} and add the {@code Gtk.Grid} that will be in the {@code Gtk.Frame}.
+         * 2 - create the toolbar container and attach it below the list.
          *
-         * @see mount_treeview
+         * @see mount_listview
          * @see mount_toolbar
          * @return {@code Gtk.Frame}
          */
         private Gtk.Frame mount_frame () {
-            var treeview = mount_treeview ();
+            var listview = mount_listview ();
             var toolbar = mount_toolbar ();
 
             var grid_itens = new Gtk.Grid ();
             grid_itens.orientation = Gtk.Orientation.VERTICAL;
-            grid_itens.attach (treeview, 0, 0, 1, 1);
+            grid_itens.attach (listview, 0, 0, 1, 1);
             grid_itens.attach (toolbar, 0, 1, 1, 1);
 
             var frame = new Gtk.Frame (null);
@@ -125,81 +125,123 @@ namespace Ciano.Widgets {
         }
 
         /**
-         * Mount the {@code Gtk.Treeview} structure. {@code Gtk.Treeview} will have only two columns "name"
-         * and "Directory".
+         * Mount the {@code Gtk.ListView} structure using {@code GLib.ListStore}
+         * as the model. The list displays two pieces of information:
+         * file "name" and "directory".
          *
-         * @see Ciano.Configs.Properties
-         * @see Ciano.Enums.ColumnEnum
-         * @return Gtk.ScrolledWindow
+         * This implementation uses modern GTK4 list APIs
+         * based on {@code GLib.ListStore} and {@code Gtk.ListView}.
+         *
+         * @see Ciano.Objects.FileItem
+         * @see Gtk.ListView
+         * @see GLib.ListStore
+         * @return {@code Gtk.Widget}
          */
-        private Gtk.ScrolledWindow mount_treeview () {
-            this.list_store = new Gtk.ListStore (ColumnEnum.N_COLUMNS ,typeof (string), typeof (string));
+        private Gtk.Widget mount_listview () {
+            // Create modern list store
+            list_store = new GLib.ListStore (typeof (Ciano.Objects.FileItem));
 
-            this.tree_view = new Gtk.TreeView.with_model (this.list_store);
-            this.tree_view.vexpand = true;
+            // Create selection model
+            selection = new Gtk.SingleSelection (list_store);
 
-            var name_column = new Gtk.TreeViewColumn ();
-            var cell1 = new Gtk.CellRendererText ();
-            name_column.title = Properties.NAME;
-            name_column.expand = true;
-            name_column.min_width = 200;
-            name_column.max_width = 200;
-            name_column.pack_start (cell1, false);
-            name_column.add_attribute (cell1, "text", ColumnEnum.NAME);
+            // Create factory
+            var factory = new Gtk.SignalListItemFactory ();
 
-            var directory_column = new Gtk.TreeViewColumn ();
-            var cell2 = new Gtk.CellRendererText ();
-            directory_column.title = Properties.DIRECTORY;
-            directory_column.expand = true;
-            directory_column.min_width = 200;
-            directory_column.max_width = 200;
-            directory_column.pack_start (cell2, false);
-            directory_column.add_attribute (cell2, "text", ColumnEnum.DIRECTORY);
+            factory.setup.connect ((item) => {
 
-            this.tree_view.insert_column (name_column, -1);
-            this.tree_view.insert_column (directory_column, -1);
+                var list_item = (Gtk.ListItem) item;
 
-            var scrolled = new Gtk.ScrolledWindow ();
-            scrolled.hexpand = true;
-            scrolled.vexpand = true;
-            scrolled.set_child (this.tree_view);
+                var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12);
+                box.margin_start = 12;
+                box.margin_end = 12;
+                box.margin_top = 6;
+                box.margin_bottom = 6;
 
-            return scrolled;
+                var label_name = new Gtk.Label ("");
+                label_name.hexpand = true;
+                label_name.halign = Gtk.Align.START;
+
+                var label_directory = new Gtk.Label ("");
+                label_directory.halign = Gtk.Align.END;
+                label_directory.add_css_class ("dim-label");
+
+                box.append (label_name);
+                box.append (label_directory);
+
+                list_item.set_child (box);
+            });
+
+            factory.bind.connect ((item) => {
+
+                var list_item = (Gtk.ListItem) item;
+                var obj = list_item.get_item ();
+
+                if (obj == null) {
+                    return;
+                }
+
+                var file_item = (Ciano.Objects.FileItem) obj;
+                var box_widget = list_item.get_child ();
+
+                if (box_widget == null) {
+                    return;
+                }
+
+                var box = (Gtk.Box) box_widget;
+
+                var label_name = (Gtk.Label) box.get_first_child ();
+                var label_directory = (Gtk.Label) label_name.get_next_sibling ();
+
+                label_name.label = file_item.name;
+                label_directory.label = file_item.directory;
+            });
+
+            list_view = new Gtk.ListView (selection, factory);
+            list_view.set_vexpand (true);
+
+            return list_view;
         }
 
         /**
-         * Mount the {@code Gtk.Toolbar} structure. The {@code Gtk.Toolbar} will have the option to add items
-         * and remove them from the {@code Gtk.Treeview}. The methods responsible for performing the actions of
-         * adding ({@code on_activate_button_add_file}) and removing ({@code on_activate_button_remove})
-         * the items are implemented in the controller ({@code ConverterController}).
+         * Mount the toolbar structure. The toolbar provides options to add
+         * and remove items from the {@code Gtk.ListView}.
          *
-         * @see Ciano.Configs.Properties
-         * @see Ciano.Controllers.ConverterController
-         * @return Gtk.Toolbar
+         * The add logic is delegated to the controller.
+         *
+         * @return Gtk.Box
          */
         private Gtk.Box mount_toolbar () {
-            var toolbar_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+
+            var toolbar_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
             toolbar_box.add_css_class ("inline-toolbar");
 
             var button_add_file = new Gtk.Button.from_icon_name ("application-add-symbolic");
             button_add_file.tooltip_text = Properties.TEXT_ADD_FILE;
+
             button_add_file.clicked.connect (() => {
                 this.converter_controller.on_activate_button_add_file (
-                    this, this.tree_view, this.iter, this.list_store, this.formats
+                    this.list_store,
+                    this.formats
                 );
             });
 
             var button_remove = new Gtk.Button.from_icon_name ("list-remove-symbolic");
             button_remove.tooltip_text = Properties.TEXT_DELETE;
             button_remove.sensitive = false;
+
             button_remove.clicked.connect (() => {
-                this.converter_controller.on_activate_button_remove (
-                    this, this.tree_view, this.list_store, button_remove
-                );
+
+                var position = selection.get_selected ();
+
+                if (position != Gtk.INVALID_LIST_POSITION) {
+                    list_store.remove (position);
+                }
             });
 
-            this.tree_view.get_selection ().changed.connect (() => {
-                button_remove.sensitive = this.tree_view.get_selection ().count_selected_rows () > 0;
+            // Update remove button sensitivity when selection changes
+            selection.notify["selected"].connect (() => {
+                button_remove.sensitive =
+                    selection.get_selected () != Gtk.INVALID_LIST_POSITION;
             });
 
             toolbar_box.append (button_add_file);
@@ -207,6 +249,7 @@ namespace Ciano.Widgets {
 
             return toolbar_box;
         }
+
 
         /**
          * Mount the {@code Gtk.Grid} where the cancel and start conversion buttons are displayed.

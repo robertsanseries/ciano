@@ -11,6 +11,7 @@ sources = files(
     'Enums/ColumnEnum.vala',
     'Enums/TypeItemEnum.vala',
 
+    'Objects/FileItem.vala',
     'Objects/ItemConversion.vala',
 
     'Services/Settings.vala',
