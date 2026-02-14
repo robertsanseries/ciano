@@ -85,10 +85,10 @@ namespace Ciano.Controllers {
          * @return {@code void}
          */
         private void on_activate_button_preferences (Gtk.ApplicationWindow window) {
-            this.converter_view.headerbar.item_selected.connect (() => {
-                this.dialog_preferences = new DialogPreferences (window);
-                this.dialog_preferences.present ();
-            }); 
+            // this.converter_view.headerbar.item_selected.connect (() => {
+            //     this.dialog_preferences = new DialogPreferences (window);
+            //     this.dialog_preferences.present ();
+            // }); 
         }
 
         /**

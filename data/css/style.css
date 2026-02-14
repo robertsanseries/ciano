@@ -18,10 +18,13 @@
 */
 
 /*@define-color colorPrimary #80E5FF;*/
-@define-color colorPrimary #37C8AB;
-@define-color textColorPrimary #333333;
 @define-color white #FFFFFF;
 @define-color gray #F1F1F1;
+@define-color ciano #37C8AB;
+
+@define-color colorPrimary #37C8AB;
+@define-color textColorPrimary #333333;
+
 
 /*@define-color black #000000;*/
 /*@define-color whiteElementary #FAFAFA;*/
@@ -38,7 +41,15 @@
 }
 
 .main-headerbar {
-    background-color: @colorPrimary;
+    background-color: @white;
+    color: @textColorPrimary;
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+
+.headerbar-sidebar {
+    background-color: @gray;
     color: @textColorPrimary;
     box-shadow: none;
     border: none;
@@ -111,5 +122,23 @@ progressbar.progress_bar.complete trough progress {
 .dialog-convert-file {
     box-shadow: none;
     border-bottom: none;
+    border: none;
+}
+
+.navigation-sidebar, 
+listview {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: @gray; /* Garante que a cor combine com o header */
+}
+
+/* Se você estiver usando um Gtk.Frame no ConverterView, remova a borda dele também */
+frame {
+    border: none;
+}
+
+/* Garante que o ScrolledWindow da sidebar não tenha bordas */
+scrolledwindow {
     border: none;
 }

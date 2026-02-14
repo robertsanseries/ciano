@@ -46,6 +46,8 @@ namespace Ciano {
                 deletable: true,
                 resizable: true
             );
+            
+            this.set_titlebar (new Gtk.Grid () { visible = false });
 
             var settings = Ciano.Services.Settings.get_instance ();
             this.set_default_size (settings.window_width, settings.window_height);

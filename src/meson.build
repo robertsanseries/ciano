@@ -27,7 +27,8 @@ sources = files(
 
     'Widgets/DialogConvertFile.vala',
     'Widgets/DialogPreferences.vala',
-    'Widgets/HeaderBar.vala',
+    'Widgets/HeaderBarMainContent.vala',
+    'Widgets/HeaderBarSidebar.vala',
     'Widgets/ListConversion.vala',
     'Widgets/RowConversion.vala',
     'Widgets/SourceItem.vala',

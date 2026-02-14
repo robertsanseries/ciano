@@ -29,7 +29,7 @@ namespace Ciano.Widgets {
      * @see Gtk.HeaderBar
      * @since 0.1.0
      */
-    public class HeaderBar : Gtk.Box {
+    public class HeaderBarMainContent : Gtk.Box {
 
         private Adw.HeaderBar headerbar;
         public Gtk.MenuButton app_menu;
@@ -43,7 +43,7 @@ namespace Ciano.Widgets {
          * @see Ciano.Configs.Properties
          * @see icon_settings
          */
-        public HeaderBar () {
+        public HeaderBarMainContent () {
             orientation = Gtk.Orientation.VERTICAL;
 
             this.headerbar = new Adw.HeaderBar ();
@@ -56,8 +56,8 @@ namespace Ciano.Widgets {
 
             this.headerbar.set_title_widget (title_label);
 
-            icon_open_output_folder ();
             icon_settings ();
+            icon_open_output_folder ();
         }
 
         private void icon_open_output_folder () {
@@ -71,7 +71,7 @@ namespace Ciano.Widgets {
                 FileUtil.open_folder_file_app(settings.output_folder);
             });
 
-            this.headerbar.pack_start (output_folder);
+            this.headerbar.pack_end (output_folder);
         }
 
         /**

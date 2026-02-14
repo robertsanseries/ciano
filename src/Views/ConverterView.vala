@@ -33,7 +33,7 @@ namespace Ciano.Views {
     public class ConverterView : Gtk.Grid {
 
         private Gtk.ApplicationWindow    app;
-        public HeaderBar                 headerbar;
+        //public HeaderBar                 headerbar;
         public SourceListSidebar         source_list;
         public ListConversion            list_conversion;
 
@@ -58,9 +58,6 @@ namespace Ciano.Views {
             this.app.resizable = true;
             this.app.add_css_class ("window-background-color");
 
-            this.headerbar = new HeaderBar ();
-            this.app.set_titlebar (this.headerbar);
-
             this.source_list = new SourceListSidebar ();
             var frame = new Gtk.Frame (null);
             frame.set_child (this.source_list);
@@ -68,15 +65,40 @@ namespace Ciano.Views {
 
             this.list_conversion = new ListConversion ();
 
-            var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-            paned.start_child = frame;
-            paned.resize_start_child = false;
-            paned.shrink_start_child = false;
-            paned.end_child = list_conversion;
-            paned.resize_end_child = true;
-            paned.shrink_end_child = false;
+            // var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+            // paned.start_child = frame;
+            // paned.resize_start_child = false;
+            // paned.shrink_start_child = false;
+            // paned.end_child = list_conversion;
+            // paned.resize_end_child = true;
+            // paned.shrink_end_child = false;
 
-            this.attach (paned, 0, 0, 1, 1);
+            // this.attach (paned, 0, 0, 1, 1);
+            
+            // 1. Criar o componente de divisão
+            var split_view = new Adw.NavigationSplitView ();
+            split_view.hexpand = true;
+            split_view.vexpand = true;
+
+            // Sidebar
+            var sidebar_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+            var headerbar_sidebar = new HeaderBarSidebar ();
+            sidebar_box.append (headerbar_sidebar);
+            sidebar_box.append (frame);
+
+            var sidebar_page = new Adw.NavigationPage (sidebar_box, "");
+            split_view.sidebar = sidebar_page;
+
+            // Main Content
+            var content_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+            var headerbar_maincontent = new HeaderBarMainContent ();
+            content_box.append (headerbar_maincontent);
+            content_box.append (this.list_conversion);
+
+            var content_page = new Adw.NavigationPage (content_box, "Content");
+            split_view.content = content_page;
+
+            this.attach (split_view, 0, 0, 1, 1);
         }
     }
 }

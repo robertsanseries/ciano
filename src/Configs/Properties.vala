@@ -30,7 +30,7 @@ namespace Ciano.Configs {
         // widgets/DialogConvertFile.vala
         public abstract const string TEXT_CONVERT_FILE                  = _("Convert File");
         // widgets/DialogConvertFile.vala // widgets/SourceListSidebar.vala
-        public abstract const string TEXT_CONVERT_FILE_TO               = _("Convert file to");
+        public abstract const string TEXT_CONVERT_FILE_TO               = _("Convert to");
         // widgets/DialogConvertFile.vala
         public abstract const string NAME                               = _("Name");
         // widgets/DialogConvertFile.vala

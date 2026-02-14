@@ -23,8 +23,8 @@ msgid "Convert File"
 msgstr "Converter arquivo"
 
 #: src/configs/Properties.vala:33
-msgid "Convert file to"
-msgstr "Converter arquivo para"
+msgid "Convert to"
+msgstr "Converter para"
 
 #: src/configs/Properties.vala:35
 msgid "Name"

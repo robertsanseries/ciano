@@ -46,9 +46,6 @@ namespace Ciano.Widgets {
             var root_item = new SourceItem ("Root", null);
             base (root_item);
 
-            this.type_list = new SourceItem (Properties.TEXT_CONVERT_FILE_TO, null);
-            this.type_list.selectable = false;
-
             mount_video_list ();
             mount_music_list ();
             mount_image_list ();
@@ -82,7 +79,7 @@ namespace Ciano.Widgets {
             video_list.append_child (new SourceItem (Constants.TEXT_OGV, Constants.ICON_MEDIA_VIDEO));
             video_list.append_child (new SourceItem (Constants.TEXT_WEBM, Constants.ICON_MEDIA_VIDEO));
 
-            this.type_list.append_child (video_list);
+            this.root_item.append_child (video_list);
         }
 
         /**
@@ -107,7 +104,7 @@ namespace Ciano.Widgets {
             music_list.append_child (new SourceItem (Constants.TEXT_MMF, Constants.ICON_AUDIO_GENERIC));
             music_list.append_child (new SourceItem (Constants.TEXT_M4A, Constants.ICON_AUDIO_GENERIC));
 
-            this.type_list.append_child (music_list);
+            this.root_item.append_child (music_list);
         }
 
         /**
@@ -129,7 +126,7 @@ namespace Ciano.Widgets {
             image_list.append_child (new SourceItem (Constants.TEXT_GIF, Constants.ICON_IMAGE_GENERIC));
             image_list.append_child (new SourceItem (Constants.TEXT_TGA, Constants.ICON_IMAGE_GENERIC));
 
-            this.type_list.append_child (image_list);
+            this.root_item.append_child (image_list);
         }
     }
 }
