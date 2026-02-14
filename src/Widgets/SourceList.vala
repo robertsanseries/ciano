@@ -104,60 +104,64 @@ namespace Ciano.Widgets {
             factory.setup.connect ((list_item_obj) => {
 
                 var list_item = (Gtk.ListItem) list_item_obj;
-                var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 8);
 
-                var expander_icon = new Gtk.Image.from_icon_name ("pan-end-symbolic");
+                var expander = new Gtk.TreeExpander ();
+                var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+
                 var main_icon = new Gtk.Image ();
                 var label = new Gtk.Label ("");
                 label.xalign = 0;
 
-                box.append (expander_icon);
                 box.append (main_icon);
                 box.append (label);
 
+                expander.set_child (box);
+                list_item.set_child (expander);
+
+                // Clique para leaf
                 var click = new Gtk.GestureClick ();
                 click.released.connect (() => {
 
-                    var row_data = (Gtk.TreeListRow) list_item.get_item ();
-                    var item_data = (SourceItem) row_data.get_item ();
+                    var row = list_item.get_item () as Gtk.TreeListRow;
+                    if (row == null)
+                        return;
 
-                    if (row_data.is_expandable ()) {
-                        row_data.set_expanded (!row_data.get_expanded ());
-                    } else {
-                        this.item_selected (item_data);
-                        item_data.activated ();
+                    if (!row.is_expandable ()) {
+                        var item = row.get_item () as SourceItem;
+                        this.item_selected (item);
+                        item.activated ();
                     }
                 });
 
-                box.add_controller (click);
-                list_item.set_child (box);
+                expander.add_controller (click);
             });
 
             factory.bind.connect ((list_item_obj) => {
 
                 var list_item = (Gtk.ListItem) list_item_obj;
-                var row_data = (Gtk.TreeListRow) list_item.get_item ();
-                var item = (SourceItem) row_data.get_item ();
-                var box = (Gtk.Box) list_item.get_child ();
+                var row = list_item.get_item () as Gtk.TreeListRow;
+                if (row == null)
+                    return;
 
-                var expander_icon = (Gtk.Image) box.get_first_child ();
-                var main_icon = (Gtk.Image) expander_icon.get_next_sibling ();
-                var label = (Gtk.Label) main_icon.get_next_sibling ();
+                var item = row.get_item () as SourceItem;
 
-                expander_icon.visible = row_data.is_expandable ();
-                expander_icon.icon_name =
-                    row_data.get_expanded ()
-                    ? "pan-down-symbolic"
-                    : "pan-end-symbolic";
+                var expander = list_item.get_child () as Gtk.TreeExpander;
+                expander.set_list_row (row);
+
+                var box = expander.get_child () as Gtk.Box;
+                var main_icon = box.get_first_child () as Gtk.Image;
+                var label = main_icon.get_next_sibling () as Gtk.Label;
 
                 main_icon.icon_name = item.icon_name;
                 main_icon.visible = (item.icon_name != null);
                 label.label = item.name;
 
-                box.margin_start = (int) row_data.get_depth () * 12 + 6;
+                box.margin_start = (int) row.get_depth () * 6;
             });
 
             return factory;
         }
+
+
     }
 }

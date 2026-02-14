@@ -49,8 +49,11 @@ namespace Ciano.Views {
          */
         public ConverterView (Gtk.ApplicationWindow app) {
             this.app = app;
-            this.app.set_default_size (1050, 700);
-            this.app.set_size_request (1050, 700);
+
+            var settings = Ciano.Services.Settings.get_instance ();
+            this.app.set_default_size (settings.window_width, settings.window_height);
+            this.app.set_size_request (700, 450);
+
             this.app.deletable = true;
             this.app.resizable = true;
             this.app.add_css_class ("window-background-color");

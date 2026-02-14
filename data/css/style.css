@@ -64,6 +64,9 @@ listview {
 
 listview row {
     color: @textColorPrimary;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    min-height: 20px;
 }
 
 label {
