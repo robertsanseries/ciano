@@ -20,9 +20,9 @@
 @define-color colorPrimary #80E5FF;
 @define-color textColorPrimary #333333;
 @define-color white #FFFFFF;
-@define-color black #000000;
-@define-color whiteElementary #FAFAFA;
-@define-color blackElementary #333333;
+/*@define-color black #000000;*/
+/*@define-color whiteElementary #FAFAFA;*/
+/*@define-color blackElementary #333333;*/
 
 
 /* ===============================
@@ -30,16 +30,16 @@
    =============================== */
 
 headerbar {
-    background-color: @colorPrimary;
-    color: @textColorPrimary;
+   background-color: @colorPrimary;
+   color: @textColorPrimary;
 }
 
 headerbar:backdrop {
-    background-color: @colorPrimary;
+   background-color: @colorPrimary;
 }
 
 headerbar button {
-    color: @textColorPrimary;
+   color: @textColorPrimary;
 }
 
 
@@ -48,30 +48,36 @@ headerbar button {
    =============================== */
 
 window {
-    background-color: @white;
-}
-
-.window-background-color {
-    background-color: @white;
+   background-color: @white;
+   color: @textColorPrimary;
 }
 
 
 /* ===============================
-   SOURCE LIST
+   SIDEBAR / LISTVIEW
+   =============================== */
+
+listview {
+    background-color: @white;
+    color: @textColorPrimary;
+}
+
+listview row {
+    color: @textColorPrimary;
+}
+
+label {
+    color: @textColorPrimary;
+}
+
+
+/* ===============================
+   CUSTOM CLASSES
    =============================== */
 
 .background-color-source-list {
     background-color: @white;
 }
-
-.label-source-list {
-    background-color: transparent;
-}
-
-
-/* ===============================
-   TEXT / LABELS
-   =============================== */
 
 .title-section-dialog {
     color: #6D6D6D;
@@ -83,10 +89,9 @@ window {
 
 
 /* ===============================
-   PROGRESS BAR (GTK4 syntax)
+   PROGRESS BAR (GTK4)
    =============================== */
 
 progressbar > trough > progress {
     background-color: @colorPrimary;
 }
-

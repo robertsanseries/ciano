@@ -67,20 +67,20 @@ namespace Ciano.Widgets {
          * @see Ciano.Widgets.SourceList.Item
          */
         public void mount_video_list () {
-            var video_list = new SourceItem (Properties.TEXT_VIDEO, Constants.FOLDER_VIDEO_SYMBOLIC);
+            var video_list = new SourceItem (Properties.TEXT_VIDEO, Constants.ICON_FOLDER_VIDEO);
             video_list.selectable = false;
 
-            video_list.append_child (new SourceItem (Constants.TEXT_MP4, Constants.MEDIA_VIDEO_SYMBOLIC));
-            video_list.append_child (new SourceItem (Constants.TEXT_MPG, Constants.MEDIA_VIDEO_SYMBOLIC));
-            video_list.append_child (new SourceItem (Constants.TEXT_AVI, Constants.MEDIA_VIDEO_SYMBOLIC));
-            video_list.append_child (new SourceItem (Constants.TEXT_WMV, Constants.MEDIA_VIDEO_SYMBOLIC));
-            video_list.append_child (new SourceItem (Constants.TEXT_FLV, Constants.MEDIA_VIDEO_SYMBOLIC));
-            video_list.append_child (new SourceItem (Constants.TEXT_MKV, Constants.MEDIA_VIDEO_SYMBOLIC));
-            video_list.append_child (new SourceItem (Constants.TEXT_3GP, Constants.MEDIA_VIDEO_SYMBOLIC));
-            video_list.append_child (new SourceItem (Constants.TEXT_MOV, Constants.MEDIA_VIDEO_SYMBOLIC));
-            video_list.append_child (new SourceItem (Constants.TEXT_VOB, Constants.MEDIA_VIDEO_SYMBOLIC));
-            video_list.append_child (new SourceItem (Constants.TEXT_OGV, Constants.MEDIA_VIDEO_SYMBOLIC));
-            video_list.append_child (new SourceItem (Constants.TEXT_WEBM, Constants.MEDIA_VIDEO_SYMBOLIC));
+            video_list.append_child (new SourceItem (Constants.TEXT_MP4, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_MPG, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_AVI, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_WMV, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_FLV, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_MKV, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_3GP, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_MOV, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_VOB, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_OGV, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_WEBM, Constants.ICON_MEDIA_VIDEO));
 
             this.type_list.append_child (video_list);
         }
@@ -94,18 +94,18 @@ namespace Ciano.Widgets {
          * @see Ciano.Widgets.SourceList.Item
          */
         public void mount_music_list () {
-            var music_list = new SourceItem (Properties.TEXT_MUSIC, Constants.FOLDER_MUSIC_SYMBOLIC);
+            var music_list = new SourceItem (Properties.TEXT_MUSIC, Constants.ICON_FOLDER_MUSIC);
             music_list.selectable = false;
 
-            music_list.append_child (new SourceItem (Constants.TEXT_MP3, Constants.AUDIO_GENERIC_SYMBOLIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_WMA, Constants.AUDIO_GENERIC_SYMBOLIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_OGG, Constants.AUDIO_GENERIC_SYMBOLIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_WAV, Constants.AUDIO_GENERIC_SYMBOLIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_AAC, Constants.AUDIO_GENERIC_SYMBOLIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_FLAC, Constants.AUDIO_GENERIC_SYMBOLIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_AIFF, Constants.AUDIO_GENERIC_SYMBOLIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_MMF, Constants.AUDIO_GENERIC_SYMBOLIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_M4A, Constants.AUDIO_GENERIC_SYMBOLIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_MP3, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_WMA, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_OGG, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_WAV, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_AAC, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_FLAC, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_AIFF, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_MMF, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_M4A, Constants.ICON_AUDIO_GENERIC));
 
             this.type_list.append_child (music_list);
         }
@@ -119,15 +119,15 @@ namespace Ciano.Widgets {
          * @see Ciano.Widgets.SourceList.Item
          */
         public void mount_image_list () {
-            var image_list = new SourceItem (Properties.TEXT_IMAGE, Constants.FOLDER_PICTURES_SYMBOLIC);
+            var image_list = new SourceItem (Properties.TEXT_IMAGE, Constants.ICON_FOLDER_PICTURES);
             image_list.selectable = false;
 
-            image_list.append_child (new SourceItem (Constants.TEXT_JPG, Constants.IMAGE_GENERIC_SYMBOLIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_BMP, Constants.IMAGE_GENERIC_SYMBOLIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_PNG, Constants.IMAGE_GENERIC_SYMBOLIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_TIF, Constants.IMAGE_GENERIC_SYMBOLIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_GIF, Constants.IMAGE_GENERIC_SYMBOLIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_TGA, Constants.IMAGE_GENERIC_SYMBOLIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_JPG, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_BMP, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_PNG, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_TIF, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_GIF, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_TGA, Constants.ICON_IMAGE_GENERIC));
 
             this.type_list.append_child (image_list);
         }
