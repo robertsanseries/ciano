@@ -42,7 +42,6 @@
     outline: none;
 }
 
-
 /* ===============================
    WINDOW
    =============================== */
@@ -99,7 +98,8 @@ progressbar > trough > progress {
     background-color: @colorPrimary;
 }
 
-.preferences-headerbar {
+.dialog-preferences,
+.dialog-convert-file {
     box-shadow: none;
     border-bottom: none;
     border: none;

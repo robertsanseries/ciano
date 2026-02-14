@@ -57,13 +57,13 @@ namespace Ciano.Widgets {
             this.resizable = false;
             this.deletable = false;
             this.set_transient_for (parent);
-            this.set_default_size (500, 250);
-            this.set_size_request (500, 250);
+            this.set_default_size (400, 250);
+            this.set_size_request (400, 250);
             this.set_modal (true);
             
             var header = (Gtk.HeaderBar) this.get_titlebar ();
             if (header != null) {
-                header.add_css_class ("preferences-headerbar");
+                header.add_css_class ("dialog-preferences");
             }
 
             this.settings = Ciano.Services.Settings.get_instance ();

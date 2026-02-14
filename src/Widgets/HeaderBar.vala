@@ -48,6 +48,7 @@ namespace Ciano.Widgets {
 
             this.headerbar = new Adw.HeaderBar ();
             this.headerbar.add_css_class ("main-headerbar");
+            this.headerbar.add_css_class ("flat");
             append (this.headerbar);
 
             var title_label = new Gtk.Label (Constants.PROGRAME_NAME);

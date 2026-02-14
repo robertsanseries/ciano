@@ -56,6 +56,10 @@ namespace Ciano.Widgets {
          * @param {@code Gtk.Window}           parent
          */
         public DialogConvertFile (ConverterController converter_controller, string [] formats, string name_format, Gtk.Window parent) {
+            Object (
+                use_header_bar: 1
+            );
+            
             this.title = Properties.TEXT_CONVERT_FILE;
             this.resizable = false;
             this.deletable = false;
@@ -63,9 +67,14 @@ namespace Ciano.Widgets {
             this.formats = formats;
             this.name_format = name_format;
             this.set_transient_for (parent);
-            this.set_default_size (800, 600);
-            this.set_size_request (800, 600);
+            this.set_default_size (500, 400);
+            this.set_size_request (500, 400);
             this.set_modal (true);
+            
+            var header = (Gtk.HeaderBar) this.get_titlebar ();
+            if (header != null) {
+                header.add_css_class ("dialog-convert-file");
+            }
 
             var title = new Gtk.Label ("<b>%s %s</b>".printf (Properties.TEXT_CONVERT_FILE_TO, name_format));
             title.set_use_markup (true);
