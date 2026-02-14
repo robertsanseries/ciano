@@ -29,17 +29,17 @@
    HEADERBAR
    =============================== */
 
-headerbar {
-   background-color: @colorPrimary;
-   color: @textColorPrimary;
+.icon-folder-saved-search,
+.icon-open-menu {
+    -gtk-icon-size: 24px;
 }
 
-headerbar:backdrop {
-   background-color: @colorPrimary;
-}
-
-headerbar button {
-   color: @textColorPrimary;
+.main-headerbar {
+    background-color: @colorPrimary;
+    color: @textColorPrimary;
+    box-shadow: none;
+    border: none;
+    outline: none;
 }
 
 
@@ -97,4 +97,10 @@ label {
 
 progressbar > trough > progress {
     background-color: @colorPrimary;
+}
+
+.preferences-headerbar {
+    box-shadow: none;
+    border-bottom: none;
+    border: none;
 }

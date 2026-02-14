@@ -61,8 +61,9 @@ namespace Ciano.Widgets {
 
         private void icon_open_output_folder () {
             var output_folder = new Gtk.Button();
-            output_folder.icon_name = "folder-saved-search-symbolic";
+            output_folder.icon_name = "folder-saved-search";
             output_folder.tooltip_text = Properties.TEXT_OPEN_OUTPUT_FOLDER;
+            output_folder.add_css_class ("icon-folder-saved-search");
 
             output_folder.clicked.connect(() => {
                 var settings = Ciano.Services.Settings.get_instance ();
@@ -80,10 +81,11 @@ namespace Ciano.Widgets {
          */
         private void icon_settings () {
             this.app_menu = new Gtk.MenuButton();
-            this.app_menu.icon_name = "open-menu-symbolic";
+            this.app_menu.icon_name = "open-menu";
             this.app_menu.tooltip_text = Properties.TEXT_SETTINGS;
+            this.app_menu.add_css_class ("icon-open-menu");
 
-           var menu_model = new GLib.Menu ();
+            var menu_model = new GLib.Menu ();
             menu_model.append (Properties.TEXT_PREFERENCES, "app.preferences");
 
             this.app_menu.menu_model = menu_model;

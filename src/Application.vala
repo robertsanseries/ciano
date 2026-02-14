@@ -67,6 +67,16 @@ namespace Ciano {
 
             add_action (quit_action);
             set_accels_for_action ("app.quit", {"<Ctrl>q"});
+            
+            var preferences_action = new SimpleAction ("preferences", null);
+            preferences_action.activate.connect (() => {
+                if (window != null) {
+                    var dialog = new Ciano.Widgets.DialogPreferences (window);
+                    dialog.present ();
+                }
+            });
+            
+            add_action (preferences_action);
         }
     }
 }
