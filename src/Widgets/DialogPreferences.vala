@@ -74,7 +74,7 @@ namespace Ciano.Widgets {
             init_options ();
             mount_options (grid);
 
-            this.get_content_area ().append (grid);
+            this.set_child (grid);
         }
 
         /**

@@ -97,7 +97,7 @@ namespace Ciano.Widgets {
             grid.attach (frame, 0, 2, 1, 1);
             grid.attach (grid_buttons, 0, 3, 1, 1);
 
-            this.get_content_area ().append (grid);
+            this.set_child (grid);
         }
 
         /**
