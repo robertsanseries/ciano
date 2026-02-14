@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
+  <schema id="com.github.robertsanseries.ciano" path="/com/github/robertsanseries/ciano/">
+    <key name="window-width" type="i">
+        <default>800</default>
+        <summary>Window width</summary>
+        <description>Stored width of the main window.</description>
+    </key>
 
-	<schema id="com.github.robertsanseries.ciano" path="/com/github/robertsanseries/ciano/">
-	    <key name="window-width" type="i">
-            <default>800</default>
-            <summary>Window width</summary>
-            <description>Stored width of the main window.</description>
-        </key>
+    <key name="window-height" type="i">
+        <default>600</default>
+        <summary>Window height</summary>
+        <description>Stored height of the main window.</description>
+    </key>
 
-        <key name="window-height" type="i">
-            <default>600</default>
-            <summary>Window height</summary>
-            <description>Stored height of the main window.</description>
-        </key>
-
-        <key name="is-maximized" type="b">
-            <default>false</default>
-            <summary>Window maximized state</summary>
-            <description>True if the window was last closed in a maximized state.</description>
-        </key>
+    <key name="is-maximized" type="b">
+        <default>false</default>
+        <summary>Window maximized state</summary>
+        <description>True if the window was last closed in a maximized state.</description>
+    </key>
 
 		<key name="output-folder" type="s">
 			<default>''</default>
@@ -56,5 +55,4 @@
 			<description>Erro Notify</description>
 		</key>
 	</schema>
-
 </schemalist>

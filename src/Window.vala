@@ -86,7 +86,7 @@ namespace Ciano {
                 Gtk.StyleContext.add_provider_for_display (
                     display,
                     css_provider,
-                    Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                    Gtk.STYLE_PROVIDER_PRIORITY_USER
                 );
             }
         }

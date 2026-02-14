@@ -47,6 +47,7 @@ namespace Ciano.Widgets {
             orientation = Gtk.Orientation.VERTICAL;
 
             this.headerbar = new Adw.HeaderBar ();
+            this.headerbar.add_css_class ("main-headerbar");
             append (this.headerbar);
 
             var title_label = new Gtk.Label (Constants.PROGRAME_NAME);
