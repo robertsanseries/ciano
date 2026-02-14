@@ -1,34 +1,35 @@
 sources = files(
-	'Configs/Constants.vala',
-	'Configs/Properties.vala',
-	
-	'Controllers/ConverterController.vala',
+    'Application.vala',
+    'Main.vala',
+    'Window.vala',
 
-	'Enums/ColumnEnum.vala',
-	'Enums/TypeItemEnum.vala',
+    'Configs/Constants.vala',
+    'Configs/Properties.vala',
 
-	'Services/Settings.vala',
+    'Controllers/ConverterController.vala',
 
-	'Utils/ArrayUtil.vala',
-	'Utils/FileUtil.vala',
-	'Utils/Logger.vala',
-	'Utils/StringUtil.vala',
-	'Utils/TimeUtil.vala',
-	'Utils/WidgetUtil.vala',
-	
-	'Views/ConverterView.vala',
+    'Enums/ColumnEnum.vala',
+    'Enums/TypeItemEnum.vala',
 
-	'Objects/ItemConversion.vala',
+    'Objects/ItemConversion.vala',
 
-	'Widgets/HeaderBar.vala',
-	'Widgets/SourceListSidebar.vala',
-	'Widgets/SourceList.vala',
-	'Widgets/DialogPreferences.vala',
-	'Widgets/DialogConvertFile.vala',
-	'Widgets/ListConversion.vala',
-	'Widgets/RowConversion.vala',
+    'Services/Settings.vala',
 
-	'Application.vala',
-	'Main.vala',
-	'Window.vala'
+    'Utils/ArrayUtil.vala',
+    'Utils/FileUtil.vala',
+    'Utils/Logger.vala',
+    'Utils/StringUtil.vala',
+    'Utils/TimeUtil.vala',
+    'Utils/WidgetUtil.vala',
+
+    'Views/ConverterView.vala',
+
+    'Widgets/DialogConvertFile.vala',
+    'Widgets/DialogPreferences.vala',
+    'Widgets/HeaderBar.vala',
+    'Widgets/ListConversion.vala',
+    'Widgets/RowConversion.vala',
+    'Widgets/SourceItem.vala',
+    'Widgets/SourceList.vala',
+    'Widgets/SourceListSidebar.vala'
 )

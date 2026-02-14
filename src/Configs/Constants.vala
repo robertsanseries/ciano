@@ -76,5 +76,11 @@ namespace Ciano.Configs {
         public abstract const string TEXT_AT9                               = "AT9";
         public abstract const string [] ABOUT_AUTHORS                       = { "Robert San <robertsanseries@gmail.com>" };
         public abstract const Gtk.License ABOUT_LICENSE_TYPE                = Gtk.License.GPL_3_0;
+        public abstract const string FOLDER_VIDEO_SYMBOLIC                  = "folder-videos-symbolic";
+        public abstract const string MEDIA_VIDEO_SYMBOLIC                   = "media-video-symbolic";
+        public abstract const string FOLDER_MUSIC_SYMBOLIC                  = "folder-music-symbolic";
+        public abstract const string AUDIO_GENERIC_SYMBOLIC                 = "audio-x-generic-symbolic";
+        public abstract const string FOLDER_PICTURES_SYMBOLIC               = "folder-pictures-symbolic";
+        public abstract const string IMAGE_GENERIC_SYMBOLIC                 = "image-x-generic-symbolic";
     }
 }

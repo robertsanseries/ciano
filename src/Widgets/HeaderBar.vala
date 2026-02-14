@@ -29,11 +29,12 @@ namespace Ciano.Widgets {
      * @see Gtk.HeaderBar
      * @since 0.1.0
      */
-    public class HeaderBar : Adw.HeaderBar {
+    public class HeaderBar : Gtk.Box {
+
+        private Adw.HeaderBar headerbar;
+        public Gtk.MenuButton app_menu;
 
         public signal void item_selected ();
-        
-        public Gtk.MenuButton app_menu;
 
         /**
          * Constructs a new {@code HeaderBar} object. Sets the title of the top bar and
@@ -43,9 +44,15 @@ namespace Ciano.Widgets {
          * @see icon_settings
          */
         public HeaderBar () {
+            orientation = Gtk.Orientation.VERTICAL;
+
+            this.headerbar = new Adw.HeaderBar ();
+            append (this.headerbar);
+
             var title_label = new Gtk.Label (Constants.PROGRAME_NAME);
             title_label.add_css_class ("title");
-            this.title_widget = title_label;
+
+            this.headerbar.set_title_widget (title_label);
 
             icon_open_output_folder ();
             icon_settings ();
@@ -53,33 +60,33 @@ namespace Ciano.Widgets {
 
         private void icon_open_output_folder () {
             var output_folder = new Gtk.Button();
-            output_folder.set_image (new Gtk.Image.from_icon_name ("folder-saved-search", Gtk.IconSize.LARGE_TOOLBAR));
-            output_folder.tooltip_text = (Properties.TEXT_OPEN_OUTPUT_FOLDER);
-            
+            output_folder.icon_name = "folder-saved-search-symbolic";
+            output_folder.tooltip_text = Properties.TEXT_OPEN_OUTPUT_FOLDER;
+
             output_folder.clicked.connect(() => {
                 var settings = Ciano.Services.Settings.get_instance ();
-                FileUtil.open_folder_file_app(settings.output_folder);                
+                FileUtil.open_folder_file_app(settings.output_folder);
             });
 
-            this.pack_start (output_folder);
+            this.headerbar.pack_start (output_folder);
         }
 
         /**
          * Add gear icon to open settings menu.
-         * 
+         *
          * @see menu_settings
          * @return {@code void}
          */
         private void icon_settings () {
             this.app_menu = new Gtk.MenuButton();
-            this.app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
-            this.app_menu.tooltip_text = (Properties.TEXT_SETTINGS);
+            this.app_menu.icon_name = "open-menu-symbolic";
+            this.app_menu.tooltip_text = Properties.TEXT_SETTINGS;
 
-           var menu_model = new Gio.Menu ();
+           var menu_model = new GLib.Menu ();
             menu_model.append (Properties.TEXT_PREFERENCES, "app.preferences");
 
             this.app_menu.menu_model = menu_model;
-            this.pack_end (this.app_menu);
+            this.headerbar.pack_end (this.app_menu);
         }
     }
 }

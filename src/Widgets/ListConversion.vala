@@ -50,24 +50,22 @@ namespace Ciano.Widgets {
             this.stack = new Gtk.Stack ();
             this.stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
 
-            this.welcome = new Adw.StatusPage (
-              Properties.TEXT_EMPTY_CONVERTING_LIST,
-              Properties.TEXT_SELECT_OPTION_TO_CONVERT
-            );
-
-            this.welcome.get_style_context ().add_class (Granite.STYLE_CLASS_WELCOME);
+            this.welcome = new Adw.StatusPage ();
+            this.welcome.title = Properties.TEXT_EMPTY_CONVERTING_LIST;
+            this.welcome.description = Properties.TEXT_SELECT_OPTION_TO_CONVERT;
 
             this.list_box = new Gtk.ListBox ();
-            this.list_box.expand = true;
+            this.list_box.hexpand = true;
+            this.list_box.vexpand = true;
 
             this.stack.add_named (this.welcome, Constants.WELCOME_VIEW);
             this.stack.add_named (this.list_box, Constants.LIST_BOX_VIEW);
 
-            var scrolled = new Gtk.ScrolledWindow (null, null);
+            var scrolled = new Gtk.ScrolledWindow ();
             scrolled.hscrollbar_policy = Gtk.PolicyType.EXTERNAL;
-            scrolled.add (this.stack);
+            scrolled.set_child (this.stack);
 
-           this.add (scrolled);
+           this.attach (scrolled, 0, 0, 1, 1);
         }
     }
 }
