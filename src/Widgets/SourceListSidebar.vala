@@ -1,168 +1,121 @@
 /*
-* Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public
-* License as published by the Free Software Foundation; either
-* version 2 of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public
-* License along with this program; if not, write to the
-* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-* Boston, MA 02110-1301 USA
-*/
+ * Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301 USA
+ */
 
 using Ciano.Configs;
 
 namespace Ciano.Widgets {
 
-   /**
-     * The {@code SourceListSidebar} class is responsible for assembling the list with
-     * the types of items that are supported for conversion.
+    /**
+     * SourceListSidebar is responsible for assembling the navigation sidebar
+     * containing all supported conversion formats grouped by media type.
      *
      * @see Ciano.Widgets.SourceList
      * @since 0.1.0
      */
     public class SourceListSidebar : SourceList {
 
-        private SourceList.ExpandableItem type_list;
-        public Gtk.Button                 preferences;
-        
         /**
-         * Constructs a new {@code DialogConvertFile} object responsible for mount sidebar structure.
-         *
-         * @see Ciano.Configs.Properties
-         * @see Ciano.Widgets.SourceList.ExpandableItem
-         * @see mount_video_list
-         * @see mount_music_list
-         * @see mount_image_list
+         * Constructs a new SourceListSidebar.
+         * Initializes the root hierarchy and populates the lists for video, music, and images.
          */
         public SourceListSidebar () {
-            this.type_list = new SourceList.ExpandableItem (Properties.TEXT_CONVERT_FILE_TO);
-            this.type_list.selectable = false;
-            this.type_list.expand_all ();
+            var root = new SourceItem ("Root", null);
+            base (root);
 
-            mount_video_list ();
-            mount_music_list ();
-            mount_image_list ();
+            // Create the main container for formats
+            // var format_group = new SourceItem (Properties.TEXT_CONVERT_FILE_TO, null);
+            // format_group.selectable = false;
 
-            this.root.add (this.type_list);
+            this.mount_video_list (root);
+            this.mount_music_list (root);
+            this.mount_image_list (root);
+
+            // this.root_item.append_child (format_group);
+
+            this.initialize_model ();
         }
 
         /**
-         * Creates the Videos section with the types supported in the application.
-         *
-         * @see Ciano.Configs.Properties
-         * @see Ciano.Configs.Constants
-         * @see Ciano.Widgets.SourceList.ExpandableItem
-         * @see Ciano.Widgets.SourceList.Item
+         * Populates the video conversion formats list.
+         * @param parent The parent SourceItem to attach the video list to.
          */
-        public void mount_video_list () {
-            var video_list = new SourceList.ExpandableItem (Properties.TEXT_VIDEO);
-            video_list.icon = new GLib.ThemedIcon ("folder-videos");
+        private void mount_video_list (SourceItem parent) {
+            var video_list = new SourceItem (_("Video"), Constants.ICON_FOLDER_VIDEO);
             video_list.selectable = false;
-            video_list.expand_all ();
 
-            var mp4_item = new SourceList.Item (Constants.TEXT_MP4);
-            var mpg_item = new SourceList.Item (Constants.TEXT_MPG);
-            var avi_item = new SourceList.Item (Constants.TEXT_AVI);
-            var wmv_item = new SourceList.Item (Constants.TEXT_WMV);
-            var flv_item = new SourceList.Item (Constants.TEXT_FLV);
-            var mkv_item = new SourceList.Item (Constants.TEXT_MKV);
-            var 3gp_item = new SourceList.Item (Constants.TEXT_3GP);
-            var mov_item = new SourceList.Item (Constants.TEXT_MOV);
-            var vob_item = new SourceList.Item (Constants.TEXT_VOB);
-            var ogv_item = new SourceList.Item (Constants.TEXT_OGV);
-            var webm_item = new SourceList.Item (Constants.TEXT_WEBM);
+            video_list.append_child (new SourceItem (Constants.TEXT_MP4, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_MPG, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_AVI, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_WMV, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_FLV, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_SWF, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_MKV, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_3GP, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_MOV, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_VOB, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_OGV, Constants.ICON_MEDIA_VIDEO));
+            video_list.append_child (new SourceItem (Constants.TEXT_WEBM, Constants.ICON_MEDIA_VIDEO));
 
-            video_list.add (mp4_item);
-            video_list.add (mpg_item);
-            video_list.add (avi_item);
-            video_list.add (wmv_item);
-            video_list.add (flv_item);
-            video_list.add (mkv_item);
-            video_list.add (3gp_item);
-            video_list.add (mov_item);
-            video_list.add (vob_item);
-            video_list.add (ogv_item);
-            video_list.add (webm_item);
-
-            this.type_list.add (video_list);
+            parent.append_child (video_list);
         }
 
         /**
-         * Creates the Music's section with the types supported in the application.
-         *
-         * @see Ciano.Configs.Properties
-         * @see Ciano.Configs.Constants
-         * @see Ciano.Widgets.SourceList.ExpandableItem
-         * @see Ciano.Widgets.SourceList.Item
+         * Populates the music conversion formats list.
+         * @param parent The parent SourceItem to attach the music list to.
          */
-        public void mount_music_list () {
-            var music_list = new SourceList.ExpandableItem (Properties.TEXT_MUSIC);
-            music_list.icon = new GLib.ThemedIcon ("folder-music");
+        private void mount_music_list (SourceItem parent) {
+            var music_list = new SourceItem (_("Music"), Constants.ICON_FOLDER_MUSIC);
             music_list.selectable = false;
 
-            var mp3_item = new SourceList.Item (Constants.TEXT_MP3);
-            var wma_item = new SourceList.Item (Constants.TEXT_WMA);
-            var ogg_item = new SourceList.Item (Constants.TEXT_OGG);
-            var wav_item = new SourceList.Item (Constants.TEXT_WAV);
-            var aac_item = new SourceList.Item (Constants.TEXT_AAC);
-            var flac_item = new SourceList.Item (Constants.TEXT_FLAC);
-            var aiff_item = new SourceList.Item (Constants.TEXT_AIFF);            
-            var mmf_item = new SourceList.Item (Constants.TEXT_MMF);
-            var m4a_item = new SourceList.Item (Constants.TEXT_M4A);
-            var opus_item = new SourceList.Item (Constants.TEXT_OPUS);
+            music_list.append_child (new SourceItem (Constants.TEXT_MP3, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_WMA, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_OGG, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_WAV, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_AAC, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_FLAC, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_AIFF, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_MMF, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_M4A, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_AMR, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_OPUS, Constants.ICON_AUDIO_GENERIC));
+            music_list.append_child (new SourceItem (Constants.TEXT_AT9, Constants.ICON_AUDIO_GENERIC));
 
-            music_list.add (mp3_item);
-            music_list.add (wma_item);
-            music_list.add (ogg_item);
-            music_list.add (wav_item);
-            music_list.add (aac_item);
-            music_list.add (flac_item);
-            music_list.add (aiff_item);
-            music_list.add (mmf_item);
-            music_list.add (m4a_item);
-            music_list.add (opus_item);
-
-            this.type_list.add (music_list);
+            parent.append_child (music_list);
         }
 
         /**
-         * Creates the Pictures section with the types supported in the application.
-         *
-         * @see Ciano.Configs.Properties
-         * @see Ciano.Configs.Constants
-         * @see Ciano.Widgets.SourceList.ExpandableItem
-         * @see Ciano.Widgets.SourceList.Item
+         * Populates the image conversion formats list.
+         * @param parent The parent SourceItem to attach the image list to.
          */
-        public void mount_image_list () {
-            var image_list = new SourceList.ExpandableItem (Properties.TEXT_IMAGE);
-            image_list.icon = new GLib.ThemedIcon ("folder-pictures");
+        private void mount_image_list (SourceItem parent) {
+            var image_list = new SourceItem (_("Image"), Constants.ICON_FOLDER_PICTURES);
             image_list.selectable = false;
 
-            var jpg_item = new SourceList.Item (Constants.TEXT_JPG);
-            var bmp_item = new SourceList.Item (Constants.TEXT_BMP);
-            var png_item = new SourceList.Item (Constants.TEXT_PNG);
-            var tif_item = new SourceList.Item (Constants.TEXT_TIF);
-            var gif_item = new SourceList.Item (Constants.TEXT_GIF);
-            var tga_item = new SourceList.Item (Constants.TEXT_TGA);
-            var webp_item = new SourceList.Item (Constants.TEXT_WEBP);
+            image_list.append_child (new SourceItem (Constants.TEXT_JPG, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_BMP, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_PNG, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_TIF, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_GIF, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_TGA, Constants.ICON_IMAGE_GENERIC));
+            image_list.append_child (new SourceItem (Constants.TEXT_ICO, Constants.ICON_IMAGE_GENERIC));
 
-            image_list.add (jpg_item);
-            image_list.add (bmp_item);
-            image_list.add (png_item);
-            image_list.add (tif_item);
-            image_list.add (gif_item);
-            image_list.add (tga_item);
-            image_list.add (webp_item);
-
-            this.type_list.add (image_list);
+            parent.append_child (image_list);
         }
     }
 }

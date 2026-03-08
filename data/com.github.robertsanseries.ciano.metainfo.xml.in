@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Robert San <robertsanseries@gmail.io> -->
+<component type="desktop-application">
+
+  <!-- ===================== IDENTIFICATION ===================== -->
+  <id>com.github.robertsanseries.ciano</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <translation type="gettext">com.github.robertsanseries.ciano</translation>
+
+  <!-- ===================== PRESENTATION ===================== -->
+  <name>Ciano</name>
+  <summary>A multimedia file converter</summary>
+  <description>
+    <p>The easiest way to convert your multimedia files to the most popular formats.</p>
+    <p>Characteristics:</p>
+    <ul>
+      <li>Conversion of multiple files at the same time</li>
+      <li>Possibility of changing the output folder</li>
+      <li>Notification support</li>
+      <li>Close the application at any time with Ctrl + Q</li>
+    </ul>
+    <p>Supports the conversion of:</p>
+    <ul>
+      <li>Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM</li>
+      <li>Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A</li>
+      <li>Images - JPG, BMP, PNG, TIF, GIF, TGA</li>
+    </ul>
+  </description>
+
+  <!-- ===================== DEVELOPER ===================== -->
+  <developer id="com.github.robertsanseries">
+    <name>Robert San</name>
+  </developer>
+
+  <!-- ===================== SCREENSHOTS ===================== -->
+  <screenshots>
+    <screenshot type="default" environment="pantheon">
+      <image>https://raw.githubusercontent.com/robertsanseries/ciano/master/data/assets/images/screenshot.png</image>
+    </screenshot>
+  </screenshots>
+
+  <!-- ===================== BRANDING ===================== -->
+  <branding>
+    <color type="primary">#8AE4FF</color>
+  </branding>
+  <custom>
+    <value key="x-appcenter-color-primary">#8AE4FF</value>
+    <value key="x-appcenter-color-primary-text">#000000</value>
+    <value key="x-appcenter-suggested-price">5</value>
+  </custom>
+
+  <!-- ===================== CAPABILITIES ===================== -->
+  <provides>
+    <binary>com.github.robertsanseries.ciano</binary>
+    <id>com.github.robertsanseries.ciano.desktop</id>
+  </provides>
+  <launchable type="desktop-id">com.github.robertsanseries.ciano.desktop</launchable>
+
+  <recommends>
+    <display_length compare="ge">400</display_length>
+  </recommends>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+
+  <!-- ===================== URLS ===================== -->
+  <url type="homepage">https://robertsanseries.github.io/ciano</url>
+  <url type="bugtracker">https://github.com/robertsanseries/ciano/issues</url>
+  <url type="help">https://github.com/robertsanseries/ciano/issues</url>
+  <url type="contribute">https://github.com/robertsanseries/ciano/contribute</url>
+  <url type="translate">https://github.com/robertsanseries/ciano/tree/main/po</url>
+  <url type="donation">https://github.com/sponsors/robertsanseries</url>
+  <url type="vcs-browser">https://github.com/robertsanseries/ciano</url>
+
+  <!-- ===================== CONTENT RATING ===================== -->
+  <content_rating type="oars-1.1" />
+
+  <!-- ===================== RELEASES ===================== -->
+  <releases>
+    <release version="0.2.5" date="2026-02-15">
+      <description>
+        <p>Release: New version with visual improvements and system modernization.</p>
+        <ul>
+          <li>Updated the system foundation to a more modern version</li>
+          <li>Internal improvements for better stability and performance</li>
+          <li>Reorganized windows and overall interface structure</li>
+          <li>New visual style and design adjustments</li>
+          <li>General fixes and appearance improvements</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.2.4" date="2020-07-12">
+      <description>
+        <p>Release: Minor fixes and changes.</p>
+        <ul>
+          <li>Fixes for version 0.2.3</li>
+          <li>New translations and code improvements</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.2.3" date="2020-07-11">
+      <description>
+        <p>Release: Minor fixes and changes.</p>
+        <ul>
+          <li>Fixes for version 0.2.2</li>
+          <li>New translations and code improvements</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.2.2" date="2020-06-09">
+      <description>
+        <p>New translations and code improvements.</p>
+      </description>
+    </release>
+    <release version="0.2.1" date="2018-11-04">
+      <description>
+        <p>Fixes for version 0.2.0.</p>
+      </description>
+    </release>
+    <release version="0.2.0" date="2018-11-04">
+      <description>
+        <p>Release release for elementary juno.</p>
+      </description>
+    </release>
+    <release version="0.1.9" date="2018-01-03">
+      <description>
+        <p>Flatpack release version.</p>
+      </description>
+    </release>
+    <release version="0.1.8" date="2018-01-02">
+      <description>
+        <p>Fixes for version 0.1.7.</p>
+      </description>
+    </release>
+    <release version="0.1.7" date="2018-01-02">
+      <description>
+        <p>Icons in the HIG standard and Inclusion/Update of languages.</p>
+      </description>
+    </release>
+    <release version="0.1.6" date="2017-10-28">
+      <description>
+        <p>Release: Minor fixes and changes.</p>
+        <ul>
+          <li>Sidebar Size Correction</li>
+          <li>Correction of support for translations</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.1.5" date="2017-10-17">
+      <description>
+        <p>Release: Minor fixes and changes.</p>
+        <ul>
+          <li>Support for video to audio conversion</li>
+          <li>Support for video to gif conversion</li>
+          <li>OGV video format support</li>
+          <li>WebM video format support</li>
+          <li>Added Brazilian Portuguese translations</li>
+          <li>Added Spanish translations</li>
+          <li>Added Lituano translations</li>
+          <li>Improving application description</li>
+          <li>Icon according to the Iconography section of the Human Interface Guidelines</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.1.4" date="2017-09-21">
+      <description>
+        <p>Improvements made to the first stable release.</p>
+      </description>
+    </release>
+    <release version="0.1.3" date="2017-09-21">
+      <description>
+        <p>Minor fixes made to the first stable release.</p>
+      </description>
+    </release>
+    <release version="0.1.2" date="2017-09-18">
+      <description>
+        <p>Correction of the incorrect filename bug (formart -> format).</p>
+      </description>
+    </release>
+    <release version="0.1.1" date="2017-09-15">
+      <description>
+        <p>Invalid Desktop File Fix.</p>
+      </description>
+    </release>
+    <release version="0.1.0" date="2017-09-15">
+      <description>
+        <p>Ciano first release.</p>
+      </description>
+    </release>
+  </releases>
+
+</component>

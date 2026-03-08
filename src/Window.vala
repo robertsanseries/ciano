@@ -24,20 +24,22 @@ using Ciano.Views;
 namespace Ciano {
 
     /**
-     * Class responsible for creating the u window and will contain contain other widgets. 
-     * allowing the user to manipulate the window (resize it, move it, close it, ...).
+     * The {@code Window} class is responsible for creating the main application window.
+     * It manages window states like size and maximization, and sets up the primary view.
      *
      * @see Gtk.ApplicationWindow
      * @since 0.1.0
      */
     public class Window : Gtk.ApplicationWindow {
-         
+
+        private ConverterController converter_controller;
+
         /**
-         * Constructs a new {@code Window} object.
+         * Constructs a new {@code Window} object, restoring previous dimensions and state.
          *
+         * @param app The parent {@code Gtk.Application} instance.
          * @see Ciano.Configs.Constants
-         * @see style_provider
-         * @see build
+         * @see Ciano.Services.Settings
          */
         public Window (Gtk.Application app) {
             Object (
@@ -47,48 +49,50 @@ namespace Ciano {
                 resizable: true
             );
 
-            var settings = Ciano.Services.Settings.get_instance ();
-            int x = settings.window_x;
-            int y = settings.window_y;
+            var empty_titlebar = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-            if (x != -1 && y != -1) {
-                move (x, y);
+            this.set_titlebar (empty_titlebar);
+            this.add_css_class ("main-window");
+
+            var settings = Ciano.Services.Settings.get_instance ();
+            this.set_default_size (settings.window_width, settings.window_height);
+
+            if (settings.is_maximized) {
+                this.maximize ();
             }
 
-            style_provider ();
+            // Signal connections to persist window state
+            this.notify["default-width"].connect (() => {
+                if (!this.maximized) settings.window_width = this.default_width;
+            });
+
+            this.notify["default-height"].connect (() => {
+                if (!this.maximized) settings.window_height = this.default_height;
+            });
+
+            this.notify["maximized"].connect (() => {
+                settings.is_maximized = this.maximized;
+            });
+
             build (app);
         }
 
         /**
-         * Load the application's CSS.
+         * Assembles the internal components of the window.
+         * Sets the main view and focuses on the conversion list.
          *
-         * @see Ciano.Configs.Constants
-         * @return {@code void}
-         */
-        private void style_provider () {
-            var css_provider = new Gtk.CssProvider ();
-            css_provider.load_from_resource (Constants.URL_CSS);
-            
-            Gtk.StyleContext.add_provider_for_screen (
-                Gdk.Screen.get_default (),
-                css_provider,
-                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-            );
-        }
-
-        /**
-         * Load classes for application building.
-         *
+         * @param app The parent {@code Gtk.Application} instance.
          * @see Ciano.Controllers.ConverterController
          * @see Ciano.Views.ConverterView
-         * @return {@code void}
          */
         private void build (Gtk.Application app) {
             var converter_view = new ConverterView (this);
-            new ConverterController (this, app, converter_view);
+            this.converter_controller = new ConverterController (this, app, converter_view);
 
-            this.add (converter_view);
-            this.show_all ();
+            this.set_child (converter_view);
+
+            this.set_focus (converter_view.list_conversion);
+            this.set_focus_visible (false);
         }
     }
 }

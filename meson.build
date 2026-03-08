@@ -2,8 +2,9 @@
 project (
     'com.github.robertsanseries.ciano',
     'vala', 'c',
-    version: '0.2.3',
-    license: 'GPL-3.0'
+    version: '0.2.5',
+    license: 'GPL-3.0',
+    meson_version: '>= 0.56.0'
 )
 
 # Translation module
@@ -13,8 +14,18 @@ i18n = import ('i18n')
 gnome = import('gnome')
 
 # Project arguments
+add_project_arguments(
+    '--disable-warnings',
+    language: 'vala'
+)
+
 add_project_arguments (
     '-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name ()),
+    '-Wno-discarded-qualifiers',
+    '-Wno-unused-variable',
+    '-Wno-unused-but-set-variable',
+    '-Wno-incompatible-pointer-types',
+    '-Wno-unused-function',
     language: 'c'
 )
 
@@ -43,11 +54,14 @@ c_args = [
 
 # Listing dependencies
 dependencies = [
-    dependency ('glib-2.0'),
-    dependency ('gtk+-3.0'),
-    dependency ('granite'),
-    dependency ('gobject-2.0')
+    dependency ('glib-2.0', version: '>=2.50', include_type: 'system'),
+    dependency ('gtk4', version: '>=4.1', include_type: 'system'),
+    dependency ('granite-7',  version: '>=7.6.0', include_type: 'system'),
+    dependency ('gobject-2.0', version: '>=2.50', include_type: 'system'),
+    dependency ('gio-2.0', version: '>= 2.66', include_type: 'system')
 ]
+
+ffmpeg = find_program('ffmpeg', required: true)
 
 subdir ('src')
 

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="135" height="40" viewBox="0 0 135 40">
+    <rect rx="8" ry="8" width="135" height="40" fill="#2d353b"/>
+    <path d="M15 12c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V14c0-1.1-.9-2-2-2H15zm1 2h8v10h-8V14z" fill="#ffffff"/>
+    <text x="38" y="25" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold">Get it on AppCenter</text>
+</svg>

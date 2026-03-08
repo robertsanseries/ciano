@@ -1,1 +1,10 @@
-src/configs/Properties.vala
+src/Controllers/ConverterController.vala
+src/Widgets/DialogAbout.vala
+src/Widgets/DialogConvertFile.vala
+src/Widgets/DialogPreferences.vala
+src/Widgets/HeaderBarMainContent.vala
+src/Widgets/ListConversion.vala
+src/Widgets/PopoverSettings.vala
+src/Widgets/RowConversion.vala
+src/Widgets/SourceList.vala
+src/Widgets/SourceListSidebar.vala

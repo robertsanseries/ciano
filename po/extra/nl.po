@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-09 18:57+0200\n"
-"PO-Revision-Date: 2020-06-09 17:38+0200\n"
+"PO-Revision-Date: 2026-03-08 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: nl\n"
@@ -23,24 +23,20 @@ msgid "Ciano"
 msgstr "Ciano"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:4
-#, fuzzy
 msgid "Multimedia Converter"
-msgstr "Een conversieprogramma voor multimediabestanden"
+msgstr "Multimediaconverter"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:5
-#, fuzzy
 msgid "Convert multimedia files to other formats"
-msgstr ""
-"Dé makkelijkste manier om uw multimedia-bestanden te converteren naar de "
-"populairste bestandsformaten."
+msgstr "Converteer multimediabestanden naar andere indelingen"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:6
 msgid "com.github.robertsanseries.ciano"
-msgstr ""
+msgstr "com.github.robertsanseries.ciano"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:11
 msgid "converter;multimedia;audio;video;photo;photography;"
-msgstr ""
+msgstr "converter;multimedia;audio;video;foto;fotografie;"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:8
 msgid "A multimedia file converter"
@@ -48,7 +44,7 @@ msgstr "Een conversieprogramma voor multimediabestanden"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:9
 msgid "Robert San"
-msgstr ""
+msgstr "Robert San"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:19
 msgid ""
@@ -96,20 +92,20 @@ msgstr "Afbeeldingen - JPG, BMP, PNG, TIF, GIF, TGA"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:37
 msgid "Icons in the HIG standard and Inclusion/Update of languages"
-msgstr ""
+msgstr "Pictogrammen volgens de HIG-standaard en opname/update van talen"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:39
 msgid "The icons follow the HIG (@lainsce)"
-msgstr ""
+msgstr "De pictogrammen volgen de HIG (@lainsce)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:40
 msgid "Language: Inclusion of the French (@nvivant)"
-msgstr ""
+msgstr "Taal: Opname van het Frans (@nvivant)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:41
 msgid "Language: Inclusion of Chinese simplified (@trampover)"
-msgstr ""
+msgstr "Taal: Opname van vereenvoudigd Chinees (@trampover)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:42
 msgid "Language: Update in Lithuanian (@welaq)"
-msgstr ""
+msgstr "Taal: Update van het Litouws (@welaq)"

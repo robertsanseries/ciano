@@ -25,6 +25,6 @@
  * @since 0.1.0
  */
 public static void main (string [] args) {
-	var app = new Ciano.Application ();
-	app.run (args);
+    var app = new Ciano.Application ();
+    app.run (args);
 }

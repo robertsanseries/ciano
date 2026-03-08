@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-09 18:57+0200\n"
-"PO-Revision-Date: 2020-06-09 17:38+0200\n"
+"PO-Revision-Date: 2026-03-08 00:00+0000\n"
 "Last-Translator: 金立龙 <trampover@gmail.com>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -22,22 +22,20 @@ msgid "Ciano"
 msgstr "Ciano"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:4
-#, fuzzy
 msgid "Multimedia Converter"
 msgstr "多媒体文件转换器"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:5
-#, fuzzy
 msgid "Convert multimedia files to other formats"
-msgstr "最简单的方式转换为您的多媒体文件转换为其它的格式."
+msgstr "将多媒体文件转换为其他格式"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:6
 msgid "com.github.robertsanseries.ciano"
-msgstr ""
+msgstr "com.github.robertsanseries.ciano"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:11
 msgid "converter;multimedia;audio;video;photo;photography;"
-msgstr ""
+msgstr "转换器;多媒体;音频;视频;照片;摄影;"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:8
 msgid "A multimedia file converter"
@@ -45,7 +43,7 @@ msgstr "多媒体文件转换器"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:9
 msgid "Robert San"
-msgstr ""
+msgstr "Robert San"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:19
 msgid ""
@@ -54,7 +52,7 @@ msgstr "最简单的方式转换为您的多媒体文件转换为其它的格式
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:20
 msgid "Characteristics:"
-msgstr "特点"
+msgstr "特点:"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:22
 msgid "Conversion of multiple files at the same time"
@@ -78,32 +76,32 @@ msgstr "支持转换的文件格式:"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:29
 msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
-msgstr "Vídeo - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+msgstr "视频 - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:30
 msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
-msgstr "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+msgstr "音频 - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:31
 msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
-msgstr "Imagens - JPG, BMP, PNG, TIF, GIF, TGA"
+msgstr "图片 - JPG, BMP, PNG, TIF, GIF, TGA"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:37
 msgid "Icons in the HIG standard and Inclusion/Update of languages"
-msgstr ""
+msgstr "符合HIG标准的图标及语言的添加/更新"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:39
 msgid "The icons follow the HIG (@lainsce)"
-msgstr ""
+msgstr "图标遵循HIG标准 (@lainsce)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:40
 msgid "Language: Inclusion of the French (@nvivant)"
-msgstr ""
+msgstr "语言: 添加法语 (@nvivant)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:41
 msgid "Language: Inclusion of Chinese simplified (@trampover)"
-msgstr ""
+msgstr "语言: 添加简体中文 (@trampover)"
 
 #: data/com.github.robertsanseries.ciano.appdata.xml.in:42
 msgid "Language: Update in Lithuanian (@welaq)"
-msgstr ""
+msgstr "语言: 更新立陶宛语 (@welaq)"

@@ -1,0 +1,30 @@
+name: Snap
+
+on:
+  workflow_call:
+
+jobs:
+  snap:
+    name: Snap
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get app version
+        id: version
+        run: |
+          VERSION=$(grep -A5 '^project' meson.build | grep '^\s*version:' | sed "s/.*'\(.*\)'.*/\1/")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Build Snap
+        uses: snapcore/action-build@v1
+        id: snapcraft
+        with:
+          snapcraft-channel: stable
+
+      - name: Upload .snap artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.snap
+          path: ${{ steps.snapcraft.outputs.snap }}

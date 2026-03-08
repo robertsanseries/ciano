@@ -1,0 +1,355 @@
+/*
+ * Copyright (c) 2026 Robert San <robertsanseries@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * Distributed WITHOUT ANY WARRANTY.
+ */
+
+@define-color bg_primary #FFFFFF;  /* Branco (Conteúdo) */
+@define-color bg_secondary #F1F1F1;  /* Cinza claro (Sidebar) */
+@define-color text_primary #2E2E2E;
+
+@define-color accent_color #00A2FF; /* Azul Ciano */
+@define-color accent_secondary #0D8875;
+@define-color border_color rgba(0, 0, 0, 0.1);
+
+/* =========================================================
+ * 1. WINDOW STRUCTURE FIXES
+ * ========================================================= */
+
+window.main-window headerbar {
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
+.main-window-content {
+    margin-top: 0;
+}
+
+.main-splitter-line {
+    min-width: 1px;
+    background-color: @border_color;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+}
+
+
+/* =========================================================
+ * 2. HEADERBARS
+ * ========================================================= */
+
+.headerbar-maincontent,
+.headerbar-sidebar {
+    min-height: 36px;
+    padding: 0 6px;
+    margin: 0;
+    box-shadow: none;
+    border: none;
+}
+
+.headerbar-maincontent headerbar,
+.headerbar-sidebar headerbar {
+    box-shadow: none;
+    border: none;
+}
+
+.headerbar-maincontent button.image-button image {
+    -gtk-icon-size: 24px;
+    padding: 2px;
+}
+
+/* Window controls - Sidebar */
+.headerbar-sidebar windowcontrols button {
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.headerbar-sidebar windowcontrols button image {
+    color: @accent_color;
+    -gtk-icon-shadow: none;
+}
+
+.headerbar-sidebar windowcontrols button:hover {
+    background-color: alpha(@accent_color, 0.1);
+    border-radius: 100%;
+}
+
+/* Window controls - Main Content */
+.headerbar-maincontent windowcontrols button {
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.headerbar-maincontent windowcontrols button image {
+    color: @accent_color;
+}
+
+.headerbar-maincontent windowcontrols button:hover {
+    background-color: alpha(@accent_color, 0.1);
+    border-radius: 100%;
+}
+
+
+/* =========================================================
+ * 3. SIDEBAR STRUCTURE
+ * ========================================================= */
+
+.box-background-navigation-sidebar,
+.navigation-sidebar {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+}
+
+.navigation-sidebar row {
+    padding-top: 2px;
+    padding-bottom: 3px;
+    min-height: 20px;
+}
+
+
+/* =========================================================
+ * 4. SIDEBAR STATES
+ * ========================================================= */
+
+.navigation-sidebar row:selected,
+.navigation-sidebar row:selected:focus,
+.navigation-sidebar row:selected:hover,
+.navigation-sidebar row:focus {
+    background-color: transparent;
+    color: inherit;
+    outline: none;
+    box-shadow: none;
+}
+
+.navigation-sidebar row:hover {
+    background-color: alpha(currentColor, 0.05);
+}
+
+
+/* =========================================================
+ * 5. WELCOME VIEW
+ * ========================================================= */
+
+.list-conversion-welcome {
+    padding: 24px;
+}
+
+.list-conversion-welcome label.title {
+    font-weight: 300;
+    font-size: 32px;
+    margin-bottom: 4px;
+}
+
+.list-conversion-welcome label.subtitle {
+    font-size: 14pt;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+ * 6. POPOVER SETTINGS (GTK4 PURE STYLE)
+ * ========================================================= */
+
+.popover-settings {
+    padding: 0;
+}
+
+.popover-settings separator {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    -gtk-icon-shadow: none;
+    min-height: 1px;
+    margin: 6px 0;
+}
+
+/* No ciano/data/css/style.css */
+
+.popover-settings contents {
+    padding: 0;
+    min-width: 220px; /* Garante um tamanho horizontal uniforme */
+    border-radius: 8px;
+    background-color: @bg_primary; /* Usa as variáveis do tema ativo */
+    color: @text_primary;
+    border: 1px solid @border_color;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+
+    font-weight: 400; /* Use 300 se quiser ainda mais fino */
+    font-size: 0.95rem; /* O elementary usa tamanhos leve-mente menores em menus */
+    letter-spacing: -0.01em; /* Toque sutil de tipografia moderna */
+    font-family: "Inter", "Segoe UI", sans-serif;
+    color: alpha(@text_primary, 0.85);
+}
+
+.popover-settings label {
+    color: @text_primary;
+    opacity: 0.85; /* Isso dá o aspecto exato do sistema para labels */
+}
+
+.popover-settings arrow {
+    border: 1px solid @border_color;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Alinhamento do Revealer para os círculos de cores */
+.popover-settings revealer > box {
+    padding: 4px;
+    margin: 0;
+}
+
+/* Padroniza as linhas de botões (Follow, Preferences, About) */
+.popover-settings button.flat.popover-row-button {
+    padding: 4px;
+    border-radius: 0;
+    margin: 0px;
+    border: none;
+    background: none;
+}
+
+.popover-settings button.flat.popover-row-button:hover {
+    background-color: alpha(currentColor, 0.07);
+}
+
+.popover-settings button.flat.popover-row-button:active {
+    background-color: alpha(currentColor, 0.12);
+}
+
+.label-settings {
+    font-size: 0.95rem;
+}
+
+
+/* =========================================================
+ * 7. COLOR PREVIEW DEFINITIONS
+ * ========================================================= */
+
+.color-button {
+    margin: 4px;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.color-button radio,
+.color-button check {
+    min-width: 24px;
+    min-height: 24px;
+    border-radius: 999px;
+    padding: 5px;
+    -gtk-icon-size: 4px;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.1);
+    -gtk-icon-source: none;
+    -gtk-icon-shadow: none;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Simple Colors */
+.color-button.ciano-blue radio,
+.color-button.ciano-blue check {
+    background-color: #00A2FF;
+}
+
+.color-button.ciano-green radio,
+.color-button.ciano-green check {
+    background-color: #0D8875;
+}
+
+/* Gradients */
+.color-button.ciano-blue-dark radio,
+.color-button.ciano-blue-dark check {
+    background-image: linear-gradient(135deg, #00A2FF 50%, #474545 50%);
+    background-size: 100% 100%;
+}
+
+.color-button.ciano-green-dark radio,
+.color-button.ciano-green-dark check {
+    background-image: linear-gradient(135deg, #0D8875 50%, #474545 50%);
+    background-size: 100% 100%;
+}
+
+/* Checked - Simple */
+.color-button.ciano-blue radio:checked,
+.color-button.ciano-blue check:checked,
+.color-button.ciano-green radio:checked,
+.color-button.ciano-green check:checked {
+    background-image: -gtk-icontheme("check-active-symbolic");
+    background-size: 12px 12px;
+}
+
+/* Checked - Gradients */
+.color-button.ciano-blue-dark radio:checked,
+.color-button.ciano-blue-dark check:checked {
+    background-image:
+        -gtk-icontheme("check-active-symbolic"),
+        linear-gradient(135deg, #00A2FF 50%, #474545 50%);
+    background-size:
+        12px 12px,
+        100% 100%;
+}
+
+.color-button.ciano-green-dark radio:checked,
+.color-button.ciano-green-dark check:checked {
+    background-image:
+        -gtk-icontheme("check-active-symbolic"),
+        linear-gradient(135deg, #0D8875 50%, #474545 50%);
+    background-size:
+        12px 12px,
+        100% 100%;
+}
+
+
+/* =========================================================
+ * 8. DIALOG ABOUT
+ * ========================================================= */
+
+.dialog-about-title {
+    font-size: 32px;
+    font-weight: 200;
+    color: @accent_color;
+    margin-top: 20px;
+}
+
+.dialog-about button.btn-help {
+    border-radius: 100%;
+    min-width: 32px;
+    min-height: 32px;
+    padding: 0;
+}
+
+.dialog-about button.flat:not(.btn-help),
+.dialog-about button.btn-close {
+    min-width: 140px;
+    min-height: 28px;
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-weight: normal;
+    font-size: 0.95rem;
+    transition: all 150ms ease;
+}
+
+.color-label-error {
+    color: #a10705;
+}

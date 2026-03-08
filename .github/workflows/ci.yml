@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+  release:
+    types:
+      - published
+
+# Defines the execution order of all workflows:
+#
+#   Lint
+#    └── Build
+#         ├── Flatpak  (release only)
+#         ├── Debian   (release only)
+#         └── Snap     (release only)
+
+jobs:
+
+  lint:
+    name: Lint
+    uses: ./.github/workflows/lint.yml
+
+  build:
+    name: Build
+    needs: lint
+    uses: ./.github/workflows/build.yml
+
+  flatpak:
+    name: Flatpak
+    needs: build
+#    if: github.event_name == 'release'
+    uses: ./.github/workflows/flatpak.yml
+
+  snap:
+    name: Snap
+    needs: build
+#    if: github.event_name == 'release'
+    uses: ./.github/workflows/snap.yml
+
+  debian:
+    name: Debian
+    needs: build
+#    if: github.event_name == 'release'
+    uses: ./.github/workflows/debian.yml
+
+  rpm:
+    name: RPM
+    needs: build
+#    if: github.event_name == 'release'
+    uses: ./.github/workflows/rpm.yml
