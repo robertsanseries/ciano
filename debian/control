@@ -1,0 +1,33 @@
+Source: com.github.robertsanseries.ciano
+Section: graphics
+Priority: optional
+Maintainer: Robert San <robertsanseries@gmail.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ desktop-file-utils,
+ gettext,
+ libgee-0.8-dev,
+ libglib2.0-dev,
+ libgranite-7-dev (>= 7.6.0),
+ libgtk-4-dev,
+ meson,
+ valac
+Standards-Version: 4.6.2
+Homepage: https://robertsanseries.github.io/ciano/
+Vcs-Git: https://github.com/robertsanseries/ciano.git
+Vcs-Browser: https://github.com/robertsanseries/ciano
+
+Package: com.github.robertsanseries.ciano
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ ffmpeg
+Description: A multimedia file converter
+ The easiest way to convert your multimedia files to the most
+ popular formats. Supports video, audio and image conversion.
+ .
+ Supports the conversion of:
+  - Video: MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM
+  - Audio: MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A
+  - Images: JPG, BMP, PNG, TIF, GIF, TGA

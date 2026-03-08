@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-09 17:37+0200\n"
-"PO-Revision-Date: 2020-06-09 17:27+0200\n"
+"PO-Revision-Date: 2026-03-08 00:00+0000\n"
 "Last-Translator: Nathan Bonnemains (@NathanBnm)\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -17,87 +17,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/configs/Properties.vala:31
+#: src/Configs/Properties.vala:31
+msgid "About"
+msgstr "À propos"
+
+#: src/Configs/Properties.vala:33
+msgid "Help"
+msgstr "Aide"
+
+#: src/Configs/Properties.vala:35
+msgid "Suggest Translations"
+msgstr "Suggérer des traductions"
+
+#: src/Configs/Properties.vala:37
+msgid "Report a Problem"
+msgstr "Signaler un problème"
+
+#: src/Configs/Properties.vala:39
+msgid "A multimedia file converter focused on simplicity."
+msgstr "Un convertisseur de fichiers multimédia axé sur la simplicité."
+
+#: src/Configs/Properties.vala:41
+msgid "This program is published under the terms of the GNU General Public License; it comes with ABSOLUTELY NO WARRANTY; for details, visit: "
+msgstr "Ce programme est publié selon les termes de la Licence Publique Générale GNU ; il est fourni SANS AUCUNE GARANTIE ; pour plus de détails, visitez : "
+
+#: src/Configs/Properties.vala:31
 msgid "Convert File"
 msgstr "Convertir le fichier"
 
-#: src/configs/Properties.vala:33
-msgid "Convert file to"
-msgstr "Convertir le fichier en"
+#: src/Configs/Properties.vala:47
+msgid "Convert to"
+msgstr "Convertir en"
 
-#: src/configs/Properties.vala:35
+#: src/Configs/Properties.vala:35
 msgid "Name"
 msgstr "Nom"
 
-#: src/configs/Properties.vala:37
+#: src/Configs/Properties.vala:37
 msgid "Add items to conversion:"
 msgstr "Ajouter les éléments à convertir :"
 
-#: src/configs/Properties.vala:39
+#: src/Configs/Properties.vala:39
 msgid "Directory"
 msgstr "Dossier"
 
-#: src/configs/Properties.vala:41
+#: src/Configs/Properties.vala:41
 msgid "Add file"
 msgstr "Ajouter un fichier"
 
-#: src/configs/Properties.vala:43
+#: src/Configs/Properties.vala:43
 msgid "Delete"
 msgstr "Supprimer"
 
-#: src/configs/Properties.vala:45
+#: src/Configs/Properties.vala:45
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/configs/Properties.vala:47
+#: src/Configs/Properties.vala:47
 msgid "Start conversion"
 msgstr "Démarrer la conversion"
 
-#: src/configs/Properties.vala:49
+#: src/Configs/Properties.vala:49
 msgid "Output folder:"
 msgstr "Répertoire de destination :"
 
-#: src/configs/Properties.vala:51
+#: src/Configs/Properties.vala:51
 msgid "Files origin:"
 msgstr "Origine des fichiers :"
 
-#: src/configs/Properties.vala:53
+#: src/Configs/Properties.vala:53
 msgid "Select the output folder:"
 msgstr "Sélectionner le répertoire de destination :"
 
-#: src/configs/Properties.vala:55
+#: src/Configs/Properties.vala:55
 msgid "Notifications:"
 msgstr "Notifications :"
 
-#: src/configs/Properties.vala:57
+#: src/Configs/Properties.vala:57
 msgid "Notify about completed action:"
 msgstr "Notification d'action terminée :"
 
-#: src/configs/Properties.vala:59
+#: src/Configs/Properties.vala:59
 msgid "Notify about an error:"
 msgstr "Notification d'erreur :"
 
-#: src/configs/Properties.vala:61
+#: src/Configs/Properties.vala:61
 msgid "Close"
 msgstr "Fermer"
 
-#: src/configs/Properties.vala:63
+#: src/Configs/Properties.vala:84
+msgid "Follow system appearance"
+msgstr "Suivre l'apparence du système"
+
+#: src/Configs/Properties.vala:63
 msgid "Open output folder"
 msgstr "Ouvrir le dossier de destination"
 
-#: src/configs/Properties.vala:65
+#: src/Configs/Properties.vala:65
 msgid "Settings"
 msgstr "Paramètres"
 
-#: src/configs/Properties.vala:67
+#: src/Configs/Properties.vala:67
 msgid "Preferences"
 msgstr "Préférences"
 
-#: src/configs/Properties.vala:69
+#: src/Configs/Properties.vala:69
 msgid "Empty conversion list"
 msgstr "Liste de conversion vide"
 
-#: src/configs/Properties.vala:71
+#: src/Configs/Properties.vala:71
 msgid ""
 "Select an option from the side menu to which you want to \n"
 " convert your file"
@@ -105,82 +133,82 @@ msgstr ""
 "Sélectionnez le format de conversion que vous souhaitez dans le \n"
 " menu de gauche"
 
-#: src/configs/Properties.vala:73
-msgid "Starting..."
-msgstr "Démarrage..."
+#: src/Configs/Properties.vala:99
+msgid "Starting…"
+msgstr "Démarrage…"
 
-#: src/configs/Properties.vala:75
+#: src/Configs/Properties.vala:75
 msgid "Cancel conversion"
 msgstr "Annuler la conversion"
 
-#: src/configs/Properties.vala:77
+#: src/Configs/Properties.vala:77
 msgid "Remove"
 msgstr "Supprimer"
 
-#: src/configs/Properties.vala:79
+#: src/Configs/Properties.vala:79
 msgid "Remove item from list"
 msgstr "Supprimer l'élément de la liste"
 
-#: src/configs/Properties.vala:81
+#: src/Configs/Properties.vala:81
 msgid "Video"
 msgstr "Vidéo"
 
-#: src/configs/Properties.vala:83
+#: src/Configs/Properties.vala:83
 msgid "Music"
 msgstr "Musique"
 
-#: src/configs/Properties.vala:85
+#: src/Configs/Properties.vala:85
 msgid "Image"
 msgstr "Image"
 
-#: src/configs/Properties.vala:87
+#: src/Configs/Properties.vala:87
 msgid "Select file"
 msgstr "Sélectionner un fichier"
 
-#: src/configs/Properties.vala:89
+#: src/Configs/Properties.vala:89
 msgid "Add"
 msgstr "Ajouter"
 
-#: src/configs/Properties.vala:91
+#: src/Configs/Properties.vala:91
 msgid "Conversion completed"
 msgstr "Conversion terminée"
 
-#: src/configs/Properties.vala:93
+#: src/Configs/Properties.vala:93
 msgid "Conversion canceled"
 msgstr "Conversion annulée"
 
-#: src/configs/Properties.vala:95
+#: src/Configs/Properties.vala:95
 msgid "Error in conversion"
 msgstr "Erreur de conversion"
 
-#: src/configs/Properties.vala:97
+#: src/Configs/Properties.vala:97
 msgid "percentage: "
 msgstr "Pourcentage :"
 
-#: src/configs/Properties.vala:99
+#: src/Configs/Properties.vala:99
 msgid " - size: "
 msgstr " - taille : "
 
-#: src/configs/Properties.vala:101
+#: src/Configs/Properties.vala:101
 msgid " - time: "
 msgstr " - durée : "
 
-#: src/configs/Properties.vala:103
+#: src/Configs/Properties.vala:103
 msgid " - bitrate: "
 msgstr " - débit : "
 
-#: src/configs/Properties.vala:105
+#: src/Configs/Properties.vala:105
 msgid "Error: Experimental codecs are not enabled"
 msgstr "Erreur : Les codecs expérimentaux ne sont pas activés"
 
-#: src/configs/Properties.vala:107
+#: src/Configs/Properties.vala:107
 msgid "Error: Invalid data found when processing input"
 msgstr "Erreur : Données invalides en entrée"
 
-#: src/configs/Properties.vala:109
+#: src/Configs/Properties.vala:109
 msgid "Error: No such file or directory"
 msgstr "Erreur : Fichier ou dossier inexistant"
 
-#: src/configs/Properties.vala:111
+#: src/Configs/Properties.vala:111
 msgid "Error: Invalid argument"
 msgstr "Erreur : Argument invalide"

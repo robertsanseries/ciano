@@ -1,0 +1,58 @@
+name: ciano
+base: core24
+version: '0.2.5'
+summary: A multimedia file converter
+description: |
+    The easiest way to convert your multimedia files
+    to the most popular formats. Supports video, audio
+    and image conversion.
+
+website: https://robertsanseries.github.io/ciano
+source-code: https://github.com/robertsanseries/ciano
+issues: https://github.com/robertsanseries/ciano/issues
+
+grade: stable
+confinement: strict
+
+parts:
+    granite:
+        plugin: meson
+        source: https://github.com/elementary/granite.git
+        source-tag: '7.6.0'
+        source-depth: 1
+        meson-parameters:
+            - --prefix=/usr
+        build-packages:
+            - libglib2.0-dev
+            - libgtk-4-dev
+            - libgee-0.8-dev
+            - intltool
+            - sassc
+        prime:
+            - -usr/include
+            - -usr/lib/*/pkgconfig
+            - -usr/share/vala
+
+    ciano:
+        plugin: meson
+        source: .
+        after: [granite]
+        meson-parameters:
+            - --prefix=/usr
+        build-packages:
+            - valac
+            - libgtk-4-dev
+            - libgee-0.8-dev
+            - gettext
+            - ffmpeg
+        stage-packages:
+            - ffmpeg
+            - libgtk-4-1
+            - libgee-0.8-2
+
+apps:
+    ciano:
+        command: usr/bin/com.github.robertsanseries.ciano
+        extensions: [gnome]
+        plugs:
+            - home

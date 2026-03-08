@@ -1,0 +1,42 @@
+name: Flatpak
+
+on:
+  workflow_call:
+
+jobs:
+  flatpak:
+    name: Flatpak
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/elementary/flatpak-platform/runtime:8
+      options: --privileged
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get app version
+        id: version
+        run: |
+          VERSION=$(grep -A5 '^project' meson.build | grep '^\s*version:' | sed "s/.*'\(.*\)'.*/\1/")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Set branch in manifest
+        run: |
+          sed -i "s/@BRANCH@/${{ github.ref_name }}/g" com.github.robertsanseries.ciano.yml
+
+      - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          bundle: com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.flatpak
+          manifest-path: com.github.robertsanseries.ciano.yml
+          repository-name: appcenter
+          repository-url: https://flatpak.elementary.io/repo.flatpakrepo
+          cache-key: "flatpak-builder-${{ github.sha }}"
+          upload-artifact: false
+          branch: ${{ github.ref_name }}
+
+      - name: Upload .flatpak artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.flatpak
+          path: com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.flatpak

@@ -1,0 +1,146 @@
+/*
+ * Copyright (c) 2026 Robert San <robertsanseries@gmail.com>
+ *
+ * Distributed WITHOUT ANY WARRANTY.
+ */
+
+@define-color bg_primary #FFFFFF;  /* Branco (Conteúdo) */
+@define-color bg_secondary #F1F1F1;  /* Cinza claro (Sidebar) */
+@define-color text_primary #2E2E2E;
+
+@define-color accent_color #0D8875; /* Mantido o Verde como cor principal */
+@define-color accent_secondary #00A2FF;
+@define-color border_color rgba(0, 0, 0, 0.1);
+
+/* ==================================================
+   WINDOW STRUCTURE
+   ================================================== */
+
+window.theme-green {
+    background-color: @bg_primary; /* Fundo do conteúdo principal em Cinza */
+    color: @text_primary;
+}
+
+/* ==================================================
+   HEADERBARS & CONTROLS
+   ================================================== */
+
+/* Título e ícones na Sidebar (Fundo Branco) */
+window.theme-green .headerbar-sidebar {
+    background-color: @bg_secondary;
+    background-image: none;
+    border-bottom: none; /* Removida a linha de separação */
+    color: @accent_color;
+    box-shadow: none;
+}
+
+window.theme-green .headerbar-sidebar label.title {
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* Cor verde no botão de fechar da sidebar */
+window.theme-green .headerbar-sidebar windowcontrols button {
+    color: @accent_color;
+}
+
+/* Header Content (Fundo Cinza para combinar com o Window) */
+window.theme-green .headerbar-maincontent {
+    background-color: @bg_primary;
+    background-image: none;
+    border-bottom: none; /* Removida a linha de separação */
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* Cor verde no botão de maximizar/controles do conteúdo */
+window.theme-green .headerbar-maincontent windowcontrols button {
+    color: @accent_color;
+}
+
+/* Remove sombras e decorações extras dos botões de controle */
+window.theme-green windowcontrols button image {
+    color: @accent_color;
+}
+
+/* ==================================================
+   SIDEBAR & NAVIGATION
+   ================================================== */
+
+/* Sidebar de navegação em Branco */
+window.theme-green .box-background-navigation-sidebar,
+window.theme-green .navigation-sidebar {
+    background-color: @bg_secondary;
+    color: @text_primary;
+}
+
+/*!* Linha divisória vertical *!*/
+/*window.theme-green .main-splitter-line {*/
+/*    background-color: @border_color;*/
+/*    opacity: 1;*/
+/*    border: none;*/
+/*    min-width: 1px;*/
+/*}*/
+
+/* ==================================================
+   WELCOME VIEW
+   ================================================== */
+
+window.theme-green .list-conversion-welcome label.title {
+    color: alpha(@accent_color, 0.90);
+}
+
+window.theme-green .list-conversion-welcome label.subtitle {
+    color: alpha(@text_primary, 0.70);
+}
+
+/* ==================================================
+   POPOVER SETTINGS
+   ================================================== */
+
+/* Popover pegando a cor de fundo do content (@bg_primary) */
+.popover-settings.theme-green contents {
+    background-color: @bg_primary;
+    color: @text_primary;
+    border: 1px solid @border_color;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.popover-settings.theme-green button.flat.popover-row-button {
+    color: @text_primary;
+}
+
+.popover-settings.theme-green separator {
+    background-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Seta do popover acompanhando a cor do conteúdo */
+.popover-settings.theme-green arrow {
+    background-color: @bg_primary;
+    border: 1px solid @border_color;
+}
+
+.popover-settings.theme-green label {
+    text-shadow: none;
+    -gtk-icon-shadow: none;
+}
+
+.popover-settings.theme-green switch slider {
+    min-width: 22px;
+    min-height: 22px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+window.theme-green .dialog-about-title {
+    color: @accent_color;
+}
+
+.dialog-about button.flat,
+.dialog-about button.btn-help,
+.dialog-about button.btn-close {
+    background-color: transparent;
+    color: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}

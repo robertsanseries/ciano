@@ -1,0 +1,39 @@
+name: Build
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [stable, unstable]
+    container:
+      image: ghcr.io/elementary/docker:${{ matrix.version }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          apt update
+          apt install -y \
+            desktop-file-utils \
+            ffmpeg \
+            gettext \
+            libgee-0.8-dev \
+            libglib2.0-dev \
+            libgranite-7-dev \
+            libgtk-4-dev \
+            meson \
+            valac
+
+      - name: Build
+        run: |
+          meson setup build
+          meson compile -C build
+          meson install -C build

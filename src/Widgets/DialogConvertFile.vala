@@ -1,236 +1,250 @@
 /*
-* Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public
-* License as published by the Free Software Foundation; either
-* version 2 of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public
-* License along with this program; if not, write to the
-* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-* Boston, MA 02110-1301 USA
-*/
+ * Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301 USA
+ */
 
 using Ciano.Configs;
 using Ciano.Utils;
 using Ciano.Enums;
 using Ciano.Controllers;
-
+using Ciano.Objects;
 
 namespace Ciano.Widgets {
 
     /**
-     * The {@code DialogConvertFile} class is responsible for displaying
-     * the dialog where the user can add and remove items for conversion.
-     *
-     * @see Gtk.Dialog
-     * @since 0.1.0
+     * DialogConvertFile provides an interface for users to manage files
+     * before starting the conversion process.
      */
     public class DialogConvertFile : Gtk.Dialog {
 
-        private string []           formats;
-        private string              name_format;
-        private Gtk.ListStore       list_store;
-        private Gtk.TreeView        tree_view;
-        private Gtk.TreeIter        iter;
+        private string[] formats;
+        private string name_format;
+        private Gtk.ColumnView column_view;
+        private GLib.ListStore list_store;
+        private Gtk.SingleSelection selection;
         private ConverterController converter_controller;
 
         /**
-         * Constructs a new {@code DialogConvertFile} object responsible for assemble the structure of the dialog.
-         * Defines the title and description to be performed. Then mount the grid using the "mount_frame" method
-         * and add the buttons with the method "mount_buttons".
-         *
-         * @see Ciano.Configs.Properties
-         * @see Ciano.Controllers.ConverterController
-         * @see mount_frame
-         * @see mount_buttons
-         * @param {@code ConverterController}  converter_controller
-         * @param {@code string[]}             formats
-         * @param {@code string}               name_format
-         * @param {@code Gtk.Window}           parent
+         * Constructs a new DialogConvertFile.
+         * @param converter_controller The application controller.
+         * @param formats Array of supported output formats.
+         * @param name_format The specific format selected.
+         * @param parent The parent window.
          */
-        public DialogConvertFile (ConverterController converter_controller, string [] formats, string name_format, Gtk.Window parent) {
+        public DialogConvertFile (
+            ConverterController converter_controller,
+            string[] formats,
+            string name_format,
+            Gtk.Window parent
+        ) {
+            Object (
+                    transient_for: parent,
+                    modal: true
+            );
+
             this.title = Properties.TEXT_CONVERT_FILE;
-            this.resizable = false;
-            this.deletable = false;
+            this.set_resizable (false);
             this.converter_controller = converter_controller;
             this.formats = formats;
             this.name_format = name_format;
-            this.set_transient_for (parent);
-            this.set_default_size (800, 600);
-            this.set_size_request (800, 600);
-            this.set_modal (true);
+            this.set_default_size (600, 400);
+            this.add_css_class ("dialog-convert-file");
 
-            var title = new Gtk.Label ("<b>%s %s</b>".printf (Properties.TEXT_CONVERT_FILE_TO, name_format));
-            title.set_use_markup (true);
-            title.get_style_context ().add_class ("title-section-dialog");
-            title.halign = Gtk.Align.CENTER;
-            title.margin = 5;
+            // Setup HeaderBar without title buttons for a cleaner look
+            var header = new Gtk.HeaderBar ();
+            header.set_show_title_buttons (false);
+            this.set_titlebar (header);
 
-            var label = new Gtk.Label (Properties.TEXT_ADD_ITEMS_TO_CONVERSION);
-            label.halign = Gtk.Align.START;
-            label.margin = 5;
-
-            var frame = mount_frame ();
-            var grid_buttons = mount_buttons ();
-
-            var grid = new Gtk.Grid ();
-            grid.orientation = Gtk.Orientation.VERTICAL;
-            grid.margin_start = 15;
-            grid.margin_end = 15;
-            grid.margin_top = 0;
-            grid.margin_bottom = 0;
-            grid.add (title);
-            grid.add (label);
-            grid.add (frame);
-            grid.add (grid_buttons);
-
-            this.get_content_area ().add (grid);
+            this.build_ui ();
         }
 
         /**
-         * Mounts to {@code Gtk.Frame} structure with your widgets.
-         * 1 - create the {@code Gtk.Treeview} and add the {@code Gtk.Grid} that will be in the {@code Gtk.Frame}.
-         * 2 - create the {@code Gtk.Toobar} and add the {@code Gtk.Grid} that will be in the {@code Gtk.Frame}.
-         *
-         * @see mount_treeview
-         * @see mount_toolbar
-         * @return {@code Gtk.Frame}
+         * Builds the main UI layout.
          */
-        private Gtk.Frame mount_frame () {
-            var treeview = mount_treeview ();
-            var toolbar = mount_toolbar ();
+        private void build_ui () {
+            var root = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
+            root.margin_start = 20;
+            root.margin_end = 20;
+            root.margin_top = 15;
+            root.margin_bottom = 15;
 
-            var grid_itens = new Gtk.Grid ();
-            grid_itens.orientation = Gtk.Orientation.VERTICAL;
-            grid_itens.add (treeview);
-            grid_itens.add (toolbar);
+            var title_label = new Gtk.Label ("");
+            title_label.set_markup (
+                    "<span size='large' weight='bold'>%s %s</span>".printf (
+                            Properties.TEXT_CONVERT_FILE_TO, name_format
+                    )
+            );
+            title_label.halign = Gtk.Align.START;
+
+            var description_label = new Gtk.Label (Properties.TEXT_ADD_ITEMS_TO_CONVERSION);
+            description_label.halign = Gtk.Align.START;
+            description_label.add_css_class ("dim-label");
+
+            var list_container = this.mount_list_container ();
+            var action_box = this.mount_action_buttons ();
+
+            root.append (title_label);
+            root.append (description_label);
+            root.append (list_container);
+            root.append (action_box);
+
+            this.set_child (root);
+        }
+
+        /**
+         * Creates the list area using a ColumnView to display headers.
+         * @return The list container widget.
+         */
+        private Gtk.Widget mount_list_container () {
+            var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+            box.add_css_class ("view");
+            box.vexpand = true;
+
+            // Model and Selection setup
+            list_store = new GLib.ListStore (typeof (FileItem));
+            selection = new Gtk.SingleSelection (list_store);
+
+            // Initialize ColumnView
+            column_view = new Gtk.ColumnView (selection);
+            column_view.vexpand = true;
+            column_view.hexpand = true;
+            column_view.add_css_class ("data-table");
+
+            // Add Columns
+            this.append_column (Properties.TEXT_NAME, true);
+            this.append_column (Properties.TEXT_DIRECTORY, false);
+
+            var scrolled = new Gtk.ScrolledWindow ();
+            scrolled.set_child (column_view);
+            scrolled.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
+            scrolled.vexpand = true;
+
+            var toolbar = this.mount_inline_toolbar ();
+
+            box.append (scrolled);
+            box.append (toolbar);
 
             var frame = new Gtk.Frame (null);
-            frame.add (grid_itens);
+            frame.set_child (box);
 
             return frame;
         }
 
         /**
-         * Mount the {@code Gtk.Treeview} structure. {@code Gtk.Treeview} will have only two columns "name"
-         * and "Directory".
-         *
-         * @see Ciano.Configs.Properties
-         * @see Ciano.Enums.ColumnEnum
-         * @return Gtk.ScrolledWindow
+         * Helper to append a column to the ColumnView with Tooltip support.
+         * @param title Column title.
+         * @param is_name Whether this is the 'Name' or 'Directory' column.
          */
-        private Gtk.ScrolledWindow mount_treeview () {
-            this.list_store = new Gtk.ListStore (ColumnEnum.N_COLUMNS ,typeof (string), typeof (string));
+        private void append_column (string title, bool is_name) {
+            var factory = new Gtk.SignalListItemFactory ();
 
-            this.tree_view = new Gtk.TreeView.with_model (this.list_store);
-            this.tree_view.vexpand = true;
+            // Setup: Create the cell widget
+            factory.setup.connect ((item) => {
+                var list_item = (Gtk.ListItem) item;
+                var label = new Gtk.Label ("");
+                label.halign = Gtk.Align.START;
+                label.margin_start = 12;
+                label.margin_end = 12;
+                label.ellipsize = Pango.EllipsizeMode.END;
 
-            var name_column = new Gtk.TreeViewColumn ();
-            var cell1 = new Gtk.CellRendererText ();
-            name_column.title = Properties.NAME;
-            name_column.expand = true;
-            name_column.min_width = 200;
-            name_column.max_width = 200;
-            name_column.pack_start (cell1, false);
-            name_column.add_attribute (cell1, "text", ColumnEnum.NAME);
+                if (!is_name) {
+                    label.add_css_class ("dim-label");
+                }
 
-            var directory_column = new Gtk.TreeViewColumn ();
-            var cell2 = new Gtk.CellRendererText ();
-            directory_column.title = Properties.DIRECTORY;
-            directory_column.expand = true;
-            directory_column.min_width = 200;
-            directory_column.max_width = 200;
-            directory_column.pack_start (cell2, false);
-            directory_column.add_attribute (cell2, "text", ColumnEnum.DIRECTORY);
+                list_item.set_child (label);
+            });
 
-            this.tree_view.insert_column (name_column, -1);
-            this.tree_view.insert_column (directory_column, -1);
+            // Bind: Populate widget and set Tooltip
+            factory.bind.connect ((item) => {
+                var list_item = (Gtk.ListItem) item;
+                var file_item = (FileItem) list_item.get_item ();
+                var label = (Gtk.Label) list_item.get_child ();
 
-            var scrolled = new Gtk.ScrolledWindow (null, null);
-            scrolled.expand = true;
-            scrolled.add (this.tree_view);
+                string content = is_name ? file_item.name : file_item.directory;
+                label.label = content;
 
-            return scrolled;
+                // Set the tooltip to show the full value on hover
+                label.tooltip_text = content;
+            });
+
+            var col = new Gtk.ColumnViewColumn (title, factory);
+            col.expand = true;
+            column_view.append_column (col);
         }
 
         /**
-         * Mount the {@code Gtk.Toolbar} structure. The {@code Gtk.Toolbar} will have the option to add items
-         * and remove them from the {@code Gtk.Treeview}. The methods responsible for performing the actions of
-         * adding ({@code on_activate_button_add_file}) and removing ({@code on_activate_button_remove})
-         * the items are implemented in the controller ({@code ConverterController}).
-         *
-         * @see Ciano.Configs.Properties
-         * @see Ciano.Controllers.ConverterController
-         * @return Gtk.Toolbar
+         * Creates the inline toolbar for adding and removing files.
+         * @return The toolbar widget.
          */
-        private Gtk.Toolbar mount_toolbar () {
-            var toolbar = new Gtk.Toolbar ();
-            toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
-            toolbar.set_icon_size (Gtk.IconSize.SMALL_TOOLBAR);
+        private Gtk.Widget mount_inline_toolbar () {
+            var toolbar = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            toolbar.add_css_class ("inline-toolbar");
 
-            var button_add_file = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("list-add-symbolic",    Gtk.IconSize.SMALL_TOOLBAR), null);
-            button_add_file.tooltip_text = Properties.TEXT_ADD_FILE;
-            button_add_file.clicked.connect (() => {
-                this.converter_controller.on_activate_button_add_file (
-                    this, this.tree_view, this.iter, this.list_store, this.formats
-                );
+            var btn_add = new Gtk.Button.from_icon_name ("list-add-symbolic");
+            btn_add.tooltip_text = Properties.TEXT_ADD_FILE;
+            btn_add.clicked.connect (() => {
+                this.converter_controller.on_activate_button_add_file (this.list_store, this.formats);
             });
 
-            var button_remove = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.SMALL_TOOLBAR), null);
-            button_remove.tooltip_text = Properties.TEXT_DELETE;
-            button_remove.sensitive = false;
-            button_remove.clicked.connect (() => {
-                this.converter_controller.on_activate_button_remove (
-                    this, this.tree_view, this.list_store, button_remove
-                );
+            var btn_remove = new Gtk.Button.from_icon_name ("list-remove-symbolic");
+            btn_remove.tooltip_text = Properties.TEXT_DELETE;
+            btn_remove.sensitive = false;
+
+            btn_remove.clicked.connect (() => {
+                var pos = selection.get_selected ();
+                if (pos != Gtk.INVALID_LIST_POSITION) {
+                    list_store.remove (pos);
+                }
             });
 
-            this.tree_view.cursor_changed.connect (() => {
-                button_remove.sensitive = true;
+            // Update remove button sensitivity based on selection
+            selection.notify["selected"].connect (() => {
+                btn_remove.sensitive = selection.get_selected () != Gtk.INVALID_LIST_POSITION;
             });
 
-            toolbar.insert (button_add_file, -1);
-            toolbar.insert (button_remove, -1);
+            toolbar.append (btn_add);
+            toolbar.append (btn_remove);
 
             return toolbar;
         }
 
         /**
-         * Mount the {@code Gtk.Grid} where the cancel and start conversion buttons are displayed.
-         * When you click the convert_button button, the "{@code on_activate_button_start_conversion}" method of
-         * the "{@code ConverterController}" is responsible for performing all operations after the click.
-         *
-         * @see Ciano.Configs.Properties
-         * @see Ciano.Controllers.ConverterController
-         * @return Gtk.Grid
+         * Creates the bottom action buttons.
+         * @return The action box widget.
          */
-        private Gtk.Grid mount_buttons () {
-            var calcel_button = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
-            calcel_button.clicked.connect (() => { this.destroy (); });
-            calcel_button.margin_end = 10;
+        private Gtk.Widget mount_action_buttons () {
+            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12);
+            box.halign = Gtk.Align.END;
+            box.margin_top = 8;
 
-            var convert_button = new Gtk.Button.with_label (Properties.TEXT_START_CONVERSION);
-            convert_button.get_style_context ().add_class ("suggested-action");
-            convert_button.clicked.connect (() => {
-                this.destroy ();
+            var btn_cancel = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
+            btn_cancel.clicked.connect (() => { this.destroy (); });
+
+            var btn_convert = new Gtk.Button.with_label (Properties.TEXT_START_CONVERSION);
+            btn_convert.add_css_class ("suggested-action");
+            btn_convert.clicked.connect (() => {
                 this.converter_controller.on_activate_button_start_conversion (this.list_store, this.name_format);
+                this.destroy ();
             });
 
-            var grid_buttons = new Gtk.Grid ();
-            grid_buttons.margin_top = 10;
-            grid_buttons.halign = Gtk.Align.END;
-            grid_buttons.attach (calcel_button, 0, 0, 1, 1);
-            grid_buttons.attach_next_to (convert_button, calcel_button, Gtk.PositionType.RIGHT, 3, 1);
+            box.append (btn_cancel);
+            box.append (btn_convert);
 
-            return grid_buttons;
+            return box;
         }
     }
 }
-

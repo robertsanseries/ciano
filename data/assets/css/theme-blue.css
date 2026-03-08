@@ -1,0 +1,92 @@
+
+@define-color bg_primary #FFFFFF;  /* Branco (Conteúdo) */
+@define-color bg_secondary #F1F1F1;  /* Cinza claro (Sidebar) */
+@define-color text_primary #2E2E2E;
+
+@define-color accent_color #00A2FF;  /* Mantido o Azul como cor principal */
+@define-color accent_secondary #0D8875;
+
+/* ==================================================
+   WINDOW
+   ================================================== */
+
+window.theme-blue {
+    background-color: @bg_primary;
+    color: @text_primary;
+}
+
+window.theme-blue label {
+    color: @text_primary;
+}
+
+/* ==================================================
+   HEADERBAR
+   ================================================== */
+
+window.theme-blue .headerbar-sidebar {
+    background-color: @bg_secondary;
+    color: @accent_color;
+}
+
+window.theme-blue .headerbar-sidebar .title {
+    color: @accent_color;
+}
+
+window.theme-blue .headerbar-maincontent {
+    background-color: @bg_primary;
+    color: @accent_color;
+}
+
+/* ==================================================
+   SIDEBAR
+   ================================================== */
+
+window.theme-blue .box-background-navigation-sidebar {
+    background-color: @bg_secondary;
+}
+
+window.theme-blue .navigation-split-view {
+    background-color: @bg_primary;
+}
+
+window.theme-blue .navigation-sidebar {
+    background-color: @bg_secondary;
+    color: @text_primary;
+}
+
+window.theme-blue .navigation-sidebar row {
+    color: @text_primary;
+}
+
+.list-conversion-welcome label.title {
+    color: alpha(@accent_color, 0.85);
+}
+
+/* Subtítulo / descrição */
+.list-conversion-welcome label.subtitle {
+    color: alpha(@text_primary, 0.65);
+}
+
+.popover-settings.theme-blue separator {
+    background-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.popover-settings.theme-blue switch slider {
+    min-width: 22px;
+    min-height: 22px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+window.theme-blue .dialog-about-title {
+    color: @accent_color;
+}
+
+.dialog-about button.flat,
+.dialog-about button.btn-help,
+.dialog-about button.btn-close {
+    background-color: transparent;
+    color: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}

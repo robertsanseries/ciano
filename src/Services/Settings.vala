@@ -23,13 +23,12 @@ using Ciano.Utils;
 namespace Ciano.Services {
 
     /**
-     * The {@code Settings} class is responsible for defining all 
-     * the texts that are displayed in the application and must be translated.
+     * The {@code Settings} class is responsible for managing application 
+     * preferences and synchronizing them with the GSettings database.
      *
-     * @see Granite.Services.Settings
      * @since 0.1.0
      */
-    public class Settings : Granite.Services.Settings {
+    public class Settings : Object {
 
         /**
          * This static property represents the {@code Settings} type.
@@ -37,75 +36,121 @@ namespace Ciano.Services {
         private static Settings? instance;
 
         /**
-         * This property will represent the location x of the screen.
-         * Variable of type {@code int} as declared.
+         * This property represents the internal GSettings backend.
+         * It is responsible for synchronizing application properties 
+         * with the system's configuration database.
+         * Object of type {@code GLib.Settings} as declared.
          */
-        public int window_x { get; set; }
+        public GLib.Settings schema;
 
         /**
-         * This property will represent the location y of the screen.
+         * This property will represent the width of the main window.
+         * Stored in pixels, it is used to restore the user's preferred 
+         * window size upon application startup.
          * Variable of type {@code int} as declared.
          */
-        public int window_y { get; set; }
+        public int window_width { get; set; }
+
+        /**
+         * This property will represent the height of the main window.
+         * Stored in pixels, it is used to restore the user's preferred 
+         * window size upon application startup.
+         * Variable of type {@code int} as declared.
+         */
+        public int window_height { get; set; }
+
+        /**
+         * This property {@code bool} corresponds to {@code true} if the
+         * main window should be launched in a maximized state. If active,
+         * the window will occupy the entire screen.
+         * Otherwise the value will be {@code false}.
+         */
+        public bool is_maximized { get; set; }
 
         /**
          * This property will receive the name of the output folder which
          * can be altered through dialog preferences.
          * Variable of type {@code string} as declared.
          */
-        public string output_folder    { get; set; }
+        public string output_folder { get; set; default = ""; }
 
         /**
          * This property {@code bool} corresponds to {@code true} if option
-         * save the converted files to the same folder "is active on the 
-         * dialog Preferences. If the option is not activated the value of the same
-         * will be {@code false} and the application will use {@code output_folder} 
-         * as the standard output.
+         * save the converted files to the same folder is active.
+         * Otherwise the value will be {@code false}.
          */
         public bool output_source_file_folder { get; set; }
 
         /**
          * This property {@code bool} corresponds to {@code true} if option
-         * "shutdown computer" in dialog preferences is enabled the computer will
-         * shutdown when all conversions are finished. 
+         * "shutdown computer" in dialog preferences is enabled.
          * Otherwise the value will be {@code false}.
          */
         public bool shutdown_computer { get; set; }
 
         /**
-         * This property {@code bool} corresponds to {@code true} if
-         * the "open output folder" option in dialog preferences is enabled by opening
-         * an output folder after completing all conversions. Otherwise,
-         * the value will be {@code false}.
+         * This property {@code bool} corresponds to {@code true} if 
+         * the "open output folder" option is enabled.
+         * Otherwise the value will be {@code false}.
          */
         public bool open_output_folder { get; set; }
 
         /**
          * This property {@code bool} corresponds to {@code true} if 
-         * the "complete notify" option in the dialog preferences is enabled by
-         * displaying a notification at the end of the conversion.
-         * Otherwise, the value will be {@code false}.
+         * the "complete notify" option is enabled by displaying 
+         * a notification at the end of the conversion.
          */
         public bool complete_notify { get; set; }
 
         /**
          * This property {@code bool} corresponds to {@code true} if
-         * the "complete notify" option in the dialog preferences is enabled
-         * by displaying a notification when there is a conversion error. 
-         * Otherwise, the value will be {@code false}.
+         * the "error notify" option is enabled by displaying 
+         * a notification when there is a conversion error. 
          */
         public bool error_notify { get; set; }
 
         /**
-         * Constructs a new {@code Settings} object 
-         * and sets the default exit folder.
-         * 
+         * This property will represent the current theme index selected by the user.
+         * Used to load specific CSS color definitions (e.g., blue, green).
+         * Variable of type {@code int} as declared.
+         */
+        public int theme { get; set; }
+
+        /**
+         * This property {@code bool} corresponds to {@code true} if the application
+         * should automatically switch between light and dark themes based on 
+         * the system's appearance settings.
+         */
+        public bool follow_system_appearance { get; set; default = true; }
+
+        /**
+         * Constructs a new {@code Settings} object and binds all properties
+         * to the GSettings schema. Sets a default output folder if none is configured.
+         *
          * @see Ciano.Utils.StringUtil#is_empty(string)
-         * @see Ciano.Constants
+         * @see Ciano.Configs.Constants
          */
         private Settings () {
-            base (Constants.ID);
+            schema = new GLib.Settings (Constants.ID);
 
+            // Window Binds
+            schema.bind ("window-width", this, "window-width", SettingsBindFlags.DEFAULT);
+            schema.bind ("window-height", this, "window-height", SettingsBindFlags.DEFAULT);
+            schema.bind ("is-maximized", this, "is-maximized", SettingsBindFlags.DEFAULT);
+
+            // Theme Binds
+            schema.bind ("theme", this, "theme", SettingsBindFlags.DEFAULT);
+            schema.bind ("follow-system-appearance", this, "follow-system-appearance", SettingsBindFlags.DEFAULT);
+
+            // Preferences Binds
+            schema.bind ("output-folder", this, "output-folder", SettingsBindFlags.DEFAULT);
+            schema.bind ("output-source-file-folder", this, "output-source-file-folder", SettingsBindFlags.DEFAULT);
+            schema.bind ("shutdown-computer", this, "shutdown-computer", SettingsBindFlags.DEFAULT);
+            schema.bind ("open-output-folder", this, "open-output-folder", SettingsBindFlags.DEFAULT);
+            schema.bind ("complete-notify", this, "complete-notify", SettingsBindFlags.DEFAULT);
+            schema.bind ("error-notify", this, "error-notify", SettingsBindFlags.DEFAULT);
+
+            // Set default output folder if empty
             if (StringUtil.is_empty (this.output_folder)) {
                 this.output_folder = Environment.get_home_dir () + Constants.DIRECTORY_CIANO;
             }
@@ -113,8 +158,7 @@ namespace Ciano.Services {
 
         /**
          * Returns a single instance of this class.
-         * 
-         * @return {@code Settings}
+         * * @return {@code Settings}
          */
         public static unowned Settings get_instance () {
             if (instance == null) {
