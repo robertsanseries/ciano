@@ -142,12 +142,9 @@ namespace Ciano.Controllers {
                 SList<string> uris = chooser_file.get_filenames ();
 
                 foreach (unowned string uri in uris)  {
-                    
-                    var file         = File.new_for_uri (uri);
-                    int index        = file.get_basename ().last_index_of("/");
-                    string name      = file.get_basename ().substring(index + 1, -1);
-                    string directory = file.get_basename ().substring(0, index + 1);
-
+                    int index        = uri.last_index_of("/");
+                    string name      = Path.get_basename (uri);
+                    string directory = Path.get_dirname (uri)+"/";
                     list_store.append (out iter);
                     list_store.set (iter, 0, name, 1, directory);
                     tree_view.expand_all ();
@@ -487,6 +484,13 @@ namespace Ciano.Controllers {
             if (str_return.contains ("time=") && str_return.contains ("size=") && str_return.contains ("bitrate=") ) {
                 int index_time  = str_return.index_of ("time=");
                 time            = str_return.substring ( index_time + 5, 11);
+                string time_to_display = time;
+
+                // This is really an ugly fix...
+                if (time.contains("N/A")) {
+                    time="00:00:00.00";
+                    time_to_display = "N/A";
+                }
 
                 int loading     = TimeUtil.duration_in_seconds (time);
                 double progress = (100 * loading) / total;
@@ -498,7 +502,12 @@ namespace Ciano.Controllers {
                 int index_bitrate = str_return.index_of ("bitrate=");
                 bitrate           = str_return.substring ( index_bitrate + 8, 11);
 
-                row.status.label = Properties.TEXT_PERCENTAGE + progress.to_string() + "%" + Properties.TEXT_SIZE_CUSTOM + size.strip () + Properties.TEXT_TIME_CUSTOM + time.strip () + Properties.TEXT_BITRATE_CUSTOM + bitrate.strip ();
+                // Another ugly fix...
+                if (bitrate.contains("N/A")) {
+                    bitrate="N/A";
+                }
+
+                row.status.label = Properties.TEXT_PERCENTAGE + progress.to_string() + "%" + Properties.TEXT_SIZE_CUSTOM + size.strip () + Properties.TEXT_TIME_CUSTOM + time_to_display.strip () + Properties.TEXT_BITRATE_CUSTOM + bitrate.strip ();
             }
 
             if (str_return.contains ("No such file or directory")) {
