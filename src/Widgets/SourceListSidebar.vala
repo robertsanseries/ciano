@@ -117,6 +117,7 @@ namespace Ciano.Widgets {
             var aiff_item = new SourceList.Item (Constants.TEXT_AIFF);            
             var mmf_item = new SourceList.Item (Constants.TEXT_MMF);
             var m4a_item = new SourceList.Item (Constants.TEXT_M4A);
+            var opus_item = new SourceList.Item (Constants.TEXT_OPUS);
 
             music_list.add (mp3_item);
             music_list.add (wma_item);
@@ -127,6 +128,7 @@ namespace Ciano.Widgets {
             music_list.add (aiff_item);
             music_list.add (mmf_item);
             music_list.add (m4a_item);
+            music_list.add (opus_item);
 
             this.type_list.add (music_list);
         }
@@ -150,6 +152,7 @@ namespace Ciano.Widgets {
             var tif_item = new SourceList.Item (Constants.TEXT_TIF);
             var gif_item = new SourceList.Item (Constants.TEXT_GIF);
             var tga_item = new SourceList.Item (Constants.TEXT_TGA);
+            var webp_item = new SourceList.Item (Constants.TEXT_WEBP);
 
             image_list.add (jpg_item);
             image_list.add (bmp_item);
@@ -157,6 +160,7 @@ namespace Ciano.Widgets {
             image_list.add (tif_item);
             image_list.add (gif_item);
             image_list.add (tga_item);
+            image_list.add (webp_item);
 
             this.type_list.add (image_list);
         }

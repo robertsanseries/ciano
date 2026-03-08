@@ -175,7 +175,7 @@ namespace Ciano.Widgets {
             toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
             toolbar.set_icon_size (Gtk.IconSize.SMALL_TOOLBAR);
 
-            var button_add_file = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("application-add-symbolic",    Gtk.IconSize.SMALL_TOOLBAR), null);
+            var button_add_file = new Gtk.ToolButton (new Gtk.Image.from_icon_name ("list-add-symbolic",    Gtk.IconSize.SMALL_TOOLBAR), null);
             button_add_file.tooltip_text = Properties.TEXT_ADD_FILE;
             button_add_file.clicked.connect (() => {
                 this.converter_controller.on_activate_button_add_file (
