@@ -1,0 +1,61 @@
+name: RPM
+
+on:
+  workflow_call:
+
+jobs:
+  rpm:
+    name: RPM
+    runs-on: ubuntu-latest
+
+    container:
+      image: fedora:latest
+
+    steps:
+      - name: Install Dependencies
+        run: |
+          dnf install -y \
+            desktop-file-utils \
+            ffmpeg-free \
+            gcc \
+            gettext \
+            git \
+            libappstream-glib \
+            libgee-devel \
+            glib2-devel \
+            granite-7-devel \
+            gtk4-devel \
+            meson \
+            ninja-build \
+            rpm-build \
+            rpmdevtools \
+            tar \
+            vala
+
+      - uses: actions/checkout@v4
+
+      - name: Get app version
+        id: version
+        run: |
+          VERSION=$(grep -A5 '^project' meson.build | grep '^\s*version:' | sed "s/.*'\(.*\)'.*/\1/")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Build .rpm
+        run: |
+          rpmdev-setuptree
+          tar --transform \
+            "s|^\.|com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}|" \
+            -czf ~/rpmbuild/SOURCES/com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.tar.gz \
+            --exclude='.git' \
+            .
+          cp rpm/com.github.robertsanseries.ciano.spec ~/rpmbuild/SPECS/com.github.robertsanseries.ciano.spec
+          rpmbuild -bb ~/rpmbuild/SPECS/com.github.robertsanseries.ciano.spec
+          ARCH=$(uname -m)
+          cp ~/rpmbuild/RPMS/$ARCH/com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}-1.*.$ARCH.rpm \
+            ./com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.rpm
+
+      - name: Upload .rpm artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.rpm
+          path: com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.rpm

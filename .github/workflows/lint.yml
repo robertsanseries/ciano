@@ -1,0 +1,16 @@
+name: Lint
+
+on:
+  workflow_call:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    container:
+      image: valalang/lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint
+        run: io.elementary.vala-lint -d .

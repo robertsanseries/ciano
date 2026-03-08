@@ -1,0 +1,102 @@
+app-id: com.github.robertsanseries.ciano
+
+runtime: io.elementary.Platform
+runtime-version: '8.2'
+sdk: io.elementary.Sdk
+
+command: com.github.robertsanseries.ciano
+
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --filesystem=host
+  - --metadata=X-DPI-Icons=true
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /share/vala
+  - /share/gir-1.0
+  - /share/gtk-doc
+  - /lib/girepository-1.0
+  - '*.la'
+  - '*.a'
+
+modules:
+
+  - name: x264
+    buildsystem: autotools
+    config-opts:
+      - --enable-shared
+      - --enable-pic
+      - --disable-lavf
+    sources:
+      - type: git
+        url: https://code.videolan.org/videolan/x264.git
+        branch: stable
+
+  - name: x265
+    buildsystem: cmake
+    config-opts:
+      - -DENABLE_SHARED=ON
+      - -DENABLE_CLI=OFF
+    subdir: source
+    sources:
+      - type: git
+        url: https://bitbucket.org/multicoreware/x265_git.git
+        branch: stable
+
+  - name: ffmpeg
+    buildsystem: autotools
+    config-opts:
+      - --enable-gpl
+      - --enable-version3
+      - --disable-static
+      - --enable-shared
+      - --disable-doc
+      - --disable-ffplay
+      - --disable-ffprobe
+      # video codecs — cobre MP4, AVI, MKV, MOV, FLV, 3GP, SWF, WMV
+      - --enable-libx264
+      - --enable-libx265
+      - --enable-decoder=h264
+      - --enable-decoder=hevc
+      - --enable-decoder=vc1
+      - --enable-decoder=mpeg2video
+      - --enable-decoder=mpeg4
+      - --enable-decoder=vp8
+      - --enable-decoder=vp9
+      - --enable-decoder=theora
+      - --enable-decoder=wmv1
+      - --enable-decoder=wmv2
+      # audio codecs — cobre MP3, OGG, AAC, FLAC, WAV, WMA, AMR, M4A, AIFF
+      - --enable-libmp3lame
+      - --enable-libvorbis
+      - --enable-libopus
+      - --enable-libvpx
+      - --enable-libtheora
+      - --enable-decoder=aac
+      - --enable-decoder=mp3
+      - --enable-decoder=flac
+      - --enable-decoder=vorbis
+      - --enable-decoder=wmav1
+      - --enable-decoder=wmav2
+      - --enable-decoder=pcm_s16le
+      - --enable-decoder=pcm_s16be
+      - --enable-decoder=shorten
+      - --enable-demuxer=shorten
+    sources:
+      - type: archive
+        url: https://ffmpeg.org/releases/ffmpeg-6.1.2.tar.xz
+        sha256: 3b624649725ecdc565c903ca6643d41f33bd49239922e45c9b1442c63dca4e38
+
+  - name: ciano
+    buildsystem: meson
+    config-opts:
+      - --buildtype=release
+    sources:
+      - type: git
+        url: https://github.com/robertsanseries/ciano.git
+        branch: "@BRANCH@"

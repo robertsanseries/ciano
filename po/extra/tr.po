@@ -23,7 +23,6 @@ msgid "Ciano"
 msgstr "Ciano"
 
 #: data/com.github.robertsanseries.ciano.desktop.in:4
-#, fuzzy
 msgid "Multimedia Converter"
 msgstr "Çoklu ortam dosya dönüştürücü"
 

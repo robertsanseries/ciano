@@ -1,0 +1,167 @@
+/*
+ * Copyright (c) 2026 Robert San <robertsanseries@gmail.com>
+ *
+ * Distributed WITHOUT ANY WARRANTY.
+ */
+
+@define-color bg_primary #333333; /* Dark escuro (Conteúdo) */
+@define-color bg_secondary #3B3B3B; /* Dark claro (Sidebar) */
+@define-color text_primary #FAFAFA;
+
+@define-color accent_color #0D8875; /* Mantido o Verde como cor principal */
+@define-color accent_secondary #00A2FF;
+@define-color border_color rgba(0, 0, 0, 0.4);
+
+/* ==================================================
+   WINDOW STRUCTURE
+   ================================================== */
+
+window.theme-green-dark {
+    background-color: @bg_primary;
+    color: @text_primary;
+}
+
+/* ==================================================
+   HEADERBARS & CONTROLS
+   ================================================== */
+
+/* Título e ícones na Sidebar */
+window.theme-green-dark .headerbar-sidebar {
+    background-color: @bg_secondary;
+    background-image: none;
+    border-bottom: none;
+    color: @accent_color;
+    box-shadow: none;
+}
+
+window.theme-green-dark .headerbar-sidebar label.title {
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* Força a cor verde no botão de fechar da sidebar */
+window.theme-green-dark .headerbar-sidebar windowcontrols button {
+    color: @accent_color;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* Ícone de Maximizar no Header Content */
+window.theme-green-dark .headerbar-maincontent {
+    background-color: @bg_primary;
+    color: @accent_color;
+    background-image: none;
+    border-bottom: none;
+    text-shadow: none;
+}
+
+/* Força a cor verde no botão de maximizar/controles do conteúdo */
+window.theme-green-dark .headerbar-maincontent windowcontrols button {
+    color: @accent_color;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* Remove sombras e decorações extras dos botões de controle */
+window.theme-green-dark windowcontrols button image {
+    color: @accent_color;
+    -gtk-icon-shadow: none;
+}
+
+/* ==================================================
+   SIDEBAR & NAVIGATION
+   ================================================== */
+
+window.theme-green-dark .box-background-navigation-sidebar,
+window.theme-green-dark .navigation-sidebar {
+    background-color: @bg_secondary;
+    color: @text_primary;
+}
+
+/* ==================================================
+   WELCOME VIEW
+   ================================================== */
+
+window.theme-green-dark .list-conversion-welcome label.title {
+    color: alpha(@accent_color, 0.90);
+}
+
+window.theme-green-dark .list-conversion-welcome label.subtitle {
+    color: alpha(@text_primary, 0.70);
+}
+
+/* ==================================================
+   POPOVER SETTINGS
+   ================================================== */
+
+/* Estilo para o popover quando o tema verde escuro estiver ativo */
+.popover-settings.theme-green-dark contents {
+    background-color: @bg_secondary;
+    color: @text_primary;
+    border: 1px solid @border_color;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
+}
+
+.popover-settings.theme-green-dark button.flat.popover-row-button {
+    color: @text_primary;
+}
+
+.popover-settings.theme-green-dark separator {
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.popover-settings.theme-green-dark arrow {
+    background-color: @bg_secondary;
+    border: 1px solid @border_color;
+}
+
+.popover-settings.theme-green-dark label {
+    text-shadow: none;
+    -gtk-icon-shadow: none;
+}
+
+.popover-settings.theme-green-dark switch slider {
+    min-width: 22px;
+    min-height: 22px;
+    background-color: #4C4C4C;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+window.theme-green-dark .dialog-about-title {
+    color: @accent_color;
+}
+
+.dialog-about button.flat,
+.dialog-about button.btn-help,
+.dialog-about button.btn-close {
+    background-color: #434343;
+    color: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* ==================================================
+   LIST CONVERSION - MAIN CONTENT AREA
+   ================================================== */
+
+window.theme-green-dark .list-conversion,
+window.theme-green-dark .list-conversion scrolledwindow,
+window.theme-green-dark .list-conversion scrolledwindow viewport,
+window.theme-green-dark .list-conversion listbox {
+    background-color: @bg_primary;
+    color: @text_primary;
+}
+
+window.theme-green-dark .list-conversion listbox row {
+    background-color: @bg_primary;
+    color: @text_primary;
+}
+
+.btn-remove,
+.btn-remove:hover{
+    background-color: @bg_primary;
+    color: @text_primary;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}

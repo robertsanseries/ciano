@@ -1,0 +1,153 @@
+name: ciano
+base: core24
+version: '0.2.5'
+summary: A multimedia file converter
+description: |
+    The easiest way to convert your multimedia files
+    to the most popular formats. Supports video, audio
+    and image conversion.
+
+website: https://robertsanseries.github.io/ciano
+source-code: https://github.com/robertsanseries/ciano
+issues: https://github.com/robertsanseries/ciano/issues
+
+grade: stable
+confinement: strict
+
+parts:
+    granite:
+        plugin: meson
+        source: https://github.com/elementary/granite.git
+        source-tag: '7.6.0'
+        source-depth: 1
+        meson-parameters:
+            - --prefix=/usr
+        build-packages:
+            - libglib2.0-dev
+            - libgtk-4-dev
+            - libgee-0.8-dev
+            - intltool
+            - sassc
+        prime:
+            - -usr/include
+            - -usr/lib/*/pkgconfig
+            - -usr/share/vala
+
+    x264:
+        plugin: autotools
+        source: https://code.videolan.org/videolan/x264.git
+        source-branch: stable
+        source-depth: 1
+        autotools-configure-parameters:
+            - --prefix=/usr
+            - --enable-shared
+            - --enable-pic
+            - --disable-lavf
+        build-packages:
+            - nasm
+        prime:
+            - -usr/include
+            - -usr/lib/*/pkgconfig
+
+    x265:
+        plugin: cmake
+        source: https://bitbucket.org/multicoreware/x265_git.git
+        source-branch: stable
+        source-depth: 1
+        source-subdir: source
+        cmake-parameters:
+            - -DCMAKE_INSTALL_PREFIX=/usr
+            - -DENABLE_SHARED=ON
+            - -DENABLE_CLI=OFF
+        build-packages:
+            - nasm
+        prime:
+            - -usr/include
+            - -usr/lib/*/pkgconfig
+
+    ffmpeg:
+        plugin: autotools
+        source: https://ffmpeg.org/releases/ffmpeg-6.1.2.tar.xz
+        source-checksum: sha256/3b624649725ecdc565c903ca6643d41f33bd49239922e45c9b1442c63dca4e38
+        after: [x264, x265]
+        build-environment:
+            - PKG_CONFIG_PATH: $CRAFT_STAGE/usr/lib/pkgconfig:$CRAFT_STAGE/usr/lib/x86_64-linux-gnu/pkgconfig:$CRAFT_STAGE/usr/lib/aarch64-linux-gnu/pkgconfig
+            - CFLAGS: -I$CRAFT_STAGE/usr/include
+            - LDFLAGS: -L$CRAFT_STAGE/usr/lib
+        autotools-configure-parameters:
+            - --prefix=/usr
+            - --enable-gpl
+            - --enable-version3
+            - --disable-static
+            - --enable-shared
+            - --disable-doc
+            - --disable-ffplay
+            - --disable-ffprobe
+            # video codecs — covers MP4, AVI, MKV, MOV, FLV, 3GP, SWF, WMV
+            - --enable-libx264
+            - --enable-libx265
+            - --enable-decoder=h264
+            - --enable-decoder=hevc
+            - --enable-decoder=vc1
+            - --enable-decoder=mpeg2video
+            - --enable-decoder=mpeg4
+            - --enable-decoder=vp8
+            - --enable-decoder=vp9
+            - --enable-decoder=theora
+            - --enable-decoder=wmv1
+            - --enable-decoder=wmv2
+            # audio codecs — covers MP3, OGG, AAC, FLAC, WAV, WMA, AMR, M4A, AIFF
+            - --enable-libmp3lame
+            - --enable-libvorbis
+            - --enable-libopus
+            - --enable-libvpx
+            - --enable-libtheora
+            - --enable-decoder=aac
+            - --enable-decoder=mp3
+            - --enable-decoder=flac
+            - --enable-decoder=vorbis
+            - --enable-decoder=wmav1
+            - --enable-decoder=wmav2
+            - --enable-decoder=pcm_s16le
+            - --enable-decoder=pcm_s16be
+            - --enable-decoder=shorten
+            - --enable-demuxer=shorten
+        build-packages:
+            - nasm
+            - libmp3lame-dev
+            - libvorbis-dev
+            - libopus-dev
+            - libvpx-dev
+            - libtheora-dev
+        prime:
+            - -usr/include
+            - -usr/lib/*/pkgconfig
+            - -usr/share/ffmpeg/examples
+
+    ciano:
+        plugin: meson
+        source: .
+        after: [granite, ffmpeg]
+        meson-parameters:
+            - --prefix=/usr
+        build-packages:
+            - valac
+            - libgtk-4-dev
+            - libgee-0.8-dev
+            - gettext
+        stage-packages:
+            - libgtk-4-1
+            - libgee-0.8-2
+            - libmp3lame0
+            - libvorbis0a
+            - libopus0
+            - libvpx9
+            - libtheora0
+
+apps:
+    ciano:
+        command: usr/bin/com.github.robertsanseries.ciano
+        extensions: [gnome]
+        plugs:
+            - home
+            - removable-media

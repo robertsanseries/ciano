@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2017 Robert San <robertsanseries@gmail.com>
+* Copyright (c) 2017, 2026 Robert San <robertsanseries@gmail.com>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -25,6 +25,6 @@
  * @since 0.1.0
  */
 public static void main (string [] args) {
-	var app = new Ciano.Application ();
-	app.run (args);
+    var app = new Ciano.Application ();
+    app.run (args);
 }

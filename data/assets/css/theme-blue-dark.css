@@ -1,0 +1,176 @@
+/*
+ * Copyright (c) 2026 Robert San <robertsanseries@gmail.com>
+ *
+ * Distributed WITHOUT ANY WARRANTY.
+ */
+
+@define-color bg_primary #333333; /* Dark escuro (Conteúdo) */
+@define-color bg_secondary #3B3B3B; /* Dark claro (Sidebar) */
+@define-color text_primary #FAFAFA;
+
+@define-color accent_color #00A2FF; /* Mantido o Azul como cor principal */
+@define-color accent_secondary #0D8875;
+@define-color border_color rgba(0, 0, 0, 0.4);
+
+/* ==================================================
+   WINDOW STRUCTURE
+   ================================================== */
+
+window.theme-blue-dark {
+    background-color: @bg_primary;
+    color: @text_primary;
+}
+
+/* ==================================================
+   HEADERBARS & CONTROLS
+   ================================================== */
+
+/* Título e ícones na Sidebar */
+window.theme-blue-dark .headerbar-sidebar {
+    background-color: @bg_secondary;
+    color: @accent_color;
+    background-image: none;
+    border-bottom: none;
+    box-shadow: none;
+}
+
+window.theme-blue-dark .headerbar-sidebar label.title {
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* Força a cor azul no botão de fechar da sidebar */
+window.theme-blue-dark .headerbar-sidebar windowcontrols button {
+    color: @accent_color;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* Ícone de Maximizar no Header Content */
+window.theme-blue-dark .headerbar-maincontent {
+    background-color: @bg_primary;
+    color: @accent_color;
+    background-image: none;
+    border-bottom: none;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* Força a cor azul no botão de maximizar/controles do conteúdo */
+window.theme-blue-dark .headerbar-maincontent windowcontrols button {
+    color: @accent_color;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* Remove sombras e decorações extras dos botões de controle */
+window.theme-blue-dark windowcontrols button image {
+    color: @accent_color;
+    -gtk-icon-shadow: none;
+}
+
+/* ==================================================
+   SIDEBAR & NAVIGATION
+   ================================================== */
+
+window.theme-blue-dark .box-background-navigation-sidebar,
+window.theme-blue-dark .navigation-sidebar {
+    background-color: @bg_secondary;
+    color: @text_primary;
+}
+
+/*!* Linha divisória vertical ajustada para o dark *!*/
+/*window.theme-blue-dark .main-splitter-line {*/
+/*    background-color: @border_color;*/
+/*    opacity: 1;*/
+/*    border: none;*/
+/*    min-width: 1px;*/
+/*}*/
+
+/* ==================================================
+   WELCOME VIEW
+   ================================================== */
+
+window.theme-blue-dark .list-conversion-welcome label.title {
+    color: alpha(@accent_color, 0.90);
+}
+
+window.theme-blue-dark .list-conversion-welcome label.subtitle {
+    color: alpha(@text_primary, 0.70);
+}
+
+/* ==================================================
+   POPOVER SETTINGS (Seguindo padrão Green Dark)
+   ================================================== */
+
+/* Estilo para o popover quando o tema azul escuro estiver ativo */
+.popover-settings.theme-blue-dark contents {
+    background-color: @bg_secondary;
+    color: @text_primary;
+    border: 1px solid @border_color;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
+}
+
+.popover-settings.theme-blue-dark button.flat.popover-row-button {
+    color: @text_primary;
+}
+
+.popover-settings.theme-blue-dark separator {
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.popover-settings.theme-blue-dark arrow {
+    background-color: @bg_secondary;
+    border: 1px solid @border_color;
+}
+
+.popover-settings.theme-blue-dark label {
+    text-shadow: none;
+    -gtk-icon-shadow: none;
+}
+
+.popover-settings.theme-blue-dark switch slider {
+    min-width: 22px;
+    min-height: 22px;
+    background-color: #4C4C4C;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+window.theme-blue-dark .dialog-about-title {
+    color: @accent_color;
+}
+
+.dialog-about button.flat,
+.dialog-about button.btn-help,
+.dialog-about button.btn-close {
+    background-color: #434343;
+    color: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* ==================================================
+   LIST CONVERSION - MAIN CONTENT AREA
+   ================================================== */
+
+window.theme-blue-dark .list-conversion,
+window.theme-blue-dark .list-conversion scrolledwindow,
+window.theme-blue-dark .list-conversion scrolledwindow viewport,
+window.theme-blue-dark .list-conversion listbox {
+    background-color: @bg_primary;
+    color: @text_primary;
+}
+
+window.theme-blue-dark .list-conversion listbox row {
+    background-color: @bg_primary;
+    color: @text_primary;
+}
+
+.btn-remove,
+.btn-remove:hover{
+    background-color: @bg_primary;
+    color: @text_primary;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}

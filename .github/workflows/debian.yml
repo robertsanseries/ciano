@@ -1,0 +1,48 @@
+name: Debian
+
+on:
+  workflow_call:
+
+jobs:
+  deb:
+    name: Debian
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/elementary/docker:stable
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          apt update
+          apt install -y \
+            debhelper \
+            desktop-file-utils \
+            devscripts \
+            ffmpeg \
+            gettext \
+            libgee-0.8-dev \
+            libglib2.0-dev \
+            libgranite-7-dev \
+            libgtk-4-dev \
+            meson \
+            valac
+
+      - name: Get app version
+        id: version
+        run: |
+          VERSION=$(grep -A5 '^project' meson.build | grep '^\s*version:' | sed "s/.*'\(.*\)'.*/\1/")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Build .deb
+        run: |
+          dpkg-buildpackage -us -uc -b
+          mv ../*.deb ./com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.deb
+
+      - name: Upload .deb artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.deb
+          path: com.github.robertsanseries.ciano-${{ steps.version.outputs.version }}.deb
