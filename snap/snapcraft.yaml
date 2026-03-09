@@ -70,6 +70,10 @@ parts:
         source: https://ffmpeg.org/releases/ffmpeg-6.1.2.tar.xz
         source-checksum: sha256/3b624649725ecdc565c903ca6643d41f33bd49239922e45c9b1442c63dca4e38
         after: [x264, x265]
+        build-environment:
+            - PKG_CONFIG_PATH: $CRAFT_STAGE/usr/lib/pkgconfig:$CRAFT_STAGE/usr/lib/x86_64-linux-gnu/pkgconfig:$CRAFT_STAGE/usr/lib/aarch64-linux-gnu/pkgconfig
+            - CFLAGS: -I$CRAFT_STAGE/usr/include
+            - LDFLAGS: -L$CRAFT_STAGE/usr/lib
         autotools-configure-parameters:
             - --prefix=/usr
             - --enable-gpl
@@ -79,7 +83,7 @@ parts:
             - --disable-doc
             - --disable-ffplay
             - --disable-ffprobe
-            # video codecs — cobre MP4, AVI, MKV, MOV, FLV, 3GP, SWF, WMV
+            # video codecs — covers MP4, AVI, MKV, MOV, FLV, 3GP, SWF, WMV
             - --enable-libx264
             - --enable-libx265
             - --enable-decoder=h264
@@ -92,7 +96,7 @@ parts:
             - --enable-decoder=theora
             - --enable-decoder=wmv1
             - --enable-decoder=wmv2
-            # audio codecs — cobre MP3, OGG, AAC, FLAC, WAV, WMA, AMR, M4A, AIFF
+            # audio codecs — covers MP3, OGG, AAC, FLAC, WAV, WMA, AMR, M4A, AIFF
             - --enable-libmp3lame
             - --enable-libvorbis
             - --enable-libopus
