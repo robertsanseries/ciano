@@ -11,7 +11,8 @@ Build-Depends:
  libgranite-7-dev (>= 7.6.0),
  libgtk-4-dev,
  meson,
- valac
+ valac,
+ ffmpeg
 Standards-Version: 4.6.2
 Homepage: https://robertsanseries.github.io/ciano/
 Vcs-Git: https://github.com/robertsanseries/ciano.git
@@ -23,6 +24,15 @@ Depends:
  ${misc:Depends},
  ${shlibs:Depends},
  ffmpeg
+Recommends:
+ libavcodec-extra,
+ libx264-164 | libx264-163 | libx264-155,
+ libx265-199 | libx265-192 | libx265-179,
+ libmp3lame0,
+ libvorbis0a,
+ libopus0,
+ libvpx9 | libvpx7,
+ libtheora0
 Description: A multimedia file converter
  The easiest way to convert your multimedia files to the most
  popular formats. Supports video, audio and image conversion.

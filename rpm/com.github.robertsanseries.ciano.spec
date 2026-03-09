@@ -21,7 +21,17 @@ BuildRequires:  pkgconfig(gtk4) >= 4.1
 BuildRequires:  pkgconfig(granite-7) >= 7.6.0
 BuildRequires:  pkgconfig(gee-0.8)
 
+# Codec libraries needed at runtime via ffmpeg
+# video codecs — cobre MP4, AVI, MKV, MOV, FLV, 3GP, SWF, WMV
 Requires:       ffmpeg
+Requires:       x264-libs
+Requires:       x265-libs
+# audio codecs — cobre MP3, OGG, AAC, FLAC, WAV, WMA, AMR, M4A, AIFF
+Requires:       lame-libs
+Requires:       libvorbis
+Requires:       opus
+Requires:       libvpx
+Requires:       libtheora
 Requires:       gtk4
 Requires:       granite-7 >= 7.6.0
 

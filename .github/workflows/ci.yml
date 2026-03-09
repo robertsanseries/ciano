@@ -42,17 +42,17 @@ jobs:
   snap:
     name: Snap
     needs: build
-    if: github.event_name == 'release'
+#    if: github.event_name == 'release'
     uses: ./.github/workflows/snap.yml
 
   debian:
     name: Debian
     needs: build
-    if: github.event_name == 'release'
+#    if: github.event_name == 'release'
     uses: ./.github/workflows/debian.yml
 
   rpm:
     name: RPM
     needs: build
-    if: github.event_name == 'release'
+#    if: github.event_name == 'release'
     uses: ./.github/workflows/rpm.yml
