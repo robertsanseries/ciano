@@ -1,4 +1,5 @@
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Korean translations for com.github.robertsanseries.ciano package.
+# Copyright (C) 2021 THE com.github.robertsanseries.ciano'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.robertsanseries.ciano package.
 #
 # 이정희 <daemul72@gmail.com>, 2021.
@@ -6,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-09 17:37+0200\n"
-"PO-Revision-Date: 2026-03-08 00:00+0000\n"
+"POT-Creation-Date: 2026-03-09 00:00+0000\n"
+"PO-Revision-Date: 2026-03-09 00:00+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean <kde-i18n-doc@kde.org>\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 21.08.1\n"
-"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language: ko\n"
 
 #: src/Configs/Properties.vala:31
 msgid "About"
@@ -41,7 +42,7 @@ msgstr "단순함에 집중한 멀티미디어 파일 변환기."
 msgid "This program is published under the terms of the GNU General Public License; it comes with ABSOLUTELY NO WARRANTY; for details, visit: "
 msgstr "이 프로그램은 GNU 일반 공중 사용 허가서 조건에 따라 배포됩니다. 어떠한 보증도 없이 제공됩니다. 자세한 내용은 다음을 방문하세요: "
 
-#: src/Configs/Properties.vala:31
+#: src/Configs/Properties.vala:44
 msgid "Convert File"
 msgstr "파일 변환"
 
@@ -49,59 +50,63 @@ msgstr "파일 변환"
 msgid "Convert to"
 msgstr "다음으로 변환"
 
-#: src/Configs/Properties.vala:35
-msgid "Name"
-msgstr "이름"
-
-#: src/Configs/Properties.vala:37
+#: src/Configs/Properties.vala:49
 msgid "Add items to conversion:"
-msgstr "전환에 항목 추가:"
+msgstr "변환에 항목 추가:"
 
-#: src/Configs/Properties.vala:39
-msgid "Directory"
-msgstr "디렉터리"
-
-#: src/Configs/Properties.vala:41
+#: src/Configs/Properties.vala:51
 msgid "Add file"
 msgstr "파일 추가"
 
-#: src/Configs/Properties.vala:43
+#: src/Configs/Properties.vala:53
 msgid "Delete"
 msgstr "삭제"
 
-#: src/Configs/Properties.vala:45
+#: src/Configs/Properties.vala:56
 msgid "Cancel"
 msgstr "취소"
 
-#: src/Configs/Properties.vala:47
+#: src/Configs/Properties.vala:58
+msgid "Name"
+msgstr "이름"
+
+#: src/Configs/Properties.vala:60
+msgid "Directory"
+msgstr "디렉터리"
+
+#: src/Configs/Properties.vala:62
 msgid "Start conversion"
 msgstr "변환 시작"
 
-#: src/Configs/Properties.vala:49
+#: src/Configs/Properties.vala:66
+msgid "Preferences"
+msgstr "기본설정"
+
+#: src/Configs/Properties.vala:68
 msgid "Output folder:"
 msgstr "출력 폴더:"
 
-#: src/Configs/Properties.vala:51
+#: src/Configs/Properties.vala:70
 msgid "Files origin:"
 msgstr "파일 출처:"
 
-#: src/Configs/Properties.vala:53
+#: src/Configs/Properties.vala:72
 msgid "Select the output folder:"
 msgstr "출력 폴더 선택:"
 
-#: src/Configs/Properties.vala:55
+#: src/Configs/Properties.vala:74
 msgid "Notifications:"
 msgstr "알림:"
 
-#: src/Configs/Properties.vala:57
+#: src/Configs/Properties.vala:76
 msgid "Notify about completed action:"
 msgstr "완료된 작업에 대해 알림:"
 
-#: src/Configs/Properties.vala:59
+#: src/Configs/Properties.vala:78
 msgid "Notify about an error:"
 msgstr "오류 알림:"
 
-#: src/Configs/Properties.vala:61
+#: src/Configs/Properties.vala:81
 msgid "Close"
 msgstr "닫기"
 
@@ -109,23 +114,19 @@ msgstr "닫기"
 msgid "Follow system appearance"
 msgstr "시스템 모양 따르기"
 
-#: src/Configs/Properties.vala:63
+#: src/Configs/Properties.vala:87
 msgid "Open output folder"
 msgstr "출력 폴더 열기"
 
-#: src/Configs/Properties.vala:65
+#: src/Configs/Properties.vala:89
 msgid "Settings"
 msgstr "설정"
 
-#: src/Configs/Properties.vala:67
-msgid "Preferences"
-msgstr "기본설정"
-
-#: src/Configs/Properties.vala:69
+#: src/Configs/Properties.vala:92
 msgid "Empty conversion list"
-msgstr "비어 있는 전환 목록"
+msgstr "변환 목록이 비어 있음"
 
-#: src/Configs/Properties.vala:71
+#: src/Configs/Properties.vala:94
 msgid ""
 "Select an option from the side menu to which you want to \n"
 " convert your file"
@@ -135,78 +136,58 @@ msgstr "파일을 변환할 사이드 메뉴에서 옵션 선택"
 msgid "Starting…"
 msgstr "시작하는 중…"
 
-#: src/Configs/Properties.vala:75
+#: src/Configs/Properties.vala:101
 msgid "Cancel conversion"
 msgstr "변환 취소"
 
-#: src/Configs/Properties.vala:77
+#: src/Configs/Properties.vala:103
 msgid "Remove"
 msgstr "제거"
 
-#: src/Configs/Properties.vala:79
+#: src/Configs/Properties.vala:105
 msgid "Remove item from list"
 msgstr "목록에서 항목 제거"
 
-#: src/Configs/Properties.vala:81
+#: src/Configs/Properties.vala:108
 msgid "Video"
 msgstr "비디오"
 
-#: src/Configs/Properties.vala:83
+#: src/Configs/Properties.vala:110
 msgid "Music"
 msgstr "음악"
 
-#: src/Configs/Properties.vala:85
+#: src/Configs/Properties.vala:112
 msgid "Image"
 msgstr "이미지"
 
-#: src/Configs/Properties.vala:87
+#: src/Configs/Properties.vala:115
 msgid "Select file"
 msgstr "파일 선택"
 
-#: src/Configs/Properties.vala:89
-msgid "Add"
-msgstr "추가"
-
-#: src/Configs/Properties.vala:91
+#: src/Configs/Properties.vala:117
 msgid "Conversion completed"
 msgstr "변환 완료됨"
 
-#: src/Configs/Properties.vala:93
+#: src/Configs/Properties.vala:119
 msgid "Conversion canceled"
 msgstr "변환 취소됨"
 
-#: src/Configs/Properties.vala:95
+#: src/Configs/Properties.vala:121
 msgid "Error in conversion"
 msgstr "변환 오류"
 
-#: src/Configs/Properties.vala:97
-msgid "percentage: "
-msgstr "진행율: "
-
-#: src/Configs/Properties.vala:99
-msgid " - size: "
-msgstr " - 크기: "
-
-#: src/Configs/Properties.vala:101
-msgid " - time: "
-msgstr " - 시간: "
-
-#: src/Configs/Properties.vala:103
-msgid " - bitrate: "
-msgstr " - 비트레이트: "
-
-#: src/Configs/Properties.vala:105
+#: src/Configs/Properties.vala:124
 msgid "Error: Experimental codecs are not enabled"
 msgstr "오류: 실험용 코덱이 활성화되지 않았습니다"
 
-#: src/Configs/Properties.vala:107
+#: src/Configs/Properties.vala:126
 msgid "Error: Invalid data found when processing input"
 msgstr "오류: 입력을 처리할 때 잘못된 데이터가 발견되었습니다"
 
-#: src/Configs/Properties.vala:109
+#: src/Configs/Properties.vala:130
 msgid "Error: No such file or directory"
 msgstr "오류: 해당 파일 또는 디렉터리가 없습니다"
 
-#: src/Configs/Properties.vala:111
+#: src/Configs/Properties.vala:132
 msgid "Error: Invalid argument"
 msgstr "오류: 잘못된 인수"

@@ -7,14 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.robertsanseries.ciano\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-09 17:37+0200\n"
-"PO-Revision-Date: 2026-03-08 00:00+0000\n"
+"POT-Creation-Date: 2026-03-09 00:00+0000\n"
+"PO-Revision-Date: 2026-03-09 00:00+0000\n"
 "Last-Translator: 金立龙 <trampover@gmail.com>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/Configs/Properties.vala:31
 msgid "About"
@@ -40,7 +41,7 @@ msgstr "一款注重简洁的多媒体文件转换器。"
 msgid "This program is published under the terms of the GNU General Public License; it comes with ABSOLUTELY NO WARRANTY; for details, visit: "
 msgstr "本程序依据GNU通用公共许可证条款发布；不提供任何保证；详情请访问："
 
-#: src/Configs/Properties.vala:31
+#: src/Configs/Properties.vala:44
 msgid "Convert File"
 msgstr "文件转换"
 
@@ -48,59 +49,63 @@ msgstr "文件转换"
 msgid "Convert to"
 msgstr "转换为"
 
-#: src/Configs/Properties.vala:35
-msgid "Name"
-msgstr "名称"
-
-#: src/Configs/Properties.vala:37
+#: src/Configs/Properties.vala:49
 msgid "Add items to conversion:"
 msgstr "选择需要转换的文件:"
 
-#: src/Configs/Properties.vala:39
-msgid "Directory"
-msgstr "目录"
-
-#: src/Configs/Properties.vala:41
+#: src/Configs/Properties.vala:51
 msgid "Add file"
-msgstr "添加"
+msgstr "添加文件"
 
-#: src/Configs/Properties.vala:43
+#: src/Configs/Properties.vala:53
 msgid "Delete"
 msgstr "删除"
 
-#: src/Configs/Properties.vala:45
+#: src/Configs/Properties.vala:56
 msgid "Cancel"
 msgstr "取消"
 
-#: src/Configs/Properties.vala:47
+#: src/Configs/Properties.vala:58
+msgid "Name"
+msgstr "名称"
+
+#: src/Configs/Properties.vala:60
+msgid "Directory"
+msgstr "目录"
+
+#: src/Configs/Properties.vala:62
 msgid "Start conversion"
 msgstr "开始转换"
 
-#: src/Configs/Properties.vala:49
+#: src/Configs/Properties.vala:66
+msgid "Preferences"
+msgstr "偏好设置"
+
+#: src/Configs/Properties.vala:68
 msgid "Output folder:"
 msgstr "输出目录:"
 
-#: src/Configs/Properties.vala:51
+#: src/Configs/Properties.vala:70
 msgid "Files origin:"
 msgstr "文件来源:"
 
-#: src/Configs/Properties.vala:53
+#: src/Configs/Properties.vala:72
 msgid "Select the output folder:"
 msgstr "选择输出文件夹:"
 
-#: src/Configs/Properties.vala:55
+#: src/Configs/Properties.vala:74
 msgid "Notifications:"
 msgstr "消息通知:"
 
-#: src/Configs/Properties.vala:57
+#: src/Configs/Properties.vala:76
 msgid "Notify about completed action:"
 msgstr "转换完成显示通知消息:"
 
-#: src/Configs/Properties.vala:59
+#: src/Configs/Properties.vala:78
 msgid "Notify about an error:"
 msgstr "转换错误显示通知消息:"
 
-#: src/Configs/Properties.vala:61
+#: src/Configs/Properties.vala:81
 msgid "Close"
 msgstr "关闭"
 
@@ -108,106 +113,82 @@ msgstr "关闭"
 msgid "Follow system appearance"
 msgstr "跟随系统外观"
 
-#: src/Configs/Properties.vala:63
+#: src/Configs/Properties.vala:87
 msgid "Open output folder"
 msgstr "打开输出目录"
 
-#: src/Configs/Properties.vala:65
+#: src/Configs/Properties.vala:89
 msgid "Settings"
 msgstr "设置"
 
-#: src/Configs/Properties.vala:67
-msgid "Preferences"
-msgstr "偏好设置"
-
-#: src/Configs/Properties.vala:69
+#: src/Configs/Properties.vala:92
 msgid "Empty conversion list"
-msgstr "清空转换列表"
+msgstr "转换列表为空"
 
-#: src/Configs/Properties.vala:71
+#: src/Configs/Properties.vala:94
 msgid ""
 "Select an option from the side menu to which you want to \n"
 " convert your file"
 msgstr ""
 "从侧边菜单中选择 \n"
-" 一个选项到要转换的文件"
+" 要转换的文件格式"
 
 #: src/Configs/Properties.vala:99
 msgid "Starting…"
 msgstr "进行中…"
 
-#: src/Configs/Properties.vala:75
+#: src/Configs/Properties.vala:101
 msgid "Cancel conversion"
 msgstr "取消转换"
 
-#: src/Configs/Properties.vala:77
+#: src/Configs/Properties.vala:103
 msgid "Remove"
 msgstr "删除"
 
-#: src/Configs/Properties.vala:79
+#: src/Configs/Properties.vala:105
 msgid "Remove item from list"
 msgstr "从列表中删除项目"
 
-#: src/Configs/Properties.vala:81
+#: src/Configs/Properties.vala:108
 msgid "Video"
 msgstr "视频"
 
-#: src/Configs/Properties.vala:83
+#: src/Configs/Properties.vala:110
 msgid "Music"
 msgstr "音乐"
 
-#: src/Configs/Properties.vala:85
+#: src/Configs/Properties.vala:112
 msgid "Image"
 msgstr "图片"
 
-#: src/Configs/Properties.vala:87
+#: src/Configs/Properties.vala:115
 msgid "Select file"
 msgstr "选择文件"
 
-#: src/Configs/Properties.vala:89
-msgid "Add"
-msgstr "添加"
-
-#: src/Configs/Properties.vala:91
+#: src/Configs/Properties.vala:117
 msgid "Conversion completed"
 msgstr "转换完成"
 
-#: src/Configs/Properties.vala:93
+#: src/Configs/Properties.vala:119
 msgid "Conversion canceled"
 msgstr "转换取消"
 
-#: src/Configs/Properties.vala:95
+#: src/Configs/Properties.vala:121
 msgid "Error in conversion"
 msgstr "转换中出现的错误"
 
-#: src/Configs/Properties.vala:97
-msgid "percentage: "
-msgstr "已完成: "
-
-#: src/Configs/Properties.vala:99
-msgid " - size: "
-msgstr " - 大小: "
-
-#: src/Configs/Properties.vala:101
-msgid " - time: "
-msgstr " - 时间: "
-
-#: src/Configs/Properties.vala:103
-msgid " - bitrate: "
-msgstr " - 码率: "
-
-#: src/Configs/Properties.vala:105
+#: src/Configs/Properties.vala:124
 msgid "Error: Experimental codecs are not enabled"
 msgstr "错误: 找不到解码器"
 
-#: src/Configs/Properties.vala:107
+#: src/Configs/Properties.vala:126
 msgid "Error: Invalid data found when processing input"
 msgstr "错误: 需要转换的文件不存在或文件路径错误"
 
-#: src/Configs/Properties.vala:109
+#: src/Configs/Properties.vala:130
 msgid "Error: No such file or directory"
 msgstr "错误: 没有这个文件或目录"
 
-#: src/Configs/Properties.vala:111
+#: src/Configs/Properties.vala:132
 msgid "Error: Invalid argument"
 msgstr "错误: 转换参数无效"
