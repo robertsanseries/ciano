@@ -1,0 +1,108 @@
+# Georgian translation for extras.
+# Copyright (C) 2026 com.github.robertsanseries.ciano's authors.
+# This file is distributed under the same license as the extra package.
+# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020.
+# Ekaterine Papava <papava.e@gtu.ge>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-09 18:57+0200\n"
+"PO-Revision-Date: 2026-07-18 14:44+0200\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
+"Language-Team: Georgian <ka@li.org>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:3
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:7
+msgid "Ciano"
+msgstr "Ciano"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:4
+msgid "Multimedia Converter"
+msgstr "მულტიმედიის გადამყვანი"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:5
+msgid "Convert multimedia files to other formats"
+msgstr "გადაიყვანეთ მულტიმედია ფაილები სხვა ფორმატში"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:6
+msgid "com.github.robertsanseries.ciano"
+msgstr "com.github.robertsanseries.ciano"
+
+#: data/com.github.robertsanseries.ciano.desktop.in:11
+msgid "converter;multimedia;audio;video;photo;photography;"
+msgstr "converter;multimedia;audio;video;photo;photography;ფოტოგრაფია;გადამყვანი;აუდიო;ვიდეო;სურათები;"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:8
+msgid "A multimedia file converter"
+msgstr "მულტიმედიის ფაილების გადამყვანი"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:9
+msgid "Robert San"
+msgstr "Robert San"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:19
+msgid "The easiest way to convert your multimedia files to the most popular formats."
+msgstr "ყველაზე ადვილი გზა, გადაიყვანოთ თქვენი მულტიმედია ფაილები ყველაზე პოპულარულ ფორმატებში."
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:20
+msgid "Characteristics:"
+msgstr "მახასიათებლები:"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:22
+msgid "Conversion of multiple files at the same time"
+msgstr "ერთზე მეტი ფაილის ერთდროული გადაყვანა"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:23
+msgid "Possibility of changing the output folder"
+msgstr "გამოტანის საქაღალდის შეცვლის შესაძლებლობა"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:24
+msgid "Notification support"
+msgstr "გაფრთხილების მხარდაჭერა"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:25
+msgid "Close the application at any time with Ctrl + Q"
+msgstr "დახურეთ აპლიკაცია ნებისმიერ დროს ღილაკებით Ctrl + Q"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:27
+msgid "Supports the conversion of:"
+msgstr "გადაყვანისას აქვს შემდეგი ფორმატების მხარდაჭერა:"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:29
+msgid "Video - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+msgstr "ვიდეო - MP4, MPG, AVI, WMV, FLV, MKV, 3GP, MOV, VOB, OGV, WEBM"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:30
+msgid "Audio - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+msgstr "აუდიო - MP3, WMA, OGG, WAV, AAC, FLAC, AIFF, MMF, M4A"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:31
+msgid "Images - JPG, BMP, PNG, TIF, GIF, TGA"
+msgstr "გამოსახულებები - JPG, BMP, PNG, TIF, GIF, TGA"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:37
+msgid "Icons in the HIG standard and Inclusion/Update of languages"
+msgstr "ხატულები HIG სტანდარტში და ენების ჩასმა/განახლება"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:39
+msgid "The icons follow the HIG (@lainsce)"
+msgstr "ხატულები მიჰყვებიან HIG-ს (@lainsce)"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:40
+msgid "Language: Inclusion of the French (@nvivant)"
+msgstr "ენა: შეიცავს ფრანგულს (@nvivant)"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:41
+msgid "Language: Inclusion of Chinese simplified (@trampover)"
+msgstr "ენა: შეიცავს გამარტივებულ ჩინურს (@trampover)"
+
+#: data/com.github.robertsanseries.ciano.appdata.xml.in:42
+msgid "Language: Update in Lithuanian (@welaq)"
+msgstr "ენა: ლიეტუვურის განახლება (@welaq)"
