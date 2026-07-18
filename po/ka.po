@@ -1,0 +1,186 @@
+# Georgian translation for com.github.robertsanseries.ciano.
+# Copyright (C) 2026 com.github.robertsanseries.ciano's authors.
+# This file is distributed under the same license as the com.github.robertsanseries.ciano package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.robertsanseries.ciano\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-09 17:37+0200\n"
+"PO-Revision-Date: 2026-07-18 14:18+0200\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
+"Language-Team: Georgian <(nothing)>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#: src/configs/Properties.vala:31
+msgid "Convert File"
+msgstr "ფაილის გადაყვანა"
+
+#: src/configs/Properties.vala:33
+msgid "Convert file to"
+msgstr "გადაყვანა ფორმატში"
+
+#: src/configs/Properties.vala:35
+msgid "Name"
+msgstr "სახელი"
+
+#: src/configs/Properties.vala:37
+msgid "Add items to conversion:"
+msgstr "ელემენტების ჩამატება გადაყვანაში:"
+
+#: src/configs/Properties.vala:39
+msgid "Directory"
+msgstr "საქაღალდე"
+
+#: src/configs/Properties.vala:41
+msgid "Add file"
+msgstr "ფაილის დამატება"
+
+#: src/configs/Properties.vala:43
+msgid "Delete"
+msgstr "წაშლა"
+
+#: src/configs/Properties.vala:45
+msgid "Cancel"
+msgstr "გაუქმება"
+
+#: src/configs/Properties.vala:47
+msgid "Start conversion"
+msgstr "გადაყვანის დაწყება"
+
+#: src/configs/Properties.vala:49
+msgid "Output folder:"
+msgstr "გამოტანის საქაღალდე:"
+
+#: src/configs/Properties.vala:51
+msgid "Files origin:"
+msgstr "საწყისი ფაილები:"
+
+#: src/configs/Properties.vala:53
+msgid "Select the output folder:"
+msgstr "აირჩიეთ გამოსატანი საქაღალდე:"
+
+#: src/configs/Properties.vala:55
+msgid "Notifications:"
+msgstr "შეტყობინებები:"
+
+#: src/configs/Properties.vala:57
+msgid "Notify about completed action:"
+msgstr "გაფრთხილება ქმედების დასრულებისას:"
+
+#: src/configs/Properties.vala:59
+msgid "Notify about an error:"
+msgstr "გაფრთხილება შეცდომის შესახებ:"
+
+#: src/configs/Properties.vala:61
+msgid "Close"
+msgstr "დახურვა"
+
+#: src/configs/Properties.vala:63
+msgid "Open output folder"
+msgstr "გამოტანის საქაღალდის გახსნა"
+
+#: src/configs/Properties.vala:65
+msgid "Settings"
+msgstr "მორგება"
+
+#: src/configs/Properties.vala:67
+msgid "Preferences"
+msgstr "მორგება"
+
+#: src/configs/Properties.vala:69
+msgid "Empty conversion list"
+msgstr "გადაყვანის სია ცარიელია"
+
+#: src/configs/Properties.vala:71
+msgid ""
+"Select an option from the side menu to which you want to \n"
+" convert your file"
+msgstr ""
+"აირჩიეთ, რომელი გვერდითი მენიუდან რომელში გნებავთ\n"
+" თქვენი ფაილის გადაყვანა"
+
+#: src/configs/Properties.vala:73
+msgid "Starting..."
+msgstr "გაშვება..."
+
+#: src/configs/Properties.vala:75
+msgid "Cancel conversion"
+msgstr "გადაყვანის გაუქმება"
+
+#: src/configs/Properties.vala:77
+msgid "Remove"
+msgstr "წაშლა"
+
+#: src/configs/Properties.vala:79
+msgid "Remove item from list"
+msgstr "სიიდან წაშლა"
+
+#: src/configs/Properties.vala:81
+msgid "Video"
+msgstr "ვიდეო"
+
+#: src/configs/Properties.vala:83
+msgid "Music"
+msgstr "მუსიკა"
+
+#: src/configs/Properties.vala:85
+msgid "Image"
+msgstr "გამოსახულება"
+
+#: src/configs/Properties.vala:87
+msgid "Select file"
+msgstr "აირჩიეთ ფაილი"
+
+#: src/configs/Properties.vala:89
+msgid "Add"
+msgstr "დამატება"
+
+#: src/configs/Properties.vala:91
+msgid "Conversion completed"
+msgstr "გადაყვანა დასრულდა"
+
+#: src/configs/Properties.vala:93
+msgid "Conversion canceled"
+msgstr "გადაყვანა გაუქმდა"
+
+#: src/configs/Properties.vala:95
+msgid "Error in conversion"
+msgstr "გადაყვანის შეცდომა"
+
+#: src/configs/Properties.vala:97
+msgid "percentage: "
+msgstr "პროცენტი: "
+
+#: src/configs/Properties.vala:99
+msgid " - size: "
+msgstr " - ზომა: "
+
+#: src/configs/Properties.vala:101
+msgid " - time: "
+msgstr " - დრო: "
+
+#: src/configs/Properties.vala:103
+msgid " - bitrate: "
+msgstr " - დისკრეტული სიხშირე: "
+
+#: src/configs/Properties.vala:105
+msgid "Error: Experimental codecs are not enabled"
+msgstr "შეცდომა: ექსპერიმენტული კოდეკები ჩართული არაა"
+
+#: src/configs/Properties.vala:107
+msgid "Error: Invalid data found when processing input"
+msgstr "შეცდომა: შეყვანილი მონაცემების დამუშავებისას აღმოჩენილია არასწორი მონაცემები"
+
+#: src/configs/Properties.vala:109
+msgid "Error: No such file or directory"
+msgstr "შეცდომა: ასეთი ფაილი, ან საქაღალდე აღმოჩენილი არაა"
+
+#: src/configs/Properties.vala:111
+msgid "Error: Invalid argument"
+msgstr "შეცდომა: არასწორი არგუმენტი"
