@@ -52,11 +52,14 @@ namespace Ciano {
          * @return {@code void}
          */
         public override void activate () {
-            if (window == null) {
-                window = new Window (this);
-                add_window (window);
-                window.show_all ();
+            if (window != null) {
+                window.present ();
+                return;
             }
+
+            window = new Window (this);
+            add_window (window);
+            window.show_all ();
 
             var quit_action = new SimpleAction ("quit", null);
             quit_action.activate.connect (() => {
