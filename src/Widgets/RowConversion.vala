@@ -60,11 +60,8 @@ namespace Ciano.Widgets {
             var icone = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
             this.box_name_progress = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-            if (name.length > 85) {
-               this.name_video = new Gtk.Label (name.slice (0, 85) + "...");
-            } else {
-                this.name_video = new Gtk.Label (name);
-            }
+            this.name_video = new Gtk.Label (name);
+            this.name_video.ellipsize = Pango.EllipsizeMode.MIDDLE;
             this.name_video.halign = Gtk.Align.START;
 
             this.progress_bar = new Gtk.ProgressBar ();
@@ -75,6 +72,7 @@ namespace Ciano.Widgets {
             this.convert_to.set_use_markup (true);
 
             this.status = new Gtk.Label (Properties.TEXT_STARTING);
+            this.status.ellipsize = Pango.EllipsizeMode.END;
             this.status.halign = Gtk.Align.START;
 
             this.button_cancel = new Gtk.Button.with_label (Properties.TEXT_CANCEL);
