@@ -83,7 +83,7 @@ namespace Ciano.Controllers {
                 }
 
                 this.name_format_selected = item.name;
-                var formats = this.mount_array_with_supported_formats (item.name);
+                var formats = FormatUtil.get_input_formats (item.name);
 
                 var dialog = new DialogConvertFile (this, formats, item.name, this.window);
                 dialog.present ();
@@ -115,7 +115,7 @@ namespace Ciano.Controllers {
             filter.name = _("Select file");
 
             foreach (string format in formats) {
-                string? mime = this.get_mime_type_for_format (format);
+                string? mime = FormatUtil.get_mime_type (format);
                 if (mime != null) {
                     filter.add_mime_type (mime);
                 } else {
@@ -158,58 +158,6 @@ namespace Ciano.Controllers {
         }
 
         /**
-         * Returns the MIME type for a given format string.
-         * Using MIME types instead of glob patterns ensures all known file
-         * extensions and capitalizations are matched by the system automatically,
-         * including variants like .3gpp and .3ga for 3GP, and uppercase .WAV etc.
-         *
-         * Falls back to null for formats without a well-known MIME type,
-         * in which case glob patterns are used instead.
-         *
-         * @param format The canonical format string (e.g., "MP4", "WAV").
-         * @return The MIME type string, or null if not known.
-         */
-        private string? get_mime_type_for_format (string format) {
-            switch (format.ascii_down ()) {
-                // Video
-                case "mp4": return "video/mp4";
-                case "3gp": return "video/3gpp";
-                case "mpg": return "video/mpeg";
-                case "avi": return "video/x-msvideo";
-                case "wmv": return "video/x-ms-wmv";
-                case "flv": return "video/x-flv";
-                case "swf": return "application/x-shockwave-flash";
-                case "mov": return "video/quicktime";
-                case "mkv": return "video/x-matroska";
-                case "vob": return "video/dvd";
-                case "ogv": return "video/ogg";
-                case "webm": return "video/webm";
-                // Audio
-                case "mp3": return "audio/mpeg";
-                case "wma": return "audio/x-ms-wma";
-                case "amr": return "audio/amr";
-                case "ogg": return "audio/ogg";
-                case "wav": return "audio/wav";
-                case "aac": return "audio/aac";
-                case "flac": return "audio/flac";
-                case "aiff": return "audio/x-aiff";
-                case "m4a": return "audio/mp4";
-                case "opus": return "audio/opus";
-                case "shn": return "audio/x-shorten";
-                // Image
-                case "jpg": return "image/jpeg";
-                case "bmp": return "image/bmp";
-                case "png": return "image/png";
-                case "tif": return "image/tiff";
-                case "ico": return "image/x-icon";
-                case "gif": return "image/gif";
-                case "tga": return "image/x-tga";
-                // No known MIME type — fall back to glob pattern
-                default: return null;
-            }
-        }
-
-        /**
          * Starts conversion for all items in the list store.
          *
          * @param list_store Store containing FileItem objects.
@@ -218,7 +166,7 @@ namespace Ciano.Controllers {
         public void on_activate_button_start_conversion (GLib.ListStore list_store, string name_format) {
             this.converter_view.list_conversion.stack.set_visible_child_name (Constants.LIST_BOX_VIEW);
 
-            var type_item = this.resolve_type_item (name_format);
+            var type_item = FormatUtil.resolve_type_item (name_format);
 
             for (uint i = 0; i < list_store.get_n_items (); i++) {
 
@@ -238,23 +186,6 @@ namespace Ciano.Controllers {
             }
 
             this.process_queue ();
-        }
-
-        /**
-         * Resolves the media type category for a given target format,
-         * independent of any transient selection state on the controller.
-         *
-         * @param name_format Target format (e.g., "MP4", "MP3", "GIF").
-         * @return The matching media type category.
-         */
-        private TypeItemEnum resolve_type_item (string name_format) {
-            if (this.is_video (name_format)) {
-                return TypeItemEnum.VIDEO;
-            } else if (this.is_audio (name_format)) {
-                return TypeItemEnum.MUSIC;
-            } else {
-                return TypeItemEnum.IMAGE;
-            }
         }
 
         /**
@@ -325,7 +256,7 @@ namespace Ciano.Controllers {
          */
         private async void monitor_subprocess_async (Subprocess proc, RowConversion row, ItemConversion item) {
             var stream = new DataInputStream (proc.get_stderr_pipe ());
-            int total_seconds = 0;
+            var progress = new ConversionProgress ();
 
             try {
                 while (true) {
@@ -339,7 +270,7 @@ namespace Ciano.Controllers {
                         double fraction;
                         string status;
 
-                        FFmpegUtil.parse_progress (line, ref total_seconds, out fraction, out status);
+                        FFmpegUtil.parse_progress (line, progress, out fraction, out status);
 
                         if (fraction >= 0) {
                             Idle.add (() => {
@@ -458,49 +389,7 @@ namespace Ciano.Controllers {
                 string name_format,
                 TypeItemEnum type_item
         ) throws Error {
-            var args = new GenericArray<string> ();
-            string format = name_format.ascii_down ();
-
-            args.add (FFmpegUtil.get_executable ());
-            args.add ("-y");
-            args.add ("-progress");
-            args.add ("pipe:2");
-            args.add ("-nostats");
-            args.add ("-i");
-            args.add (input);
-
-            if (type_item == TypeItemEnum.VIDEO || type_item == TypeItemEnum.MUSIC) {
-                if (format == "3gp" || format == "flv") {
-                    args.add ("-vcodec");
-                    args.add ("libx264");
-                    args.add ("-acodec");
-                    args.add ("aac");
-                }
-
-                if (format == "mmf") {
-                    args.add ("-ar");
-                    args.add ("44100");
-                }
-            }
-
-            if (type_item == TypeItemEnum.IMAGE && format == "gif") {
-                if (FileUtil.get_file_extension_name (input) == "webm") {
-                    args.add ("-pix_fmt");
-                    args.add ("rgb8");
-                } else {
-                    args.add ("-ss");
-                    args.add ("00:00:00.000");
-                    args.add ("-vf");
-                    // args.add ("format=rgb8,format=rgb24");
-                    args.add ("format=rgb24,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse");
-                }
-            }
-
-            args.add ("-strict");
-            args.add ("-2");
-            args.add (output);
-
-            return (string[]) args.data;
+            return FFmpegUtil.build_arguments (FFmpegUtil.get_executable (), input, output, name_format, type_item);
         }
 
         /**
@@ -512,25 +401,23 @@ namespace Ciano.Controllers {
          * @return Output path.
          */
         private string generate_output_uri (string uri, string name_format) {
-            string ext = name_format.ascii_down ();
-            int dot = uri.last_index_of (".");
-            string base_uri = (dot != -1) ? uri.substring (0, dot) : uri;
-
-            if (this.settings.output_source_file_folder) {
-                return base_uri + "." + ext;
-            }
-
-            var output_dir = File.new_for_path (this.settings.output_folder);
-            if (!output_dir.query_exists ()) {
-                try {
-                    output_dir.make_directory_with_parents ();
-                } catch (Error e) {
-                    Logger.error ("Failed to create output folder: %s".printf (e.message));
+            if (!this.settings.output_source_file_folder) {
+                var output_dir = File.new_for_path (this.settings.output_folder);
+                if (!output_dir.query_exists ()) {
+                    try {
+                        output_dir.make_directory_with_parents ();
+                    } catch (Error e) {
+                        Logger.error ("Failed to create output folder: %s".printf (e.message));
+                    }
                 }
             }
 
-            string filename = Path.get_basename (base_uri);
-            return Path.build_filename (this.settings.output_folder, filename + "." + ext);
+            return FileUtil.build_output_path (
+                    uri,
+                    name_format,
+                    this.settings.output_source_file_folder,
+                    this.settings.output_folder
+            );
         }
 
         /**
@@ -559,119 +446,6 @@ namespace Ciano.Controllers {
                 case TypeItemEnum.IMAGE: return "image-x-generic";
                 default: return "text-x-generic";
             }
-        }
-
-        /**
-         * Returns supported formats based on selected type.
-         *
-         * @param name_format Selected format.
-         * @return Supported extensions.
-         */
-        private string[] mount_array_with_supported_formats (string name_format) {
-            GenericArray<string> formats;
-
-            if (this.is_video (name_format)) {
-                formats = this.get_video_formats ();
-            } else if (this.is_audio (name_format)) {
-                formats = this.get_audio_formats ();
-            } else {
-                formats = this.get_image_formats ();
-            }
-
-            return (string[]) formats.data;
-        }
-
-        private bool is_video (string f) {
-            return f == Constants.TEXT_MP4
-            || f == Constants.TEXT_3GP
-            || f == Constants.TEXT_MPG
-            || f == Constants.TEXT_AVI
-            || f == Constants.TEXT_WMV
-            || f == Constants.TEXT_FLV
-            || f == Constants.TEXT_SWF
-            || f == Constants.TEXT_MOV
-            || f == Constants.TEXT_MKV
-            || f == Constants.TEXT_VOB
-            || f == Constants.TEXT_OGV
-            || f == Constants.TEXT_WEBM;
-        }
-
-        private bool is_audio (string f) {
-            return f == Constants.TEXT_MP3
-            || f == Constants.TEXT_WMA
-            || f == Constants.TEXT_AMR
-            || f == Constants.TEXT_OGG
-            || f == Constants.TEXT_WAV
-            || f == Constants.TEXT_AAC
-            || f == Constants.TEXT_FLAC
-            || f == Constants.TEXT_AIFF
-            || f == Constants.TEXT_MMF
-            || f == Constants.TEXT_M4A
-            || f == Constants.TEXT_AT9
-            || f == Constants.TEXT_OPUS
-            || f == Constants.TEXT_SHN;
-        }
-
-        private GenericArray<string> get_video_formats () {
-            string[] raw = {
-                Constants.TEXT_MP4,
-                Constants.TEXT_3GP,
-                Constants.TEXT_MPG,
-                Constants.TEXT_AVI,
-                Constants.TEXT_WMV,
-                Constants.TEXT_FLV,
-                Constants.TEXT_SWF,
-                Constants.TEXT_MOV,
-                Constants.TEXT_MKV,
-                Constants.TEXT_VOB,
-                Constants.TEXT_OGV,
-                Constants.TEXT_WEBM
-            };
-
-            return this.to_generic_array (raw);
-        }
-
-        private GenericArray<string> get_audio_formats () {
-            string[] raw = {
-                Constants.TEXT_MP3,
-                Constants.TEXT_WMA,
-                Constants.TEXT_AMR,
-                Constants.TEXT_OGG,
-                Constants.TEXT_WAV,
-                Constants.TEXT_AAC,
-                Constants.TEXT_FLAC,
-                Constants.TEXT_AIFF,
-                Constants.TEXT_MMF,
-                Constants.TEXT_M4A,
-                Constants.TEXT_OPUS,
-                Constants.TEXT_AT9
-            };
-
-            return this.to_generic_array (raw);
-        }
-
-        private GenericArray<string> get_image_formats () {
-            string[] raw = {
-                Constants.TEXT_JPG,
-                Constants.TEXT_BMP,
-                Constants.TEXT_PNG,
-                Constants.TEXT_TIF,
-                Constants.TEXT_ICO,
-                Constants.TEXT_GIF,
-                Constants.TEXT_TGA
-            };
-
-            return this.to_generic_array (raw);
-        }
-
-        private GenericArray<string> to_generic_array (string[] raw) {
-            var array = new GenericArray<string> ();
-
-            foreach (var f in raw) {
-                array.add (f);
-            }
-
-            return array;
         }
 
         /**

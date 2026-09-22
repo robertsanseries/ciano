@@ -101,18 +101,64 @@ namespace Ciano.Utils {
         }
 
         /**
+         * Builds the output path of a conversion by replacing the input extension
+         * with the target format. It does not touch the file system.
+         *
+         * @param input Absolute input path.
+         * @param name_format Target format (e.g., "MP4", "GIF").
+         * @param use_source_folder true to write next to the input file.
+         * @param output_folder Folder used when use_source_folder is false.
+         * @return Output path.
+         */
+        public static string build_output_path (
+                string input,
+                string name_format,
+                bool use_source_folder,
+                string output_folder
+        ) {
+            string ext = name_format.ascii_down ();
+            int dot = get_extension_dot_index (input);
+            string base_uri = (dot != -1) ? input.substring (0, dot) : input;
+
+            if (use_source_folder) {
+                return base_uri + "." + ext;
+            }
+
+            string filename = Path.get_basename (base_uri);
+            return Path.build_filename (output_folder, filename + "." + ext);
+        }
+
+        /**
          * Extracts the file extension from a given URI or path.
+         *
+         * Dots in directory names and the leading dot of hidden files are not
+         * treated as the start of an extension.
          *
          * @param uri The file path or URI string.
          * @return The extension string (without the dot) or an empty string if none found.
          */
         public static string get_file_extension_name (string uri) {
-            int index = uri.last_index_of (".");
+            int index = get_extension_dot_index (uri);
 
             if (index == -1) {
                 return StringUtil.EMPTY;
             }
             return uri.substring (index + 1);
+        }
+
+        /**
+         * Returns the index of the dot that starts the extension of a path.
+         * Only a dot inside the file name counts: dots in directory names and
+         * the leading dot of hidden files do not.
+         *
+         * @param path The file path or URI string.
+         * @return The index of the dot, or -1 if the path has no extension.
+         */
+        private static int get_extension_dot_index (string path) {
+            int name_start = path.last_index_of (Path.DIR_SEPARATOR_S) + 1;
+            int dot = path.last_index_of (".");
+
+            return (dot > name_start) ? dot : -1;
         }
     }
 }

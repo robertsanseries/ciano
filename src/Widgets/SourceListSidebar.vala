@@ -18,6 +18,7 @@
  */
 
 using Ciano.Configs;
+using Ciano.Utils;
 
 namespace Ciano.Widgets {
 
@@ -59,18 +60,9 @@ namespace Ciano.Widgets {
             var video_list = new SourceItem (_("Video"), Constants.ICON_FOLDER_VIDEO);
             video_list.selectable = false;
 
-            video_list.append_child (new SourceItem (Constants.TEXT_MP4, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_MPG, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_AVI, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_WMV, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_FLV, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_SWF, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_MKV, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_3GP, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_MOV, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_VOB, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_OGV, Constants.ICON_MEDIA_VIDEO));
-            video_list.append_child (new SourceItem (Constants.TEXT_WEBM, Constants.ICON_MEDIA_VIDEO));
+            foreach (string format in FormatUtil.get_video_targets ()) {
+                video_list.append_child (new SourceItem (format, Constants.ICON_MEDIA_VIDEO));
+            }
 
             parent.append_child (video_list);
         }
@@ -83,18 +75,9 @@ namespace Ciano.Widgets {
             var music_list = new SourceItem (_("Music"), Constants.ICON_FOLDER_MUSIC);
             music_list.selectable = false;
 
-            music_list.append_child (new SourceItem (Constants.TEXT_MP3, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_WMA, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_OGG, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_WAV, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_AAC, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_FLAC, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_AIFF, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_MMF, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_M4A, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_AMR, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_OPUS, Constants.ICON_AUDIO_GENERIC));
-            music_list.append_child (new SourceItem (Constants.TEXT_AT9, Constants.ICON_AUDIO_GENERIC));
+            foreach (string format in FormatUtil.get_audio_targets ()) {
+                music_list.append_child (new SourceItem (format, Constants.ICON_AUDIO_GENERIC));
+            }
 
             parent.append_child (music_list);
         }
@@ -107,13 +90,9 @@ namespace Ciano.Widgets {
             var image_list = new SourceItem (_("Image"), Constants.ICON_FOLDER_PICTURES);
             image_list.selectable = false;
 
-            image_list.append_child (new SourceItem (Constants.TEXT_JPG, Constants.ICON_IMAGE_GENERIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_BMP, Constants.ICON_IMAGE_GENERIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_PNG, Constants.ICON_IMAGE_GENERIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_TIF, Constants.ICON_IMAGE_GENERIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_GIF, Constants.ICON_IMAGE_GENERIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_TGA, Constants.ICON_IMAGE_GENERIC));
-            image_list.append_child (new SourceItem (Constants.TEXT_ICO, Constants.ICON_IMAGE_GENERIC));
+            foreach (string format in FormatUtil.get_image_targets ()) {
+                image_list.append_child (new SourceItem (format, Constants.ICON_IMAGE_GENERIC));
+            }
 
             parent.append_child (image_list);
         }

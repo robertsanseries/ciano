@@ -17,6 +17,9 @@
  * Boston, MA 02110-1301 USA
  */
 
+using Ciano.Enums;
+using Ciano.Objects;
+
 namespace Ciano.Utils {
 
     /**
@@ -29,9 +32,6 @@ namespace Ciano.Utils {
      */
     public class FFmpegUtil : Object {
 
-        private static string last_size = "";
-        private static string last_bitrate = "";
-
         /**
          * Cached absolute path to the ffmpeg binary, resolved once at first use.
          * Null means resolution has not yet been attempted.
@@ -41,12 +41,28 @@ namespace Ciano.Utils {
         /**
          * Candidate paths to search for the ffmpeg binary, in order of preference.
          * This covers native installs, Flatpak sandboxes, and common distro layouts.
+         *
+         * It must be a constant: static fields of an Object subclass are only
+         * initialized in class_init, which never runs because this class is only
+         * used through static methods.
          */
-        private static string[] candidate_paths = {
+        private const string[] CANDIDATE_PATHS = {
             "/usr/bin/ffmpeg",
             "/usr/local/bin/ffmpeg",
             "/app/bin/ffmpeg"
         };
+
+        /**
+         * Filter applied when a video becomes a GIF: 10 frames per second and at most
+         * 480 pixels wide (smaller videos are not enlarged). Without it, a 10 second
+         * 720p clip turns into a GIF of more than 20 MB.
+         */
+        private const string GIF_FROM_VIDEO_FILTER = "fps=10,scale='min(480,iw)':-1:flags=lanczos";
+
+        /**
+         * Palette filter used for GIF output, for much better colors than the default.
+         */
+        private const string GIF_PALETTE_FILTER = "format=rgb24,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse";
 
         /**
          * Resolves and returns the absolute path to the ffmpeg binary.
@@ -74,7 +90,7 @@ namespace Ciano.Utils {
             }
 
             // 2. Fall back to known fixed locations
-            foreach (string candidate in candidate_paths) {
+            foreach (string candidate in CANDIDATE_PATHS) {
                 if (is_executable (candidate)) {
                     resolved_executable = candidate;
                     Logger.debug ("FFmpeg resolved via fallback: %s".printf (resolved_executable));
@@ -99,23 +115,97 @@ namespace Ciano.Utils {
         }
 
         /**
+         * Builds the FFmpeg command line for a single conversion.
+         *
+         * @param executable Absolute path to the ffmpeg binary.
+         * @param input Absolute input path.
+         * @param output Absolute output path.
+         * @param name_format Target format (e.g., "MP4", "GIF").
+         * @param type_item Media type category of the target format.
+         * @return Argument array, starting with the executable.
+         */
+        public static string[] build_arguments (
+                string executable,
+                string input,
+                string output,
+                string name_format,
+                TypeItemEnum type_item
+        ) {
+            var args = new GenericArray<string> ();
+            string format = name_format.ascii_down ();
+
+            args.add (executable);
+            args.add ("-y");
+            args.add ("-progress");
+            args.add ("pipe:2");
+            args.add ("-nostats");
+            args.add ("-i");
+            args.add (input);
+
+            if (type_item == TypeItemEnum.VIDEO || type_item == TypeItemEnum.MUSIC) {
+                if (format == "3gp" || format == "flv") {
+                    args.add ("-vcodec");
+                    args.add ("libx264");
+                    args.add ("-acodec");
+                    args.add ("aac");
+                }
+
+                if (format == "mmf") {
+                    args.add ("-ar");
+                    args.add ("44100");
+                }
+            }
+
+            // Drop the video stream when extracting audio from a video file
+            if (type_item == TypeItemEnum.MUSIC
+                && !FormatUtil.is_audio (FileUtil.get_file_extension_name (input).up ())) {
+                args.add ("-vn");
+            }
+
+            if (type_item == TypeItemEnum.IMAGE && format == "gif") {
+                string input_ext = FileUtil.get_file_extension_name (input);
+                bool from_video = FormatUtil.is_video (input_ext.up ());
+
+                if (input_ext.ascii_down () == "webm") {
+                    args.add ("-vf");
+                    args.add (GIF_FROM_VIDEO_FILTER);
+                    args.add ("-pix_fmt");
+                    args.add ("rgb8");
+                } else {
+                    args.add ("-ss");
+                    args.add ("00:00:00.000");
+                    args.add ("-vf");
+                    // Limit frame rate and size first, so the palette is built from the final frames
+                    args.add (from_video ? GIF_FROM_VIDEO_FILTER + "," + GIF_PALETTE_FILTER : GIF_PALETTE_FILTER);
+                }
+            }
+
+            args.add ("-strict");
+            args.add ("-2");
+            args.add (output);
+
+            return (string[]) args.data;
+        }
+
+        /**
          * Parses FFmpeg progress output when using:
          * -progress pipe:2 -nostats
          *
-         * This method reads key=value lines emitted by FFmpeg and updates:
+         * This method reads key=value lines emitted by FFmpeg and updates
+         * the state of the conversion:
          * - total duration (extracted from "Duration:")
          * - current progress based on "out_time="
          * - formatted size based on "total_size="
          * - bitrate based on "bitrate="
          *
          * @param raw_line The raw line read from FFmpeg stderr.
-         * @param total_seconds Reference to the total duration in seconds.
+         * @param progress Progress state of this conversion only.
          * @param fraction Output progress fraction (0.0 → 1.0).
          * @param status_text Output formatted status text for UI.
          */
         public static void parse_progress (
                 string raw_line,
-                ref int total_seconds,
+                ConversionProgress progress,
                 out double fraction,
                 out string status_text
         ) {
@@ -134,30 +224,31 @@ namespace Ciano.Utils {
 
                 if (end != -1) {
                     string dur_str = line.substring (start, end - start).strip ();
-                    total_seconds = TimeUtil.duration_in_seconds (dur_str);
+                    progress.total_seconds = TimeUtil.duration_in_seconds (dur_str);
                 }
             }
 
-            // 2. Capture total_size (bytes)
+            // 2. Capture total_size (bytes). Parsed as int64 because outputs
+            // larger than 2 GB overflow an int.
             // Example:
             // total_size=262144
             if (line.has_prefix ("total_size=")) {
                 string raw = line.substring (11);
-                int bytes = int.parse (raw);
-                last_size = format_size (bytes);
+                int64 bytes = int64.parse (raw);
+                progress.size = format_size (bytes);
             }
 
             // 3. Capture bitrate
             // Example:
             // bitrate=1351.6kbits/s
             if (line.has_prefix ("bitrate=")) {
-                last_bitrate = line.substring (8);
+                progress.bitrate = line.substring (8);
             }
 
             // 4. Update progress using out_time
             // Example:
             // out_time=00:00:01.551550
-            if (line.has_prefix ("out_time=") && total_seconds > 0) {
+            if (line.has_prefix ("out_time=") && progress.total_seconds > 0) {
 
                 string time_val = line.substring (9);
 
@@ -165,15 +256,15 @@ namespace Ciano.Utils {
 
                     int current = TimeUtil.duration_in_seconds (time_val);
 
-                    fraction = ((double) current / total_seconds)
+                    fraction = ((double) current / progress.total_seconds)
                     .clamp (0.0, 1.0);
 
                     // Build UI status text
                     status_text = "%d%% - %s - %s"
                     .printf (
                             (int)(fraction * 100),
-                            last_size,
-                            last_bitrate
+                            progress.size,
+                            progress.bitrate
                     );
                 }
             }
@@ -183,7 +274,7 @@ namespace Ciano.Utils {
             // progress=end
             if (line.has_prefix ("progress=end")) {
                 fraction = 1.0;
-                status_text = "100%% - %s - %s".printf (last_size, last_bitrate);
+                status_text = "100%% - %s - %s".printf (progress.size, progress.bitrate);
             }
         }
 
@@ -191,15 +282,17 @@ namespace Ciano.Utils {
          * Converts bytes to a human-readable string.
          *
          * @param bytes Size in bytes.
-         * @return Formatted string (e.g. "1.4 MB", "512.0 KB", "256 B").
+         * @return Formatted string (e.g. "2.3 GB", "1.4 MB", "512.0 KB", "256 B").
          */
-        private static string format_size (int bytes) {
-            if (bytes >= 1024 * 1024) {
+        private static string format_size (int64 bytes) {
+            if (bytes >= 1024 * 1024 * 1024) {
+                return "%.1f GB".printf ((double) bytes / (1024 * 1024 * 1024));
+            } else if (bytes >= 1024 * 1024) {
                 return "%.1f MB".printf ((double) bytes / (1024 * 1024));
             } else if (bytes >= 1024) {
                 return "%.1f KB".printf ((double) bytes / 1024);
             } else {
-                return "%d B".printf (bytes);
+                return bytes.to_string () + " B";
             }
         }
     }

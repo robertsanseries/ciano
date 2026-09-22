@@ -78,4 +78,8 @@ executable (
 subdir('data')
 subdir('po')
 
+if get_option('tests')
+    subdir('tests')
+endif
+
 meson.add_install_script('meson/post_install.py')
